@@ -219,17 +219,6 @@
     animation: fadeUp 0.8s 0.6s forwards;
   }
 
-  .hero-desc {
-    font-size: 16px;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    max-width: 440px;
-    margin-bottom: 40px;
-    opacity: 0;
-    transform: translateY(18px);
-    animation: fadeUp 0.8s 0.75s forwards;
-  }
-
   .hero-cta {
     display: inline-flex;
     align-items: center;
@@ -246,7 +235,7 @@
     transition: all 0.3s;
     opacity: 0;
     transform: translateY(18px);
-    animation: fadeUp 0.8s 0.9s forwards;
+    animation: fadeUp 0.8s 0.75s forwards;
   }
 
   .hero-cta:hover {
@@ -650,7 +639,6 @@
   @media (max-width: 520px) {
     .hero h1 { font-size: 38px; letter-spacing: -1px; }
     .hero-tagline { font-size: 16px; }
-    .hero-desc { font-size: 15px; }
     .section-header { margin-bottom: 36px; }
     .card-body { padding: 20px 22px 24px; }
     .card-visual { height: 180px; }
@@ -689,7 +677,6 @@
     <p class="hero-eyebrow" data-i18n="hero_eyebrow"></p>
     <h1>Jain<span class="accent">verse</span></h1>
     <p class="hero-tagline" data-i18n="hero_tagline"></p>
-    <p class="hero-desc" data-i18n="hero_desc"></p>
     <a href="#projects" class="hero-cta">
       <span data-i18n="hero_cta"></span>
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -810,63 +797,60 @@
 // ---- i18n strings ----
 const i18n = {
   mr: {
-    nav_explore: "अन्वेषण",
+    nav_explore: "पहा",
     nav_about: "आमच्याबद्दल",
-    hero_eyebrow: "परस्परसंवादी ज्ञानकोश",
-    hero_tagline: "जैन परंपरा, नव्या दृष्टीने",
-    hero_desc: "जैन शास्त्रांमध्ये वर्णन केलेले विश्व, तत्त्वज्ञान आणि परंपरा — परस्परसंवादी नकाशे, त्रिमितीय प्रतिकृती आणि दृश्य कथनांद्वारे अनुभवा.",
-    hero_cta: "अन्वेषण सुरू करा",
-    section_explore: "अन्वेषणे",
-    card_jambu_tag: "परस्परसंवादी त्रिमितीय नकाशा",
+    hero_eyebrow: "Interactive ज्ञानकोश",
+    hero_tagline: "जैन परंपरा, नव्या नजरेने",
+    hero_cta: "पुढे जा",
+    section_explore: "पहा",
+    card_jambu_tag: "Interactive 3D नकाशा",
     card_jambu_title: "जम्बूद्वीप <span class='card-title-sub'>Jambudweep</span>",
-    card_jambu_desc: "जैन भूगोलातील सर्वांत आतील द्वीप — मेरु पर्वत, सात क्षेत्रे, सहा पर्वतरांगा आणि लवण समुद्र, सर्व त्रिमितीय स्वरूपात पहा.",
+    card_jambu_desc: "जैन भूगोलातला सगळ्यात आतला द्वीप — मेरु पर्वत, सात क्षेत्रे, सहा पर्वतरांगा आणि खारा समुद्र, हे सगळं 3D मध्ये पहा.",
     card_jambu_enter: "नकाशा पहा",
     card_soon_tag: "लवकरच",
-    card_soon_title: "अजून बरेच काही",
-    card_soon_desc: "जैन परंपरेचे नवीन अन्वेषणे — लोक, कालचक्र आणि बरेच काही — तयार होत आहेत.",
-    mission_title: "अदृश्याला दृश्य करणे",
-    mission_p1: "जैन परंपरा एका अलौकिक विश्वाचे वर्णन करते — काळात अनंत, अवकाशात स्तरित, आधुनिक युगाच्या हजारो वर्षांपूर्वी गणितीय अचूकतेने नकाशित.",
-    mission_p2: "Jainverse हे वर्णन परस्परसंवादी, मूळ ग्रंथांवर आधारित दृश्यांकनांद्वारे सजीव करते — सर्वांसाठी खुले.",
+    card_soon_title: "अजून बरंच काही",
+    card_soon_desc: "जैन परंपरेतले नवीन विषय — लोक, कालचक्र वगैरे — बनवत आहोत.",
+    mission_title: "न दिसणारं दाखवणे",
+    mission_p1: "जैन परंपरेत एका अद्भुत विश्वाचं वर्णन आहे — काळात अनंत, जागेत थरावर थर, हजारो वर्षांपूर्वी गणिताने मांडलेलं.",
+    mission_p2: "Jainverse हे वर्णन interactive, मूळ ग्रंथांवर आधारित चित्रांद्वारे जिवंत करतो — सगळ्यांसाठी खुलं.",
     footer_note: "जैन परंपरा · Jain Encyclopaedia",
   },
   hi: {
-    nav_explore: "अन्वेषण",
+    nav_explore: "देखें",
     nav_about: "हमारे बारे में",
-    hero_eyebrow: "परस्परसंवादी ज्ञानकोश",
-    hero_tagline: "जैन परम्परा, नई दृष्टि से",
-    hero_desc: "जैन शास्त्रों में वर्णित विश्व, दर्शन और परम्परा — परस्परसंवादी मानचित्रों, त्रिआयामी प्रतिकृतियों और दृश्य कथाओं के माध्यम से अनुभव करें.",
-    hero_cta: "अन्वेषण आरम्भ करें",
-    section_explore: "अन्वेषण",
-    card_jambu_tag: "परस्परसंवादी त्रिआयामी मानचित्र",
+    hero_eyebrow: "Interactive ज्ञानकोश",
+    hero_tagline: "जैन परंपरा, नई नज़र से",
+    hero_cta: "आगे बढ़ें",
+    section_explore: "देखें",
+    card_jambu_tag: "Interactive 3D नक्शा",
     card_jambu_title: "जम्बूद्वीप <span class='card-title-sub'>Jambudweep</span>",
-    card_jambu_desc: "जैन भूगोल का सर्वान्तरतम द्वीप — मेरु पर्वत, सात क्षेत्र, छः पर्वत श्रृंखलाएँ और लवण समुद्र, सब त्रिआयामी रूप में देखें.",
-    card_jambu_enter: "मानचित्र देखें",
-    card_soon_tag: "शीघ्र",
+    card_jambu_desc: "जैन भूगोल का सबसे अंदर का द्वीप — मेरु पर्वत, सात क्षेत्र, छह पहाड़ियाँ और खारा समुद्र, सब 3D में देखें.",
+    card_jambu_enter: "नक्शा देखें",
+    card_soon_tag: "जल्द ही",
     card_soon_title: "और भी बहुत कुछ",
-    card_soon_desc: "जैन परम्परा के नवीन अन्वेषण — लोक, कालचक्र और बहुत कुछ — निर्माणाधीन हैं.",
-    mission_title: "अदृश्य को दृश्य बनाना",
-    mission_p1: "जैन परम्परा एक अलौकिक विश्व का वर्णन करती है — काल में अनन्त, अवकाश में स्तरित, आधुनिक युग से सहस्रों वर्ष पूर्व गणितीय सटीकता से मानचित्रित.",
-    mission_p2: "Jainverse इन वर्णनों को परस्परसंवादी, मूल ग्रन्थों पर आधारित दृश्यांकनों द्वारा सजीव करता है — सभी के लिए खुला.",
-    footer_note: "जैन परम्परा · Jain Encyclopaedia",
+    card_soon_desc: "जैन परंपरा के नए विषय — लोक, कालचक्र वगैरह — बना रहे हैं.",
+    mission_title: "न दिखने वाला दिखाना",
+    mission_p1: "जैन परंपरा में एक अद्भुत विश्व का वर्णन है — समय में अनंत, जगह में परत दर परत, हज़ारों साल पहले गणित से बनाया गया.",
+    mission_p2: "Jainverse इस वर्णन को interactive, मूल ग्रंथों पर आधारित चित्रों से जीवंत करता है — सबके लिए खुला.",
+    footer_note: "जैन परंपरा · Jain Encyclopaedia",
   },
   en: {
     nav_explore: "Explore",
     nav_about: "About",
     hero_eyebrow: "Interactive Encyclopaedia",
     hero_tagline: "Jain tradition, seen anew",
-    hero_desc: "Experience the universe, philosophy, and traditions described in Jain scriptures — through interactive maps, 3D models, and visual narratives.",
     hero_cta: "Start exploring",
     section_explore: "Explorations",
     card_jambu_tag: "Interactive 3D Map",
     card_jambu_title: "Jambudweep <span class='card-title-sub'>जम्बूद्वीप</span>",
-    card_jambu_desc: "Navigate the innermost continent of Jain geography — Mount Meru at its axis, seven lands, six mountain ranges, and the encircling salt ocean, all in 3D.",
+    card_jambu_desc: "The innermost continent of Jain geography — Mount Meru at the centre, seven lands, six mountain ranges, and the salt ocean around it, all in 3D.",
     card_jambu_enter: "Enter the map",
     card_soon_tag: "Coming Soon",
     card_soon_title: "More to come",
-    card_soon_desc: "New explorations of Jain tradition — lokas, kālachakra, and beyond — are being crafted.",
+    card_soon_desc: "New topics from Jain tradition — lokas, kālachakra, and more — are being built.",
     mission_title: "Making the invisible visible",
-    mission_p1: "Jain tradition describes a universe of extraordinary scale and structure — infinite in time, layered in space, mapped with mathematical precision thousands of years before the modern era.",
-    mission_p2: "Jainverse brings these descriptions to life through interactive, faithful visualizations — built from primary texts, open to everyone.",
+    mission_p1: "Jain tradition describes an extraordinary universe — infinite in time, layered in space, mapped with mathematical precision thousands of years ago.",
+    mission_p2: "Jainverse brings these descriptions to life through interactive visuals built from primary texts — open to everyone.",
     footer_note: "Jain Tradition · Encyclopaedia",
   }
 };
