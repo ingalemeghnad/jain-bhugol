@@ -167,18 +167,23 @@
   }
 
   .tree-node rect {
-    fill: var(--warm-white);
+    fill: #ffffff;
     stroke-width: 1.5;
-    transition: stroke 0.3s, filter 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: all;
   }
 
   .tree-node:hover rect {
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+    fill: #fff;
+    stroke: var(--saffron);
+    filter: drop-shadow(0 4px 12px rgba(224, 120, 48, 0.15));
   }
 
   .tree-node.active rect {
+    fill: #fff;
     stroke: var(--saffron);
     stroke-width: 2.5;
+    filter: drop-shadow(0 2px 8px rgba(224, 120, 48, 0.1));
   }
 
   .tree-node text {
