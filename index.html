@@ -495,47 +495,6 @@
     transform: translateX(3px);
   }
 
-  /* ---- About / Mission ---- */
-  .mission {
-    padding: 100px 60px;
-    background: var(--sand);
-    position: relative;
-  }
-
-  .mission-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .mission-symbol {
-    font-size: 40px;
-    margin-bottom: 28px;
-    display: block;
-    opacity: 0.7;
-  }
-
-  .mission h2 {
-    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
-    font-size: clamp(28px, 3.5vw, 40px);
-    color: var(--indigo);
-    line-height: 1.3;
-    margin-bottom: 24px;
-    letter-spacing: -0.5px;
-  }
-
-  .mission p {
-    font-size: 17px;
-    line-height: 1.9;
-    color: var(--text-secondary);
-    max-width: 580px;
-    margin: 0 auto;
-  }
-
-  .mission p + p {
-    margin-top: 16px;
-  }
-
   /* ---- Footer ---- */
   footer {
     padding: 40px 60px;
@@ -613,8 +572,6 @@
     .highlight-title { font-size: 28px; }
     .highlight-title-sub { font-size: 18px; }
 
-    .mission { padding: 60px 28px; }
-
     footer { padding: 28px; flex-direction: column; gap: 8px; text-align: center; }
 
     nav { padding: 16px 20px; }
@@ -645,7 +602,6 @@
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#projects" data-i18n="nav_explore"></a></li>
-      <li><a href="#mission" data-i18n="nav_about"></a></li>
     </ul>
     <div class="lang-switch">
       <button class="lang-btn" data-lang="mr">मराठी</button>
@@ -759,16 +715,6 @@
   </div>
 </section>
 
-<!-- Mission -->
-<section class="mission" id="mission">
-  <div class="mission-inner reveal">
-    <span class="mission-symbol">☸</span>
-    <h2 data-i18n="mission_title"></h2>
-    <p data-i18n="mission_p1"></p>
-    <p data-i18n="mission_p2"></p>
-  </div>
-</section>
-
 <!-- Footer -->
 <footer>
   <span class="footer-brand">Jainverse</span>
@@ -780,7 +726,6 @@
 const i18n = {
   mr: {
     nav_explore: "पहा",
-    nav_about: "आमच्याबद्दल",
     hero_eyebrow: "",
     hero_tagline: "जैन परंपरा, नव्या नजरेने",
     hero_cta: "पुढे जा",
@@ -789,14 +734,10 @@ const i18n = {
     card_jambu_title: "जम्बूद्वीप <span class='card-title-sub'>Jambudweep</span>",
     card_jambu_desc: "जैन भूगोलातला सगळ्यात आतला द्वीप — मेरु पर्वत, सात क्षेत्रे, सहा पर्वतरांगा आणि खारा समुद्र, हे सगळं 3D मध्ये पहा.",
     card_jambu_enter: "नकाशा पहा",
-    mission_title: "न दिसणारं दाखवणे",
-    mission_p1: "जैन परंपरेत एका अद्भुत विश्वाचं वर्णन आहे — काळात अनंत, जागेत थरावर थर, हजारो वर्षांपूर्वी गणिताने मांडलेलं.",
-    mission_p2: "",
     footer_note: "जैन परंपरा · Jain Encyclopaedia",
   },
   hi: {
     nav_explore: "देखें",
-    nav_about: "हमारे बारे में",
     hero_eyebrow: "",
     hero_tagline: "जैन परंपरा, नई नज़र से",
     hero_cta: "आगे बढ़ें",
@@ -805,14 +746,10 @@ const i18n = {
     card_jambu_title: "जम्बूद्वीप <span class='card-title-sub'>Jambudweep</span>",
     card_jambu_desc: "जैन भूगोल का सबसे अंदर का द्वीप — मेरु पर्वत, सात क्षेत्र, छह पहाड़ियाँ और खारा समुद्र, सब 3D में देखें.",
     card_jambu_enter: "नक्शा देखें",
-    mission_title: "न दिखने वाला दिखाना",
-    mission_p1: "जैन परंपरा में एक अद्भुत विश्व का वर्णन है — समय में अनंत, जगह में परत दर परत, हज़ारों साल पहले गणित से बनाया गया.",
-    mission_p2: "",
     footer_note: "जैन परंपरा · Jain Encyclopaedia",
   },
   en: {
     nav_explore: "Explore",
-    nav_about: "About",
     hero_eyebrow: "",
     hero_tagline: "Jain tradition, seen anew",
     hero_cta: "Start exploring",
@@ -821,9 +758,6 @@ const i18n = {
     card_jambu_title: "Jambudweep <span class='card-title-sub'>जम्बूद्वीप</span>",
     card_jambu_desc: "The innermost continent of Jain geography — Mount Meru at the centre, seven lands, six mountain ranges, and the salt ocean around it, all in 3D.",
     card_jambu_enter: "Enter the map",
-    mission_title: "Making the invisible visible",
-    mission_p1: "Jain tradition describes an extraordinary universe — infinite in time, layered in space, mapped with mathematical precision thousands of years ago.",
-    mission_p2: "",
     footer_note: "Jain Tradition · Encyclopaedia",
   }
 };
