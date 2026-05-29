@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>मोक्ष — Jainverse</title>
+<meta name="description" content="सगळं कर्म गेलं — मग काय उरतं? आत्म्याचं खरं स्वरूप म्हणजे मोक्ष.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+
+  .article {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 140px 28px 100px;
+  }
+
+  .page-header {
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--indigo);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  .header-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin-top: 28px;
+    opacity: 0.7;
+  }
+
+  .section {
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: -12px;
+    user-select: none;
+  }
+
+  .section-question {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(24px, 3.5vw, 32px);
+    color: var(--indigo);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--text-secondary);
+  }
+
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 80px 0;
+    color: var(--sand-dark);
+    user-select: none;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark));
+  }
+
+  .section-divider::after {
+    background: linear-gradient(90deg, var(--sand-dark), transparent);
+  }
+
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+
+  .page-nav {
+    display: flex;
+    gap: 16px;
+    margin-top: 80px;
+  }
+
+  .prev-read {
+    flex: 1;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .prev-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .prev-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: 8px;
+  }
+
+  .prev-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prev-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--stone-light);
+    transition: transform 0.3s;
+  }
+
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+
+  .article-footer {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--sand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .article-footer .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--stone);
+    text-decoration: none;
+  }
+
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; }
+    .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; }
+    .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; }
+    .section-divider { margin: 56px 0; }
+    .prev-read { padding: 22px 24px; }
+    .prev-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span>Jainverse</span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">6</div>
+    <h2 class="section-question" data-i18n="s6_q"></h2>
+    <div class="section-body" data-i18n-html="s6_body"></div>
+  </section>
+
+  <!-- Prev -->
+  <div class="page-nav reveal">
+    <a href="/samvar-nirjara/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "मोक्ष",
+    page_subtitle: "सगळं कर्म गेलं — मग काय उरतं?",
+    s1_q: "शेवटी काय होतं?",
+    s1_body: s([
+      'तुम्ही आता संपूर्ण प्रवास पाहिलाय.',
+      'आत्मा (जीव) अनादि काळापासून कर्माने झाकलेला आहे. कषायांमुळे कर्म चिकटतं (बंध). मन-वाणी-शरीराच्या हालचालीतून नवीन कर्म शिरतं (आस्रव).',
+      'संवराने नवीन कर्म थांबतं. निर्जरेने जुनं कर्म गळतं.',
+      '<span class="emphasis">जेव्हा सगळं कर्म — प्रत्येक प्रकारचं, शेवटचा कणसुद्धा — झडतं, तेव्हा जे उरतं ते म्हणजे आत्म्याचं खरं स्वरूप.</span>',
+      'याला <span class="term">मोक्ष</span> म्हणतात.',
+    ]),
+    s2_q: "मोक्ष म्हणजे कुठे जाणं नाही",
+    s2_body: s([
+      'मोक्ष म्हणजे स्वर्गात जाणं नाही. कुठल्या देवाच्या जवळ जाणं नाही. कुठल्या लोकात प्रवेश मिळवणं नाही.',
+      '<span class="emphasis">मोक्ष म्हणजे आत्मा स्वतःच्या खऱ्या स्वरूपात स्थिर होणं.</span>',
+      'आत्मा बदलत नाही — तो आधीपासूनच शुद्ध आहे. फक्त कर्माचे थर त्याला झाकून ठेवत होते.',
+      'आरशावरची धूळ पुसली — आरसा नवीन झाला नाही, तो आधीपासूनच तसा होता. फक्त आता दिसतोय.',
+    ]),
+    s3_q: "मुक्त आत्मा कसा असतो?",
+    s3_body: s([
+      'सगळं कर्म गेलं — आता आत्म्याचे गुण पूर्णपणे प्रकट होतात:',
+      '<span class="emphasis">अनंत ज्ञान</span> — सगळं काही जाणतो. भूत, वर्तमान, भविष्य — सगळं एकाच वेळी, कुठलीही मर्यादा नाही. ज्ञानावरणीय कर्म गेलं.',
+      '<span class="emphasis">अनंत दर्शन</span> — सगळं काही जाणवतं. जाणीवेवर कुठलाही पडदा नाही. दर्शनावरणीय कर्म गेलं.',
+      '<span class="emphasis">अनंत सुख</span> — हे बाहेरच्या कशावरही अवलंबून नाही. कुठलीही गरज नाही, कुठली कमतरता नाही — अखंड, शाश्वत समाधान. वेदनीय कर्म गेलं.',
+      '<span class="emphasis">अनंत वीर्य</span> — अनंत शक्ती. अंतराय कर्म गेलं — कुठलीही अडचण उरली नाही.',
+    ]),
+    s4_q: "मग शरीराचं काय?",
+    s4_body: s([
+      'मोक्षाआधी एक अवस्था येते — शरीर अजून आहे पण सगळं कर्म संपत आलंय.',
+      'ज्या क्षणी मोहनीय, ज्ञानावरणीय, दर्शनावरणीय आणि अंतराय — हे चार घातिया (हानिकारक) कर्म संपतात, तेव्हा आत्म्याला अनंत ज्ञान प्रकट होतं — शरीरात असतानाच.',
+      'या अवस्थेला <span class="term">केवलज्ञान</span> म्हणतात — सगळं काही जाणणं, कुठलंही आवरण नाही.',
+      'शरीर असतं — पण आत्मा आता पूर्णपणे जागा आहे.',
+      'उरलेली चार कर्मं (वेदनीय, आयु, नाम, गोत्र) शरीर टिकवून ठेवतात. ती संपली की शरीर सुटतं.',
+      '<span class="emphasis">शरीर सुटलं — आत्मा लोकाकाशाच्या सर्वोच्च टोकाला जातो. तिथे कायमचा राहतो — हा मोक्ष.</span>',
+    ]),
+    s5_q: "कुणी मोक्ष मिळवलाय?",
+    s5_body: s([
+      'हो — अनंत आत्म्यांनी.',
+      'जैन परंपरेत या काळातले सगळ्यात अलीकडचे मोक्षगामी म्हणजे <span class="term">भगवान महावीर</span> — चोवीसावे तीर्थंकर.',
+      'त्यांच्या आधी तेवीस तीर्थंकर — ऋषभदेव (आदिनाथ) पासून पार्श्वनाथांपर्यंत — प्रत्येकाने हाच मार्ग चालला, हाच मोक्ष मिळवला.',
+      'आणि तीर्थंकरांपलीकडेही अनंत सामान्य आत्म्यांनी हा प्रवास पूर्ण केलाय.',
+      '<span class="emphasis">मोक्ष विशेष लोकांसाठी राखून ठेवलेला नाही — प्रत्येक आत्म्याचं खरं स्वरूपच तेच आहे. प्रत्येक जीव सिद्ध होण्याच्या क्षमतेने भरलेला आहे.</span>',
+    ]),
+    s6_q: "संपूर्ण चित्र",
+    s6_body: s([
+      'तुम्ही आता सात तत्त्वं पाहिलीत — जैन तत्त्वज्ञानाचा गाभा:',
+      '<span class="term">जीव</span> — आत्मा, चैतन्य. <span class="term">अजीव</span> — आत्म्याशिवाय बाकी सगळं.',
+      '<span class="term">आस्रव</span> — कर्म आत शिरणं. <span class="term">बंध</span> — कर्म लॉक होणं.',
+      '<span class="term">संवर</span> — कर्म शिरणं थांबवणं. <span class="term">निर्जरा</span> — जुनं कर्म झटकणं.',
+      '<span class="term">मोक्ष</span> — सगळं कर्म गेलं, आत्मा मुक्त.',
+      '<span class="emphasis">हे सात तत्त्वं समजणं म्हणजे जैन तत्त्वज्ञानाचा पाया समजणं. इथून पुढचा प्रवास — अभ्यास, आचरण, आणि स्वतःची ओळख — तो प्रत्येकाचा स्वतःचा आहे.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "संवर आणि निर्जरा",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "मोक्ष",
+    page_subtitle: "सारा कर्म गया — फिर क्या बचता है?",
+    s1_q: "आख़िर में क्या होता है?",
+    s1_body: s([
+      'तुमने अब पूरा सफ़र देखा है.',
+      'आत्मा (जीव) अनादि काल से कर्म से ढका हुआ है. कषायों से कर्म चिपकता है (बंध). मन-वाणी-शरीर की हलचल से नया कर्म घुसता है (आस्रव).',
+      'संवर से नया कर्म रुकता है. निर्जरा से पुराना कर्म गिरता है.',
+      '<span class="emphasis">जब सारा कर्म — हर प्रकार का, आख़िरी कण तक — छूट जाता है, तब जो बचता है वो है आत्मा का असली रूप.</span>',
+      'इसे <span class="term">मोक्ष</span> कहते हैं.',
+    ]),
+    s2_q: "मोक्ष मतलब कहीं जाना नहीं",
+    s2_body: s([
+      'मोक्ष मतलब स्वर्ग में जाना नहीं. किसी भगवान के पास जाना नहीं. किसी लोक में दाख़िला पाना नहीं.',
+      '<span class="emphasis">मोक्ष मतलब आत्मा का अपने असली रूप में स्थिर हो जाना.</span>',
+      'आत्मा बदलता नहीं — वो पहले से ही शुद्ध है. बस कर्म की परतें उसे ढके हुए थीं.',
+      'आईने से धूल पोंछी — आईना नया नहीं हुआ, वो पहले से वैसा ही था. बस अब दिख रहा है.',
+    ]),
+    s3_q: "मुक्त आत्मा कैसा होता है?",
+    s3_body: s([
+      'सारा कर्म गया — अब आत्मा के गुण पूरी तरह प्रकट होते हैं:',
+      '<span class="emphasis">अनंत ज्ञान</span> — सब कुछ जानता है. भूत, वर्तमान, भविष्य — सब एक साथ, कोई सीमा नहीं. ज्ञानावरणीय कर्म गया.',
+      '<span class="emphasis">अनंत दर्शन</span> — सब कुछ महसूस करता है. जागरूकता पर कोई पर्दा नहीं. दर्शनावरणीय कर्म गया.',
+      '<span class="emphasis">अनंत सुख</span> — ये बाहर की किसी चीज़ पर निर्भर नहीं. कोई ज़रूरत नहीं, कोई कमी नहीं — अखंड, शाश्वत संतोष. वेदनीय कर्म गया.',
+      '<span class="emphasis">अनंत वीर्य</span> — अनंत शक्ति. अंतराय कर्म गया — कोई रुकावट नहीं बची.',
+    ]),
+    s4_q: "फिर शरीर का क्या?",
+    s4_body: s([
+      'मोक्ष से पहले एक अवस्था आती है — शरीर अभी है लेकिन सारा कर्म ख़त्म होने वाला है.',
+      'जिस लम्हे मोहनीय, ज्ञानावरणीय, दर्शनावरणीय और अंतराय — ये चार घातिया (हानिकारक) कर्म ख़त्म होते हैं, तब आत्मा को अनंत ज्ञान प्रकट होता है — शरीर में रहते हुए ही.',
+      'इस अवस्था को <span class="term">केवलज्ञान</span> कहते हैं — सब कुछ जानना, कोई आवरण नहीं.',
+      'शरीर है — लेकिन आत्मा अब पूरी तरह जागा हुआ है.',
+      'बाक़ी चार कर्म (वेदनीय, आयु, नाम, गोत्र) शरीर को टिकाए रखते हैं. वो ख़त्म हुए तो शरीर छूट जाता है.',
+      '<span class="emphasis">शरीर छूटा — आत्मा लोकाकाश के सबसे ऊपरी छोर पर पहुँचता है. वहाँ हमेशा के लिए रहता है — यही मोक्ष.</span>',
+    ]),
+    s5_q: "किसी ने मोक्ष पाया है?",
+    s5_body: s([
+      'हाँ — अनंत आत्माओं ने.',
+      'जैन परंपरा में इस काल के सबसे हालिया मोक्षगामी हैं <span class="term">भगवान महावीर</span> — चौबीसवें तीर्थंकर.',
+      'उनसे पहले तेईस तीर्थंकर — ऋषभदेव (आदिनाथ) से पार्श्वनाथ तक — हर एक ने यही राह चली, यही मोक्ष पाया.',
+      'और तीर्थंकरों के अलावा भी अनंत साधारण आत्माओं ने ये सफ़र पूरा किया है.',
+      '<span class="emphasis">मोक्ष ख़ास लोगों के लिए रिज़र्व नहीं — हर आत्मा का असली रूप वही है. हर जीव सिद्ध होने की क्षमता लिए हुए है.</span>',
+    ]),
+    s6_q: "पूरी तस्वीर",
+    s6_body: s([
+      'तुमने अब सात तत्त्व देखे — जैन दर्शन की बुनियाद:',
+      '<span class="term">जीव</span> — आत्मा, चेतना. <span class="term">अजीव</span> — आत्मा के अलावा बाक़ी सब.',
+      '<span class="term">आस्रव</span> — कर्म का अंदर आना. <span class="term">बंध</span> — कर्म का लॉक होना.',
+      '<span class="term">संवर</span> — कर्म आना रोकना. <span class="term">निर्जरा</span> — पुराना कर्म छुड़ाना.',
+      '<span class="term">मोक्ष</span> — सारा कर्म गया, आत्मा मुक्त.',
+      '<span class="emphasis">ये सात तत्त्व समझना मतलब जैन दर्शन की नींव समझना. यहाँ से आगे का सफ़र — अध्ययन, आचरण, और ख़ुद की पहचान — वो हर एक का अपना है.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "संवर और निर्जरा",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Moksha",
+    page_subtitle: "All karma gone — what remains?",
+    s1_q: "What happens in the end?",
+    s1_body: s([
+      'You\'ve now seen the entire journey.',
+      'The soul (jiva) has been covered by karma since beginningless time. Kashaya makes karma stick (bandh). Activity of mind, speech, and body lets new karma in (ashrav).',
+      'Samvar stops new karma. Nirjara sheds the old.',
+      '<span class="emphasis">When all karma — every type, down to the very last particle — is shed, what remains is the soul\'s true nature.</span>',
+      'This is <span class="term">moksha</span>.',
+    ]),
+    s2_q: "Moksha is not going somewhere",
+    s2_body: s([
+      'Moksha doesn\'t mean going to heaven. It doesn\'t mean reaching some god. It doesn\'t mean gaining entry to another world.',
+      '<span class="emphasis">Moksha means the soul settling into its own true nature.</span>',
+      'The soul doesn\'t change — it was always pure. The layers of karma were simply covering it.',
+      'Wipe the dust off a mirror — the mirror didn\'t become new, it was always like that. It\'s just visible now.',
+    ]),
+    s3_q: "What is a liberated soul like?",
+    s3_body: s([
+      'All karma gone — the soul\'s qualities now manifest fully:',
+      '<span class="emphasis">Infinite knowledge (anant gyan)</span> — knows everything. Past, present, future — all at once, no limit. Jnanavaraniya karma is gone.',
+      '<span class="emphasis">Infinite perception (anant darshan)</span> — perceives everything. No veil over awareness. Darshanavaraniya karma is gone.',
+      '<span class="emphasis">Infinite bliss (anant sukh)</span> — depends on nothing external. No need, no lack — unbroken, eternal contentment. Vedaniya karma is gone.',
+      '<span class="emphasis">Infinite energy (anant virya)</span> — limitless power. Antaraya karma is gone — no obstruction remains.',
+    ]),
+    s4_q: "What about the body?",
+    s4_body: s([
+      'Before moksha, there is a stage — the body still exists but karma is almost entirely gone.',
+      'The moment mohaniya, jnanavaraniya, darshanavaraniya, and antaraya — the four destructive (ghatiya) karma — end, infinite knowledge dawns in the soul — while still in the body.',
+      'This state is called <span class="term">kevalgyan</span> — knowing everything, no covering whatsoever.',
+      'The body remains — but the soul is now fully awake.',
+      'The remaining four karma (vedaniya, ayu, nama, gotra) keep the body going. When they end, the body is released.',
+      '<span class="emphasis">Body released — the soul rises to the uppermost edge of the universe (lokakash). It remains there forever — this is moksha.</span>',
+    ]),
+    s5_q: "Has anyone achieved moksha?",
+    s5_body: s([
+      'Yes — infinite souls have.',
+      'In Jain tradition, the most recent to achieve moksha in this era is <span class="term">Bhagwan Mahavir</span> — the twenty-fourth Tirthankar.',
+      'Before him, twenty-three Tirthankars — from Rishabhdeva (Adinath) to Parshvanath — each walked this same path, each attained this same moksha.',
+      'And beyond the Tirthankars, infinite ordinary souls have completed this journey.',
+      '<span class="emphasis">Moksha is not reserved for special beings — every soul\'s true nature is exactly this. Every living being carries the capacity to become siddha.</span>',
+    ]),
+    s6_q: "The complete picture",
+    s6_body: s([
+      'You\'ve now seen the seven tattvas — the core of Jain philosophy:',
+      '<span class="term">Jiva</span> — the soul, consciousness. <span class="term">Ajiva</span> — everything besides the soul.',
+      '<span class="term">Ashrav</span> — karma flowing in. <span class="term">Bandh</span> — karma locking on.',
+      '<span class="term">Samvar</span> — stopping karma from entering. <span class="term">Nirjara</span> — shedding old karma.',
+      '<span class="term">Moksha</span> — all karma gone, the soul free.',
+      '<span class="emphasis">Understanding these seven tattvas means understanding the foundation of Jain philosophy. The journey ahead — study, practice, and knowing yourself — that is each person\'s own.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Samvar & Nirjara",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
