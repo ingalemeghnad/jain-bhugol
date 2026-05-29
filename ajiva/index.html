@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>अजीव — Jainverse</title>
+<meta name="description" content="आत्म्याशिवाय बाकी सगळं काय आहे? पुद्गल, धर्म, अधर्म, आकाश, काळ — अजीवाची ओळख.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+
+  .article {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 140px 28px 100px;
+  }
+
+  .page-header {
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--indigo);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  .header-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin-top: 28px;
+    opacity: 0.7;
+  }
+
+  .section {
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: -12px;
+    user-select: none;
+  }
+
+  .section-question {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(24px, 3.5vw, 32px);
+    color: var(--indigo);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--text-secondary);
+  }
+
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 80px 0;
+    color: var(--sand-dark);
+    user-select: none;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark));
+  }
+
+  .section-divider::after {
+    background: linear-gradient(90deg, var(--sand-dark), transparent);
+  }
+
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+
+  .next-read {
+    margin-top: 80px;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .next-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .next-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 8px;
+  }
+
+  .next-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .next-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--saffron);
+    transition: transform 0.3s;
+  }
+
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+
+  /* Prev/next nav row */
+  .page-nav {
+    display: flex;
+    gap: 16px;
+    margin-top: 80px;
+  }
+
+  .page-nav .next-read {
+    margin-top: 0;
+    flex: 1;
+  }
+
+  .prev-read {
+    flex: 1;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .prev-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .prev-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: 8px;
+  }
+
+  .prev-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prev-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--stone-light);
+    transition: transform 0.3s;
+  }
+
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+
+  @media (max-width: 600px) {
+    .page-nav { flex-direction: column; }
+  }
+
+  .article-footer {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--sand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .article-footer .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--stone);
+    text-decoration: none;
+  }
+
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; }
+    .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; }
+    .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; }
+    .section-divider { margin: 56px 0; }
+    .next-read { padding: 22px 24px; }
+    .next-read-title { font-size: 19px; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span>Jainverse</span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <!-- Prev -->
+  <div class="page-nav reveal">
+    <a href="/kashaya/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "अजीव",
+    page_subtitle: "आत्म्याशिवाय बाकी सगळं काय आहे?",
+    s1_q: "जीव सोडलं तर बाकी काय आहे?",
+    s1_body: s([
+      'मागच्या भागात तुम्ही पाहिलं — जगात दोन प्रकार आहेत: जाणणारं (जीव) आणि न जाणणारं.',
+      'जे जाणत नाही, जे अनुभवत नाही, ज्याला चैतन्य नाही — ते सगळं <span class="term">अजीव</span>.',
+      'पण अजीव म्हणजे फक्त दगड-माती नाही. <span class="emphasis">जगात अशा गोष्टी आहेत ज्या दिसत नाहीत, हातात येत नाहीत — पण त्यांच्याशिवाय काहीच चालणार नाही.</span>',
+      'अजीवाचे पाच प्रकार आहेत — एक दिसतो, चार दिसत नाहीत.',
+    ]),
+    s2_q: "पुद्गल — जे तुम्ही पाहू शकता, स्पर्शू शकता",
+    s2_body: s([
+      'तुमचं शरीर, हवा, आवाज, प्रकाश, वास — हे सगळं एकाच गोष्टीपासून बनलंय.',
+      'जैन तत्त्वज्ञानात याला <span class="term">पुद्गल</span> म्हणतात — म्हणजे जे जुळतं आणि तुटतं (पुद् = जुळणे, गल = तुटणे).',
+      'पुद्गलाचे सगळ्यात लहान कण अणू — ते तोडता येत नाहीत.',
+      'अणू एकत्र आले की शरीर, पाणी, हवा, आवाज — सगळं बनतं.',
+      '<span class="emphasis">आणि कर्म? तेसुद्धा पुद्गलच आहे.</span> कर्म काही अमूर्त गोष्ट नाही — ते अतिसूक्ष्म पदार्थ आहे जो आत्म्याला चिकटतो.',
+      'म्हणूनच कषायांचा (क्रोध, मान, माया, लोभ) आत्म्यावर प्रत्यक्ष परिणाम होतो — ते पुद्गलाच्या कणांना आकर्षतात.',
+    ]),
+    s3_q: "धर्म आणि अधर्म — हालचालीची चावी",
+    s3_body: s([
+      'इथे "धर्म" म्हणजे पूजा-पाठ नाही — हे पूर्णपणे वेगळं आहे.',
+      'समजा मासा पाण्यात पोहतो. पाणी मास्याला पोहायला मदत करतं — पण पाणी स्वतः मास्याला ढकलत नाही.',
+      'तसंच, <span class="term">धर्म द्रव्य</span> म्हणजे जे हालचालीला मदत करतं. जीव आणि पुद्गल हलतात — धर्म द्रव्य त्या हालचालीचं माध्यम आहे.',
+      'आणि <span class="term">अधर्म द्रव्य</span>? जसं माणूस चालून थकतो तेव्हा सावलीतलं झाड विश्रांतीसाठी कारण बनतं — अधर्म द्रव्य थांबण्याला मदत करतं.',
+      '<span class="emphasis">दोन्ही दिसत नाहीत, हातात येत नाहीत — पण त्यांच्याशिवाय कुणी हलू शकत नाही, थांबू शकत नाही.</span>',
+    ]),
+    s4_q: "आकाश — सगळ्यांना जागा देणारं",
+    s4_body: s([
+      'सगळं काही कुठेतरी असतं — जीव, पुद्गल, धर्म, अधर्म — सगळ्यांना जागा लागते.',
+      'ती जागा देणारं म्हणजे <span class="term">आकाश</span>.',
+      'आकाश म्हणजे आभाळ नाही — आभाळ तर पुद्गल आहे. आकाश म्हणजे शुद्ध जागा — जिथे सगळं अस्तित्वात असतं.',
+      '<span class="emphasis">जिथे जीव आणि पुद्गल आहेत ते लोकाकाश. त्यापलीकडे अनंत रिकामं आकाश — अलोकाकाश.</span>',
+    ]),
+    s5_q: "काळ — बदल घडवणारा",
+    s5_body: s([
+      'दूध दह्यात बदलतं. मूल मोठं होतं. फूल कोमेजतं.',
+      'हा बदल होतोच — पण बदल "होणं" शक्य करणारं काय?',
+      '<span class="term">काळ</span> म्हणजे बदल शक्य करणारं द्रव्य. काळाशिवाय काहीच बदलणार नाही — सगळं गोठलेलं राहील.',
+      '<span class="emphasis">हे पाचही — पुद्गल, धर्म, अधर्म, आकाश, काळ — मिळून जगाची रचना करतात. आत्म्याला (जीवाला) या सगळ्यांमध्ये वावरायचं आहे, कर्म झटकायचं आहे, आणि मुक्त व्हायचं आहे.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "कषाय",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "अजीव",
+    page_subtitle: "आत्मा के अलावा बाक़ी सब क्या है?",
+    s1_q: "जीव छोड़ दो तो बाक़ी क्या है?",
+    s1_body: s([
+      'पिछले हिस्से में तुमने देखा — दुनिया में दो तरह की चीज़ें हैं: जानने वाली (जीव) और न जानने वाली.',
+      'जो नहीं जानती, जो अनुभव नहीं करती, जिसमें चेतना नहीं — वो सब <span class="term">अजीव</span>.',
+      'लेकिन अजीव मतलब सिर्फ़ पत्थर-मिट्टी नहीं. <span class="emphasis">दुनिया में ऐसी चीज़ें हैं जो दिखती नहीं, हाथ में नहीं आतीं — लेकिन इनके बिना कुछ भी नहीं चलेगा.</span>',
+      'अजीव के पाँच प्रकार हैं — एक दिखता है, चार नहीं दिखते.',
+    ]),
+    s2_q: "पुद्गल — जो तुम देख सकते हो, छू सकते हो",
+    s2_body: s([
+      'तुम्हारा शरीर, हवा, आवाज़, रौशनी, गंध — ये सब एक ही चीज़ से बना है.',
+      'जैन दर्शन में इसे <span class="term">पुद्गल</span> कहते हैं — मतलब जो जुड़ता है और टूटता है (पुद् = जुड़ना, गल = टूटना).',
+      'पुद्गल के सबसे छोटे कण अणु — उन्हें तोड़ा नहीं जा सकता.',
+      'अणु इकट्ठे होते हैं तो शरीर, पानी, हवा, आवाज़ — सब बनता है.',
+      '<span class="emphasis">और कर्म? वो भी पुद्गल ही है.</span> कर्म कोई अमूर्त बात नहीं — वो बेहद सूक्ष्म पदार्थ है जो आत्मा से चिपकता है.',
+      'इसीलिए कषायों (क्रोध, मान, माया, लोभ) का आत्मा पर सीधा असर होता है — वो पुद्गल के कणों को खींचती हैं.',
+    ]),
+    s3_q: "धर्म और अधर्म — हरकत की चाबी",
+    s3_body: s([
+      'यहाँ "धर्म" का मतलब पूजा-पाठ नहीं — ये बिलकुल अलग बात है.',
+      'सोचो मछली पानी में तैरती है. पानी मछली को तैरने में मदद करता है — लेकिन पानी ख़ुद मछली को धक्का नहीं देता.',
+      'ठीक वैसे ही, <span class="term">धर्म द्रव्य</span> वो है जो हरकत में मदद करता है. जीव और पुद्गल हिलते हैं — धर्म द्रव्य उस हरकत का माध्यम है.',
+      'और <span class="term">अधर्म द्रव्य</span>? जैसे कोई चलते-चलते थक जाए तो छायादार पेड़ रुकने का कारण बनता है — अधर्म द्रव्य रुकने में मदद करता है.',
+      '<span class="emphasis">दोनों दिखते नहीं, हाथ में नहीं आते — लेकिन इनके बिना कोई हिल नहीं सकता, रुक नहीं सकता.</span>',
+    ]),
+    s4_q: "आकाश — सबको जगह देने वाला",
+    s4_body: s([
+      'सब कुछ कहीं न कहीं होता है — जीव, पुद्गल, धर्म, अधर्म — सबको जगह चाहिए.',
+      'वो जगह देने वाला है <span class="term">आकाश</span>.',
+      'आकाश मतलब आसमान नहीं — आसमान तो पुद्गल है. आकाश मतलब शुद्ध जगह — जहाँ सब कुछ मौजूद रहता है.',
+      '<span class="emphasis">जहाँ जीव और पुद्गल हैं वो लोकाकाश. उसके पार अनंत ख़ाली आकाश — अलोकाकाश.</span>',
+    ]),
+    s5_q: "काल — बदलाव को मुमकिन बनाने वाला",
+    s5_body: s([
+      'दूध दही बनता है. बच्चा बड़ा होता है. फूल मुरझाता है.',
+      'ये बदलाव होता ही है — लेकिन बदलाव "होना" मुमकिन किसकी वजह से है?',
+      '<span class="term">काल</span> वो द्रव्य है जो बदलाव मुमकिन बनाता है. काल के बिना कुछ भी नहीं बदलेगा — सब जमा हुआ रहेगा.',
+      '<span class="emphasis">ये पाँचों — पुद्गल, धर्म, अधर्म, आकाश, काल — मिलकर दुनिया की बुनियाद बनाते हैं. आत्मा को (जीव को) इन सबके बीच रहना है, कर्म छुड़ाना है, और मुक्त होना है.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "कषाय",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Ajiva",
+    page_subtitle: "Everything that exists besides the soul",
+    s1_q: "Take the soul out — what's left?",
+    s1_body: s([
+      'In the previous page you saw — everything in existence falls into two categories: the conscious (jiva) and the non-conscious.',
+      'That which does not know, does not feel, has no awareness — all of that is <span class="term">ajiva</span> (non-soul).',
+      'But ajiva doesn\'t just mean rocks and dirt. <span class="emphasis">There are things in this universe that you can\'t see or touch — yet nothing would work without them.</span>',
+      'Ajiva has five types — one you can perceive, four you cannot.',
+    ]),
+    s2_q: "Pudgal — what you can see and touch",
+    s2_body: s([
+      'Your body, air, sound, light, smell — all made of the same fundamental stuff.',
+      'In Jain philosophy, this is called <span class="term">pudgal</span> — that which combines and separates (pud = combine, gal = separate).',
+      'The smallest units of pudgal are atoms — they cannot be broken further.',
+      'Atoms come together to form bodies, water, air, sound — everything material.',
+      '<span class="emphasis">And karma? That\'s pudgal too.</span> Karma is not some abstract concept — it is ultra-fine matter that physically clings to the soul.',
+      'This is why kashaya (anger, pride, deceit, greed) has a direct effect on the soul — they attract particles of pudgal.',
+    ]),
+    s3_q: "Dharma & Adharma — the keys to movement",
+    s3_body: s([
+      'Here "dharma" does not mean religion or righteousness — this is something entirely different.',
+      'Think of a fish swimming in water. Water helps the fish swim — but the water itself doesn\'t push the fish.',
+      'Similarly, <span class="term">dharma dravya</span> is the medium that makes movement possible. Jiva and pudgal move — dharma dravya is the medium for that movement.',
+      'And <span class="term">adharma dravya</span>? Like a shady tree that gives a tired walker a reason to stop — adharma dravya is the medium that makes rest possible.',
+      '<span class="emphasis">Neither can be seen or touched — yet without them, nothing could move and nothing could stop.</span>',
+    ]),
+    s4_q: "Akash — the space for everything",
+    s4_body: s([
+      'Everything exists somewhere — jiva, pudgal, dharma, adharma — they all need space.',
+      'That which provides space is <span class="term">akash</span>.',
+      'Akash doesn\'t mean the sky — the sky is pudgal. Akash means pure space — the container in which everything exists.',
+      '<span class="emphasis">Where jiva and pudgal exist is lokakash (occupied space). Beyond it stretches infinite empty space — alokakash.</span>',
+    ]),
+    s5_q: "Kaal — what makes change possible",
+    s5_body: s([
+      'Milk turns to curd. A child grows up. A flower wilts.',
+      'Change happens — but what makes change itself possible?',
+      '<span class="term">Kaal</span> (time) is the substance that enables change. Without kaal, nothing would ever change — everything would be frozen.',
+      '<span class="emphasis">These five — pudgal, dharma, adharma, akash, kaal — together form the fabric of the universe. The soul (jiva) lives among all of them, shedding karma, working towards freedom.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Kashaya",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

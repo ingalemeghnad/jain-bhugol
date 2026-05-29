@@ -253,6 +253,65 @@
 
   .next-read:hover .next-read-title svg { transform: translateX(4px); }
 
+  /* Prev/next nav row */
+  .page-nav {
+    display: flex;
+    gap: 16px;
+    margin-top: 80px;
+  }
+
+  .page-nav .next-read {
+    margin-top: 0;
+    flex: 1;
+  }
+
+  .prev-read {
+    flex: 1;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .prev-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .prev-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: 8px;
+  }
+
+  .prev-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prev-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--stone-light);
+    transition: transform 0.3s;
+  }
+
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+
+  @media (max-width: 600px) {
+    .page-nav { flex-direction: column; }
+  }
+
   .article-footer {
     margin-top: 60px;
     padding-top: 32px;
@@ -371,14 +430,23 @@
     <div class="section-body" data-i18n-html="s6_body"></div>
   </section>
 
-  <!-- Next read -->
-  <!-- <a href="/next-topic/" class="next-read reveal">
-    <div class="next-read-label" data-i18n="next_label"></div>
-    <div class="next-read-title">
-      <span data-i18n="next_title"></span>
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-    </div>
-  </a> -->
+  <!-- Prev / Next -->
+  <div class="page-nav reveal">
+    <a href="/jeev-ajeev/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+    <a href="/ajiva/" class="next-read">
+      <div class="next-read-label" data-i18n="next_label"></div>
+      <div class="next-read-title">
+        <span data-i18n="next_title"></span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+  </div>
 
   <footer class="article-footer reveal">
     <a href="/" class="brand">Jainverse</a>
@@ -437,6 +505,10 @@ const i18n = {
       'कषायाशी लढायचं नाही — फक्त निरीक्षण करायचं. <span class="emphasis">निरीक्षण स्वतःच कषायाला कमकुवत करतं.</span>',
       'इथे तत्त्वज्ञान अभ्यास बनतं — विधी नाही, तर स्वतःची जाणीव.',
     ]),
+    prev_label: "मागे वाचा",
+    prev_title: "जीव आणि कर्म",
+    next_label: "पुढे वाचा",
+    next_title: "अजीव — आत्म्याशिवाय बाकी काय?",
     footer_note: "जैन परंपरा · Jainverse",
   },
   hi: {
@@ -483,6 +555,10 @@ const i18n = {
       'कषाय से लड़ना नहीं है — बस देखना है. <span class="emphasis">देखना ही कषाय को कमज़ोर करता है.</span>',
       'यहाँ फ़लसफ़ा अमल बनता है — रस्म नहीं, ख़ुद की पहचान.',
     ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "जीव और कर्म",
+    next_label: "आगे पढ़ें",
+    next_title: "अजीव — आत्मा के अलावा बाक़ी क्या?",
     footer_note: "जैन परंपरा · Jainverse",
   },
   en: {
@@ -529,6 +605,10 @@ const i18n = {
       'Don\'t fight the kashaya — just observe it. <span class="emphasis">Observation itself weakens it.</span>',
       'This is where philosophy becomes practice — not ritual, but self-awareness.',
     ]),
+    prev_label: "Previous",
+    prev_title: "Soul & Karma",
+    next_label: "Read next",
+    next_title: "Ajiva — Everything besides the soul",
     footer_note: "Jain Tradition · Jainverse",
   }
 };
