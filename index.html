@@ -3,1302 +3,810 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>जम्बूद्वीप — जैन भूगोल</title>
+<title>Jainverse — Exploring Jain Cosmology</title>
+<meta name="description" content="Interactive explorations of Jain cosmology, geography, and philosophy. Discover ancient wisdom through modern visualization.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:wght@300;400;500&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap');
-
   :root {
-    --ink: #2a2118;
-    --gold: #b08738;
-    --gold-bright: #d4a94f;
-    --parchment: #ede3cf;
-    --vermilion: #9c3b28;
-    --teal: #2d5d63;
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body {
-    height: 100%;
-    overflow: hidden;
-    background: #0d0b08;
-    font-family: 'Spectral', 'Tiro Devanagari Hindi', serif;
-    color: var(--parchment);
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  #canvas-wrap { position: fixed; inset: 0; }
-  canvas { display: block; touch-action: none; }
+  body {
+    font-family: 'Instrument Sans', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
 
-  /* Vignette + grain over the whole scene */
-  #overlay {
-    position: fixed; inset: 0; pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 45%, rgba(8,6,4,0.55) 100%);
+  /* ---- Noise texture overlay ---- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  /* ---- Navigation ---- */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  nav.scrolled {
+    background: rgba(250, 248, 244, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 14px 40px;
+  }
+
+  .nav-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color 0.25s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--saffron);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ---- Hero ---- */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    max-width: 560px;
     z-index: 2;
   }
 
-  .panel {
-    position: fixed; z-index: 5;
-    background: linear-gradient(160deg, rgba(28,22,14,0.92), rgba(18,14,9,0.92));
-    border: 1px solid rgba(176,135,56,0.4);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,169,79,0.15);
-    backdrop-filter: blur(8px);
-    border-radius: 3px;
-  }
-
-  /* Title card */
-  #title {
-    top: 26px; left: 26px;
-    padding: 18px 26px 16px;
-    max-width: 340px;
-  }
-  #title h1 {
-    font-family: 'Cormorant Garamond', 'Tiro Devanagari Hindi', serif;
+  .hero-eyebrow {
+    font-size: 12px;
     font-weight: 600;
-    font-size: 30px;
-    letter-spacing: 0.5px;
-    color: var(--gold-bright);
-    line-height: 1.05;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.7s 0.3s forwards;
   }
-  #title .sub {
-    font-family: 'Cormorant Garamond', 'Tiro Devanagari Hindi', serif;
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 1.02;
+    color: var(--indigo);
+    letter-spacing: -1.5px;
+    margin-bottom: 6px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.45s forwards;
+  }
+
+  .hero h1 .accent {
+    color: var(--saffron);
     font-style: italic;
+  }
+
+  .hero-tagline {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 24px);
+    color: var(--stone);
+    margin-bottom: 32px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-desc {
     font-size: 16px;
-    color: rgba(237,227,207,0.7);
-    margin-top: 3px;
-  }
-  #title p {
-    font-size: 13px;
-    line-height: 1.5;
-    color: rgba(237,227,207,0.6);
-    margin-top: 10px;
-    font-weight: 300;
-  }
-  #title .rule {
-    height: 1px; margin: 12px 0 0;
-    background: linear-gradient(90deg, var(--gold), transparent);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 440px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.8s 0.75s forwards;
   }
 
-  /* Controls */
-  #controls {
-    bottom: 26px; left: 26px;
-    padding: 14px 18px;
-    display: flex; flex-direction: column; gap: 11px;
-  }
-  .toggle-row { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
-  .toggle-row .box {
-    width: 16px; height: 16px; flex: none;
-    border: 1px solid var(--gold);
-    border-radius: 2px;
-    position: relative;
-    transition: background 0.2s;
-  }
-  .toggle-row.on .box { background: var(--gold); }
-  .toggle-row.on .box::after {
-    content: '✓'; position: absolute; inset: 0;
-    color: #1a140c; font-size: 12px; line-height: 16px; text-align: center; font-weight: bold;
-  }
-  .toggle-row .lbl { font-size: 13px; color: rgba(237,227,207,0.85); letter-spacing: 0.3px; }
-  #controls .hint {
-    font-size: 11px; color: rgba(237,227,207,0.4);
-    border-top: 1px solid rgba(176,135,56,0.25);
-    padding-top: 9px; font-style: italic;
-  }
-
-  /* Legend */
-  #legend {
-    top: 26px; right: 26px;
-    padding: 16px 20px 14px;
-    max-width: 250px;
-  }
-  #legend h2 {
-    font-family: 'Cormorant Garamond', 'Tiro Devanagari Hindi', serif;
-    font-size: 18px; color: var(--gold-bright);
-    letter-spacing: 1.5px; text-transform: uppercase;
-    margin-bottom: 12px; font-weight: 600;
-  }
-  .leg-item { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 9px; }
-  .leg-item .sw { width: 14px; height: 14px; flex: none; border-radius: 2px; margin-top: 2px; border: 1px solid rgba(0,0,0,0.3); }
-  .leg-item .txt { font-size: 12px; line-height: 1.35; color: rgba(237,227,207,0.78); font-weight: 300; }
-  .leg-item .txt b { color: var(--parchment); font-weight: 500; }
-
-  /* Tooltip */
-  #tip {
-    position: fixed; z-index: 6; pointer-events: none;
-    padding: 6px 12px;
-    background: rgba(13,11,8,0.95);
-    border: 1px solid var(--gold);
-    border-radius: 3px;
-    font-family: 'Cormorant Garamond', 'Tiro Devanagari Hindi', serif;
-    font-size: 15px; color: var(--gold-bright);
-    letter-spacing: 0.5px;
-    opacity: 0; transition: opacity 0.15s;
-    white-space: nowrap;
-  }
-
-  #loading {
-    position: fixed; inset: 0; z-index: 20;
-    display: flex; align-items: center; justify-content: center;
-    background: #0d0b08; color: var(--gold);
-    font-family: 'Cormorant Garamond', 'Tiro Devanagari Hindi', serif; font-size: 22px; letter-spacing: 2px;
-    transition: opacity 0.6s; font-style: italic;
-  }
-
-  /* Legend toggle button — only shown on mobile */
-  #legend-toggle {
-    display: none;
-    position: fixed; top: 16px; right: 16px; z-index: 6;
-    width: 40px; height: 40px; border-radius: 50%;
-    background: linear-gradient(160deg, rgba(28,22,14,0.95), rgba(18,14,9,0.95));
-    border: 1px solid rgba(176,135,56,0.5);
-    color: var(--gold-bright); font-size: 18px; line-height: 38px; text-align: center;
-    cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  }
-
-  /* Drag handle — only visible on mobile */
-  #drag-handle { display: none; }
-
-  /* Dhāī-dvīpa reference button — top center, clearly tappable */
-  #dhai-btn {
-    position: fixed; z-index: 7; top: 18px; left: 28%; transform: translateX(-50%);
-    padding: 10px 20px;
-    background: linear-gradient(160deg, rgba(40,30,16,0.96), rgba(24,18,10,0.96));
-    border: 1px solid rgba(212,169,79,0.7);
-    border-radius: 24px;
-    color: var(--gold-bright);
-    font-family: 'Cormorant Garamond', 'Tiro Devanagari Hindi', serif;
-    font-size: 16px; letter-spacing: 0.5px; cursor: pointer;
-    box-shadow: 0 6px 22px rgba(0,0,0,0.5), 0 0 0 0 rgba(212,169,79,0.5);
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    animation: dhaiPulse 2.6s ease-in-out infinite;
-    display: flex; align-items: center; gap: 8px; white-space: nowrap;
-  }
-  #dhai-btn::before { content: '◎'; font-size: 17px; }
-  #dhai-btn::after { content: '⤢'; font-size: 12px; opacity: 0.7; }
-  #dhai-btn:hover {
-    background: rgba(176,135,56,0.32);
-    transform: translateX(-50%) translateY(-1px);
-    animation: none; box-shadow: 0 8px 26px rgba(0,0,0,0.55);
-  }
-  @keyframes dhaiPulse {
-    0%,100% { box-shadow: 0 6px 22px rgba(0,0,0,0.5), 0 0 0 0 rgba(212,169,79,0.45); }
-    50%     { box-shadow: 0 6px 22px rgba(0,0,0,0.5), 0 0 0 7px rgba(212,169,79,0); }
-  }
-  @media (max-width: 720px) {
-    #dhai-btn { top: 96px; left: 12px; right: auto; transform: none; font-size: 12px; padding: 7px 12px; }
-    #dhai-btn:hover { transform: translateY(-1px); }
-  }
-
-  /* Click-to-open detail panel */
-  #detail-panel {
-    position: fixed; z-index: 8; top: 0; right: 0; height: 100%;
-    width: 340px; max-width: 86vw;
-    background: linear-gradient(165deg, rgba(30,24,15,0.97), rgba(16,12,8,0.97));
-    border-left: 1px solid rgba(176,135,56,0.45);
-    box-shadow: -14px 0 50px rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-    transform: translateX(105%);
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-    padding: 30px 26px 26px; overflow-y: auto;
-  }
-  #detail-panel.open { transform: translateX(0); }
-  #detail-close {
-    position: absolute; top: 16px; right: 18px;
-    width: 30px; height: 30px; line-height: 28px; text-align: center;
-    border: 1px solid rgba(176,135,56,0.4); border-radius: 50%;
-    color: var(--gold-bright); cursor: pointer; font-size: 14px;
-    transition: background 0.2s;
-  }
-  #detail-close:hover { background: rgba(176,135,56,0.2); }
-  #detail-title {
-    font-family: 'Cormorant Garamond', 'Tiro Devanagari Hindi', serif;
-    font-size: 27px; color: var(--gold-bright); font-weight: 600;
-    margin-bottom: 4px; line-height: 1.1; padding-right: 30px;
-  }
-  #detail-title::after {
-    content: ''; display: block; height: 1px; margin-top: 12px;
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-  #detail-body { margin-top: 16px; }
-  .detail-diagram {
-    margin: 0 0 18px; padding: 10px;
-    background: rgba(0,0,0,0.25); border: 1px solid rgba(176,135,56,0.25);
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: var(--indigo);
+    color: var(--sand);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-decoration: none;
     border-radius: 4px;
-  }
-  .detail-diagram svg { width: 100%; height: auto; display: block; }
-  .detail-diagram + .row { margin-top: 0; }
-  #detail-body .row {
-    display: flex; gap: 10px; margin-bottom: 13px;
-    font-size: 14px; line-height: 1.5; color: rgba(237,227,207,0.85);
-    font-weight: 300;
-  }
-  #detail-body .row::before {
-    content: '◆'; color: var(--gold); font-size: 9px; flex: none; margin-top: 5px;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.8s 0.9s forwards;
   }
 
-  @media (max-width: 720px) {
-    #title { max-width: 170px; padding: 9px 12px; }
-    #title h1 { font-size: 17px; }
-    #title .sub { font-size: 11px; }
-    #title p { display: none; }
-    #title .rule { display: none; }
-    #legend-toggle { display: none; }
-    #legend { display: none; }
-    /* compact, movable control cluster, top-right by default */
-    #controls {
-      bottom: auto; left: auto; top: 12px; right: 12px;
-      padding: 7px 9px 8px; gap: 6px;
-      touch-action: none;
+  .hero-cta:hover {
+    background: var(--indigo-mid);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(26, 39, 68, 0.25);
+  }
+
+  .hero-cta svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s;
+  }
+
+  .hero-cta:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* Hero Yantra */
+  .hero-yantra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .yantra-container {
+    width: min(480px, 38vw);
+    height: min(480px, 38vw);
+    position: relative;
+    opacity: 0;
+    animation: yantraIn 1.4s 0.5s forwards;
+  }
+
+  .yantra-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .yantra-ring {
+    fill: none;
+    stroke-width: 0.8;
+    transform-origin: center;
+  }
+
+  .ring-1 { stroke: var(--saffron-light); opacity: 0.3; animation: spinSlow 80s linear infinite; }
+  .ring-2 { stroke: var(--gold); opacity: 0.25; animation: spinSlow 120s linear infinite reverse; }
+  .ring-3 { stroke: var(--indigo-light); opacity: 0.2; animation: spinSlow 100s linear infinite; }
+  .ring-4 { stroke: var(--saffron); opacity: 0.15; animation: spinSlow 140s linear infinite reverse; }
+
+  .yantra-petal {
+    fill: none;
+    stroke-width: 0.5;
+    opacity: 0.2;
+    transform-origin: center;
+  }
+
+  .yantra-center-dot {
+    fill: var(--saffron);
+    opacity: 0.6;
+  }
+
+  /* Decorative background elements */
+  .hero-bg-line {
+    position: absolute;
+    background: linear-gradient(180deg, transparent, var(--sand-dark), transparent);
+    width: 1px;
+    height: 70%;
+    top: 15%;
+    opacity: 0.5;
+  }
+
+  .hero-bg-line:nth-child(1) { left: 25%; }
+  .hero-bg-line:nth-child(2) { left: 50%; opacity: 0.3; }
+  .hero-bg-line:nth-child(3) { left: 75%; }
+
+  /* ---- Projects Section ---- */
+  .projects {
+    padding: 100px 60px 120px;
+    position: relative;
+  }
+
+  .projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 60px;
+    right: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark), var(--stone-light), var(--sand-dark), transparent);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    flex-shrink: 0;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--sand-dark);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+  }
+
+  .project-card {
+    position: relative;
+    background: var(--warm-white);
+    border: 1px solid var(--sand-dark);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .project-card:hover {
+    border-color: var(--stone-light);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(42, 35, 24, 0.08), 0 4px 12px rgba(42, 35, 24, 0.04);
+  }
+
+  .card-visual {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-visual-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-card:hover .card-visual-bg {
+    transform: scale(1.04);
+  }
+
+  .card-visual-jambu {
+    background: linear-gradient(135deg, var(--indigo) 0%, #1e3050 50%, #243a5c 100%);
+  }
+
+  .card-visual-jambu::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(201, 168, 76, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 50% 50%, transparent 20%, rgba(224, 120, 48, 0.06) 40%, transparent 60%),
+      radial-gradient(circle at 50% 50%, transparent 30%, rgba(26, 39, 68, 0.3) 70%);
+  }
+
+  /* Concentric rings in card */
+  .card-rings {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-rings svg {
+    width: 180px;
+    height: 180px;
+    opacity: 0.4;
+  }
+
+  .card-body {
+    padding: 24px 28px 28px;
+  }
+
+  .card-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--indigo);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .card-title-hindi {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 20px;
+    color: var(--stone);
+  }
+
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-top: 10px;
+  }
+
+  .card-enter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--saffron-deep);
+    letter-spacing: 0.3px;
+    transition: gap 0.3s;
+  }
+
+  .project-card:hover .card-enter {
+    gap: 12px;
+  }
+
+  .card-enter svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Coming soon card */
+  .project-card.coming-soon {
+    border-style: dashed;
+    border-color: var(--sand-dark);
+    cursor: default;
+  }
+
+  .project-card.coming-soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--sand-dark);
+  }
+
+  .card-visual-soon {
+    background: var(--sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-visual-soon span {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--sand-dark);
+  }
+
+  .coming-soon .card-tag { color: var(--stone-light); }
+  .coming-soon .card-title { color: var(--stone-light); }
+  .coming-soon .card-desc { color: var(--text-tertiary); }
+
+  /* ---- About / Mission ---- */
+  .mission {
+    padding: 100px 60px;
+    background: var(--sand);
+    position: relative;
+  }
+
+  .mission-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .mission-symbol {
+    font-size: 40px;
+    margin-bottom: 28px;
+    display: block;
+    opacity: 0.7;
+  }
+
+  .mission h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    color: var(--indigo);
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+
+  .mission p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .mission p + p {
+    margin-top: 16px;
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--sand-dark);
+  }
+
+  .footer-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--stone);
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.3px;
+  }
+
+  /* ---- Animations ---- */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes yantraIn {
+    from { opacity: 0; transform: scale(0.92) rotate(-8deg); }
+    to { opacity: 1; transform: scale(1) rotate(0); }
+  }
+
+  @keyframes spinSlow {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Scroll-triggered fade-in */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 120px 28px 60px;
+      min-height: auto;
     }
-    #controls #drag-handle {
-      display: block; height: 12px; margin: -3px -4px 2px;
-      cursor: grab; text-align: center; color: rgba(212,169,79,0.5);
-      font-size: 11px; line-height: 10px; letter-spacing: 2px;
+
+    .hero-content {
+      max-width: 100%;
     }
-    .toggle-row { gap: 7px; }
-    .toggle-row .box { width: 13px; height: 13px; }
-    .toggle-row.on .box::after { font-size: 10px; line-height: 13px; }
-    .toggle-row .lbl { font-size: 11px; }
-    #controls .hint { display: none; }
+
+    .hero-yantra {
+      order: -1;
+      margin-bottom: 32px;
+    }
+
+    .yantra-container {
+      width: 240px;
+      height: 240px;
+    }
+
+    .projects { padding: 60px 28px 80px; }
+    .projects::before { left: 28px; right: 28px; }
+    .projects-grid { grid-template-columns: 1fr; }
+
+    .mission { padding: 60px 28px; }
+
+    footer { padding: 28px; flex-direction: column; gap: 8px; text-align: center; }
+
+    nav { padding: 16px 20px; }
+    nav.scrolled { padding: 12px 20px; }
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 13px; }
+  }
+
+  @media (max-width: 520px) {
+    .hero h1 { font-size: 38px; letter-spacing: -1px; }
+    .hero-tagline { font-size: 16px; }
+    .hero-desc { font-size: 15px; }
+    .section-header { margin-bottom: 36px; }
+    .card-body { padding: 20px 22px 24px; }
+    .card-visual { height: 180px; }
   }
 </style>
 </head>
 <body>
-  <div id="loading">द्वीप उद्घाटित हो रहा है…</div>
-  <div id="canvas-wrap"></div>
-  <div id="overlay"></div>
 
-  <div id="title" class="panel">
-    <h1>जम्बूद्वीप</h1>
-    <div class="sub">जम्बूद्वीप · जम्बू-वृक्ष द्वीप</div>
-    <div class="rule"></div>
-    <p>जैन भूगोल में मध्यलोक का सर्वान्तरतम द्वीप — एक लाख <i>योजन</i> विस्तार वाली विशाल थाली, लवण समुद्र से वेष्टित, जिसके अक्ष पर सुदर्शन मेरु पर्वत स्थित है।</p>
-    <p style="font-size:11px;color:rgba(212,169,79,0.6);margin-top:6px;">क्षेत्रों की चौड़ाई स्पष्टता हेतु संकुचित है (वास्तविक क्षेत्रफल-अंश प्रत्येक पर अंकित); मेरु की ऊँचाई घटाई गई है, परन्तु उसका आकार, वक्र पर्वत, सरोवर तथा गंगा/सिन्धु का प्रपात शास्त्रानुसार हैं।</p>
+<!-- Navigation -->
+<nav id="nav">
+  <a href="/" class="nav-brand">Jainverse</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Explore</a></li>
+    <li><a href="#mission">About</a></li>
+  </ul>
+</nav>
+
+<!-- Decorative background lines -->
+<div class="hero-bg-line" aria-hidden="true"></div>
+<div class="hero-bg-line" aria-hidden="true"></div>
+<div class="hero-bg-line" aria-hidden="true"></div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Interactive Encyclopaedia</p>
+    <h1>Jain<span class="accent">verse</span></h1>
+    <p class="hero-tagline">Ancient cosmology, rendered anew</p>
+    <p class="hero-desc">
+      Explore the vast, intricate universe described in Jain scriptures —
+      through interactive maps, 3D models, and visual narratives that bring
+      millennia of cosmological thought to life.
+    </p>
+    <a href="#projects" class="hero-cta">
+      Begin exploring
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </a>
   </div>
 
-  <div id="legend-toggle" title="सूची">☰</div>
-  <div id="dhai-btn" title="अढ़ाई द्वीप — मनुष्यलोक">अढ़ाई द्वीप</div>
-  <div id="legend" class="panel">
-    <h2>संरचना</h2>
-    <div class="leg-item"><span class="sw" style="background:#c9a24a"></span><span class="txt"><b>मेरु पर्वत</b> — केन्द्र में विश्व-अक्ष</span></div>
-    <div class="leg-item"><span class="sw" style="background:#8a9b6e"></span><span class="txt"><b>७ क्षेत्र</b> — भरत से ऐरावत तक</span></div>
-    <div class="leg-item"><span class="sw" style="background:linear-gradient(90deg,#c9a227,#dfe2e6,#2f5fa0)"></span><span class="txt"><b>६ वर्षधर पर्वत</b> — स्वर्ण, रजत व नील वर्ण के</span></div>
-    <div class="leg-item"><span class="sw" style="background:#2f7fae"></span><span class="txt"><b>६ सरोवर</b> — पद्म से पुण्डरीक, पर्वतों पर</span></div>
-    <div class="leg-item"><span class="sw" style="background:#3f86b0"></span><span class="txt"><b>१४ महानदियाँ</b> — प्रत्येक सरोवर से पूर्व व पश्चिम</span></div>
-    <div class="leg-item"><span class="sw" style="background:#3a6f77"></span><span class="txt"><b>लवण समुद्र</b> — वेष्टन करने वाला क्षार सागर</span></div>
+  <div class="hero-yantra">
+    <div class="yantra-container">
+      <svg class="yantra-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <!-- Concentric cosmological rings -->
+        <circle class="yantra-ring ring-1" cx="200" cy="200" r="190"/>
+        <circle class="yantra-ring ring-1" cx="200" cy="200" r="180"/>
+        <circle class="yantra-ring ring-2" cx="200" cy="200" r="155"/>
+        <circle class="yantra-ring ring-2" cx="200" cy="200" r="145"/>
+        <circle class="yantra-ring ring-3" cx="200" cy="200" r="120"/>
+        <circle class="yantra-ring ring-3" cx="200" cy="200" r="110"/>
+        <circle class="yantra-ring ring-4" cx="200" cy="200" r="85"/>
+        <circle class="yantra-ring ring-4" cx="200" cy="200" r="75"/>
+
+        <!-- Inner geometric petals (lotus-like) -->
+        <g class="yantra-petal" stroke="var(--gold)">
+          <path d="M200 150 Q220 180 200 210 Q180 180 200 150"/>
+          <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(45 200 200)"/>
+          <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(90 200 200)"/>
+          <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(135 200 200)"/>
+          <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(180 200 200)"/>
+          <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(225 200 200)"/>
+          <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(270 200 200)"/>
+          <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(315 200 200)"/>
+        </g>
+
+        <!-- Outer petal ring -->
+        <g class="yantra-petal" stroke="var(--saffron-light)" style="opacity:0.12">
+          <path d="M200 100 Q230 160 200 220 Q170 160 200 100"/>
+          <path d="M200 100 Q230 160 200 220 Q170 160 200 100" transform="rotate(30 200 200)"/>
+          <path d="M200 100 Q230 160 200 220 Q170 160 200 100" transform="rotate(60 200 200)"/>
+          <path d="M200 100 Q230 160 200 220 Q170 160 200 100" transform="rotate(90 200 200)"/>
+          <path d="M200 100 Q230 160 200 220 Q170 160 200 100" transform="rotate(120 200 200)"/>
+          <path d="M200 100 Q230 160 200 220 Q170 160 200 100" transform="rotate(150 200 200)"/>
+        </g>
+
+        <!-- Cardinal axis lines -->
+        <line x1="200" y1="10" x2="200" y2="390" stroke="var(--gold-light)" stroke-width="0.3" opacity="0.15"/>
+        <line x1="10" y1="200" x2="390" y2="200" stroke="var(--gold-light)" stroke-width="0.3" opacity="0.15"/>
+        <line x1="65" y1="65" x2="335" y2="335" stroke="var(--gold-light)" stroke-width="0.2" opacity="0.1"/>
+        <line x1="335" y1="65" x2="65" y2="335" stroke="var(--gold-light)" stroke-width="0.2" opacity="0.1"/>
+
+        <!-- Center bindu -->
+        <circle class="yantra-center-dot" cx="200" cy="200" r="4"/>
+        <circle cx="200" cy="200" r="8" fill="none" stroke="var(--saffron)" stroke-width="0.5" opacity="0.4"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="projects" id="projects">
+  <div class="section-header reveal">
+    <span class="section-label">Explorations</span>
+    <span class="section-line"></span>
   </div>
 
-  <div id="controls" class="panel">
-    <div id="drag-handle">⠿ खिसकाएँ</div>
-    <div class="toggle-row on" id="t-labels"><span class="box"></span><span class="lbl">नाम</span></div>
-    <div class="toggle-row on" id="t-rotate"><span class="box"></span><span class="lbl">Auto-rotate</span></div>
-    <div class="toggle-row" id="t-flat"><span class="box"></span><span class="lbl">ऊपरी दृश्य</span></div>
-    <div class="hint">घुमाने हेतु खींचें · ज़ूम हेतु पिंच करें · विवरण हेतु क्षेत्र पर क्लिक करें</div>
+  <div class="projects-grid">
+    <!-- Jambudweep Card -->
+    <a href="/jambudweep/" class="project-card reveal" style="transition-delay: 0.1s">
+      <div class="card-visual">
+        <div class="card-visual-bg card-visual-jambu"></div>
+        <div class="card-rings">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="55" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+            <circle cx="60" cy="60" r="45" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+            <circle cx="60" cy="60" r="35" fill="none" stroke="rgba(224,120,48,0.25)" stroke-width="0.5"/>
+            <circle cx="60" cy="60" r="25" fill="none" stroke="rgba(244,165,96,0.3)" stroke-width="0.5"/>
+            <circle cx="60" cy="60" r="15" fill="none" stroke="rgba(201,168,76,0.35)" stroke-width="0.5"/>
+            <circle cx="60" cy="60" r="3" fill="rgba(201,168,76,0.5)"/>
+            <!-- Zone lines -->
+            <line x1="60" y1="5" x2="60" y2="115" stroke="rgba(201,168,76,0.12)" stroke-width="0.3"/>
+            <line x1="5" y1="60" x2="115" y2="60" stroke="rgba(201,168,76,0.12)" stroke-width="0.3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Interactive 3D Map</div>
+        <h3 class="card-title">
+          Jambudweep
+          <span class="card-title-hindi">जम्बूद्वीप</span>
+        </h3>
+        <p class="card-desc">
+          Navigate the innermost continent of Jain cosmology — with Mount Meru at its axis,
+          seven lands, six mountain ranges, and the encircling salt ocean, all rendered in 3D.
+        </p>
+        <span class="card-enter">
+          Enter the map
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Coming soon placeholder -->
+    <div class="project-card coming-soon reveal" style="transition-delay: 0.2s">
+      <div class="card-visual card-visual-soon">
+        <span>◇</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Coming Soon</div>
+        <h3 class="card-title">More to come</h3>
+        <p class="card-desc">
+          New explorations of Jain cosmology — lokas, kālachakra, and beyond — are being crafted.
+        </p>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div id="tip"></div>
-
-  <div id="detail-panel">
-    <div id="detail-close" title="बंद करें">✕</div>
-    <h2 id="detail-title"></h2>
-    <div id="detail-body"></div>
+<!-- Mission -->
+<section class="mission" id="mission">
+  <div class="mission-inner reveal">
+    <span class="mission-symbol">☸</span>
+    <h2>Making the invisible visible</h2>
+    <p>
+      Jain cosmology describes a universe of extraordinary scale and structure —
+      infinite in time, layered in space, mapped with mathematical precision
+      thousands of years before the modern era.
+    </p>
+    <p>
+      Jainverse brings these descriptions to life through interactive,
+      faithful visualizations — built from primary texts, open to everyone.
+    </p>
   </div>
+</section>
 
-<script type="importmap">
-{ "imports": {
-  "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.module.min.js"
-}}
+<!-- Footer -->
+<footer>
+  <span class="footer-brand">Jainverse</span>
+  <span class="footer-note">जैन भूगोल · Jain Cosmology</span>
+</footer>
+
+<script>
+// ---- Sticky nav on scroll ----
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ---- Scroll reveal ----
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// ---- Smooth scroll for anchor links ----
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
 </script>
 
-<script type="module">
-import * as THREE from 'three';
-
-// ---------- OrbitControls (compact inline implementation) ----------
-class Orbit {
-  constructor(cam, dom){
-    this.cam=cam; this.dom=dom;
-    this.target=new THREE.Vector3(0,18,0);
-    this.r=(window.innerWidth<720)?280:200; this.theta=0.9; this.phi=0.95;
-    this.rT=this.r; this.thT=this.theta; this.phT=this.phi;
-    this.rotSpeed=0.005; this.zoomSpeed=0.0015;
-    this.minR=40; this.maxR=900; this.minPhi=0.12; this.maxPhi=Math.PI/2-0.02;
-    this.dragging=false; this.autoRotate=true; this.autoSpeed=0.0014;
-    this._bind();
-  }
-  _bind(){
-    const d=this.dom;
-    let px=0,py=0;
-    const down=(x,y)=>{this.dragging=true;px=x;py=y;};
-    const move=(x,y)=>{
-      if(!this.dragging)return;
-      const dx=x-px, dy=y-py; px=x; py=y;
-      this.thT-=dx*this.rotSpeed;
-      this.phT-=dy*this.rotSpeed;
-      this.phT=Math.max(this.minPhi,Math.min(this.maxPhi,this.phT));
-    };
-    const up=()=>{this.dragging=false;this.pinch=null;};
-    d.addEventListener('mousedown',e=>down(e.clientX,e.clientY));
-    window.addEventListener('mousemove',e=>move(e.clientX,e.clientY));
-    window.addEventListener('mouseup',up);
-    const dist2=t=>{const a=t[0],b=t[1];return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);};
-    d.addEventListener('touchstart',e=>{
-      if(e.touches.length===1){down(e.touches[0].clientX,e.touches[0].clientY);}
-      else if(e.touches.length===2){this.dragging=false;this.pinch={d:dist2(e.touches),r:this.rT};}
-    },{passive:true});
-    d.addEventListener('touchmove',e=>{
-      if(e.touches.length===2 && this.pinch){
-        e.preventDefault();
-        const nd=dist2(e.touches);
-        this.rT=Math.max(this.minR,Math.min(this.maxR,this.pinch.r*this.pinch.d/Math.max(1,nd)));
-      } else if(e.touches.length===1){
-        e.preventDefault();
-        move(e.touches[0].clientX,e.touches[0].clientY);
-      }
-    },{passive:false});
-    d.addEventListener('touchend',up);
-    d.addEventListener('wheel',e=>{e.preventDefault();this.rT*=(1+e.deltaY*this.zoomSpeed);this.rT=Math.max(this.minR,Math.min(this.maxR,this.rT));},{passive:false});
-  }
-  update(){
-    if(this.autoRotate && !this.dragging) this.thT+=this.autoSpeed;
-    this.theta+=(this.thT-this.theta)*0.1;
-    this.phi+=(this.phT-this.phi)*0.1;
-    this.r+=(this.rT-this.r)*0.1;
-    const s=Math.sin(this.phi);
-    this.cam.position.set(
-      this.target.x+this.r*s*Math.sin(this.theta),
-      this.target.y+this.r*Math.cos(this.phi),
-      this.target.z+this.r*s*Math.cos(this.theta)
-    );
-    this.cam.lookAt(this.target);
-  }
-}
-
-// ---------- Scene ----------
-const wrap=document.getElementById('canvas-wrap');
-const scene=new THREE.Scene();
-scene.background=new THREE.Color('#0d0b08');
-scene.fog=new THREE.FogExp2('#0d0b08',0.0011);
-
-const cam=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,0.1,4000);
-const renderer=new THREE.WebGLRenderer({antialias:true});
-renderer.setSize(innerWidth,innerHeight);
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.shadowMap.enabled=true;
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-wrap.appendChild(renderer.domElement);
-
-const controls=new Orbit(cam,renderer.domElement);
-
-// Lights — warm key + cool fill, like a lamp over a manuscript
-const key=new THREE.DirectionalLight(0xffe6b0,1.3);
-key.position.set(60,120,40); key.castShadow=true;
-key.shadow.mapSize.set(2048,2048);
-key.shadow.camera.near=10; key.shadow.camera.far=400;
-key.shadow.camera.left=-160;key.shadow.camera.right=160;
-key.shadow.camera.top=160;key.shadow.camera.bottom=-160;
-scene.add(key);
-scene.add(new THREE.AmbientLight(0x6b5a3f,0.55));
-const fill=new THREE.DirectionalLight(0x88aacc,0.4);
-fill.position.set(-80,40,-60); scene.add(fill);
-
-// ---------- Geometry constants ----------
-const R = 100;                 // continent radius (= 100,000 yojana, schematic)
-const interactive=[];          // meshes that respond to hover
-const labelDefs=[];            // {pos, text}
-
-// Helper: ring band (annulus) sector geometry as a flat disc slab
-function discSlab(rIn,rOut,h,col,y){
-  const g=new THREE.CylinderGeometry(rOut,rOut,h,128,1,false);
-  const m=new THREE.MeshStandardMaterial({color:col,roughness:0.9,metalness:0.05,flatShading:false});
-  const mesh=new THREE.Mesh(g,m);
-  mesh.position.y=y; mesh.castShadow=true; mesh.receiveShadow=true;
-  return mesh;
-}
-
-const cosmos=new THREE.Group();
-scene.add(cosmos);
-
-// 1. The encircling salt ocean (Lavaṇa Samudra) — a wide translucent ring/disc beneath
-const oceanR=R*1.32;
-const ocean=new THREE.Mesh(
-  new THREE.CylinderGeometry(oceanR,oceanR,2.4,160),
-  new THREE.MeshStandardMaterial({color:0x2d5d63,roughness:0.35,metalness:0.2,transparent:true,opacity:0.92})
-);
-ocean.position.y=-1.6; ocean.receiveShadow=true;
-cosmos.add(ocean);
-// ocean rim glow
-const rim=new THREE.Mesh(
-  new THREE.TorusGeometry(oceanR,1.3,16,160),
-  new THREE.MeshStandardMaterial({color:0x4a8b93,emissive:0x1a3d42,roughness:0.4})
-);
-rim.rotation.x=Math.PI/2; rim.position.y=-0.4; cosmos.add(rim);
-// name the encircling salt ocean at four points around the ring (over the water)
-const oceanLabelR=(R+oceanR)/2;
-[ [1,1],[1,-1],[-1,1],[-1,-1] ].forEach(d=>{
-  const k=1/Math.sqrt(2);
-  labelDefs.push({pos:new THREE.Vector3(d[0]*oceanLabelR*k,3,d[1]*oceanLabelR*k),text:'लवण समुद्र',kind:'ocean'});
-});
-
-// 2. The continent base disc (Jambudvipa landmass)
-const base=discSlab(0,R,3,0xd8c9a6,0);
-cosmos.add(base);
-// golden coastline ring
-const coast=new THREE.Mesh(
-  new THREE.TorusGeometry(R,0.9,14,160),
-  new THREE.MeshStandardMaterial({color:0xb08738,emissive:0x3a2c10,metalness:0.6,roughness:0.4})
-);
-coast.rotation.x=Math.PI/2; coast.position.y=1.4; cosmos.add(coast);
-
-// ---------- Seven regions + six mountain ranges ----------
-// Jambudvipa is divided latitudinally by 6 east–west ranges into 7 zones.
-// We model them as horizontal bands across the disc, clipped to the circle,
-// using ShapeGeometry strips. Bands run along Z; Mahavideha (with Meru) is center.
-
-// Band boundaries: the TRUE canonical ratio follows a DOUBLING sequence across all 13
-// strips (7 regions + 6 ranges), S→N: 1,2,4,8,16,32,64,32,16,8,4,2,1 (sum = 190).
-// So Bharata=1/190, Himavāna=2/190, Haimavata=4/190 … Mahāvideha=64/190 … Airāvata=1/190.
-// Rendering that literally makes Videha swamp the disc, so we draw with COMPRESSED
-// widths for legibility while reporting the true fraction in every label.
-const trueSeq=[1,2,4,8,16,32,64,32,16,8,4,2,1];   // canonical, S→N (region,range,region,...)
-// Visual strip widths (compressed) — Videha kept large but not overwhelming:
-const stripW=[3,2.5,4,3,5,4,16,4,5,3,4,2.5,3];   // visual only
-// True fractions split out to regions (even indices) and ranges (odd indices):
-const regionArea=[0,2,4,6,8,10,12].map(i=>trueSeq[i]+'/190');
-const rangeArea =[1,3,5,7,9,11].map(i=>trueSeq[i]+'/190');
-const stripTotal=stripW.reduce((a,b)=>a+b,0);
-const edges=[]; let acc=0;
-edges.push(-R);
-stripW.forEach(w=>{ acc+=w; edges.push(-R + (acc/stripTotal)*2*R); });
-// region strips are indices 0,2,4,6,8,10,12 ; range strips are 1,3,5,7,9,11
-const regionBounds=[]; const rangeBounds=[];
-for(let i=0;i<13;i++){
-  const z1=edges[i], z2=edges[i+1];
-  if(i%2===0) regionBounds.push([z1,z2]); else rangeBounds.push([z1,z2]);
-}
-const regionData=[
-  {name:'भरत क्षेत्र',       col:0x9aa873},
-  {name:'हैमवत क्षेत्र',     col:0x88a07a},
-  {name:'हरि क्षेत्र',       col:0x9bb07e},
-  {name:'महाविदेह क्षेत्र',  col:0x8f9b62},
-  {name:'रम्यक क्षेत्र',     col:0x9bb07e},
-  {name:'हैरण्यवत क्षेत्र',  col:0x88a07a},
-  {name:'ऐरावत क्षेत्र',     col:0x9aa873},
-];
-// ---- Schematic of Mahāvideha for the click panel (top-down, not the 3D disc) ----
-// Meru at centre; Sītā flows east (right), Sītoda west (left); Devakuru south of Meru,
-// Uttarakuru north; 32 vijayas in four blocks of 8 (NE, NW, SE, SW of the river arms).
-function buildVidehaDiagram(){
-  const W=300,H=300,cx=150,cy=150;
-  let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
-  // outer Videha bounds
-  s+='<rect x="8" y="8" width="284" height="284" rx="6" fill="#1d2415" stroke="#7d6240" stroke-width="1.5"/>';
-  // Niṣadha (south) & Nīla (north) bounding ranges
-  s+='<rect x="8" y="8" width="284" height="20" fill="#2f5fa0" opacity="0.5"/>';      // Nīla (north)
-  s+='<rect x="8" y="272" width="284" height="20" fill="#b5532e" opacity="0.5"/>';    // Niṣadha (south)
-  s+='<text x="150" y="22" fill="#cfe0ff" font-size="9" text-anchor="middle" font-style="italic">नील पर्वत (उत्तर)</text>';
-  s+='<text x="150" y="286" fill="#f3c9bb" font-size="9" text-anchor="middle" font-style="italic">निषध पर्वत (दक्षिण)</text>';
-  // river arms: Sītoda west (left of Meru), Sītā east (right of Meru)
-  s+='<rect x="8" y="146" width="118" height="8" fill="#3f9bd0"/>';     // Sītoda (west)
-  s+='<rect x="174" y="146" width="118" height="8" fill="#3f9bd0"/>';   // Sītā (east)
-  s+='<text x="60" y="143" fill="#8fcde8" font-size="9" text-anchor="middle" font-style="italic">सीतोदा →प.</text>';
-  s+='<text x="240" y="143" fill="#8fcde8" font-size="9" text-anchor="middle" font-style="italic">सीता →पू.</text>';
-  // 32 vijayas: four blocks of 8 (2 rows x 4 cols) in each corner region
-  function block(x0,y0){
-    let b='';
-    for(let r=0;r<2;r++) for(let c=0;c<4;c++){
-      b+='<rect x="'+(x0+c*26)+'" y="'+(y0+r*26)+'" width="23" height="23" rx="2" fill="#8f9b62" stroke="#5e6840" stroke-width="0.6"/>';
-    }
-    return b;
-  }
-  s+=block(14,32);    // NW block (8)
-  s+=block(180,32);   // NE block (8)
-  s+=block(14,190);   // SW block (8)
-  s+=block(180,190);  // SE block (8)
-  s+='<text x="62" y="48" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">८ विजय</text>';
-  s+='<text x="228" y="48" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">८ विजय</text>';
-  s+='<text x="62" y="206" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">८ विजय</text>';
-  s+='<text x="228" y="206" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">८ विजय</text>';
-  // Sīmandhara Svāmī's vijaya — Puṣkalāvatī (eastern / Sītā side). Only this placement
-  // is canonically specific; the other 19 tīrthaṅkaras are NOT individually located here.
-  const pvx=180, pvy=32;          // top-left cell of the NE block
-  s+='<rect x="'+pvx+'" y="'+pvy+'" width="23" height="23" rx="2" fill="#b8860b" stroke="#ffe9a8" stroke-width="1.6"/>';
-  s+='<text x="'+(pvx+11.5)+'" y="'+(pvy+16)+'" fill="#fff4d6" font-size="13" text-anchor="middle">✦</text>';
-  // pointer + label to the marked vijaya
-  s+='<line x1="'+(pvx+23)+'" y1="'+(pvy+4)+'" x2="288" y2="14" stroke="#ffe9a8" stroke-width="0.7"/>';
-  s+='<text x="288" y="12" fill="#ffe9a8" font-size="8" text-anchor="end">पुष्कलावती</text>';
-  s+='<text x="288" y="22" fill="#ffe9a8" font-size="7.5" text-anchor="end" font-style="italic">सीमंधर स्वामी</text>';
-  // Uttarakuru (north of Meru) & Devakuru (south of Meru)
-  s+='<rect x="126" y="96" width="48" height="40" rx="4" fill="#9bb07e" stroke="#5e6840"/>';
-  s+='<rect x="126" y="164" width="48" height="40" rx="4" fill="#9bb07e" stroke="#5e6840"/>';
-  s+='<text x="150" y="112" fill="#26301a" font-size="8" text-anchor="middle">उत्तर</text><text x="150" y="122" fill="#26301a" font-size="8" text-anchor="middle">कुरु</text>';
-  s+='<text x="150" y="180" fill="#26301a" font-size="8" text-anchor="middle">देव</text><text x="150" y="190" fill="#26301a" font-size="8" text-anchor="middle">कुरु</text>';
-  // Meru at centre
-  s+='<circle cx="150" cy="150" r="17" fill="#cdad5e" stroke="#8a6a20" stroke-width="2"/>';
-  s+='<circle cx="150" cy="150" r="7" fill="#ffe9a8"/>';
-  s+='<text x="150" y="153" fill="#3a2c08" font-size="7" text-anchor="middle" font-weight="bold">मेरु</text>';
-  s+='</svg>';
-  return s;
-}
-const videhaDiagram=buildVidehaDiagram();
-
-// ---- Side-elevation schematic of Mount Meru for the click panel ----
-function buildMeruDiagram(){
-  const W=300,H=320;
-  let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
-  const ground=250;            // ground line y
-  const cx=150;
-  // sky / underground backdrop
-  s+='<rect x="0" y="0" width="'+W+'" height="'+ground+'" fill="#11150d"/>';
-  s+='<rect x="0" y="'+ground+'" width="'+W+'" height="'+(H-ground)+'" fill="#1a120a"/>';
-  s+='<line x1="0" y1="'+ground+'" x2="'+W+'" y2="'+ground+'" stroke="#7d6240" stroke-width="1" stroke-dasharray="4 3"/>';
-  s+='<text x="292" y="'+(ground-5)+'" fill="#caa46e" font-size="8" text-anchor="end" font-style="italic">भूतल</text>';
-  // Meru profile (side view): wide buried base → pinch at ground → taper to summit.
-  // x half-widths at key heights, mirrored about cx.
-  const prof=[
-    {y:300, hw:55},   // buried base floor (10,000 yojana — widest)
-    {y:250, hw:30},   // ground surface (pinch, 4,000 yojana)
-    {y:225, hw:34},   // slight swell (Nandana level)
-    {y:150, hw:24},   // mid taper
-    {y:80,  hw:13},   // upper shaft
-    {y:54,  hw:8},    // Cūlikā base
-    {y:40,  hw:0}     // summit point
-  ];
-  let dpath='M '+(cx-prof[0].hw)+' '+prof[0].y;
-  for(let i=1;i<prof.length;i++) dpath+=' L '+(cx-prof[i].hw)+' '+prof[i].y;
-  for(let i=prof.length-1;i>=0;i--) dpath+=' L '+(cx+prof[i].hw)+' '+prof[i].y;
-  dpath+=' Z';
-  // gradient for the gold body
-  s+='<defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">'
-    +'<stop offset="0" stop-color="#e6c873"/><stop offset="0.5" stop-color="#cdad5e"/>'
-    +'<stop offset="1" stop-color="#9c8552"/></linearGradient></defs>';
-  s+='<path d="'+dpath+'" fill="url(#mg)" stroke="#8a6a20" stroke-width="1.5"/>';
-  // four vanas (terraces) as green bands at their heights
-  function vana(y,hw,label){
-    let v='<rect x="'+(cx-hw-3)+'" y="'+(y-2)+'" width="'+(2*hw+6)+'" height="5" rx="2" fill="#4a8c5a" stroke="#2f5d3a" stroke-width="0.5"/>';
-    v+='<text x="'+(cx+hw+8)+'" y="'+(y+3)+'" fill="#9fd6a8" font-size="8.5">'+label+'</text>';
-    return v;
-  }
-  s+=vana(250,30,'भद्रशाल वन');
-  s+=vana(225,34,'नन्दन वन');
-  s+=vana(150,24,'सौमनस वन');
-  s+=vana(58,9,'पाण्डुक वन');
-  // Cūlikā finial
-  s+='<circle cx="'+cx+'" cy="40" r="5" fill="#ffe9a8" stroke="#9c7a20"/>';
-  s+='<text x="'+(cx+10)+'" y="40" fill="#ffe9a8" font-size="8.5">चूलिका</text>';
-  // dimension annotations
-  s+='<text x="'+cx+'" y="314" fill="#d8cba0" font-size="8" text-anchor="middle">आधार १०,००० योजन</text>';
-  s+='<text x="'+cx+'" y="268" fill="#d8cba0" font-size="8" text-anchor="middle">भूतल ४,००० योजन</text>';
-  // height bracket on the left
-  s+='<line x1="20" y1="40" x2="20" y2="250" stroke="#caa46e" stroke-width="0.8"/>';
-  s+='<line x1="17" y1="40" x2="23" y2="40" stroke="#caa46e" stroke-width="0.8"/>';
-  s+='<line x1="17" y1="250" x2="23" y2="250" stroke="#caa46e" stroke-width="0.8"/>';
-  s+='<text x="14" y="148" fill="#caa46e" font-size="8" text-anchor="middle" transform="rotate(-90 14 148)">९९,००० योजन (भूतल के ऊपर)</text>';
-  // buried depth bracket
-  s+='<line x1="280" y1="250" x2="280" y2="300" stroke="#9a7a40" stroke-width="0.8"/>';
-  s+='<text x="286" y="278" fill="#9a7a40" font-size="7.5" transform="rotate(-90 286 278)">१,००० योजन भूमिगत</text>';
-  s+='</svg>';
-  return s;
-}
-const meruDiagram=buildMeruDiagram();
-
-// ---- Concentric reference schematic of Dhāī-dvīpa (the 2½-continent human realm) ----
-function buildDhaiDiagram(){
-  const W=300,H=300,cx=150,cy=150;
-  let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
-  // rings from outermost → innermost so inner ones draw on top
-  // r values are schematic (not to scale — Puṣkara is vastly larger in reality)
-  const rings=[
-    {r:145, fill:'#274a50', label:'पुष्करार्ध द्वीप', sub:'(आधा — मानुषोत्तर तक)', txtCol:'#bfe0e4'},
-    {r:116, fill:'#1d3a3f', label:'कालोदधि समुद्र', sub:'', txtCol:'#9fc7cc'},
-    {r:92,  fill:'#3a5a3f', label:'धातकीखण्ड द्वीप', sub:'(२ मेरु)', txtCol:'#c4dcc0'},
-    {r:64,  fill:'#2d5d63', label:'लवण समुद्र', sub:'', txtCol:'#bfe6ea'},
-    {r:40,  fill:'#cdb86a', label:'जम्बूद्वीप', sub:'(१ मेरु)', txtCol:'#3a2c08'},
-  ];
-  rings.forEach(rg=>{ s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+rg.r+'" fill="'+rg.fill+'" stroke="#7d6240" stroke-width="0.8"/>'; });
-  // Mānuṣottara boundary — the ring through mid-Puṣkara beyond which no humans live
-  s+='<circle cx="'+cx+'" cy="'+cy+'" r="145" fill="none" stroke="#e0b24a" stroke-width="2" stroke-dasharray="5 4"/>';
-  // central Meru dots: 1 in Jambū, 2 in Dhātakī, 2 in inner Puṣkara (5 total)
-  s+='<circle cx="'+cx+'" cy="'+cy+'" r="3.5" fill="#ffe9a8" stroke="#8a6a20"/>';            // Jambū Meru
-  function meruDot(r){ s+='<circle cx="'+cx+'" cy="'+(cy-r)+'" r="3" fill="#ffe9a8" stroke="#8a6a20"/>'
-                        +'<circle cx="'+cx+'" cy="'+(cy+r)+'" r="3" fill="#ffe9a8" stroke="#8a6a20"/>'; }
-  meruDot(78);   // Dhātakīkhaṇḍa's 2 Merus
-  meruDot(130);  // inner Puṣkara's 2 Merus
-  // radial labels (stacked along the top, pointing inward)
-  const labelYs=[20,52,80,108,138];
-  rings.forEach((rg,i)=>{
-    s+='<text x="'+cx+'" y="'+labelYs[i]+'" fill="'+rg.txtCol+'" font-size="9.5" text-anchor="middle" font-weight="'+(rg.r===40?'bold':'normal')+'">'+rg.label+(rg.sub?' '+rg.sub:'')+'</text>';
-  });
-  // Manusottara annotation
-  s+='<text x="'+cx+'" y="294" fill="#e0b24a" font-size="8.5" text-anchor="middle" font-style="italic">— — मानुषोत्तर पर्वत (मनुष्यलोक की सीमा) — —</text>';
-  s+='</svg>';
-  return s;
-}
-const dhaiDetail={title:'अढ़ाई द्वीप — मनुष्यलोक', diagram:buildDhaiDiagram(), body:[
-  'मनुष्य केवल ढाई (२½) द्वीपों में ही रहते हैं — यही "अढ़ाई द्वीप" अथवा मनुष्यलोक है।',
-  'केन्द्र से बाहर की ओर पाँच वलय: जम्बूद्वीप → लवण समुद्र → धातकीखण्ड → कालोदधि समुद्र → पुष्करार्ध (पुष्कर का भीतरी आधा भाग)।',
-  'मानुषोत्तर पर्वत पुष्कर द्वीप को बीच से काटता है — उसके आगे कोई मनुष्य नहीं। इसी कारण "आधा" द्वीप गिना जाता है।',
-  'प्रत्येक बाहरी द्वीप जम्बूद्वीप की रचना दुगुनी करता है: जम्बू में १ मेरु, धातकीखण्ड में २, भीतरी पुष्कर में २ — कुल ५ मेरु व ५ महाविदेह।',
-  'यही समस्त ब्रह्माण्ड का एकमात्र भाग है जहाँ से मोक्ष सम्भव है (कर्मभूमि)।',
-  'यह चित्र केवल संरचना दर्शाने हेतु है — वास्तविक अनुपात में बाहरी द्वीप अत्यधिक विशाल हैं।'
-]};
-
-
-// ---- Schematic for Bharata / Airāvata (karmabhūmi end-regions) ----
-// A band bounded by one range, split across the middle by the Vaitāḍhya cross-mountain
-// into two halves, with the two rivers exiting east & west. `northRange` names the
-// bounding range; `riverE`/`riverW`; `poleLabel` = where the ocean side is.
-function buildEndRegionDiagram(o){
-  const W=300,H=200;
-  let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
-  s+='<rect x="8" y="8" width="284" height="184" rx="6" fill="#1f2614" stroke="#7d6240" stroke-width="1.5"/>';
-  // bounding range (toward Videha) along one long edge
-  s+='<rect x="8" y="8" width="284" height="22" fill="'+o.rangeCol+'" opacity="0.6"/>';
-  s+='<text x="150" y="23" fill="#26301a" font-size="9" text-anchor="middle" font-weight="bold">'+o.rangeName+'</text>';
-  // ocean on the far edge
-  s+='<rect x="8" y="170" width="284" height="22" fill="#2d5d63" opacity="0.7"/>';
-  s+='<text x="150" y="185" fill="#bfe6ea" font-size="9" text-anchor="middle" font-style="italic">लवण समुद्र</text>';
-  // Vaitāḍhya cross-mountain — horizontal silver band splitting the region in two halves
-  s+='<rect x="8" y="92" width="284" height="16" fill="#cfd3d8" opacity="0.85" stroke="#9aa0a6" stroke-width="0.5"/>';
-  s+='<text x="150" y="103" fill="#3a3f44" font-size="8.5" text-anchor="middle" font-weight="bold">वैताढ्य पर्वत</text>';
-  // two halves labels
-  s+='<text x="150" y="58" fill="#cdd6b8" font-size="9" text-anchor="middle" font-style="italic">'+o.halfFar+'</text>';
-  s+='<text x="150" y="150" fill="#cdd6b8" font-size="9" text-anchor="middle" font-style="italic">'+o.halfNear+'</text>';
-  // the two rivers: exit toward the two coasts (E left/right per our convention E=left)
-  s+='<rect x="8" y="128" width="120" height="6" fill="#3f9bd0"/>';     // east river (left = east)
-  s+='<rect x="172" y="128" width="120" height="6" fill="#3f9bd0"/>';   // west river (right = west)
-  s+='<text x="60" y="126" fill="#8fcde8" font-size="8.5" text-anchor="middle" font-style="italic">'+o.riverE+' (पू.)</text>';
-  s+='<text x="240" y="126" fill="#8fcde8" font-size="8.5" text-anchor="middle" font-style="italic">'+o.riverW+' (प.)</text>';
-  // Ṛṣabhakūṭa hillock near the centre of the near half
-  s+='<circle cx="150" cy="150" r="5" fill="#cdad5e" stroke="#8a6a20"/>';
-  s+='<text x="160" y="153" fill="#caa46e" font-size="7.5">ऋषभकूट</text>';
-  s+='</svg>';
-  return s;
-}
-
-// ---- Schematic for the middle bhogabhūmi regions (simple band + rivers) ----
-function buildBhogaDiagram(o){
-  const W=300,H=160;
-  let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
-  s+='<rect x="8" y="8" width="284" height="144" rx="6" fill="#1f2614" stroke="#7d6240" stroke-width="1.5"/>';
-  // two bounding ranges (north & south edges)
-  s+='<rect x="8" y="8" width="284" height="20" fill="'+o.rangeNCol+'" opacity="0.6"/>';
-  s+='<text x="150" y="22" fill="#26301a" font-size="9" text-anchor="middle" font-weight="bold">'+o.rangeN+'</text>';
-  s+='<rect x="8" y="132" width="284" height="20" fill="'+o.rangeSCol+'" opacity="0.6"/>';
-  s+='<text x="150" y="146" fill="#26301a" font-size="9" text-anchor="middle" font-weight="bold">'+o.rangeS+'</text>';
-  // kalpavṛkṣa (wish-trees) dotted across the band — marks bhogabhūmi
-  for(let i=0;i<5;i++){
-    const x=45+i*52;
-    s+='<circle cx="'+x+'" cy="74" r="9" fill="#4a8c5a" stroke="#2f5d3a" stroke-width="0.6"/>';
-    s+='<rect x="'+(x-1.5)+'" y="80" width="3" height="7" fill="#5a4326"/>';
-  }
-  s+='<text x="150" y="108" fill="#9fd6a8" font-size="8.5" text-anchor="middle" font-style="italic">कल्पवृक्ष — भोगभूमि</text>';
-  // the two rivers exit east & west
-  s+='<rect x="8" y="92" width="118" height="5" fill="#3f9bd0"/>';
-  s+='<rect x="174" y="92" width="118" height="5" fill="#3f9bd0"/>';
-  s+='<text x="58" y="90" fill="#8fcde8" font-size="8" text-anchor="middle" font-style="italic">'+o.riverE+' (पू.)</text>';
-  s+='<text x="242" y="90" fill="#8fcde8" font-size="8" text-anchor="middle" font-style="italic">'+o.riverW+' (प.)</text>';
-  s+='</svg>';
-  return s;
-}
-
-
-// Click-to-open detail for each region (Devanagari). Videha is richly detailed.
-const regionDetail=[
-  {title:'भरत क्षेत्र', diagram:buildEndRegionDiagram({
-      rangeName:'हिमवान् पर्वत',rangeCol:'#c9a227',
-      halfFar:'उत्तर भरत',halfNear:'दक्षिण भरत',
-      riverE:'गंगा',riverW:'सिन्धु'}), body:[
-    'जम्बूद्वीप का दक्षिणतम क्षेत्र — क्षेत्रफल १/१९०।',
-    'वैताढ्य पर्वत इसे उत्तर व दक्षिण भरत में विभाजित करता है।',
-    'यह कर्मभूमि है; वर्तमान में पाँचवाँ आरा (अवसर्पिणी) चल रहा है।',
-    'इस अवसर्पिणी में २४ तीर्थंकर हुए — ऋषभदेव से महावीर तक। अभी कोई विद्यमान तीर्थंकर नहीं।'
-  ]},
-  {title:'हैमवत क्षेत्र', diagram:buildBhogaDiagram({
-      rangeN:'महाहिमवान्',rangeNCol:'#dfe2e6',rangeS:'हिमवान्',rangeSCol:'#c9a227',
-      riverE:'रोहिता',riverW:'रोहितांशा'}), body:[
-    'हिमवान् व महाहिमवान् पर्वतों के मध्य — क्षेत्रफल ४/१९०।',
-    'भोगभूमि (अकर्मभूमि) — यहाँ कल्पवृक्ष भोग प्रदान करते हैं।',
-    'रोहित व रोहितांशा नदियाँ इसमें बहती हैं।'
-  ]},
-  {title:'हरि क्षेत्र', diagram:buildBhogaDiagram({
-      rangeN:'निषध',rangeNCol:'#b5532e',rangeS:'महाहिमवान्',rangeSCol:'#dfe2e6',
-      riverE:'हरित्',riverW:'हरिकांता'}), body:[
-    'महाहिमवान् व निषध पर्वतों के मध्य — क्षेत्रफल १६/१९०।',
-    'मध्यम भोगभूमि; दीर्घ आयु व उन्नत शरीर वाले मनुष्य।',
-    'हरित् व हरिकांता नदियाँ इसमें बहती हैं।'
-  ]},
-  {title:'महाविदेह क्षेत्र', diagram:videhaDiagram, body:[
-    'जम्बूद्वीप का सबसे विशाल क्षेत्र — क्षेत्रफल ६४/१९०, केन्द्र में सुदर्शन मेरु।',
-    'सीता (पूर्व) व सीतोदा (पश्चिम) नदियाँ तथा निषध-नील पर्वत इसे विभाजित करते हैं।',
-    'कुल ३२ विजय (प्रान्त) — मेरु के चारों ओर, प्रत्येक एक पृथक कर्मभूमि।',
-    'मेरु के समीप देवकुरु (दक्षिण) व उत्तरकुरु (उत्तर) — उत्तम भोगभूमियाँ।',
-    'यहाँ काल-चक्र (अवसर्पिणी/उत्सर्पिणी) लागू नहीं — दशा सदैव दुषमा-सुषमा पर स्थिर रहती है (अवसर्पिणी के चौथे आरे तुल्य), काल का ह्रास नहीं होता।',
-    'इसी कारण यहाँ सदैव २० विहरमाण तीर्थंकर विद्यमान रहते हैं।',
-    'वर्तमान में श्री सीमंधर स्वामी सर्वाधिक पूजित विद्यमान तीर्थंकर हैं — पुष्कलावती विजय की राजधानी पुण्डरीकिणी में (चित्र में ✦ चिह्नित)।',
-    'शेष १९ तीर्थंकरों का स्थान विभिन्न परम्पराओं में भिन्न है, अतः यहाँ अंकित नहीं।'
-  ]},
-  {title:'रम्यक क्षेत्र', diagram:buildBhogaDiagram({
-      rangeN:'रुक्मी',rangeNCol:'#d8dce0',rangeS:'नील',rangeSCol:'#2f5fa0',
-      riverE:'नरकांता',riverW:'नारीकांता'}), body:[
-    'नील व रुक्मी पर्वतों के मध्य — क्षेत्रफल १६/१९०।',
-    'हरि क्षेत्र का उत्तरी प्रतिबिम्ब; मध्यम भोगभूमि।',
-    'नरकांता व नारीकांता नदियाँ इसमें बहती हैं।'
-  ]},
-  {title:'हैरण्यवत क्षेत्र', diagram:buildBhogaDiagram({
-      rangeN:'शिखरी',rangeNCol:'#c9a227',rangeS:'रुक्मी',rangeSCol:'#d8dce0',
-      riverE:'सुवर्णकूला',riverW:'रूप्यकूला'}), body:[
-    'रुक्मी व शिखरी पर्वतों के मध्य — क्षेत्रफल ४/१९०।',
-    'हैमवत का उत्तरी प्रतिबिम्ब; भोगभूमि।',
-    'सुवर्णकूला व रूप्यकूला नदियाँ इसमें बहती हैं।'
-  ]},
-  {title:'ऐरावत क्षेत्र', diagram:buildEndRegionDiagram({
-      rangeName:'शिखरी पर्वत',rangeCol:'#c9a227',
-      halfFar:'दक्षिण ऐरावत',halfNear:'उत्तर ऐरावत',
-      riverE:'रक्ता',riverW:'रक्तोदा'}), body:[
-    'जम्बूद्वीप का उत्तरतम क्षेत्र — क्षेत्रफल १/१९०।',
-    'भरत का उत्तरी प्रतिबिम्ब; यहाँ भी वैताढ्य पर्वत है।',
-    'कर्मभूमि — काल-चक्र भरत के समान चलता है।',
-    'रक्ता व रक्तोदा नदियाँ इसमें बहती हैं।'
-  ]},
-];
-const rangeData=[
-  {name:'हिमवान्',     col:0xc9a227, metal:0.65, label:'स्वर्ण',     lake:'पद्म',         devi:'श्री',    rivers:['गंगा (पूर्व, भरत की ओर)','सिन्धु (पश्चिम, भरत की ओर)','रोहितांशा (पश्चिम, हैमवत की ओर)']},
-  {name:'महाहिमवान्',  col:0xdfe2e6, metal:0.55, label:'रजत',       lake:'महापद्म',      devi:'ह्री',    rivers:['रोहिता (पूर्व, हैमवत की ओर)','हरिकांता (पश्चिम, हरि की ओर)']},
-  {name:'निषध',        col:0xb5532e, metal:0.4,  label:'रक्त-स्वर्ण',lake:'तिगिञ्छ',      devi:'धृति',   rivers:['हरित् (पूर्व, हरि की ओर)','सीतोदा (पश्चिम, विदेह की ओर)']},
-  {name:'नील',         col:0x2f5fa0, metal:0.45, label:'नील',       lake:'केसरी',        devi:'कीर्ति', rivers:['सीता (पूर्व, विदेह की ओर)','नारीकांता (पश्चिम, रम्यक की ओर)']},
-  {name:'रुक्मी',       col:0xd8dce0, metal:0.6,  label:'रजत',       lake:'महापुण्डरीक',  devi:'बुद्धि', rivers:['नरकांता (पूर्व, रम्यक की ओर)','रूप्यकूला (पश्चिम, हैरण्यवत की ओर)']},
-  {name:'शिखरी',       col:0xc9a227, metal:0.65, label:'स्वर्ण',     lake:'पुण्डरीक',     devi:'लक्ष्मी',rivers:['सुवर्णकूला (पूर्व, हैरण्यवत की ओर)','रक्ता (पूर्व, ऐरावत की ओर)','रक्तोदा (पश्चिम, ऐरावत की ओर)']},
-];
-
-// Build a band clipped to circle of radius R, between z1 and z2, given height/colour.
-function bandMesh(z1,z2,height,col,topY){
-  const shape=new THREE.Shape();
-  // sample circle intersection
-  const pts=[];
-  const seg=64;
-  // top edge (z=z2) left->right, bottom edge (z=z1) right->left
-  for(let i=0;i<=seg;i++){
-    const z=z2; const t=i/seg; const x=-R+t*2*R;
-    if(x*x+z*z<=R*R) pts.push([x,z]);
-  }
-  // Simpler robust approach: build as set of vertical quads sampled in x
-  const positions=[]; const indices=[];
-  const N=160; let vi=0;
-  for(let i=0;i<N;i++){
-    const x1=-R+(i/N)*2*R, x2=-R+((i+1)/N)*2*R;
-    // clip z to circle
-    const f=(x,z)=> (x*x+z*z<=R*R);
-    const clampZ=(x,z)=>{ const lim=Math.sqrt(Math.max(0,R*R-x*x)); return Math.max(-lim,Math.min(lim,z)); };
-    const a=clampZ(x1,z1), b=clampZ(x1,z2), c=clampZ(x2,z2), d=clampZ(x2,z1);
-    if(Math.abs(x1)>R||Math.abs(x2)>R) continue;
-    if(b-a<0.001 && c-d<0.001) continue;
-    positions.push(x1,topY,a, x1,topY,b, x2,topY,c, x2,topY,d);
-    indices.push(vi,vi+1,vi+2, vi,vi+2,vi+3);
-    vi+=4;
-  }
-  const g=new THREE.BufferGeometry();
-  g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
-  g.setIndex(indices); g.computeVertexNormals();
-  const m=new THREE.MeshStandardMaterial({color:col,roughness:0.85,metalness:0.05,side:THREE.DoubleSide});
-  const mesh=new THREE.Mesh(g,m); mesh.receiveShadow=true; mesh.castShadow=true;
-  return mesh;
-}
-
-// Lay down regions (flat, just above base) using the canonical proportions
-for(let i=0;i<7;i++){
-  const [z1,z2]=regionBounds[i];
-  const mesh=bandMesh(z1,z2,0,regionData[i].col,1.55+i*0.001);
-  mesh.userData={label:regionData[i].name+'  ·  वास्तविक क्षेत्रफल '+regionArea[i]+' (मापानुसार नहीं) — विवरण हेतु क्लिक करें',detail:regionDetail[i]};
-  cosmos.add(mesh); interactive.push(mesh);
-  const zc=(z1+z2)/2;
-  const lx = (i===3)? R*0.58 : 0;     // shift Mahāvideha label aside from Meru
-  labelDefs.push({pos:new THREE.Vector3(lx,8,zc),text:regionData[i].name,area:regionArea[i],kind:'region'});
-}
-
-// Mountain ranges at the 6 boundaries — curved, coast-to-coast, elephant-back ridges
-const lakeCenters=[];
-// Build a curved ridge that follows the circle's arc across the band, with a
-// rounded (elephant-back) cross-section, clipped to the continent radius.
-function curvedRidge(z,halfDepth,height,col,metal){
-  const grp=new THREE.Group();
-  const N=80;                                  // segments along the east–west span
-  const xMax=Math.sqrt(Math.max(1,R*R-z*z));   // half-span where the band meets the coast
-  const positions=[]; const indices=[];
-  // FLAT-TOPPED MESA cross-section (canonical tableland): the varṣadhara mountains
-  // are level-topped plateaus with steep, slightly-chamfered sides — not domes.
-  // Profile points run front edge → steep rise → flat top → steep fall → back edge.
-  // Each point: dz (north–south offset) and dy (height, 0..1 of `height`).
-  const ch=Math.min(halfDepth*0.35,1.6);       // chamfer width at top edges
-  const profile=[
-    {dz:-halfDepth,        dy:0.00},           // front foot (at ground)
-    {dz:-halfDepth+0.2,    dy:0.18},           // steep side begins
-    {dz:-halfDepth+ch,     dy:0.92},           // up the steep flank
-    {dz:-halfDepth+ch+0.3, dy:1.00},           // chamfered top-front edge
-    {dz: halfDepth-ch-0.3, dy:1.00},           // flat plateau across the top
-    {dz: halfDepth-ch,     dy:0.92},           // chamfered top-back edge
-    {dz: halfDepth-0.2,    dy:0.18},           // down the steep flank
-    {dz: halfDepth,        dy:0.00},           // back foot (at ground)
-  ];
-  const P=profile.length-1;
-  // sweep along the east–west span, following the circular arc (gentle height taper to coasts)
-  for(let i=0;i<=N;i++){
-    const t=i/N; const x=-xMax + t*2*xMax;
-    const arc=Math.sqrt(Math.max(0,1-(x/xMax)*(x/xMax))); // 1 center → 0 coast
-    const hScale=height*(0.55+0.45*arc);                  // plateau dips slightly near coasts
-    for(let k=0;k<=P;k++){
-      const pr=profile[k];
-      positions.push(x, 2 + pr.dy*hScale, z + pr.dz);
-    }
-  }
-  const row=P+1;
-  for(let i=0;i<N;i++){
-    for(let k=0;k<P;k++){
-      const a=i*row+k, b=(i+1)*row+k, c=(i+1)*row+k+1, d=i*row+k+1;
-      indices.push(a,b,c, a,c,d);
-    }
-  }
-  // end caps (east & west faces where the mountain meets the ocean) — close the mesa
-  function endCap(i0,flip){
-    const base=i0*row;
-    for(let k=0;k<P-1;k++){
-      const a=base, b=base+k+1, c=base+k+2;
-      if(flip) indices.push(a,c,b); else indices.push(a,b,c);
-    }
-  }
-  endCap(0,false); endCap(N,true);
-  const g=new THREE.BufferGeometry();
-  g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
-  g.setIndex(indices); g.computeVertexNormals();
-  const m=new THREE.MeshStandardMaterial({color:col,roughness:0.42,metalness:metal,emissive:0x14110a,side:THREE.DoubleSide,flatShading:true});
-  const mesh=new THREE.Mesh(g,m); mesh.castShadow=true; mesh.receiveShadow=true;
-  grp.add(mesh);
-  // plateau top height at center (for seating the lake exactly on the flat top)
-  const topY=2+height*1.0;
-  return {group:grp, xMax, topY};
-}
-
-for(let i=0;i<6;i++){
-  const [rz1,rz2]=rangeBounds[i];
-  const z=(rz1+rz2)/2;
-  const rng=rangeData[i];
-  const halfDepth=Math.max(2.0,(rz2-rz1)/2);
-  const ridgeH=4.5+halfDepth*0.6;
-  const {group,xMax,topY}=curvedRidge(z,halfDepth,ridgeH,rng.col,rng.metal);
-  cosmos.add(group);
-  // pickable hull (invisible box) for hover, since the mesh is non-convex
-  const hull=new THREE.Mesh(new THREE.BoxGeometry(2*xMax,ridgeH+3,2*halfDepth),
-    new THREE.MeshBasicMaterial({visible:false}));
-  hull.position.set(0,2+ridgeH/2,z); cosmos.add(hull); interactive.push(hull);
-  hull.userData={label:rng.name+' — '+rng.label+' वर्ण पर्वत  ·  वास्तविक क्षेत्रफल '+rangeArea[i]+' (मापानुसार नहीं)'};
-  labelDefs.push({pos:new THREE.Vector3(-xMax*0.34,topY+3,z),text:rng.name,area:rangeArea[i],kind:'range'});
-
-  // --- Sarovar set INTO the flat plateau top (a level basin, sized to range breadth) ---
-  const lakeR=Math.min(11,Math.max(4.5,halfDepth*1.4));
-  const lakeY=topY-0.4;                                  // water surface just below plateau level
-  const lakeMat=new THREE.MeshStandardMaterial({color:0x2f7fae,roughness:0.15,metalness:0.5,emissive:0x123c52,emissiveIntensity:0.5});
-  const lake=new THREE.Mesh(new THREE.CylinderGeometry(lakeR,lakeR,1.0,44),lakeMat);
-  lake.position.set(0,lakeY,z); lake.castShadow=true;
-  cosmos.add(lake); interactive.push(lake);
-  lake.userData={label:rng.lake+' सरोवर — '+rng.devi+' देवी का निवास — विवरण हेतु क्लिक करें',
-    detail:{title:rng.lake+' सरोवर', body:[
-      rng.name+' पर्वत के शिखर पर स्थित सरोवर।',
-      'अधिष्ठात्री देवी: '+rng.devi+' — मध्य में विशाल कमल पर निवास करती हैं।',
-      'यहाँ से निकलने वाली '+rng.rivers.length+' महानदियाँ:',
-      ...rng.rivers,
-      'सरोवर के जल में रत्नमय कमल तथा देवी का प्रासाद वर्णित है।'
-    ]}};
-  const lrim=new THREE.Mesh(new THREE.TorusGeometry(lakeR+0.1,0.35,12,44),
-    new THREE.MeshStandardMaterial({color:0xd4a94f,metalness:0.7,roughness:0.3}));
-  lrim.rotation.x=Math.PI/2; lrim.position.set(0,lakeY+0.5,z); cosmos.add(lrim);
-  // central lotus (seat of the presiding goddess)
-  const lotus=new THREE.Mesh(new THREE.SphereGeometry(lakeR*0.18,12,10),
-    new THREE.MeshStandardMaterial({color:0xe8b4c8,emissive:0x5a2438,emissiveIntensity:0.4,roughness:0.4}));
-  lotus.position.set(0,lakeY+0.6,z); lotus.scale.y=0.5; cosmos.add(lotus);
-  labelDefs.push({pos:new THREE.Vector3(0,lakeY+4,z),text:rng.lake,kind:'lake'});
-  lakeCenters.push({z, w:2*xMax, y:lakeY});
-}
-
-// ---------- Major rivers — issuing from the sarovars (east + west of each pair) ----------
-// Canonical rule (Triṣaṣṭiśalākāpuruṣacaritra / Tattvārtha 3.16–3.22): each region has
-// a pair of great rivers; "the first of each pair flows to the EAST and the second to
-// the WEST." Both rivers of a pair issue from ONE lake — e.g. Rohitā & Rohitāṃśā both
-// rise from Padma-hrada. The river runs from the lake down into its region, then bends
-// east or west to the salt ocean.
-// originZ/originY = lake position; flowSign = +1 east / -1 west; regionZ = draining band.
-// jihva=true gives the canonical Gaṅgā/Sindhu path: run along the ridge, turn, plunge
-// through a Go-mukha cascade into the Gaṅgā-prapāta pool, then bend to the coast.
-function river(originZ,originY,flowSign,regionZ,name,jihva){
-  // flowSign: +1 = east, -1 = west (semantic). East now sits at -x (screen right in
-  // the Bharata-bottom view), so the drawing x-direction is the opposite sign.
-  const xSign=-flowSign;
-  const xCoast=xSign*Math.sqrt(Math.max(0,R*R-regionZ*regionZ))*0.985;
-  const dirZ=Math.sign(regionZ-originZ)||1;
-  let curve;
-  if(jihva){
-    const fallZ=originZ+dirZ*7;          // point where it leaves the ridge and falls
-    curve=new THREE.CatmullRomCurve3([
-      new THREE.Vector3(xSign*1.5, originY+0.6, originZ+dirZ*2),   // out the lake gate
-      new THREE.Vector3(xSign*5,   originY+0.4, originZ+dirZ*5),   // runs along the ridge crest
-      new THREE.Vector3(xSign*6,   originY-1,   fallZ),            // turn (jihvā / tongue)
-      new THREE.Vector3(xSign*6.5, 3.4,         fallZ+dirZ*1),     // Go-mukha cascade down the cliff
-      new THREE.Vector3(xSign*8,   2.9,         regionZ),          // into the prapāta, on the region floor
-      new THREE.Vector3(xCoast*0.55,  2.9,         regionZ),
-      new THREE.Vector3(xCoast,       2.7,         regionZ)           // to the salt ocean
-    ]);
-    // Gaṅgā-prapāta pool at the foot of the cascade
-    const pool=new THREE.Mesh(new THREE.CylinderGeometry(2.4,2.4,0.6,20),
-      new THREE.MeshStandardMaterial({color:0x57b0da,roughness:0.1,metalness:0.4,emissive:0x12506e,emissiveIntensity:0.5}));
-    pool.position.set(xSign*7,3.0,originZ+dirZ*9); cosmos.add(pool);
-  } else {
-    curve=new THREE.CatmullRomCurve3([
-      new THREE.Vector3(xSign*2.5, originY+0.4, originZ+dirZ*2),
-      new THREE.Vector3(xSign*6,   originY*0.5+2, originZ+dirZ*5),
-      new THREE.Vector3(xSign*11,  2.9, regionZ),
-      new THREE.Vector3(xCoast*0.55,  2.9, regionZ),
-      new THREE.Vector3(xCoast,       2.7, regionZ)
-    ]);
-  }
-  const geo=new THREE.TubeGeometry(curve,60,1.4,10,false);
-  const mat=new THREE.MeshStandardMaterial({color:0x3f9bd0,roughness:0.15,metalness:0.4,emissive:0x12506e,emissiveIntensity:0.55});
-  const m=new THREE.Mesh(geo,mat); m.castShadow=true; m.renderOrder=2;
-  cosmos.add(m); interactive.push(m);
-  m.userData={label:name+' (नदी — '+(flowSign>0?'पूर्व':'पश्चिम')+' की ओर'+(jihva?', गोमुख प्रपात द्वारा':'')+')'};
-  const delta=new THREE.Mesh(new THREE.ConeGeometry(2.6,1.2,16),
-    new THREE.MeshStandardMaterial({color:0x3f9bd0,roughness:0.2,metalness:0.3,emissive:0x12506e,emissiveIntensity:0.4}));
-  delta.position.set(xCoast,2.9,regionZ); delta.rotation.x=Math.PI; cosmos.add(delta);
-  labelDefs.push({pos:new THREE.Vector3(xCoast*0.8,4.6,regionZ+(flowSign<0?-3:3)),text:name,kind:'river'});
-}
-
-// lake z, S→N: 0 Padma,1 Mahāpadma,2 Tigiñcha,3 Kesarī,4 Mahāpuṇḍarīka,5 Puṇḍarīka
-// region z, S→N: 0 Bharata,1 Haimavata,2 Hari,3 Videha,4 Ramyaka,5 Hairaṇyavata,6 Airāvata
-const Lz=lakeCenters.map(l=>l.z);
-const Ly=lakeCenters.map(l=>l.y);
-const Rz=regionBounds.map(b=>(b[0]+b[1])/2);
-
-// Each river is assigned to the LAKE it actually issues from and the END (north/south)
-// it exits, per the detailed geography (Jambūdvīpaprajñapti / Tiloyapaṇṇatti):
-//   Padma → Gaṅgā + Sindhu (south, into Bharata) and Rohitāṃśā (north, into Haimavata) = 3
-//   Mahāpadma → Rohitā (south) + Harikāntā (north)
-//   Tigiñcha → Harit (south) + Sītodā (north)
-//   Kesarī → Sītā (south) + Narakāntā (north)
-//   Mahāpuṇḍarīka → Nārikāntā (south) + Rūpyakūlā (north)
-//   Puṇḍarīka → Suvarṇakūlā (south) and Raktā + Raktodā (north, into Airāvata) = 3
-// "First of each pair flows east, second west." regDir: -1 the river bends into the
-// region SOUTH of its lake, +1 the region NORTH of it.
-const riverDefs=[
-  // Bharata (south of Padma): Gaṅgā east, Sindhu west — canonical Go-mukha cascade
-  {lake:0, regSouth:true,  flow:+1, name:'गंगा',        jihva:true},
-  {lake:0, regSouth:true,  flow:-1, name:'सिन्धु',      jihva:true},
-  // Haimavata: Rohitā (east) from Mahāpadma-south, Rohitāṃśā (west) from Padma-north
-  {lake:1, regSouth:true,  flow:+1, name:'रोहिता'},
-  {lake:0, regSouth:false, flow:-1, name:'रोहितांशा'},
-  // Hari: Harit (east) from Tigiñcha-south, Harikāntā (west) from Mahāpadma-north
-  {lake:2, regSouth:true,  flow:+1, name:'हरित्'},
-  {lake:1, regSouth:false, flow:-1, name:'हरिकान्ता'},
-  // Mahāvideha: Sītā (east) from Kesarī-south, Sītodā (west) from Tigiñcha-north
-  {lake:3, regSouth:true,  flow:+1, name:'सीता'},
-  {lake:2, regSouth:false, flow:-1, name:'सीतोदा'},
-  // Ramyaka: Narakāntā (east) from Mahāpuṇḍarīka-south, Nārikāntā (west) from Kesarī-north
-  {lake:4, regSouth:true,  flow:+1, name:'नरकान्ता'},
-  {lake:3, regSouth:false, flow:-1, name:'नारीकान्ता'},
-  // Hairaṇyavata: Suvarṇakūlā (east) from Puṇḍarīka-south, Rūpyakūlā (west) from Mahāpuṇḍarīka-north
-  {lake:5, regSouth:true,  flow:+1, name:'सुवर्णकूला'},
-  {lake:4, regSouth:false, flow:-1, name:'रूप्यकूला'},
-  // Airāvata (north of Puṇḍarīka): Raktā east, Raktodā west — cascade
-  {lake:5, regSouth:false, flow:+1, name:'रक्ता',       jihva:true},
-  {lake:5, regSouth:false, flow:-1, name:'रक्तोदा',     jihva:true},
-];
-// map a lake index + side to the z of the region that side feeds
-// regionBounds S→N: 0 Bharata,1 Haimavata,2 Hari,3 Videha,4 Ramyaka,5 Hairaṇyavata,6 Airāvata
-// lake i sits on range i; region just south of lake i is region i, just north is region i+1
-riverDefs.forEach(d=>{
-  const regIdx = d.regSouth ? d.lake : d.lake+1;
-  const regZ = Rz[regIdx];
-  river(Lz[d.lake], Ly[d.lake], d.flow, regZ, d.name, d.jihva);
-});
-
-// ---------- Compass directions (N / E / S / W) ----------
-// Convention: viewed from above with Bharata at bottom (−z, near) and Airāvata at top
-// (+z, far), East falls on the RIGHT and West on the left — matching Jain paṭa maps.
-// In that look-down view, screen-right corresponds to −x, so East = −x, West = +x.
-const compass=[
-  {text:'उत्तर', pos:new THREE.Vector3(0, 6, R*1.5)},
-  {text:'दक्षिण', pos:new THREE.Vector3(0, 6, -R*1.5)},
-  {text:'पूर्व',  pos:new THREE.Vector3(-R*1.5, 6, 0)},
-  {text:'पश्चिम',  pos:new THREE.Vector3(R*1.5, 6, 0)},
-];
-compass.forEach(c=>labelDefs.push({pos:c.pos,text:c.text,kind:'compass'}));
-
-// ---------- Mount Meru (Sudarśana) — canonical frustum profile ----------
-// Texts: base 10,000 yojana wide, plunges 1,000 yojana underground, narrows to
-// 4,000 yojana at ground level, then tapers up to a slender Cūlikā summit.
-// Height is compressed for the viewport, but the silhouette (wide buried base →
-// pinch at ground → long upward taper → narrow tip) follows the scripture.
-const meru=new THREE.Group();
-// Profile points (radius, y) from underground base to summit. Scaled to scene units.
-// ground level is y=2 (disc top). Negative y = buried.
-const meruProfile=[
-  [0,    -8],   // buried tip of base
-  [16,   -8],   // base floor (10,000 yojana — widest, underground)
-  [16,   -2],
-  [8,     2],   // pinch to 4,000 yojana at ground surface
-  [9.5,   10],  // slight outward swell (Nandana terrace level)
-  [8,     22],
-  [6,     40],  // mid taper
-  [4,     58],
-  [2.4,   72],  // upper shaft
-  [1.6,   80],  // Cūlikā (summit finial) base
-  [0,     84],  // summit point
-];
-const meruPts=meruProfile.map(p=>new THREE.Vector2(p[0],p[1]));
-const meruGeo=new THREE.LatheGeometry(meruPts,64);
-// vertical golden gradient via vertex colors
-const meruMat=new THREE.MeshStandardMaterial({color:0xc9a850,roughness:0.45,metalness:0.45,emissive:0x2a1e08,emissiveIntensity:0.5,flatShading:false});
-const meruMesh=new THREE.Mesh(meruGeo,meruMat);
-meruMesh.castShadow=true; meruMesh.receiveShadow=true;
-meru.add(meruMesh);
-
-// The three vanas (forest terraces): Bhadraśāla (base), Nandana, Saumanasa, Pāṇḍuka (top)
-// rendered as thin emerald rings encircling Meru at their heights.
-const vanas=[
-  {y:2.5,  r:8.4,  name:'भद्रशाल वन'},
-  {y:10,   r:9.9,  name:'नन्दन वन'},
-  {y:40,   r:6.3,  name:'सौमनस वन'},
-  {y:80,   r:2.0,  name:'पाण्डुक वन'},
-];
-vanas.forEach(v=>{
-  const ring=new THREE.Mesh(
-    new THREE.TorusGeometry(v.r,0.5,10,48),
-    new THREE.MeshStandardMaterial({color:0x4a8c5a,roughness:0.5,metalness:0.3,emissive:0x12320f,emissiveIntensity:0.4})
-  );
-  ring.rotation.x=Math.PI/2; ring.position.y=v.y; meru.add(ring);
-});
-// Pāṇḍuka-vana label (the summit forest where tīrthaṅkaras are consecrated)
-labelDefs.push({pos:new THREE.Vector3(0,80,0),text:'पाण्डुक वन',kind:'lake'});
-
-let yy=84; // summit height for crown placement
-// Cūlikā crown finial
-const crown=new THREE.Mesh(
-  new THREE.SphereGeometry(2.0,24,24),
-  new THREE.MeshStandardMaterial({color:0xffe9a8,emissive:0x9c7a20,emissiveIntensity:0.6,metalness:0.4,roughness:0.25})
-);
-crown.position.y=yy+1; meru.add(crown);
-const halo=new THREE.Mesh(
-  new THREE.RingGeometry(3.0,5.5,40),
-  new THREE.MeshBasicMaterial({color:0xffd97a,transparent:true,opacity:0.35,side:THREE.DoubleSide})
-);
-halo.position.y=yy+1; halo.rotation.x=Math.PI/2; meru.add(halo);
-meruMesh.userData={label:'सुदर्शन मेरु पर्वत — विवरण हेतु क्लिक करें',detail:{title:'सुदर्शन मेरु पर्वत',diagram:meruDiagram,body:[
-  'जम्बूद्वीप का अक्ष — महाविदेह के केन्द्र में स्थित।',
-  'कुल ऊँचाई ९९,००० योजन (भूमि के ऊपर), तथा १,००० योजन भूमि में गड़ा हुआ।',
-  'आधार पर १०,००० योजन चौड़ा, भूतल पर घटकर ४,००० योजन — ऊपर की ओर क्रमशः पतला।',
-  'चार वन: भद्रशाल (तल), नन्दन, सौमनस, व शिखर पर पाण्डुक वन।',
-  'पाण्डुक वन में तीर्थंकरों का जन्माभिषेक होता है — चार शिलाएँ इस हेतु प्रसिद्ध हैं।',
-  'शिखर पर चूलिका (चूड़ामणि) स्थित है।'
-]}};
-interactive.push(meruMesh);
-cosmos.add(meru);
-labelDefs.push({pos:new THREE.Vector3(0,yy+7,0),text:'मेरु पर्वत',kind:'meru'});
-
-// faint particles / cosmic dust
-const dustG=new THREE.BufferGeometry();
-const dn=400, dp=[];
-for(let i=0;i<dn;i++){
-  const rr=R*1.4+Math.random()*180, a=Math.random()*Math.PI*2;
-  dp.push(Math.cos(a)*rr,(Math.random()-0.3)*120,Math.sin(a)*rr);
-}
-dustG.setAttribute('position',new THREE.Float32BufferAttribute(dp,3));
-const dust=new THREE.Points(dustG,new THREE.PointsMaterial({color:0xb08738,size:0.7,transparent:true,opacity:0.5}));
-scene.add(dust);
-
-// ---------- HTML Labels ----------
-const labelLayer=document.createElement('div');
-labelLayer.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:3;';
-document.body.appendChild(labelLayer);
-const labelEls=labelDefs.map(d=>{
-  const el=document.createElement('div');
-  const isMeru=d.kind==='meru';
-  const isRiver=d.kind==='river';
-  const isLake=d.kind==='lake';
-  const isArea=d.kind==='area';
-  const isCompass=d.kind==='compass';
-  const isOcean=d.kind==='ocean';
-  if(d.area){
-    el.innerHTML=d.text+' <span style="font-size:0.78em;opacity:0.7;font-style:italic;">'+d.area+'</span>';
-  } else {
-    el.textContent=d.text;
-  }
-  const size=isMeru?18:d.kind==='range'?12:isRiver?11:isLake?12:isArea?10:isCompass?15:isOcean?14:14;
-  const color=isMeru?'#ffe9a8':d.kind==='range'?'#caa46e':isRiver?'#8fcde8':isLake?'#9fe0ff':isArea?'#d8cba0':isCompass?'#d4a94f':isOcean?'#7fd4dc':'#f0e7d2';
-  el.style.cssText=`position:absolute;transform:translate(-50%,-50%);
-    font-family:'Cormorant Garamond','Tiro Devanagari Hindi',serif;white-space:nowrap;
-    font-size:${size}px;color:${color};
-    text-shadow:0 1px 4px rgba(0,0,0,0.9),0 0 8px rgba(0,0,0,0.7);
-    letter-spacing:${isCompass?'3px':isOcean?'2px':'0.5px'};font-style:${(d.kind==='range'||isRiver||isLake||isArea||isOcean)?'italic':'normal'};
-    ${isMeru?'font-weight:600;':''}${isArea?'opacity:0.85;':''}${isCompass?'text-transform:uppercase;font-weight:600;':''}`;
-  labelLayer.appendChild(el);
-  return el;
-});
-let labelsOn=true;
-
-function projectLabels(){
-  labelDefs.forEach((d,i)=>{
-    const v=d.pos.clone().applyMatrix4(cosmos.matrixWorld).project(cam);
-    const el=labelEls[i];
-    if(!labelsOn || v.z>1){ el.style.display='none'; return; }
-    el.style.display='block';
-    el.style.left=((v.x*0.5+0.5)*innerWidth)+'px';
-    el.style.top=((-v.y*0.5+0.5)*innerHeight)+'px';
-    const dist=cam.position.distanceTo(d.pos);
-    el.style.opacity=(d.kind==='compass'||d.kind==='ocean')?1:Math.max(0,Math.min(1,(380-dist)/200));
-  });
-}
-
-// ---------- Hover picking ----------
-const ray=new THREE.Raycaster();
-const mouse=new THREE.Vector2();
-const tip=document.getElementById('tip');
-let hovered=null;
-renderer.domElement.addEventListener('mousemove',e=>{
-  mouse.x=(e.clientX/innerWidth)*2-1;
-  mouse.y=-(e.clientY/innerHeight)*2+1;
-  ray.setFromCamera(mouse,cam);
-  const hits=ray.intersectObjects(interactive,false);
-  if(hits.length){
-    // prefer a detail-bearing object only if it's near the nearest hit (e.g. a lake
-    // sitting just inside the invisible mountain hull) — not a far region behind it
-    const near=hits.find(h=>h.object.userData && h.object.userData.detail && (h.distance-hits[0].distance)<12);
-    const o=(near||hits[0]).object;
-    tip.textContent=o.userData.label||'';
-    tip.style.left=(e.clientX+14)+'px';
-    tip.style.top=(e.clientY-10)+'px';
-    tip.style.opacity=1;
-    if(hovered!==o){ if(hovered)hovered.material.emissive&&hovered.material.emissive.setHex(hovered.userData._e||0x000000);
-      hovered=o; o.userData._e=o.material.emissive.getHex(); o.material.emissive.setHex(0x2e2810); }
-  } else {
-    tip.style.opacity=0;
-    if(hovered){ hovered.material.emissive.setHex(hovered.userData._e||0x000000); hovered=null; }
-  }
-});
-
-// ---------- Click → open detail panel ----------
-const detailPanel=document.getElementById('detail-panel');
-const detailTitle=document.getElementById('detail-title');
-const detailBody=document.getElementById('detail-body');
-function openDetail(d){
-  detailTitle.textContent=d.title;
-  const diagramHTML = d.diagram ? '<div class="detail-diagram">'+d.diagram+'</div>' : '';
-  detailBody.innerHTML = diagramHTML + d.body.map(line=>'<div class="row">'+line+'</div>').join('');
-  detailPanel.classList.add('open');
-}
-function closeDetail(){ detailPanel.classList.remove('open'); }
-document.getElementById('detail-close').addEventListener('click',closeDetail);
-function pickAt(cx,cy){
-  mouse.x=(cx/innerWidth)*2-1;
-  mouse.y=-(cy/innerHeight)*2+1;
-  ray.setFromCamera(mouse,cam);
-  const hits=ray.intersectObjects(interactive,false);
-  // choose the nearest hit that carries a detail panel; allow a detail object sitting
-  // just behind the nearest hit (lake inside the invisible mountain hull) within 12 units
-  let hit=null;
-  if(hits.length){
-    const d0=hits[0].distance;
-    hit=hits.find(h=>h.object.userData && h.object.userData.detail && (h.distance-d0)<12)
-      || (hits[0].object.userData && hits[0].object.userData.detail ? hits[0] : null);
-  }
-  if(hit) openDetail(hit.object.userData.detail);
-}
-// distinguish click from drag (orbit) using movement threshold
-let downX=0,downY=0,moved=false;
-renderer.domElement.addEventListener('mousedown',e=>{downX=e.clientX;downY=e.clientY;moved=false;});
-renderer.domElement.addEventListener('mousemove',e=>{ if(Math.abs(e.clientX-downX)>5||Math.abs(e.clientY-downY)>5) moved=true; });
-renderer.domElement.addEventListener('click',e=>{ if(!moved) pickAt(e.clientX,e.clientY); });
-// touch tap
-let tDownX=0,tDownY=0,tMoved=false;
-renderer.domElement.addEventListener('touchstart',e=>{const t=e.touches[0];tDownX=t.clientX;tDownY=t.clientY;tMoved=false;},{passive:true});
-renderer.domElement.addEventListener('touchmove',e=>{const t=e.touches[0];if(Math.abs(t.clientX-tDownX)>8||Math.abs(t.clientY-tDownY)>8)tMoved=true;},{passive:true});
-renderer.domElement.addEventListener('touchend',e=>{ if(!tMoved){ const t=e.changedTouches[0]; pickAt(t.clientX,t.clientY); } });
-
-// ---------- Toggles ----------
-function bindToggle(id,fn,init){
-  const el=document.getElementById(id);
-  let on=init;
-  el.addEventListener('click',()=>{on=!on;el.classList.toggle('on',on);fn(on);});
-}
-bindToggle('t-labels',v=>labelsOn=v,true);
-bindToggle('t-rotate',v=>controls.autoRotate=v,true);
-let flatT=0,flatTarget=0;
-bindToggle('t-flat',v=>{flatTarget=v?1:0;},false);
-
-// Mobile legend show/hide (legend is hidden on mobile; guard for safety)
-const legendEl=document.getElementById('legend');
-const legendBtn=document.getElementById('legend-toggle');
-if(legendBtn){
-  legendBtn.addEventListener('click',()=>{
-    const open=legendEl.classList.toggle('open');
-    legendBtn.textContent=open?'✕':'☰';
-  });
-}
-
-// Dhāī-dvīpa reference button
-const dhaiBtn=document.getElementById('dhai-btn');
-if(dhaiBtn){ dhaiBtn.addEventListener('click',()=>openDetail(dhaiDetail)); }
-
-// ---------- Draggable controls panel (via drag handle) ----------
-(function(){
-  const panel=document.getElementById('controls');
-  const handle=document.getElementById('drag-handle');
-  if(!handle) return;
-  let drag=false,sx=0,sy=0,ox=0,oy=0;
-  const start=(x,y)=>{
-    drag=true;
-    const r=panel.getBoundingClientRect();
-    // switch to explicit left/top positioning
-    panel.style.left=r.left+'px'; panel.style.top=r.top+'px';
-    panel.style.right='auto'; panel.style.bottom='auto';
-    sx=x; sy=y; ox=r.left; oy=r.top;
-    handle.style.cursor='grabbing';
-  };
-  const move=(x,y)=>{
-    if(!drag) return;
-    let nx=ox+(x-sx), ny=oy+(y-sy);
-    nx=Math.max(4,Math.min(window.innerWidth-panel.offsetWidth-4,nx));
-    ny=Math.max(4,Math.min(window.innerHeight-panel.offsetHeight-4,ny));
-    panel.style.left=nx+'px'; panel.style.top=ny+'px';
-  };
-  const end=()=>{drag=false;handle.style.cursor='grab';};
-  handle.addEventListener('mousedown',e=>{e.preventDefault();start(e.clientX,e.clientY);});
-  window.addEventListener('mousemove',e=>move(e.clientX,e.clientY));
-  window.addEventListener('mouseup',end);
-  handle.addEventListener('touchstart',e=>{const t=e.touches[0];start(t.clientX,t.clientY);},{passive:true});
-  handle.addEventListener('touchmove',e=>{e.preventDefault();const t=e.touches[0];move(t.clientX,t.clientY);},{passive:false});
-  handle.addEventListener('touchend',end);
-})();
-
-// ---------- Resize ----------
-addEventListener('resize',()=>{
-  cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix();
-  renderer.setSize(innerWidth,innerHeight);
-});
-
-// ---------- Animate ----------
-function animate(){
-  requestAnimationFrame(animate);
-  // flatten interpolation: move camera toward top-down
-  flatT+=(flatTarget-flatT)*0.08;
-  controls.phT = (1-flatT)*controls.phT + flatT*(controls.minPhi+0.02);
-  controls.update();
-  if(flatT>0.5 && controls.autoRotate===false){}
-  dust.rotation.y+=0.0003;
-  halo.rotation.z+=0.004;
-  crown.material.emissiveIntensity=0.5+Math.sin(performance.now()*0.002)*0.2;
-  cosmos.updateMatrixWorld();
-  projectLabels();
-  renderer.render(scene,cam);
-}
-animate();
-
-// hide loader
-setTimeout(()=>{const l=document.getElementById('loading');l.style.opacity=0;setTimeout(()=>l.remove(),600);},500);
-</script>
 </body>
 </html>
