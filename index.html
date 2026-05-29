@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jainverse — Exploring Jain Cosmology</title>
-<meta name="description" content="Interactive explorations of Jain cosmology, geography, and philosophy. Discover ancient wisdom through modern visualization.">
+<title>Jainverse</title>
+<meta name="description" content="जैन परंपरेचा परस्परसंवादी अनुभव — भूगोल, तत्त्वज्ञान आणि बरेच काही.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
   }
 
   body {
-    font-family: 'Instrument Sans', sans-serif;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
     color: var(--text);
     background: var(--warm-white);
     overflow-x: hidden;
@@ -85,9 +85,15 @@
     letter-spacing: -0.3px;
   }
 
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
   .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 28px;
     list-style: none;
   }
 
@@ -114,6 +120,47 @@
 
   .nav-links a:hover { color: var(--text); }
   .nav-links a:hover::after { width: 100%; }
+
+  /* Language switcher */
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 0.2px;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover {
+    color: var(--text-secondary);
+  }
+
+  .lang-btn.active {
+    background: var(--indigo);
+    color: var(--sand);
+    font-weight: 600;
+  }
+
+  .lang-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--sand-dark);
+  }
 
   /* ---- Hero ---- */
   .hero {
@@ -161,12 +208,12 @@
   }
 
   .hero-tagline {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
     font-style: italic;
     font-size: clamp(18px, 2.2vw, 24px);
     color: var(--stone);
     margin-bottom: 32px;
-    line-height: 1.4;
+    line-height: 1.5;
     opacity: 0;
     transform: translateY(18px);
     animation: fadeUp 0.8s 0.6s forwards;
@@ -174,7 +221,7 @@
 
   .hero-desc {
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 1.8;
     color: var(--text-secondary);
     max-width: 440px;
     margin-bottom: 40px;
@@ -190,7 +237,7 @@
     padding: 14px 32px;
     background: var(--indigo);
     color: var(--sand);
-    font-family: 'Instrument Sans', sans-serif;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.3px;
@@ -398,7 +445,7 @@
   }
 
   .card-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
     font-size: 26px;
     color: var(--indigo);
     margin-bottom: 4px;
@@ -408,15 +455,15 @@
     gap: 10px;
   }
 
-  .card-title-hindi {
+  .card-title-sub {
     font-family: 'Tiro Devanagari Hindi', serif;
-    font-size: 20px;
+    font-size: 18px;
     color: var(--stone);
   }
 
   .card-desc {
     font-size: 14px;
-    line-height: 1.65;
+    line-height: 1.75;
     color: var(--text-secondary);
     margin-top: 10px;
   }
@@ -493,17 +540,17 @@
   }
 
   .mission h2 {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
     font-size: clamp(28px, 3.5vw, 40px);
     color: var(--indigo);
-    line-height: 1.2;
+    line-height: 1.3;
     margin-bottom: 24px;
     letter-spacing: -0.5px;
   }
 
   .mission p {
     font-size: 17px;
-    line-height: 1.8;
+    line-height: 1.9;
     color: var(--text-secondary);
     max-width: 580px;
     margin: 0 auto;
@@ -592,8 +639,12 @@
 
     nav { padding: 16px 20px; }
     nav.scrolled { padding: 12px 20px; }
-    .nav-links { gap: 20px; }
+
+    .nav-right { gap: 16px; }
+    .nav-links { gap: 16px; }
     .nav-links a { font-size: 13px; }
+
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
   }
 
   @media (max-width: 520px) {
@@ -603,6 +654,7 @@
     .section-header { margin-bottom: 36px; }
     .card-body { padding: 20px 22px 24px; }
     .card-visual { height: 180px; }
+    .nav-links { display: none; }
   }
 </style>
 </head>
@@ -611,10 +663,19 @@
 <!-- Navigation -->
 <nav id="nav">
   <a href="/" class="nav-brand">Jainverse</a>
-  <ul class="nav-links">
-    <li><a href="#projects">Explore</a></li>
-    <li><a href="#mission">About</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#projects" data-i18n="nav_explore"></a></li>
+      <li><a href="#mission" data-i18n="nav_about"></a></li>
+    </ul>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="mr">मराठी</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn" data-lang="hi">हिन्दी</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn" data-lang="en">Eng</button>
+    </div>
+  </div>
 </nav>
 
 <!-- Decorative background lines -->
@@ -625,16 +686,12 @@
 <!-- Hero -->
 <section class="hero">
   <div class="hero-content">
-    <p class="hero-eyebrow">Interactive Encyclopaedia</p>
+    <p class="hero-eyebrow" data-i18n="hero_eyebrow"></p>
     <h1>Jain<span class="accent">verse</span></h1>
-    <p class="hero-tagline">Ancient cosmology, rendered anew</p>
-    <p class="hero-desc">
-      Explore the vast, intricate universe described in Jain scriptures —
-      through interactive maps, 3D models, and visual narratives that bring
-      millennia of cosmological thought to life.
-    </p>
+    <p class="hero-tagline" data-i18n="hero_tagline"></p>
+    <p class="hero-desc" data-i18n="hero_desc"></p>
     <a href="#projects" class="hero-cta">
-      Begin exploring
+      <span data-i18n="hero_cta"></span>
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 8h10M9 4l4 4-4 4"/>
       </svg>
@@ -644,7 +701,6 @@
   <div class="hero-yantra">
     <div class="yantra-container">
       <svg class="yantra-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <!-- Concentric cosmological rings -->
         <circle class="yantra-ring ring-1" cx="200" cy="200" r="190"/>
         <circle class="yantra-ring ring-1" cx="200" cy="200" r="180"/>
         <circle class="yantra-ring ring-2" cx="200" cy="200" r="155"/>
@@ -653,8 +709,6 @@
         <circle class="yantra-ring ring-3" cx="200" cy="200" r="110"/>
         <circle class="yantra-ring ring-4" cx="200" cy="200" r="85"/>
         <circle class="yantra-ring ring-4" cx="200" cy="200" r="75"/>
-
-        <!-- Inner geometric petals (lotus-like) -->
         <g class="yantra-petal" stroke="var(--gold)">
           <path d="M200 150 Q220 180 200 210 Q180 180 200 150"/>
           <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(45 200 200)"/>
@@ -665,8 +719,6 @@
           <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(270 200 200)"/>
           <path d="M200 150 Q220 180 200 210 Q180 180 200 150" transform="rotate(315 200 200)"/>
         </g>
-
-        <!-- Outer petal ring -->
         <g class="yantra-petal" stroke="var(--saffron-light)" style="opacity:0.12">
           <path d="M200 100 Q230 160 200 220 Q170 160 200 100"/>
           <path d="M200 100 Q230 160 200 220 Q170 160 200 100" transform="rotate(30 200 200)"/>
@@ -675,14 +727,10 @@
           <path d="M200 100 Q230 160 200 220 Q170 160 200 100" transform="rotate(120 200 200)"/>
           <path d="M200 100 Q230 160 200 220 Q170 160 200 100" transform="rotate(150 200 200)"/>
         </g>
-
-        <!-- Cardinal axis lines -->
         <line x1="200" y1="10" x2="200" y2="390" stroke="var(--gold-light)" stroke-width="0.3" opacity="0.15"/>
         <line x1="10" y1="200" x2="390" y2="200" stroke="var(--gold-light)" stroke-width="0.3" opacity="0.15"/>
         <line x1="65" y1="65" x2="335" y2="335" stroke="var(--gold-light)" stroke-width="0.2" opacity="0.1"/>
         <line x1="335" y1="65" x2="65" y2="335" stroke="var(--gold-light)" stroke-width="0.2" opacity="0.1"/>
-
-        <!-- Center bindu -->
         <circle class="yantra-center-dot" cx="200" cy="200" r="4"/>
         <circle cx="200" cy="200" r="8" fill="none" stroke="var(--saffron)" stroke-width="0.5" opacity="0.4"/>
       </svg>
@@ -693,7 +741,7 @@
 <!-- Projects -->
 <section class="projects" id="projects">
   <div class="section-header reveal">
-    <span class="section-label">Explorations</span>
+    <span class="section-label" data-i18n="section_explore"></span>
     <span class="section-line"></span>
   </div>
 
@@ -710,24 +758,17 @@
             <circle cx="60" cy="60" r="25" fill="none" stroke="rgba(244,165,96,0.3)" stroke-width="0.5"/>
             <circle cx="60" cy="60" r="15" fill="none" stroke="rgba(201,168,76,0.35)" stroke-width="0.5"/>
             <circle cx="60" cy="60" r="3" fill="rgba(201,168,76,0.5)"/>
-            <!-- Zone lines -->
             <line x1="60" y1="5" x2="60" y2="115" stroke="rgba(201,168,76,0.12)" stroke-width="0.3"/>
             <line x1="5" y1="60" x2="115" y2="60" stroke="rgba(201,168,76,0.12)" stroke-width="0.3"/>
           </svg>
         </div>
       </div>
       <div class="card-body">
-        <div class="card-tag">Interactive 3D Map</div>
-        <h3 class="card-title">
-          Jambudweep
-          <span class="card-title-hindi">जम्बूद्वीप</span>
-        </h3>
-        <p class="card-desc">
-          Navigate the innermost continent of Jain cosmology — with Mount Meru at its axis,
-          seven lands, six mountain ranges, and the encircling salt ocean, all rendered in 3D.
-        </p>
+        <div class="card-tag" data-i18n="card_jambu_tag"></div>
+        <h3 class="card-title" data-i18n-html="card_jambu_title"></h3>
+        <p class="card-desc" data-i18n="card_jambu_desc"></p>
         <span class="card-enter">
-          Enter the map
+          <span data-i18n="card_jambu_enter"></span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 8h10M9 4l4 4-4 4"/>
           </svg>
@@ -741,11 +782,9 @@
         <span>◇</span>
       </div>
       <div class="card-body">
-        <div class="card-tag">Coming Soon</div>
-        <h3 class="card-title">More to come</h3>
-        <p class="card-desc">
-          New explorations of Jain cosmology — lokas, kālachakra, and beyond — are being crafted.
-        </p>
+        <div class="card-tag" data-i18n="card_soon_tag"></div>
+        <h3 class="card-title" data-i18n="card_soon_title"></h3>
+        <p class="card-desc" data-i18n="card_soon_desc"></p>
       </div>
     </div>
   </div>
@@ -755,36 +794,127 @@
 <section class="mission" id="mission">
   <div class="mission-inner reveal">
     <span class="mission-symbol">☸</span>
-    <h2>Making the invisible visible</h2>
-    <p>
-      Jain cosmology describes a universe of extraordinary scale and structure —
-      infinite in time, layered in space, mapped with mathematical precision
-      thousands of years before the modern era.
-    </p>
-    <p>
-      Jainverse brings these descriptions to life through interactive,
-      faithful visualizations — built from primary texts, open to everyone.
-    </p>
+    <h2 data-i18n="mission_title"></h2>
+    <p data-i18n="mission_p1"></p>
+    <p data-i18n="mission_p2"></p>
   </div>
 </section>
 
 <!-- Footer -->
 <footer>
   <span class="footer-brand">Jainverse</span>
-  <span class="footer-note">जैन भूगोल · Jain Cosmology</span>
+  <span class="footer-note" data-i18n="footer_note"></span>
 </footer>
 
 <script>
-// ---- Sticky nav on scroll ----
-const nav = document.getElementById('nav');
-let lastScroll = 0;
+// ---- i18n strings ----
+const i18n = {
+  mr: {
+    nav_explore: "अन्वेषण",
+    nav_about: "आमच्याबद्दल",
+    hero_eyebrow: "परस्परसंवादी ज्ञानकोश",
+    hero_tagline: "जैन परंपरा, नव्या दृष्टीने",
+    hero_desc: "जैन शास्त्रांमध्ये वर्णन केलेले विश्व, तत्त्वज्ञान आणि परंपरा — परस्परसंवादी नकाशे, त्रिमितीय प्रतिकृती आणि दृश्य कथनांद्वारे अनुभवा.",
+    hero_cta: "अन्वेषण सुरू करा",
+    section_explore: "अन्वेषणे",
+    card_jambu_tag: "परस्परसंवादी त्रिमितीय नकाशा",
+    card_jambu_title: "जम्बूद्वीप <span class='card-title-sub'>Jambudweep</span>",
+    card_jambu_desc: "जैन भूगोलातील सर्वांत आतील द्वीप — मेरु पर्वत, सात क्षेत्रे, सहा पर्वतरांगा आणि लवण समुद्र, सर्व त्रिमितीय स्वरूपात पहा.",
+    card_jambu_enter: "नकाशा पहा",
+    card_soon_tag: "लवकरच",
+    card_soon_title: "अजून बरेच काही",
+    card_soon_desc: "जैन परंपरेचे नवीन अन्वेषणे — लोक, कालचक्र आणि बरेच काही — तयार होत आहेत.",
+    mission_title: "अदृश्याला दृश्य करणे",
+    mission_p1: "जैन परंपरा एका अलौकिक विश्वाचे वर्णन करते — काळात अनंत, अवकाशात स्तरित, आधुनिक युगाच्या हजारो वर्षांपूर्वी गणितीय अचूकतेने नकाशित.",
+    mission_p2: "Jainverse हे वर्णन परस्परसंवादी, मूळ ग्रंथांवर आधारित दृश्यांकनांद्वारे सजीव करते — सर्वांसाठी खुले.",
+    footer_note: "जैन परंपरा · Jain Encyclopaedia",
+  },
+  hi: {
+    nav_explore: "अन्वेषण",
+    nav_about: "हमारे बारे में",
+    hero_eyebrow: "परस्परसंवादी ज्ञानकोश",
+    hero_tagline: "जैन परम्परा, नई दृष्टि से",
+    hero_desc: "जैन शास्त्रों में वर्णित विश्व, दर्शन और परम्परा — परस्परसंवादी मानचित्रों, त्रिआयामी प्रतिकृतियों और दृश्य कथाओं के माध्यम से अनुभव करें.",
+    hero_cta: "अन्वेषण आरम्भ करें",
+    section_explore: "अन्वेषण",
+    card_jambu_tag: "परस्परसंवादी त्रिआयामी मानचित्र",
+    card_jambu_title: "जम्बूद्वीप <span class='card-title-sub'>Jambudweep</span>",
+    card_jambu_desc: "जैन भूगोल का सर्वान्तरतम द्वीप — मेरु पर्वत, सात क्षेत्र, छः पर्वत श्रृंखलाएँ और लवण समुद्र, सब त्रिआयामी रूप में देखें.",
+    card_jambu_enter: "मानचित्र देखें",
+    card_soon_tag: "शीघ्र",
+    card_soon_title: "और भी बहुत कुछ",
+    card_soon_desc: "जैन परम्परा के नवीन अन्वेषण — लोक, कालचक्र और बहुत कुछ — निर्माणाधीन हैं.",
+    mission_title: "अदृश्य को दृश्य बनाना",
+    mission_p1: "जैन परम्परा एक अलौकिक विश्व का वर्णन करती है — काल में अनन्त, अवकाश में स्तरित, आधुनिक युग से सहस्रों वर्ष पूर्व गणितीय सटीकता से मानचित्रित.",
+    mission_p2: "Jainverse इन वर्णनों को परस्परसंवादी, मूल ग्रन्थों पर आधारित दृश्यांकनों द्वारा सजीव करता है — सभी के लिए खुला.",
+    footer_note: "जैन परम्परा · Jain Encyclopaedia",
+  },
+  en: {
+    nav_explore: "Explore",
+    nav_about: "About",
+    hero_eyebrow: "Interactive Encyclopaedia",
+    hero_tagline: "Jain tradition, seen anew",
+    hero_desc: "Experience the universe, philosophy, and traditions described in Jain scriptures — through interactive maps, 3D models, and visual narratives.",
+    hero_cta: "Start exploring",
+    section_explore: "Explorations",
+    card_jambu_tag: "Interactive 3D Map",
+    card_jambu_title: "Jambudweep <span class='card-title-sub'>जम्बूद्वीप</span>",
+    card_jambu_desc: "Navigate the innermost continent of Jain geography — Mount Meru at its axis, seven lands, six mountain ranges, and the encircling salt ocean, all in 3D.",
+    card_jambu_enter: "Enter the map",
+    card_soon_tag: "Coming Soon",
+    card_soon_title: "More to come",
+    card_soon_desc: "New explorations of Jain tradition — lokas, kālachakra, and beyond — are being crafted.",
+    mission_title: "Making the invisible visible",
+    mission_p1: "Jain tradition describes a universe of extraordinary scale and structure — infinite in time, layered in space, mapped with mathematical precision thousands of years before the modern era.",
+    mission_p2: "Jainverse brings these descriptions to life through interactive, faithful visualizations — built from primary texts, open to everyone.",
+    footer_note: "Jain Tradition · Encyclopaedia",
+  }
+};
 
+// ---- Language switching ----
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+
+  // Update text content
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+
+  // Update innerHTML for elements that need it (card titles with mixed scripts)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+
+  // Update active button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+
+  // Update html lang attribute
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+
+  // Persist choice
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+// Language button clicks
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+// Initialize with saved preference or default to Marathi
+const savedLang = localStorage.getItem('jainverse-lang') || 'mr';
+setLang(savedLang);
+
+// ---- Sticky nav on scroll ----
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
 // ---- Scroll reveal ----
-const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -794,16 +924,14 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-reveals.forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ---- Smooth scroll for anchor links ----
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
     const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 </script>
