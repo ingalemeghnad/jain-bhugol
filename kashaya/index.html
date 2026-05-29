@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>कषाय — Jainverse</title>
+<meta name="description" content="क्रोध, मान, माया, लोभ — कर्म कसं चिकटतं ते समजून घ्या.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+
+  .article {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 140px 28px 100px;
+  }
+
+  .page-header {
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--indigo);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  .header-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin-top: 28px;
+    opacity: 0.7;
+  }
+
+  .section {
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: -12px;
+    user-select: none;
+  }
+
+  .section-question {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(24px, 3.5vw, 32px);
+    color: var(--indigo);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--text-secondary);
+  }
+
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 80px 0;
+    color: var(--sand-dark);
+    user-select: none;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark));
+  }
+
+  .section-divider::after {
+    background: linear-gradient(90deg, var(--sand-dark), transparent);
+  }
+
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+
+  /* Next read link */
+  .next-read {
+    margin-top: 80px;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .next-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .next-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 8px;
+  }
+
+  .next-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .next-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--saffron);
+    transition: transform 0.3s;
+  }
+
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+
+  .article-footer {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--sand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .article-footer .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--stone);
+    text-decoration: none;
+  }
+
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; }
+    .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; }
+    .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; }
+    .section-divider { margin: 56px 0; }
+    .next-read { padding: 22px 24px; }
+    .next-read-title { font-size: 19px; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span>Jainverse</span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">6</div>
+    <h2 class="section-question" data-i18n="s6_q"></h2>
+    <div class="section-body" data-i18n-html="s6_body"></div>
+  </section>
+
+  <!-- Next read -->
+  <!-- <a href="/next-topic/" class="next-read reveal">
+    <div class="next-read-label" data-i18n="next_label"></div>
+    <div class="next-read-title">
+      <span data-i18n="next_title"></span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+  </a> -->
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "कषाय",
+    page_subtitle: "क्रोध, मान, माया, लोभ — कर्म चिकटतं कसं?",
+    s1_q: "कर्म चिकटतं कसं?",
+    s1_body: s([
+      'आता तुम्हाला माहीत आहे कर्म अस्तित्वात आहे. पण सगळ्या कृती सारखंच कर्म निर्माण करत नाहीत.',
+      '<span class="emphasis">महत्त्वाचं हे नाही की तू काय करतोस — महत्त्वाचं हे आहे की करताना तुझ्या आत आत काय चाललंय.</span>',
+      'एकच काम शांतपणे केलं आणि रागात केलं — दोन्हीचं कर्म खूप वेगळं.',
+      'दोन माणसं दान देतात — एक दिखाव्यासाठी, एक खऱ्या सहानुभूतीने — कर्म पूर्णपणे वेगळं.',
+      'कर्म सगळ्यात जास्त चिकटवणाऱ्या 4 गोष्टी आहेत — त्यांना <span class="term">कषाय</span> म्हणतात.',
+    ]),
+    s2_q: "क्रोध",
+    s2_body: s([
+      'फक्त ओरडणं म्हणजे क्रोध नाही — कुठलीही चिडचिड, राग, द्वेष हा क्रोध आहे.',
+      'मनातला राग पण तेवढाच मोजतो — आत्म्याला फरक पडत नाही तू बोललास की नाही.',
+      'रागात काही केलं तर कर्म ओल्या मातीसारखं चिकटतं.',
+      '<span class="emphasis">लक्षात घ्या: राग गेल्यावर बऱ्याचदा पश्चात्ताप होतो. तो पश्चात्ताप म्हणजे तुम्हीच ओळखता की नुकसान झालं.</span>',
+    ]),
+    s3_q: "मान",
+    s3_body: s([
+      '"मला जास्त कळतं", "मी चांगला आहे", "मीच बरोबर" — हा मान आहे.',
+      'हा इतका सूक्ष्म असतो की तुम्हाला कळतही नाही.',
+      'स्वतःची दुसऱ्यांशी तुलना करणं, मान्यता मिळवण्याची गरज — हे सगळं मान.',
+      '<span class="emphasis">मान शिकणं अडवतो — भरलेल्या भांड्यात अजून पाणी कसं घालणार?</span>',
+    ]),
+    s4_q: "माया",
+    s4_body: s([
+      'फक्त खोटं बोलणं म्हणजे माया नाही — कुठलाही डाव, ढोंग, लपवलेला हेतू म्हणजे माया.',
+      'एक सांगणं, दुसरं मनात ठेवणं.',
+      '<span class="emphasis">स्वतःशी खोटं बोलणं पण माया आहे — चुकीचं माहीत असूनही स्वतःला सांगायचं की बरोबर आहे.</span>',
+    ]),
+    s5_q: "लोभ",
+    s5_body: s([
+      'फक्त पैशाचा लोभ नाही — कुठल्याही गोष्टीला चिकटून राहणं म्हणजे लोभ. वस्तू, नाती, मतं, आराम — सगळ्याचा.',
+      '"अजून एक" — हे कधी पुरेसं नाही असं वाटणं.',
+      '<span class="emphasis">लोभ हा सगळ्यात कठीण कषाय आहे — मोक्षाच्या मार्गावर सगळ्यात शेवटी जातो.</span>',
+    ]),
+    s6_q: "मग करायचं काय?",
+    s6_body: s([
+      'हे एका रात्रीत संपवता येत नाही — पण पहिलं पाऊल म्हणजे <span class="emphasis">ओळखणं</span>.',
+      'राग आला — बस, बघा तो. मान वाटला — बस, जाणवा.',
+      'कषायाशी लढायचं नाही — फक्त निरीक्षण करायचं. <span class="emphasis">निरीक्षण स्वतःच कषायाला कमकुवत करतं.</span>',
+      'इथे तत्त्वज्ञान अभ्यास बनतं — विधी नाही, तर स्वतःची जाणीव.',
+    ]),
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "कषाय",
+    page_subtitle: "क्रोध, मान, माया, लोभ — कर्म चिपकता कैसे है?",
+    s1_q: "कर्म चिपकता कैसे है?",
+    s1_body: s([
+      'अब तुम्हें पता है कर्म होता है. लेकिन सब काम बराबर कर्म नहीं बनाते.',
+      '<span class="emphasis">ज़रूरी ये नहीं कि तुम क्या करते हो — ज़रूरी ये है कि करते वक़्त अंदर क्या चल रहा है.</span>',
+      'एक ही काम शांति से किया और गुस्से में किया — दोनों का कर्म बहुत अलग.',
+      'दो लोग दान देते हैं — एक दिखावे के लिए, एक सच्ची हमदर्दी से — कर्म बिलकुल अलग.',
+      'कर्म सबसे ज़्यादा चिपकाने वाली 4 चीज़ें हैं — उन्हें <span class="term">कषाय</span> कहते हैं.',
+    ]),
+    s2_q: "क्रोध",
+    s2_body: s([
+      'सिर्फ़ चिल्लाना क्रोध नहीं है — कोई भी चिढ़, गुस्सा, नफ़रत क्रोध है.',
+      'मन में गुस्सा भी उतना ही गिनता है — आत्मा को फ़र्क नहीं पड़ता तुमने बोला या नहीं.',
+      'गुस्से में कुछ किया तो कर्म गीली मिट्टी जैसा चिपकता है.',
+      '<span class="emphasis">ग़ौर करो: गुस्सा जाने के बाद अक्सर पछतावा होता है. वो पछतावा तुम्हीं पहचानते हो कि नुक़सान हुआ.</span>',
+    ]),
+    s3_q: "मान",
+    s3_body: s([
+      '"मुझे ज़्यादा पता है", "मैं बेहतर हूँ", "मैं सही हूँ" — यही मान है.',
+      'ये इतना बारीक होता है कि पता भी नहीं चलता.',
+      'ख़ुद की दूसरों से तुलना करना, पहचान की ज़रूरत — ये सब मान है.',
+      '<span class="emphasis">मान सीखने में रुकावट है — भरे हुए बर्तन में और पानी कैसे डालोगे?</span>',
+    ]),
+    s4_q: "माया",
+    s4_body: s([
+      'सिर्फ़ झूठ बोलना माया नहीं — कोई भी चाल, दिखावा, छुपा हुआ इरादा माया है.',
+      'एक बात कहना, दूसरी मन में रखना.',
+      '<span class="emphasis">ख़ुद से झूठ बोलना भी माया है — ग़लत जानते हुए भी ख़ुद को बताना कि सही है.</span>',
+    ]),
+    s5_q: "लोभ",
+    s5_body: s([
+      'सिर्फ़ पैसे का लोभ नहीं — किसी भी चीज़ से चिपके रहना लोभ है. चीज़ें, रिश्ते, राय, आराम — सब कुछ.',
+      '"और एक" — ये कभी काफ़ी नहीं लगने वाला एहसास.',
+      '<span class="emphasis">लोभ सबसे मुश्किल कषाय है — मोक्ष के रास्ते पर सबसे आख़िर में जाता है.</span>',
+    ]),
+    s6_q: "तो करना क्या है?",
+    s6_body: s([
+      'ये एक रात में ख़त्म नहीं होगा — लेकिन पहला क़दम है <span class="emphasis">पहचानना</span>.',
+      'गुस्सा आया — बस, देखो उसे. मान महसूस हुआ — बस, जानो.',
+      'कषाय से लड़ना नहीं है — बस देखना है. <span class="emphasis">देखना ही कषाय को कमज़ोर करता है.</span>',
+      'यहाँ फ़लसफ़ा अमल बनता है — रस्म नहीं, ख़ुद की पहचान.',
+    ]),
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Kashaya",
+    page_subtitle: "Anger, pride, deceit, greed — how does karma stick?",
+    s1_q: "How does karma stick?",
+    s1_body: s([
+      'Now you know karma exists. But not all actions create equal karma.',
+      '<span class="emphasis">What matters is not what you do — it\'s what\'s going on inside you when you do it.</span>',
+      'The same action done calmly versus done in anger creates very different karma.',
+      'Two people give to charity — one for show, one from genuine compassion — completely different karma.',
+      'There are 4 things that make karma stick the hardest — they\'re called <span class="term">kashaya</span> (passions).',
+    ]),
+    s2_q: "Anger",
+    s2_body: s([
+      'Not just shouting — any hostility, irritation, resentment is anger.',
+      'Even silent anger counts — the soul doesn\'t care whether you expressed it or not.',
+      'When you act in anger, karma sticks like wet clay.',
+      '<span class="emphasis">Notice: after anger passes, you often feel regret. That regret is you recognising the damage.</span>',
+    ]),
+    s3_q: "Pride",
+    s3_body: s([
+      '"I know more", "I am better", "I am right" — this is pride.',
+      'It\'s so subtle you might not even notice it.',
+      'Comparing yourself to others, needing recognition — all pride.',
+      '<span class="emphasis">Pride blocks learning — you can\'t pour more water into a cup that\'s already full.</span>',
+    ]),
+    s4_q: "Deceit",
+    s4_body: s([
+      'Not just lying — any manipulation, pretending, hidden agenda is deceit.',
+      'Saying one thing, meaning another.',
+      '<span class="emphasis">Even self-deception counts — telling yourself stories to justify what you know is wrong.</span>',
+    ]),
+    s5_q: "Greed",
+    s5_body: s([
+      'Not just money — clinging to anything is greed. Possessions, relationships, opinions, comfort — all of it.',
+      '"One more" — that feeling of never having enough.',
+      '<span class="emphasis">Greed is the hardest kashaya to let go of — it\'s the last one to leave on the path to moksha.</span>',
+    ]),
+    s6_q: "So what do you do?",
+    s6_body: s([
+      'You can\'t eliminate these overnight — but the first step is <span class="emphasis">noticing</span>.',
+      'When anger rises — just see it. When pride surfaces — just notice.',
+      'Don\'t fight the kashaya — just observe it. <span class="emphasis">Observation itself weakens it.</span>',
+      'This is where philosophy becomes practice — not ritual, but self-awareness.',
+    ]),
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
