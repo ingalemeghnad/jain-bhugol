@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>संवर आणि निर्जरा — Jainverse</title>
+<meta name="description" content="कर्म येणं थांबवायचं कसं आणि जुनं कर्म काढायचं कसं — संवर आणि निर्जराची ओळख.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+
+  .article {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 140px 28px 100px;
+  }
+
+  .page-header {
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--indigo);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  .header-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin-top: 28px;
+    opacity: 0.7;
+  }
+
+  .section {
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: -12px;
+    user-select: none;
+  }
+
+  .section-question {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(24px, 3.5vw, 32px);
+    color: var(--indigo);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--text-secondary);
+  }
+
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 80px 0;
+    color: var(--sand-dark);
+    user-select: none;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark));
+  }
+
+  .section-divider::after {
+    background: linear-gradient(90deg, var(--sand-dark), transparent);
+  }
+
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+
+  .next-read {
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .next-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .next-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 8px;
+  }
+
+  .next-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .next-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--saffron);
+    transition: transform 0.3s;
+  }
+
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+
+  .page-nav {
+    display: flex;
+    gap: 16px;
+    margin-top: 80px;
+  }
+
+  .page-nav .next-read {
+    margin-top: 0;
+    flex: 1;
+  }
+
+  .prev-read {
+    flex: 1;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .prev-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .prev-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: 8px;
+  }
+
+  .prev-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prev-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--stone-light);
+    transition: transform 0.3s;
+  }
+
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+
+  .article-footer {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--sand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .article-footer .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--stone);
+    text-decoration: none;
+  }
+
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; }
+    .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; }
+    .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; }
+    .section-divider { margin: 56px 0; }
+    .next-read { padding: 22px 24px; }
+    .next-read-title { font-size: 19px; }
+    .prev-read { padding: 22px 24px; }
+    .prev-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span>Jainverse</span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">6</div>
+    <h2 class="section-question" data-i18n="s6_q"></h2>
+    <div class="section-body" data-i18n-html="s6_body"></div>
+  </section>
+
+  <!-- Prev -->
+  <div class="page-nav reveal">
+    <a href="/ashrav-bandh/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "संवर आणि निर्जरा",
+    page_subtitle: "दरवाजे बंद करणं — आणि जुनं कर्म झटकणं",
+    s1_q: "दोन गोष्टी करायच्या आहेत",
+    s1_body: s([
+      'आतापर्यंत तुम्ही पाहिलं — कर्म कसं शिरतं (आस्रव), कसं बांधलं जातं (बंध), आणि काय करतं (आठ प्रकार).',
+      'आता प्रश्न आहे — सुटका कशी?',
+      'उत्तर दोन भागांत आहे:',
+      '<span class="emphasis">पहिलं — नवीन कर्म शिरणं थांबवा.</span> नळ चालू असेल आणि पाणी सांडत असेल, तर आधी नळ बंद करा.',
+      '<span class="emphasis">दुसरं — जे आधीच जमलंय ते काढा.</span> नळ बंद केल्यावर जमिनीवरचं पाणी पुसा.',
+      'पहिल्याला <span class="term">संवर</span> म्हणतात — दरवाजे बंद करणं. दुसऱ्याला <span class="term">निर्जरा</span> — जुनं कर्म झडवणं.',
+    ]),
+    s2_q: "संवर — दरवाजे बंद कसे करायचे?",
+    s2_body: s([
+      'आस्रवाचे दरवाजे म्हणजे मन, वाणी, शरीर — आणि त्यांना चिकट बनवणाऱ्या कषाय.',
+      'संवर म्हणजे हे दरवाजे बंद करणं — पण "काहीच करू नका" असं नाही. <span class="emphasis">करताना जपून करा — आतला भाव बदला.</span>',
+      'संवराचे मार्ग:',
+      '<span class="emphasis">सावधानी (समिती)</span> — चालताना, बोलताना, खाताना, वस्तू ठेवताना-उचलताना जपून वागणं. यांत्रिकपणे नाही — जाणीवपूर्वक.',
+      '<span class="emphasis">संयम (गुप्ती)</span> — मन, वाणी, शरीराची अनावश्यक हालचाल थांबवणं. प्रत्येक विचार, प्रत्येक शब्द, प्रत्येक कृती गरजेची आहे का — हा विचार.',
+      '<span class="emphasis">कषाय कमी करणं</span> — हेच मुख्य काम आहे. क्रोध, मान, माया, लोभ ओळखा, निरीक्षण करा — कषाय पेजवर तुम्ही हे पाहिलंच.',
+    ]),
+    s3_q: "रोजच्या जगण्यात हे कसं दिसतं?",
+    s3_body: s([
+      'कुणी चुकीचं बोललं — तुम्हाला राग आला. पूर्वी तुम्ही लगेच उत्तर द्यायचा. आता तुम्ही थांबता — रागाला बघता, ओळखता.',
+      'हा छोटासा क्षण — हाच संवर आहे. कर्माचे कण आत यायला निघाले होते — पण तुम्ही दरवाजा बंद केला.',
+      'कुणी कौतुक करतं — तुम्हाला मान वाटतो, "मीच बरोबर" असं वाटतं. तुम्ही ते ओळखता — हा पण संवर.',
+      '<span class="emphasis">संवर म्हणजे जंगलात जाणं नाही — जिथे आहात तिथे जागरूक राहणं.</span>',
+      'अर्थात, जो या मार्गावर खोलवर जातो — तो गृहस्थाश्रमातून मुनिधर्माकडे वळतो. पण सुरुवात जागरूकतेनेच होते.',
+    ]),
+    s4_q: "निर्जरा — जुनं कर्म कसं झडतं?",
+    s4_body: s([
+      'नवीन कर्म थांबवणं हा एक भाग. पण अनादि काळापासून जमलेलं कर्म — ते कसं निघणार?',
+      'दोन प्रकारे कर्म झडतं:',
+      '<span class="emphasis">आपोआप (अकाम निर्जरा)</span> — प्रत्येक कर्माला एक मुदत असते. ती संपली की ते फळ देतं आणि गळून पडतं. आजारी पडणं, सुख मिळणं, संधी हुकणं — हे सगळं जुन्या कर्माचं फळ आहे. फळ मिळालं की ते कर्म संपतं.',
+      'पण आपोआप झडण्यात एक अडचण आहे — <span class="emphasis">फळ भोगताना तुम्ही नवीन कषाय करता, आणि नवीन कर्म बांधता</span>. एक संपतं, दुसरं सुरू होतं.',
+      '<span class="emphasis">जाणूनबुजून (सकाम निर्जरा)</span> — तप, ध्यान, आणि अभ्यासाने कर्म मुदतीआधीच झटकता येतं. हेच खरं काम आहे.',
+    ]),
+    s5_q: "जुनं कर्म आधीच कसं काढायचं?",
+    s5_body: s([
+      'सकाम निर्जरेचे मार्ग:',
+      '<span class="emphasis">तप</span> — फक्त उपवास नाही. बाह्य तप म्हणजे आहार नियमन, शरीराला शिस्त. आंतरिक तप म्हणजे प्रायश्चित्त, विनम्रता, अभ्यास, ध्यान — हे अधिक महत्त्वाचं.',
+      '<span class="emphasis">ध्यान</span> — मनाला एका ठिकाणी स्थिर करणं. जेव्हा मन शांत होतं, कषाय थांबतात — तेव्हा जुनं कर्म वेगाने गळायला लागतं.',
+      '<span class="emphasis">सहन करणं — कषायाशिवाय</span> — हे सगळ्यात कठीण आणि सगळ्यात शक्तिशाली आहे. दुःख आलं, अपमान झाला, शरीराला त्रास — आणि तरी आतून शांत. कषाय नाही. तेव्हा ते कर्म फळ देतं आणि नवीन कर्म बांधत नाही — निव्वळ झडतं.',
+      '<span class="emphasis">म्हणूनच मुनी कठोर तप करतात — शरीराला त्रास देण्यासाठी नाही, तर कर्माचे जुने थर काढण्यासाठी.</span>',
+    ]),
+    s6_q: "दोन्ही एकत्र चालतात",
+    s6_body: s([
+      'संवर आणि निर्जरा वेगवेगळ्या नाहीत — त्या एकत्रच चालतात.',
+      'जेव्हा तुम्ही जागरूक राहता (संवर), तेव्हा नवीन कर्म येत नाही. त्याच वेळी जुनं कर्म फळ देऊन गळतं (निर्जरा) — आणि तुम्ही ते शांतपणे सहन करता म्हणून नवीन बांधत नाही.',
+      'हळूहळू एक-एक थर निघतो. आत्म्याचं खरं स्वरूप थोडं-थोडं दिसायला लागतं.',
+      '<span class="emphasis">जेव्हा सगळे थर निघतात — तेव्हा आत्मा तो होतो जो तो नेहमीच होता. शुद्ध, मुक्त, पूर्ण.</span>',
+      'हा शेवटचा टप्पा — त्याला काय म्हणतात, तो कसा दिसतो — ते पुढे.',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "आस्रव आणि बंध",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "संवर और निर्जरा",
+    page_subtitle: "दरवाज़े बंद करना — और पुराना कर्म छुड़ाना",
+    s1_q: "दो काम करने हैं",
+    s1_body: s([
+      'अब तक तुमने देखा — कर्म कैसे घुसता है (आस्रव), कैसे बँधता है (बंध), और क्या करता है (आठ प्रकार).',
+      'अब सवाल है — छुटकारा कैसे?',
+      'जवाब दो हिस्सों में है:',
+      '<span class="emphasis">पहला — नया कर्म आना बंद करो.</span> नल चालू हो और पानी फैल रहा हो, तो पहले नल बंद करो.',
+      '<span class="emphasis">दूसरा — जो पहले से जमा है वो निकालो.</span> नल बंद करके ज़मीन का पानी पोंछो.',
+      'पहले को <span class="term">संवर</span> कहते हैं — दरवाज़े बंद करना. दूसरे को <span class="term">निर्जरा</span> — पुराना कर्म छुड़ाना.',
+    ]),
+    s2_q: "संवर — दरवाज़े बंद कैसे करें?",
+    s2_body: s([
+      'आस्रव के दरवाज़े हैं मन, वाणी, शरीर — और उन्हें चिपचिपा बनाने वाली कषाय.',
+      'संवर मतलब ये दरवाज़े बंद करना — लेकिन "कुछ मत करो" ऐसा नहीं. <span class="emphasis">करते वक़्त होशियार रहो — अंदर का भाव बदलो.</span>',
+      'संवर के रास्ते:',
+      '<span class="emphasis">सावधानी (समिती)</span> — चलते, बोलते, खाते, चीज़ें रखते-उठाते वक़्त ध्यान रखना. यंत्रवत नहीं — जागरूकता से.',
+      '<span class="emphasis">संयम (गुप्ती)</span> — मन, वाणी, शरीर की ग़ैरज़रूरी हलचल रोकना. हर विचार, हर शब्द, हर काम ज़रूरी है क्या — ये सोचना.',
+      '<span class="emphasis">कषाय कम करना</span> — यही मुख्य काम है. क्रोध, मान, माया, लोभ पहचानो, देखो — कषाय पेज पर तुमने ये देखा ही है.',
+    ]),
+    s3_q: "रोज़ की ज़िंदगी में ये कैसा दिखता है?",
+    s3_body: s([
+      'कोई ग़लत बोले — तुम्हें गुस्सा आए. पहले तुम फ़ौरन जवाब देते. अब तुम रुकते हो — गुस्से को देखते हो, पहचानते हो.',
+      'ये छोटा सा लम्हा — यही संवर है. कर्म के कण अंदर आने वाले थे — लेकिन तुमने दरवाज़ा बंद किया.',
+      'कोई तारीफ़ करे — तुम्हें मान महसूस हो, "मैं ही सही हूँ" ऐसा लगे. तुम उसे पहचान लो — ये भी संवर.',
+      '<span class="emphasis">संवर मतलब जंगल में जाना नहीं — जहाँ हो वहीं जागरूक रहना.</span>',
+      'हाँ, जो इस राह पर गहरे जाता है — वो गृहस्थ जीवन से मुनिधर्म की ओर मुड़ता है. लेकिन शुरुआत जागरूकता से ही होती है.',
+    ]),
+    s4_q: "निर्जरा — पुराना कर्म कैसे छूटता है?",
+    s4_body: s([
+      'नया कर्म रोकना एक हिस्सा. लेकिन अनादि काल से जमा कर्म — वो कैसे निकलेगा?',
+      'दो तरीक़ों से कर्म छूटता है:',
+      '<span class="emphasis">अपने आप (अकाम निर्जरा)</span> — हर कर्म की एक मियाद होती है. वो पूरी हुई तो फल देता है और गिर जाता है. बीमार पड़ना, सुख मिलना, मौक़ा छूटना — ये सब पुराने कर्म का फल है. फल मिला तो वो कर्म ख़त्म.',
+      'लेकिन अपने आप छूटने में एक दिक़्क़त है — <span class="emphasis">फल भोगते वक़्त तुम नई कषाय करते हो, और नया कर्म बाँधते हो</span>. एक ख़त्म, दूसरा शुरू.',
+      '<span class="emphasis">जानबूझकर (सकाम निर्जरा)</span> — तप, ध्यान, और अभ्यास से कर्म मियाद से पहले ही छुड़ाया जा सकता है. यही असली काम है.',
+    ]),
+    s5_q: "पुराना कर्म वक़्त से पहले कैसे निकालें?",
+    s5_body: s([
+      'सकाम निर्जरा के रास्ते:',
+      '<span class="emphasis">तप</span> — सिर्फ़ उपवास नहीं. बाहरी तप मतलब आहार नियंत्रण, शरीर को अनुशासन. भीतरी तप मतलब प्रायश्चित, विनम्रता, अध्ययन, ध्यान — ये ज़्यादा अहम है.',
+      '<span class="emphasis">ध्यान</span> — मन को एक जगह स्थिर करना. जब मन शांत होता है, कषाय रुकती हैं — तब पुराना कर्म तेज़ी से गिरने लगता है.',
+      '<span class="emphasis">सहना — कषाय के बिना</span> — ये सबसे कठिन और सबसे शक्तिशाली है. दुख आए, अपमान हो, शरीर को तकलीफ़ — और फिर भी अंदर से शांत. कषाय नहीं. तब वो कर्म फल देता है और नया कर्म नहीं बँधता — बस छूटता है.',
+      '<span class="emphasis">इसीलिए मुनि कठोर तप करते हैं — शरीर को सताने के लिए नहीं, बल्कि कर्म की पुरानी परतें उतारने के लिए.</span>',
+    ]),
+    s6_q: "दोनों साथ चलते हैं",
+    s6_body: s([
+      'संवर और निर्जरा अलग-अलग नहीं — ये साथ ही चलते हैं.',
+      'जब तुम जागरूक रहते हो (संवर), तब नया कर्म नहीं आता. उसी वक़्त पुराना कर्म फल देकर गिरता है (निर्जरा) — और तुम उसे शांति से सहते हो तो नया नहीं बँधता.',
+      'धीरे-धीरे एक-एक परत उतरती है. आत्मा का असली रूप थोड़ा-थोड़ा दिखने लगता है.',
+      '<span class="emphasis">जब सारी परतें उतर जाती हैं — तब आत्मा वो बन जाता है जो वो हमेशा से था. शुद्ध, मुक्त, पूर्ण.</span>',
+      'ये आख़िरी मंज़िल — उसे क्या कहते हैं, वो कैसी दिखती है — वो आगे.',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "आस्रव और बंध",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Samvar & Nirjara",
+    page_subtitle: "Closing the doors — and shedding what's already inside",
+    s1_q: "Two things need to happen",
+    s1_body: s([
+      'So far you\'ve seen — how karma enters (ashrav), how it bonds (bandh), and what it does (eight types).',
+      'Now the question — how do you get free?',
+      'The answer has two parts:',
+      '<span class="emphasis">First — stop new karma from entering.</span> If the tap is running and water is flooding the floor, turn the tap off first.',
+      '<span class="emphasis">Second — remove what has already accumulated.</span> Once the tap is off, mop up the water on the floor.',
+      'The first is called <span class="term">samvar</span> — closing the doors. The second is <span class="term">nirjara</span> — shedding old karma.',
+    ]),
+    s2_q: "Samvar — how do you close the doors?",
+    s2_body: s([
+      'The doors of ashrav are the mind, speech, and body — and the kashaya that make them sticky.',
+      'Samvar means closing these doors — but not "do nothing." <span class="emphasis">Be careful while acting — change what\'s going on inside.</span>',
+      'Paths of samvar:',
+      '<span class="emphasis">Carefulness (samiti)</span> — being mindful while walking, speaking, eating, handling things. Not mechanically — with awareness.',
+      '<span class="emphasis">Restraint (gupti)</span> — stopping unnecessary activity of mind, speech, and body. Is this thought necessary? Is this word needed? Is this action required?',
+      '<span class="emphasis">Reducing kashaya</span> — this is the core work. Recognise anger, pride, deceit, greed when they arise — you\'ve already seen this on the kashaya page.',
+    ]),
+    s3_q: "What does this look like in daily life?",
+    s3_body: s([
+      'Someone says something wrong — you feel anger. Before, you\'d respond immediately. Now you pause — you watch the anger, you recognise it.',
+      'That tiny moment — that is samvar. Karmic particles were about to enter — but you closed the door.',
+      'Someone praises you — you feel pride, a sense of "I\'m right." You notice it — that too is samvar.',
+      '<span class="emphasis">Samvar doesn\'t mean retreating to a forest — it means being aware right where you are.</span>',
+      'Of course, the one who goes deeper on this path moves from householder life towards the life of a muni. But the beginning is always awareness.',
+    ]),
+    s4_q: "Nirjara — how does old karma shed?",
+    s4_body: s([
+      'Stopping new karma is one part. But karma accumulated since beginningless time — how does that come off?',
+      'Karma sheds in two ways:',
+      '<span class="emphasis">Automatically (akam nirjara)</span> — every karma has an expiry. When the time comes, it gives its fruit and falls away. Falling ill, experiencing joy, missing an opportunity — these are all fruits of old karma. Once the fruit is experienced, that karma is finished.',
+      'But there\'s a problem with automatic shedding — <span class="emphasis">while experiencing the fruit, you react with new kashaya, binding new karma</span>. One ends, another begins.',
+      '<span class="emphasis">Deliberately (sakam nirjara)</span> — through austerity, meditation, and practice, karma can be shed before its time. This is the real work.',
+    ]),
+    s5_q: "How do you shed old karma before its time?",
+    s5_body: s([
+      'Paths of sakam nirjara:',
+      '<span class="emphasis">Austerity (tap)</span> — not just fasting. External austerity means regulating food, disciplining the body. Internal austerity means repentance, humility, study, meditation — this is more important.',
+      '<span class="emphasis">Meditation (dhyan)</span> — stilling the mind on one point. When the mind is still and kashaya stops — old karma begins to fall away rapidly.',
+      '<span class="emphasis">Enduring without kashaya</span> — this is the hardest and the most powerful. Suffering comes, insult happens, the body is in pain — and yet, inner calm. No kashaya. The karma gives its fruit and no new karma binds — it simply falls away.',
+      '<span class="emphasis">This is why munis undertake rigorous austerity — not to punish the body, but to strip away old layers of karma.</span>',
+    ]),
+    s6_q: "Both work together",
+    s6_body: s([
+      'Samvar and nirjara aren\'t separate — they work in tandem.',
+      'When you stay aware (samvar), new karma doesn\'t enter. At the same time, old karma ripens and falls away (nirjara) — and because you bear it calmly, you don\'t bind new karma in its place.',
+      'Layer by layer, the covering thins. The soul\'s true nature begins to show through.',
+      '<span class="emphasis">When every layer is gone — the soul becomes what it always was. Pure, free, complete.</span>',
+      'That final stage — what it\'s called, what it looks like — is next.',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Ashrav & Bandh",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
