@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>सारांश — Jainverse</title>
+<title>प्रवासाचा नकाशा — Jainverse</title>
 <meta name="description" content="जैन तत्त्वज्ञानाचा सारांश — आपण आतापर्यंत काय शिकलो?">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,6 +54,7 @@
     background-size: 200px 200px;
   }
 
+  /* ---- Top bar (Consistent) ---- */
   .topbar {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -99,185 +100,189 @@
 
   .lang-btn {
     padding: 5px 12px;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 11px;
+    font-weight: 600;
     color: var(--text-tertiary);
     background: none;
     border: none;
     cursor: pointer;
     transition: all 0.25s;
-    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
-    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
-  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
-  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); }
 
+  /* ---- Article Structure ---- */
   .article {
     max-width: 800px;
     margin: 0 auto;
-    padding: 140px 28px 100px;
+    padding: 140px 28px 40px;
   }
 
   .page-header {
     margin-bottom: 60px;
     text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s 0.2s forwards;
   }
 
   .page-header h1 {
     font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
-    font-size: clamp(36px, 5vw, 52px);
+    font-size: clamp(32px, 5vw, 48px);
     color: var(--indigo);
-    line-height: 1.15;
-    letter-spacing: -0.5px;
     margin-bottom: 12px;
   }
 
   .page-header .subtitle {
     font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
     font-style: italic;
-    font-size: clamp(16px, 2vw, 20px);
+    font-size: 18px;
     color: var(--stone);
-    line-height: 1.4;
   }
 
-  /* ---- Mind Map Styles ---- */
-  .map-container {
-    position: relative;
+  /* ---- Tree Diagram ---- */
+  .tree-container {
     width: 100%;
-    aspect-ratio: 1 / 1;
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto 60px;
-    opacity: 0;
-    animation: scaleIn 1s 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    background: var(--warm-white);
+    padding: 20px;
+    border: 1px solid var(--sand-dark);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.02);
   }
 
-  .map-svg {
+  .tree-svg {
     width: 100%;
-    height: 100%;
-    overflow: visible;
+    height: auto;
+    display: block;
   }
 
-  .node {
+  .tree-node {
     cursor: pointer;
-    transition: all 0.3s;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .node:hover {
-    filter: drop-shadow(0 0 8px rgba(224, 120, 48, 0.4));
+  .tree-node:hover {
+    transform: translateY(-2px);
   }
 
-  .node circle {
+  .tree-node rect {
+    fill: var(--warm-white);
     stroke-width: 1.5;
-    transition: all 0.3s;
+    transition: stroke 0.3s, filter 0.3s;
   }
 
-  .node.active circle {
+  .tree-node:hover rect {
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+  }
+
+  .tree-node.active rect {
     stroke: var(--saffron);
-    stroke-width: 3;
+    stroke-width: 2.5;
   }
 
-  .node text {
-    font-family: 'Tiro Devanagari Hindi', serif;
-    font-size: 14px;
-    font-weight: 500;
+  .tree-node text {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
     fill: var(--text);
     pointer-events: none;
     user-select: none;
   }
 
-  .connector {
+  .tree-line {
     stroke: var(--sand-dark);
     stroke-width: 1.5;
     fill: none;
-    stroke-dasharray: 4 4;
-    animation: dash 20s linear infinite;
   }
 
-  @keyframes dash {
-    to { stroke-dashoffset: -100; }
+  .tree-arrow {
+    fill: var(--sand-dark);
   }
 
-  /* ---- Info Box ---- */
-  .info-box {
+  /* ---- Sections (Consistent with Article) ---- */
+  .info-panel {
     background: var(--sand);
-    border-radius: 12px;
-    padding: 32px;
-    min-height: 180px;
     border: 1px solid var(--sand-dark);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s 0.8s forwards;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .info-box::before {
-    content: '◆';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--sand-dark);
-    font-size: 20px;
+    border-radius: 8px;
+    padding: 32px;
+    margin-top: 40px;
+    transition: opacity 0.4s, transform 0.4s;
+    min-height: 160px;
   }
 
   .info-title {
     font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
-    font-size: 24px;
+    font-size: 22px;
     color: var(--indigo);
     margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
   }
 
-  .info-desc {
+  .info-body {
     font-size: 16px;
     line-height: 1.8;
     color: var(--text-secondary);
   }
 
+  /* ---- Page Nav (Consistent) ---- */
   .page-nav {
+    margin-top: 80px;
+    border-top: 1px solid var(--sand-dark);
+    padding-top: 40px;
     display: flex;
-    justify-content: center;
-    margin-top: 60px;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s forwards;
+    justify-content: space-between;
+    gap: 20px;
   }
 
-  .home-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 32px;
-    background: var(--indigo);
-    color: var(--sand);
-    font-weight: 600;
+  .prev-read, .next-read {
+    flex: 1;
     text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.3s;
+    color: inherit;
+    transition: transform 0.3s;
   }
 
-  .home-btn:hover {
-    background: var(--indigo-mid);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(26, 39, 68, 0.2);
+  .prev-read:hover { transform: translateX(-5px); }
+  .next-read:hover { transform: translateX(5px); }
+
+  .nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--saffron);
+    margin-bottom: 8px;
   }
 
-  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-  @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  .nav-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 20px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-  @media (max-width: 600px) {
-    .article { padding: 110px 20px 60px; }
-    .map-container { margin-bottom: 40px; }
-    .info-box { padding: 24px; }
-    .info-title { font-size: 20px; }
-    .info-desc { font-size: 14px; }
-    .node text { font-size: 12px; }
+  .nav-title svg { width: 18px; height: 18px; }
+
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid var(--sand-dark);
+    margin-top: 60px;
+  }
+
+  .footer-brand { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--stone); margin-bottom: 8px; }
+  .footer-note { font-size: 12px; color: var(--text-tertiary); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
 </head>
@@ -295,147 +300,189 @@
     <span class="lang-divider"></span>
     <button class="lang-btn" data-lang="hi">हिन्दी</button>
     <span class="lang-divider"></span>
-    <button class="lang-btn" data-lang="en">Eng</button>
+    <button class="lang-btn" data-lang="en">ENG</button>
   </div>
 </div>
 
 <article class="article">
-
-  <header class="page-header">
-    <h1 data-i18n="page_title"></h1>
-    <p class="subtitle" data-i18n="page_subtitle"></p>
+  <header class="page-header reveal">
+    <h1 data-i18n="page_title">प्रवासाचा नकाशा</h1>
+    <p class="subtitle" data-i18n="page_subtitle">सर्व संकल्पनांचे नाते</p>
   </header>
 
-  <div class="map-container">
-    <svg class="map-svg" viewBox="0 0 400 400">
-      <!-- Connectors -->
-      <path class="connector" d="M200,200 L200,80" /> <!-- Jiva to Moksha -->
-      <path class="connector" d="M200,200 L320,150" /> <!-- Jiva to Ashrav -->
-      <path class="connector" d="M200,200 L320,250" /> <!-- Jiva to Bandh -->
-      <path class="connector" d="M200,200 L80,150" /> <!-- Jiva to Samvar -->
-      <path class="connector" d="M200,200 L80,250" /> <!-- Jiva to Nirjara -->
-      <path class="connector" d="M200,200 L200,320" /> <!-- Jiva to Kashaya -->
+  <div class="tree-container reveal">
+    <svg class="tree-svg" viewBox="0 0 540 440" xmlns="http://www.w3.org/2000/svg">
+      <!-- Lines and Arrows -->
+      <path class="tree-line" d="M270,60 L270,105" /> <!-- Jiva to Kashaya -->
+      <path class="tree-line" d="M210,135 L120,185" /> <!-- Kashaya to Ashrav -->
+      <path class="tree-line" d="M330,135 L420,185" /> <!-- Kashaya to Samvar -->
+      <path class="tree-line" d="M120,235 L120,285" /> <!-- Ashrav to Bandh -->
+      <path class="tree-line" d="M420,235 L420,285" /> <!-- Samvar to Nirjara -->
+      <path class="tree-line" d="M120,335 L210,385" /> <!-- Bandh to Moksha -->
+      <path class="tree-line" d="M420,335 L330,385" /> <!-- Nirjara to Moksha -->
 
-      <!-- Center: Jiva -->
-      <g class="node active" data-id="jiva" transform="translate(200,200)">
-        <circle r="45" fill="var(--warm-white)" stroke="var(--saffron)" />
-        <text y="5" text-anchor="middle" data-i18n="n_jiva"></text>
+      <polygon class="tree-arrow" points="270,105 266,97 274,97" />
+      <polygon class="tree-arrow" points="120,185 128,177 122,175" />
+      <polygon class="tree-arrow" points="420,185 412,177 418,175" />
+      <polygon class="tree-arrow" points="120,285 116,277 124,277" />
+      <polygon class="tree-arrow" points="420,285 416,277 424,277" />
+
+      <!-- Foundation -->
+      <g class="tree-node active" data-id="jiva" transform="translate(80,20)">
+        <rect width="180" height="40" rx="4" stroke="var(--saffron)" />
+        <text x="90" y="25" text-anchor="middle" data-i18n="n_jiva">जीव (आत्मा)</text>
+      </g>
+      <g class="tree-node" data-id="ajiva" transform="translate(280,20)">
+        <rect width="180" height="40" rx="4" stroke="var(--stone-light)" />
+        <text x="90" y="25" text-anchor="middle" data-i18n="n_ajiva">अजीव</text>
       </g>
 
-      <!-- Top: Moksha -->
-      <g class="node" data-id="moksha" transform="translate(200,80)">
-        <circle r="35" fill="var(--warm-white)" stroke="var(--gold)" />
-        <text y="5" text-anchor="middle" data-i18n="n_moksha"></text>
+      <!-- Connection from Jiva to Kashaya -->
+      <path class="tree-line" d="M170,60 L270,105" />
+
+      <!-- The Linker -->
+      <g class="tree-node" data-id="kashaya" transform="translate(200,105)">
+        <rect width="140" height="40" rx="4" stroke="var(--saffron-deep)" />
+        <text x="70" y="25" text-anchor="middle" data-i18n="n_kashaya">कषाय</text>
       </g>
 
-      <!-- Right Top: Ashrav -->
-      <g class="node" data-id="ashrav" transform="translate(320,150)">
-        <circle r="30" fill="var(--warm-white)" stroke="var(--stone-light)" />
-        <text y="5" text-anchor="middle" data-i18n="n_ashrav"></text>
+      <!-- Left: The Problem -->
+      <g class="tree-node" data-id="ashrav" transform="translate(50,185)">
+        <rect width="140" height="50" rx="4" stroke="var(--stone-light)" />
+        <text x="70" y="30" text-anchor="middle" data-i18n="n_ashrav">आस्रव (येणे)</text>
+      </g>
+      <g class="tree-node" data-id="bandh" transform="translate(50,285)">
+        <rect width="140" height="50" rx="4" stroke="var(--stone-light)" />
+        <text x="70" y="30" text-anchor="middle" data-i18n="n_bandh">बंध (चिकटणे)</text>
       </g>
 
-      <!-- Right Bottom: Bandh -->
-      <g class="node" data-id="bandh" transform="translate(320,250)">
-        <circle r="30" fill="var(--warm-white)" stroke="var(--stone-light)" />
-        <text y="5" text-anchor="middle" data-i18n="n_bandh"></text>
+      <!-- Right: The Solution -->
+      <g class="tree-node" data-id="samvar" transform="translate(350,185)">
+        <rect width="140" height="50" rx="4" stroke="var(--indigo-light)" />
+        <text x="70" y="30" text-anchor="middle" data-i18n="n_samvar">संवर (थांबवणे)</text>
+      </g>
+      <g class="tree-node" data-id="nirjara" transform="translate(350,285)">
+        <rect width="140" height="50" rx="4" stroke="var(--indigo-light)" />
+        <text x="70" y="30" text-anchor="middle" data-i18n="n_nirjara">निर्जरा (झटकणे)</text>
       </g>
 
-      <!-- Left Top: Samvar -->
-      <g class="node" data-id="samvar" transform="translate(80,150)">
-        <circle r="30" fill="var(--warm-white)" stroke="var(--indigo-light)" />
-        <text y="5" text-anchor="middle" data-i18n="n_samvar"></text>
-      </g>
-
-      <!-- Left Bottom: Nirjara -->
-      <g class="node" data-id="nirjara" transform="translate(80,250)">
-        <circle r="30" fill="var(--warm-white)" stroke="var(--indigo-light)" />
-        <text y="5" text-anchor="middle" data-i18n="n_nirjara"></text>
-      </g>
-
-      <!-- Bottom: Kashaya -->
-      <g class="node" data-id="kashaya" transform="translate(200,320)">
-        <circle r="35" fill="var(--warm-white)" stroke="var(--saffron-deep)" />
-        <text y="5" text-anchor="middle" data-i18n="n_kashaya"></text>
+      <!-- The Goal -->
+      <g class="tree-node" transform="translate(180,375)" data-id="moksha">
+        <rect width="180" height="50" rx="4" stroke="var(--gold)" />
+        <text x="90" y="32" text-anchor="middle" data-i18n="n_moksha">मोक्ष (मुक्ती)</text>
       </g>
     </svg>
+
+    <div class="info-panel" id="info-panel">
+      <h3 class="info-title" id="info-title"></h3>
+      <div class="info-body" id="info-body"></div>
+    </div>
   </div>
 
-  <div class="info-box">
-    <h3 class="info-title" id="info-title"></h3>
-    <p class="info-desc" id="info-desc"></p>
-  </div>
-
-  <div class="page-nav">
-    <a href="/" class="home-btn">
-      <span data-i18n="home_btn"></span>
+  <div class="page-nav reveal">
+    <a href="/moksha/" class="prev-read">
+      <div class="nav-label" data-i18n="prev_label">मागे वाचा</div>
+      <div class="nav-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title">मोक्ष</span>
+      </div>
+    </a>
+    <a href="/" class="next-read">
+      <div class="nav-label" data-i18n="finish_label">पूर्ण झाले</div>
+      <div class="nav-title">
+        <span data-i18n="finish_title">मुख्य पृष्ठ</span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
     </a>
   </div>
 
+  <footer class="reveal">
+    <div class="footer-brand">Jainverse</div>
+    <div class="footer-note" data-i18n="footer_note">जैन परंपरा · तत्त्वज्ञान सारांश</div>
+  </footer>
 </article>
 
 <script>
 const i18n = {
   mr: {
     page_title: "प्रवासाचा नकाशा",
-    page_subtitle: "आपण आतापर्यंत काय शिकलो? प्रत्येक बिंदूवर क्लिक करा.",
+    page_subtitle: "सुरुवातीपासून शेवटपर्यंतचे नाते",
     n_jiva: "जीव (आत्मा)",
-    n_moksha: "मोक्ष",
-    n_ashrav: "आस्रव",
-    n_bandh: "बंध",
-    n_samvar: "संवर",
-    n_nirjara: "निर्जरा",
-    n_kashaya: "कषाय",
-    home_btn: "मुख्य पृष्ठावर जा",
+    n_ajiva: "अजीव",
+    n_kashaya: "कषाय (चिकटपणा)",
+    n_ashrav: "आस्रव (प्रवाह)",
+    n_bandh: "बंध (बंधन)",
+    n_samvar: "संवर (रोखणे)",
+    n_nirjara: "निर्जरा (शुद्धी)",
+    n_moksha: "मोक्ष (मुक्ती)",
+    prev_label: "मागे वाचा",
+    prev_title: "मोक्ष",
+    finish_label: "प्रवास पूर्ण",
+    finish_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · जैन तत्त्वज्ञान सारांश",
     details: {
-      jiva: { t: "जीव (आत्मा)", d: "आपलं खरं स्वरूप. जो जाणतो, जो अनुभवतो. शुद्ध अवस्थेत हा अनंत ज्ञानी आहे." },
-      kashaya: { t: "कषाय (Passions)", d: "क्रोध, मान, माया आणि लोभ. यामुळे आत्म्याला कर्माची धूळ चिकटते. हे कशाय आत्म्याला 'चिकट' बनवतात." },
-      ashrav: { t: "आस्रव (Influx)", d: "मन, वाणी आणि शरीराच्या हालचालीतून कर्माचे कण शिरण्याचे दरवाजे. जसा नळ चालू केल्यावर पाणी येतं." },
-      bandh: { t: "बंध (Bondage)", d: "कर्माचे कण आत्म्याशी लॉक होणं. कषायांच्या तीव्रतेवर हे कसं आणि किती काळ टिकणार हे ठरतं." },
-      samvar: { t: "संवर (Stoppage)", d: "जागरूक राहून कर्माचे नवीन दरवाजे बंद करणं. नळ बंद करण्यासारखं." },
-      nirjara: { t: "निर्जरा (Shedding)", d: "जुनं साचलेलं कर्म तप आणि ध्यानाने झटकून टाकणं. जमिनीवर साचलेलं पाणी पुसण्यासारखं." },
-      moksha: { t: "मोक्ष (Liberation)", d: "जेव्हा सर्व कर्म निघून जातं, तेव्हा आत्मा स्वतःच्या शुद्ध, अनंत सुखी स्वरूपात स्थिर होतो. हाच अंतिम प्रवास." }
+      jiva: { t: "जीव (The Soul)", d: "सर्व प्रवासाचा केंद्रबिंदू. जाणीव आणि चैतन्य असणारा 'मी' स्वतः." },
+      ajiva: { t: "अजीव (Non-Soul)", d: "जड पदार्थ - जे जाणू शकत नाहीत. शरीर, पुद्गल आणि काळ हे सर्व अजीव आहेत." },
+      kashaya: { t: "कषाय (Passions)", d: "क्रोध, मान, माया, लोभ. यामुळे आत्मा 'चिकट' होतो आणि कर्मे त्याला चिकटू शकतात." },
+      ashrav: { t: "आस्रव (Influx)", d: "कर्माचा आत्माकडे होणारा प्रवाह. हे संसारातील दुःखाचे मूळ कारण आहे." },
+      bandh: { t: "बंध (Bondage)", d: "कर्माचा आत्म्याशी पक्का बंध. हा बंध सुटेपर्यंत आत्मा संसारात फिरत राहतो." },
+      samvar: { t: "संवर (Stop)", d: "नवे कर्म येणे थांबवणे. ही मुक्तीच्या मार्गावरील पहिली महत्त्वाची पायरी आहे." },
+      nirjara: { t: "निर्जरा (Shed)", d: "साचलेली जुनी कर्मे झटकून टाकणे. तप आणि ध्यानाद्वारे आत्म्याची स्वच्छता करणे." },
+      moksha: { t: "मोक्ष (Liberation)", d: "सर्व कर्मांचा नाश होऊन आत्म्याचे स्वतःच्या मूळ, अनंत सुखी स्वरूपात स्थिर होणे." }
     }
   },
   hi: {
     page_title: "यात्रा का मानचित्र",
-    page_subtitle: "हमने अब तक क्या सीखा? हर बिंदु पर क्लिक करें।",
+    page_subtitle: "आरंभ से अंत तक का संबंध",
     n_jiva: "जीव (आत्मा)",
-    n_moksha: "मोक्ष",
-    n_ashrav: "आस्रव",
-    n_bandh: "बंध",
-    n_samvar: "संवर",
-    n_nirjara: "निर्जरा",
-    n_kashaya: "कषाय",
-    home_btn: "मुख्य पृष्ठ पर जाएं",
+    n_ajiva: "अजीव",
+    n_kashaya: "कषाय (चिपचिपाहट)",
+    n_ashrav: "आस्रव (प्रवाह)",
+    n_bandh: "बंध (बंधन)",
+    n_samvar: "संवर (रोकना)",
+    n_nirjara: "निर्जरा (शुद्धि)",
+    n_moksha: "मोक्ष (मुक्ति)",
+    prev_label: "पीछे पढ़ें",
+    prev_title: "मोक्ष",
+    finish_label: "यात्रा पूर्ण",
+    finish_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · जैन दर्शन सारांश",
     details: {
-      jiva: { t: "जीव (आत्मा)", d: "हमारा असली स्वरूप। जो जानता है, जो महसूस करता है। शुद्ध अवस्था में यह अनंत ज्ञानी है।" },
-      kashaya: { t: "कषाय (Passions)", d: "क्रोध, मान, माया और लोभ। इनके कारण आत्मा से कर्म की धूल चिपकती है। ये आत्मा को 'चिपचिपा' बनाते हैं।" },
-      ashrav: { t: "आस्रव (Influx)", d: "मन, वाणी और शरीर की हलचल से कर्म के कणों के आने के दरवाज़े। जैसे नल खोलने पर पानी आता है।" },
-      bandh: { t: "बंध (Bondage)", d: "कर्म के कणों का आत्मा के साथ लॉक होना। कषायों की तीव्रता से तय होता है कि यह कैसे और कब तक टिकेगा।" },
-      samvar: { t: "संवर (Stoppage)", d: "जागरूक रहकर कर्म के नए दरवाज़े बंद करना। नल बंद करने जैसा।" },
-      nirjara: { t: "निर्जरा (Shedding)", d: "पुराने जमे हुए कर्मों को तप और ध्यान से झाड़ देना। ज़मीन पर जमे पानी को पोंछने जैसा।" },
-      moksha: { t: "मोक्ष (Liberation)", d: "जब सारा कर्म निकल जाता है, तब आत्मा अपने शुद्ध, अनंत सुखी स्वरूप में स्थिर हो जाती है। यही अंतिम मंज़िल है।" }
+      jiva: { t: "जीव (The Soul)", d: "पूरी यात्रा का केंद्र। चेतना और ज्ञान का स्वामी 'मैं' स्वयं।" },
+      ajiva: { t: "अजीव (Non-Soul)", d: "जड़ पदार्थ - जो जान नहीं सकते। शरीर, पुद्गल और काल सब अजीव हैं।" },
+      kashaya: { t: "कषाय (Passions)", d: "क्रोध, मान, माया, लोभ। इनके कारण आत्मा 'चिपचिपी' हो जाती है और कर्म उससे जुड़ पाते हैं।" },
+      ashrav: { t: "आस्रव (Influx)", d: "कर्मों का आत्मा की ओर प्रवाह। यह संसार में हमारे फँसने का कारण है।" },
+      bandh: { t: "बंध (Bondage)", d: "कर्मों का आत्मा के साथ पक्का जुड़ जाना। यही हमें जन्म-मरण के चक्र में रखता है।" },
+      samvar: { t: "संवर (Stop)", d: "नए कर्मों का आना रोकना। यह मुक्ति के मार्ग का पहला साहसी कदम है।" },
+      nirjara: { t: "निर्जरा (Shed)", d: "पुराने संचित कर्मों को झाड़ देना। तप और ध्यान से आत्मा को निर्मल करना।" },
+      moksha: { t: "मोक्ष (Liberation)", d: "सभी कर्मों का अंत और आत्मा का अपने शुद्ध, अनंत सुखी स्वरूप में स्थिर हो जाना।" }
     }
   },
   en: {
     page_title: "Journey Map",
-    page_subtitle: "What have we learned so far? Click on each node.",
-    n_jiva: "Jiva (Soul)",
-    n_moksha: "Moksha",
-    n_ashrav: "Ashrav",
-    n_bandh: "Bandh",
-    n_samvar: "Samvar",
-    n_nirjara: "Nirjara",
-    n_kashaya: "Kashaya",
-    home_btn: "Go to Home",
+    page_subtitle: "The relationship from start to finish",
+    n_jiva: "Jiva (The Soul)",
+    n_ajiva: "Ajiva",
+    n_kashaya: "Kashaya (Sticky Passions)",
+    n_ashrav: "Ashrav (Influx)",
+    n_bandh: "Bandh (Bondage)",
+    n_samvar: "Samvar (Stop)",
+    n_nirjara: "Nirjara (Shedding)",
+    n_moksha: "Moksha (Liberation)",
+    prev_label: "Read Previous",
+    prev_title: "Moksha",
+    finish_label: "Journey Complete",
+    finish_title: "Home Screen",
+    footer_note: "Jain Tradition · Philosophy Summary",
     details: {
-      jiva: { t: "Jiva (The Soul)", d: "Our true self. The one who knows and experiences. In its pure state, it possesses infinite knowledge." },
-      kashaya: { t: "Kashaya (Passions)", d: "Anger, Pride, Deceit, and Greed. These make the soul 'sticky', allowing karmic dust to bond with it." },
-      ashrav: { t: "Ashrav (Influx)", d: "The doorways (mind, speech, body) through which karmic particles enter. Like water flowing through an open tap." },
-      bandh: { t: "Bandh (Bondage)", d: "The locking of karmic particles with the soul. The duration and intensity depend on our passions." },
-      samvar: { t: "Samvar (Stoppage)", d: "Closing the doors to new karma through mindfulness. Like turning off the tap." },
-      nirjara: { t: "Nirjara (Shedding)", d: "Shedding old accumulated karma through austerity and meditation. Like mopping up spilled water." },
-      moksha: { t: "Moksha (Liberation)", d: "The final state where all karma is gone, and the soul rests in its pure, infinite bliss. The ultimate destination." }
+      jiva: { t: "Jiva (The Soul)", d: "The center of the journey. The conscious self that knows and experiences everything." },
+      ajiva: { t: "Ajiva (Non-Soul)", d: "Matter and everything that is not conscious. This includes the body, time, and space." },
+      kashaya: { t: "Kashaya (Passions)", d: "Anger, Pride, Deceit, and Greed. These make the soul 'sticky', allowing karma to bond." },
+      ashrav: { t: "Ashrav (Influx)", d: "The process of karma flowing into the soul through our actions and thoughts." },
+      bandh: { t: "Bandh (Bondage)", d: "The locking of karma with the soul, keeping us in the cycle of birth and death." },
+      samvar: { t: "Samvar (Stop)", d: "Stopping the entry of new karma. The vital first step toward true freedom." },
+      nirjara: { t: "Nirjara (Shed)", d: "Shedding old accumulated karma through introspection, meditation, and discipline." },
+      moksha: { t: "Moksha (Liberation)", d: "Total elimination of all karma. The soul rests in its pure, infinite bliss forever." }
     }
   }
 };
@@ -453,33 +500,36 @@ function setLang(lang) {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
   localStorage.setItem('jainverse-lang', lang);
-  updateInfo('jiva'); // Reset info box to Jiva on lang change
+  updateInfo('jiva');
 }
 
 function updateInfo(id) {
   const data = i18n[currentLang].details[id];
   document.getElementById('info-title').textContent = data.t;
-  document.getElementById('info-desc').textContent = data.d;
-  
-  document.querySelectorAll('.node').forEach(el => {
-    el.classList.toggle('active', el.getAttribute('data-id') === id);
-  });
+  document.getElementById('info-body').textContent = data.d;
+  document.querySelectorAll('.tree-node').forEach(n => n.classList.toggle('active', n.getAttribute('data-id') === id));
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
 });
 
-document.querySelectorAll('.node').forEach(node => {
+document.querySelectorAll('.tree-node').forEach(node => {
   node.addEventListener('click', () => updateInfo(node.getAttribute('data-id')));
 });
 
-setLang(currentLang);
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 window.addEventListener('scroll', () => {
   document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
 }, { passive: true });
-</script>
 
+setLang(currentLang);
+</script>
 </body>
 </html>
