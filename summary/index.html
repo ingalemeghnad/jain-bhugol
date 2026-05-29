@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>सारांश — Jainverse</title>
+<meta name="description" content="जैन तत्त्वज्ञानाचा सारांश — आपण आतापर्यंत काय शिकलो?">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+
+  .article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 140px 28px 100px;
+  }
+
+  .page-header {
+    margin-bottom: 60px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--indigo);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  /* ---- Mind Map Styles ---- */
+  .map-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    opacity: 0;
+    animation: scaleIn 1s 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .map-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .node {
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .node:hover {
+    filter: drop-shadow(0 0 8px rgba(224, 120, 48, 0.4));
+  }
+
+  .node circle {
+    stroke-width: 1.5;
+    transition: all 0.3s;
+  }
+
+  .node.active circle {
+    stroke: var(--saffron);
+    stroke-width: 3;
+  }
+
+  .node text {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 14px;
+    font-weight: 500;
+    fill: var(--text);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .connector {
+    stroke: var(--sand-dark);
+    stroke-width: 1.5;
+    fill: none;
+    stroke-dasharray: 4 4;
+    animation: dash 20s linear infinite;
+  }
+
+  @keyframes dash {
+    to { stroke-dashoffset: -100; }
+  }
+
+  /* ---- Info Box ---- */
+  .info-box {
+    background: var(--sand);
+    border-radius: 12px;
+    padding: 32px;
+    min-height: 180px;
+    border: 1px solid var(--sand-dark);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.8s forwards;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .info-box::before {
+    content: '◆';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--sand-dark);
+    font-size: 20px;
+  }
+
+  .info-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 24px;
+    color: var(--indigo);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .info-desc {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+
+  .page-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: var(--indigo);
+    color: var(--sand);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+
+  .home-btn:hover {
+    background: var(--indigo-mid);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26, 39, 68, 0.2);
+  }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+  @media (max-width: 600px) {
+    .article { padding: 110px 20px 60px; }
+    .map-container { margin-bottom: 40px; }
+    .info-box { padding: 24px; }
+    .info-title { font-size: 20px; }
+    .info-desc { font-size: 14px; }
+    .node text { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span>Jainverse</span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+  </header>
+
+  <div class="map-container">
+    <svg class="map-svg" viewBox="0 0 400 400">
+      <!-- Connectors -->
+      <path class="connector" d="M200,200 L200,80" /> <!-- Jiva to Moksha -->
+      <path class="connector" d="M200,200 L320,150" /> <!-- Jiva to Ashrav -->
+      <path class="connector" d="M200,200 L320,250" /> <!-- Jiva to Bandh -->
+      <path class="connector" d="M200,200 L80,150" /> <!-- Jiva to Samvar -->
+      <path class="connector" d="M200,200 L80,250" /> <!-- Jiva to Nirjara -->
+      <path class="connector" d="M200,200 L200,320" /> <!-- Jiva to Kashaya -->
+
+      <!-- Center: Jiva -->
+      <g class="node active" data-id="jiva" transform="translate(200,200)">
+        <circle r="45" fill="var(--warm-white)" stroke="var(--saffron)" />
+        <text y="5" text-anchor="middle" data-i18n="n_jiva"></text>
+      </g>
+
+      <!-- Top: Moksha -->
+      <g class="node" data-id="moksha" transform="translate(200,80)">
+        <circle r="35" fill="var(--warm-white)" stroke="var(--gold)" />
+        <text y="5" text-anchor="middle" data-i18n="n_moksha"></text>
+      </g>
+
+      <!-- Right Top: Ashrav -->
+      <g class="node" data-id="ashrav" transform="translate(320,150)">
+        <circle r="30" fill="var(--warm-white)" stroke="var(--stone-light)" />
+        <text y="5" text-anchor="middle" data-i18n="n_ashrav"></text>
+      </g>
+
+      <!-- Right Bottom: Bandh -->
+      <g class="node" data-id="bandh" transform="translate(320,250)">
+        <circle r="30" fill="var(--warm-white)" stroke="var(--stone-light)" />
+        <text y="5" text-anchor="middle" data-i18n="n_bandh"></text>
+      </g>
+
+      <!-- Left Top: Samvar -->
+      <g class="node" data-id="samvar" transform="translate(80,150)">
+        <circle r="30" fill="var(--warm-white)" stroke="var(--indigo-light)" />
+        <text y="5" text-anchor="middle" data-i18n="n_samvar"></text>
+      </g>
+
+      <!-- Left Bottom: Nirjara -->
+      <g class="node" data-id="nirjara" transform="translate(80,250)">
+        <circle r="30" fill="var(--warm-white)" stroke="var(--indigo-light)" />
+        <text y="5" text-anchor="middle" data-i18n="n_nirjara"></text>
+      </g>
+
+      <!-- Bottom: Kashaya -->
+      <g class="node" data-id="kashaya" transform="translate(200,320)">
+        <circle r="35" fill="var(--warm-white)" stroke="var(--saffron-deep)" />
+        <text y="5" text-anchor="middle" data-i18n="n_kashaya"></text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="info-box">
+    <h3 class="info-title" id="info-title"></h3>
+    <p class="info-desc" id="info-desc"></p>
+  </div>
+
+  <div class="page-nav">
+    <a href="/" class="home-btn">
+      <span data-i18n="home_btn"></span>
+    </a>
+  </div>
+
+</article>
+
+<script>
+const i18n = {
+  mr: {
+    page_title: "प्रवासाचा नकाशा",
+    page_subtitle: "आपण आतापर्यंत काय शिकलो? प्रत्येक बिंदूवर क्लिक करा.",
+    n_jiva: "जीव (आत्मा)",
+    n_moksha: "मोक्ष",
+    n_ashrav: "आस्रव",
+    n_bandh: "बंध",
+    n_samvar: "संवर",
+    n_nirjara: "निर्जरा",
+    n_kashaya: "कषाय",
+    home_btn: "मुख्य पृष्ठावर जा",
+    details: {
+      jiva: { t: "जीव (आत्मा)", d: "आपलं खरं स्वरूप. जो जाणतो, जो अनुभवतो. शुद्ध अवस्थेत हा अनंत ज्ञानी आहे." },
+      kashaya: { t: "कषाय (Passions)", d: "क्रोध, मान, माया आणि लोभ. यामुळे आत्म्याला कर्माची धूळ चिकटते. हे कशाय आत्म्याला 'चिकट' बनवतात." },
+      ashrav: { t: "आस्रव (Influx)", d: "मन, वाणी आणि शरीराच्या हालचालीतून कर्माचे कण शिरण्याचे दरवाजे. जसा नळ चालू केल्यावर पाणी येतं." },
+      bandh: { t: "बंध (Bondage)", d: "कर्माचे कण आत्म्याशी लॉक होणं. कषायांच्या तीव्रतेवर हे कसं आणि किती काळ टिकणार हे ठरतं." },
+      samvar: { t: "संवर (Stoppage)", d: "जागरूक राहून कर्माचे नवीन दरवाजे बंद करणं. नळ बंद करण्यासारखं." },
+      nirjara: { t: "निर्जरा (Shedding)", d: "जुनं साचलेलं कर्म तप आणि ध्यानाने झटकून टाकणं. जमिनीवर साचलेलं पाणी पुसण्यासारखं." },
+      moksha: { t: "मोक्ष (Liberation)", d: "जेव्हा सर्व कर्म निघून जातं, तेव्हा आत्मा स्वतःच्या शुद्ध, अनंत सुखी स्वरूपात स्थिर होतो. हाच अंतिम प्रवास." }
+    }
+  },
+  hi: {
+    page_title: "यात्रा का मानचित्र",
+    page_subtitle: "हमने अब तक क्या सीखा? हर बिंदु पर क्लिक करें।",
+    n_jiva: "जीव (आत्मा)",
+    n_moksha: "मोक्ष",
+    n_ashrav: "आस्रव",
+    n_bandh: "बंध",
+    n_samvar: "संवर",
+    n_nirjara: "निर्जरा",
+    n_kashaya: "कषाय",
+    home_btn: "मुख्य पृष्ठ पर जाएं",
+    details: {
+      jiva: { t: "जीव (आत्मा)", d: "हमारा असली स्वरूप। जो जानता है, जो महसूस करता है। शुद्ध अवस्था में यह अनंत ज्ञानी है।" },
+      kashaya: { t: "कषाय (Passions)", d: "क्रोध, मान, माया और लोभ। इनके कारण आत्मा से कर्म की धूल चिपकती है। ये आत्मा को 'चिपचिपा' बनाते हैं।" },
+      ashrav: { t: "आस्रव (Influx)", d: "मन, वाणी और शरीर की हलचल से कर्म के कणों के आने के दरवाज़े। जैसे नल खोलने पर पानी आता है।" },
+      bandh: { t: "बंध (Bondage)", d: "कर्म के कणों का आत्मा के साथ लॉक होना। कषायों की तीव्रता से तय होता है कि यह कैसे और कब तक टिकेगा।" },
+      samvar: { t: "संवर (Stoppage)", d: "जागरूक रहकर कर्म के नए दरवाज़े बंद करना। नल बंद करने जैसा।" },
+      nirjara: { t: "निर्जरा (Shedding)", d: "पुराने जमे हुए कर्मों को तप और ध्यान से झाड़ देना। ज़मीन पर जमे पानी को पोंछने जैसा।" },
+      moksha: { t: "मोक्ष (Liberation)", d: "जब सारा कर्म निकल जाता है, तब आत्मा अपने शुद्ध, अनंत सुखी स्वरूप में स्थिर हो जाती है। यही अंतिम मंज़िल है।" }
+    }
+  },
+  en: {
+    page_title: "Journey Map",
+    page_subtitle: "What have we learned so far? Click on each node.",
+    n_jiva: "Jiva (Soul)",
+    n_moksha: "Moksha",
+    n_ashrav: "Ashrav",
+    n_bandh: "Bandh",
+    n_samvar: "Samvar",
+    n_nirjara: "Nirjara",
+    n_kashaya: "Kashaya",
+    home_btn: "Go to Home",
+    details: {
+      jiva: { t: "Jiva (The Soul)", d: "Our true self. The one who knows and experiences. In its pure state, it possesses infinite knowledge." },
+      kashaya: { t: "Kashaya (Passions)", d: "Anger, Pride, Deceit, and Greed. These make the soul 'sticky', allowing karmic dust to bond with it." },
+      ashrav: { t: "Ashrav (Influx)", d: "The doorways (mind, speech, body) through which karmic particles enter. Like water flowing through an open tap." },
+      bandh: { t: "Bandh (Bondage)", d: "The locking of karmic particles with the soul. The duration and intensity depend on our passions." },
+      samvar: { t: "Samvar (Stoppage)", d: "Closing the doors to new karma through mindfulness. Like turning off the tap." },
+      nirjara: { t: "Nirjara (Shedding)", d: "Shedding old accumulated karma through austerity and meditation. Like mopping up spilled water." },
+      moksha: { t: "Moksha (Liberation)", d: "The final state where all karma is gone, and the soul rests in its pure, infinite bliss. The ultimate destination." }
+    }
+  }
+};
+
+let currentLang = localStorage.getItem('jainverse-lang') || 'mr';
+
+function setLang(lang) {
+  currentLang = lang;
+  const strings = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key]) el.textContent = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  localStorage.setItem('jainverse-lang', lang);
+  updateInfo('jiva'); // Reset info box to Jiva on lang change
+}
+
+function updateInfo(id) {
+  const data = i18n[currentLang].details[id];
+  document.getElementById('info-title').textContent = data.t;
+  document.getElementById('info-desc').textContent = data.d;
+  
+  document.querySelectorAll('.node').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-id') === id);
+  });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+document.querySelectorAll('.node').forEach(node => {
+  node.addEventListener('click', () => updateInfo(node.getAttribute('data-id')));
+});
+
+setLang(currentLang);
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+</script>
+
+</body>
+</html>
