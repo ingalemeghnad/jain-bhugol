@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>आस्रव आणि बंध — Jainverse</title>
+<meta name="description" content="कर्म आत्म्यात कसं शिरतं आणि कसं लॉक होतं — आस्रव आणि बंधाची ओळख.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+
+  .article {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 140px 28px 100px;
+  }
+
+  .page-header {
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--indigo);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  .header-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin-top: 28px;
+    opacity: 0.7;
+  }
+
+  .section {
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: -12px;
+    user-select: none;
+  }
+
+  .section-question {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(24px, 3.5vw, 32px);
+    color: var(--indigo);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--text-secondary);
+  }
+
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 80px 0;
+    color: var(--sand-dark);
+    user-select: none;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark));
+  }
+
+  .section-divider::after {
+    background: linear-gradient(90deg, var(--sand-dark), transparent);
+  }
+
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+
+  .next-read {
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .next-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .next-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 8px;
+  }
+
+  .next-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .next-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--saffron);
+    transition: transform 0.3s;
+  }
+
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+
+  .page-nav {
+    display: flex;
+    gap: 16px;
+    margin-top: 80px;
+  }
+
+  .page-nav .next-read {
+    margin-top: 0;
+    flex: 1;
+  }
+
+  .prev-read {
+    flex: 1;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .prev-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .prev-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: 8px;
+  }
+
+  .prev-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prev-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--stone-light);
+    transition: transform 0.3s;
+  }
+
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+
+  .article-footer {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--sand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .article-footer .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--stone);
+    text-decoration: none;
+  }
+
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; }
+    .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; }
+    .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; }
+    .section-divider { margin: 56px 0; }
+    .next-read { padding: 22px 24px; }
+    .next-read-title { font-size: 19px; }
+    .prev-read { padding: 22px 24px; }
+    .prev-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span>Jainverse</span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">6</div>
+    <h2 class="section-question" data-i18n="s6_q"></h2>
+    <div class="section-body" data-i18n-html="s6_body"></div>
+  </section>
+
+  <!-- Prev -->
+  <div class="page-nav reveal">
+    <a href="/karma/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "आस्रव आणि बंध",
+    page_subtitle: "कर्म आत्म्यात कसं शिरतं — आणि कसं लॉक होतं?",
+    s1_q: "दरवाजे कुठे आहेत?",
+    s1_body: s([
+      'तुम्ही आता आठ प्रकारचं कर्म पाहिलंय — प्रत्येकाचं काम वेगळं.',
+      'पण हे कर्म आत्म्यापर्यंत पोहोचतं कसं? काहीतरी दरवाजा असणार ज्यातून कर्माचे कण आत शिरतात.',
+      '<span class="emphasis">ते दरवाजे म्हणजे तुझे मन, वाणी आणि शरीर.</span>',
+      'तू विचार करतोस — मनाचा दरवाजा उघडतो. बोलतोस — वाणीचा. कृती करतोस — शरीराचा.',
+      'या तिन्हींच्या हालचालीला <span class="term">योग</span> म्हणतात — इथे योग म्हणजे आसनं नाही, तर मन-वाणी-शरीराची सक्रियता.',
+      'योग असेल तिथे कर्माचे कण आत शिरतात — या शिरण्याच्या प्रक्रियेला <span class="term">आस्रव</span> म्हणतात.',
+    ]),
+    s2_q: "आस्रव सारखाच असतो का?",
+    s2_body: s([
+      'नाही — सगळ्या हालचाली सारखं कर्म आत आणत नाहीत.',
+      'शांत मनाने केलेलं काम आणि रागात केलेलं काम — दोन्हीत योग आहे, दोन्हीत आस्रव आहे. पण फरक प्रचंड आहे.',
+      'कारण फक्त योग पुरेसा नाही — <span class="emphasis">कषाय (क्रोध, मान, माया, लोभ) नसेल तर कर्म शिरतं पण चिकटत नाही</span>.',
+      'पाण्यावर तेल टाका — ते तरंगतं, चिकटत नाही. पण ओल्या कापडावर टाका — शोषलं जातं.',
+      'कषायाशिवाय आस्रव म्हणजे कोरड्या कापडावर पाणी — ओघळून जातं. कषायासह आस्रव म्हणजे ओल्या कापडावर — मुरतं.',
+    ]),
+    s3_q: "शिरलं — मग पुढे काय?",
+    s3_body: s([
+      'कर्म शिरलं — आता ते आत्म्याशी जोडलं जातं. हे जोडणं म्हणजे <span class="term">बंध</span>.',
+      'बंध म्हणजे फक्त "चिकटलं" एवढं सोपं नाही. बंध चार गोष्टी ठरवतो:',
+      '<span class="emphasis">कुठल्या प्रकारचं कर्म बांधलं?</span> — आठ पैकी कोणतं? ज्ञानावरणीय, मोहनीय, वेदनीय…? हे तुझ्या कृतीच्या स्वरूपावर अवलंबून आहे.',
+      '<span class="emphasis">किती तीव्र?</span> — सौम्य की तीव्र? सारखंच खोटं बोललं तरी एकदा चुकून बोललं आणि सवयीने बोललं — तीव्रता वेगळी. हे कषायाच्या तीव्रतेवर अवलंबून आहे.',
+      '<span class="emphasis">किती काळ टिकेल?</span> — काही कर्म क्षणात संपतं, काही युगं टिकतं. हेसुद्धा कषायाच्या खोलीवर ठरतं.',
+      '<span class="emphasis">किती प्रमाणात?</span> — थोडंसं की ढीगभर? योगाची तीव्रता आणि कषायाची ताकद मिळून हे ठरवतात.',
+    ]),
+    s4_q: "एक उदाहरण",
+    s4_body: s([
+      'दोन माणसं रागात बोलतात.',
+      'पहिला — क्षणिक चिडचिड, लगेच शांत, पश्चात्ताप. कर्म बांधलं — पण सौम्य, अल्पकाळ टिकणारं.',
+      'दुसरा — खोल द्वेष, वर्षानुवर्षे धरून ठेवतो, बदला घ्यायची इच्छा. कर्म बांधलं — तीव्र, दीर्घकाळ, जड.',
+      '<span class="emphasis">कृती सारखी दिसली — पण आतला भाव पूर्ण वेगळा. आणि बंध पूर्ण वेगळा.</span>',
+      'म्हणूनच जैन तत्त्वज्ञान नेहमी बाहेरच्या कृतीपेक्षा आतल्या भावाकडे बघतं.',
+    ]),
+    s5_q: "मग सगळं करणंच सोडायचं?",
+    s5_body: s([
+      'नाही — जोपर्यंत शरीरात आहात तोपर्यंत योग (मन-वाणी-शरीराची हालचाल) असणारच. आस्रव पूर्ण थांबवणं म्हणजे केवलज्ञानाची अवस्था.',
+      'प्रश्न "काही करू नका" हा नाही — प्रश्न "करताना आत काय चाललंय" हा आहे.',
+      '<span class="emphasis">कषाय कमी झाल्या की कर्म शिरतं पण बांधत नाही. कषाय पूर्ण गेल्या की बंधच थांबतो.</span>',
+      'विचार करा — तुम्ही श्वास घेता, हवेत धूळ असते, ती नाकात जाते. पण नाकातले केस बरीचशी धूळ अडवतात.',
+      'कषायमुक्त जगणं म्हणजे असा फिल्टर — कर्माचे कण येतात, पण चिकटत नाहीत.',
+    ]),
+    s6_q: "आतापर्यंतचं चित्र",
+    s6_body: s([
+      'आत्मा शुद्ध आहे — पण अनादि काळापासून कर्माने झाकलेला आहे.',
+      'मन-वाणी-शरीराच्या हालचालीतून कर्म शिरतं — हा आस्रव.',
+      'कषायांमुळे ते कर्म लॉक होतं — हा बंध. बंधात प्रकार, तीव्रता, काळ, प्रमाण — सगळं ठरतं.',
+      '<span class="emphasis">समस्या पूर्ण कळली. आता प्रश्न एकच — हे कर्म येणं थांबवायचं कसं? आणि जे आधीच जमलंय ते काढायचं कसं?</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "कर्म",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "आस्रव और बंध",
+    page_subtitle: "कर्म आत्मा में कैसे घुसता है — और कैसे लॉक होता है?",
+    s1_q: "दरवाज़े कहाँ हैं?",
+    s1_body: s([
+      'अब तक तुमने आठ तरह के कर्म देखे — हर एक का काम अलग.',
+      'लेकिन ये कर्म आत्मा तक पहुँचता कैसे है? कोई तो दरवाज़ा होगा जिससे कर्म के कण अंदर आते हैं.',
+      '<span class="emphasis">वो दरवाज़े हैं तुम्हारा मन, वाणी और शरीर.</span>',
+      'तुम सोचते हो — मन का दरवाज़ा खुलता है. बोलते हो — वाणी का. काम करते हो — शरीर का.',
+      'इन तीनों की हलचल को <span class="term">योग</span> कहते हैं — यहाँ योग का मतलब आसन नहीं, बल्कि मन-वाणी-शरीर की सक्रियता.',
+      'योग जहाँ होगा वहाँ कर्म के कण अंदर आएँगे — इस आने की प्रक्रिया को <span class="term">आस्रव</span> कहते हैं.',
+    ]),
+    s2_q: "आस्रव हमेशा बराबर होता है क्या?",
+    s2_body: s([
+      'नहीं — सब हलचल बराबर कर्म अंदर नहीं लातीं.',
+      'शांत मन से किया गया काम और गुस्से में किया गया काम — दोनों में योग है, दोनों में आस्रव है. लेकिन फ़र्क़ बहुत बड़ा है.',
+      'क्योंकि सिर्फ़ योग काफ़ी नहीं — <span class="emphasis">कषाय (क्रोध, मान, माया, लोभ) नहीं हो तो कर्म आता है लेकिन चिपकता नहीं</span>.',
+      'पानी पर तेल डालो — वो तैरता है, चिपकता नहीं. लेकिन गीले कपड़े पर डालो — सोख लेता है.',
+      'कषाय के बिना आस्रव सूखे कपड़े पर पानी जैसा — बह जाता है. कषाय के साथ आस्रव गीले कपड़े पर — रच जाता है.',
+    ]),
+    s3_q: "अंदर आया — फिर आगे क्या?",
+    s3_body: s([
+      'कर्म अंदर आया — अब वो आत्मा से जुड़ता है. ये जुड़ना है <span class="term">बंध</span>.',
+      'बंध मतलब सिर्फ़ "चिपका" इतना आसान नहीं. बंध चार बातें तय करता है:',
+      '<span class="emphasis">किस तरह का कर्म बँधा?</span> — आठ में से कौन सा? ज्ञानावरणीय, मोहनीय, वेदनीय…? ये तुम्हारी क्रिया के स्वरूप पर निर्भर है.',
+      '<span class="emphasis">कितना तीव्र?</span> — हल्का या गहरा? एक ही झूठ — चूक से बोला या आदत से — तीव्रता अलग. ये कषाय की तीव्रता पर निर्भर है.',
+      '<span class="emphasis">कितने वक़्त तक टिकेगा?</span> — कुछ कर्म पल में ख़त्म, कुछ युगों तक. ये भी कषाय की गहराई पर तय होता है.',
+      '<span class="emphasis">कितनी मात्रा में?</span> — थोड़ा या बहुत? योग की तीव्रता और कषाय की ताक़त मिलकर ये तय करते हैं.',
+    ]),
+    s4_q: "एक मिसाल",
+    s4_body: s([
+      'दो लोग गुस्से में बोलते हैं.',
+      'पहला — लम्हे भर की झुँझलाहट, फ़ौरन शांत, पछतावा. कर्म बँधा — लेकिन हल्का, थोड़े वक़्त का.',
+      'दूसरा — गहरी नफ़रत, सालों से पाल रहा है, बदला लेने की चाह. कर्म बँधा — तीव्र, लंबे वक़्त का, भारी.',
+      '<span class="emphasis">क्रिया एक जैसी दिखी — लेकिन अंदर का भाव बिलकुल अलग. और बंध बिलकुल अलग.</span>',
+      'इसीलिए जैन दर्शन हमेशा बाहर की क्रिया से ज़्यादा अंदर के भाव को देखता है.',
+    ]),
+    s5_q: "तो सब कुछ करना ही छोड़ दें?",
+    s5_body: s([
+      'नहीं — जब तक शरीर में हो तब तक योग (मन-वाणी-शरीर की हलचल) रहेगा ही. आस्रव पूरी तरह रुकना केवलज्ञान की अवस्था है.',
+      'सवाल "कुछ मत करो" नहीं — सवाल "करते वक़्त अंदर क्या चल रहा है" है.',
+      '<span class="emphasis">कषाय कम हुई तो कर्म आता है लेकिन बँधता नहीं. कषाय पूरी गई तो बंध ही रुक जाता है.</span>',
+      'सोचो — तुम साँस लेते हो, हवा में धूल है, वो नाक में जाती है. लेकिन नाक के बाल बहुत सी धूल रोक लेते हैं.',
+      'कषायमुक्त जीना ऐसा ही फ़िल्टर है — कर्म के कण आते हैं, लेकिन चिपकते नहीं.',
+    ]),
+    s6_q: "अब तक की तस्वीर",
+    s6_body: s([
+      'आत्मा शुद्ध है — लेकिन अनादि काल से कर्म से ढका हुआ है.',
+      'मन-वाणी-शरीर की हलचल से कर्म अंदर आता है — ये आस्रव.',
+      'कषायों की वजह से वो कर्म लॉक हो जाता है — ये बंध. बंध में प्रकार, तीव्रता, वक़्त, मात्रा — सब तय होता है.',
+      '<span class="emphasis">समस्या पूरी समझ आ गई. अब सवाल एक ही है — ये कर्म आना कैसे रोकें? और जो पहले से जमा है वो निकालें कैसे?</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "कर्म",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Ashrav & Bandh",
+    page_subtitle: "How karma enters the soul — and how it locks on",
+    s1_q: "Where are the doors?",
+    s1_body: s([
+      'You\'ve now seen eight types of karma — each one covers something different.',
+      'But how does karma actually reach the soul? There must be some doorway through which karmic particles enter.',
+      '<span class="emphasis">Those doorways are your mind, speech, and body.</span>',
+      'You think — the door of the mind opens. You speak — the door of speech. You act — the door of the body.',
+      'The activity of these three is called <span class="term">yoga</span> — here yoga doesn\'t mean postures, it means the active engagement of mind, speech, and body.',
+      'Wherever there is yoga, karmic particles flow in — this influx is called <span class="term">ashrav</span>.',
+    ]),
+    s2_q: "Is all influx the same?",
+    s2_body: s([
+      'No — not all activity brings in karma equally.',
+      'Work done with a calm mind and work done in anger — both involve yoga, both involve ashrav. But the difference is enormous.',
+      'Because yoga alone isn\'t enough — <span class="emphasis">without kashaya (anger, pride, deceit, greed), karma enters but doesn\'t stick</span>.',
+      'Pour oil on water — it floats, doesn\'t cling. Pour it on a wet cloth — it soaks in.',
+      'Ashrav without kashaya is like water on dry cloth — it rolls off. Ashrav with kashaya is like water on wet cloth — it seeps in.',
+    ]),
+    s3_q: "It enters — then what?",
+    s3_body: s([
+      'Karma has entered — now it bonds with the soul. This bonding is <span class="term">bandh</span>.',
+      'Bandh isn\'t as simple as "it stuck." Bandh determines four things:',
+      '<span class="emphasis">What type of karma binds?</span> — Which of the eight? Jnanavaraniya, mohaniya, vedaniya…? This depends on the nature of your action.',
+      '<span class="emphasis">How intense?</span> — Mild or severe? The same lie told accidentally versus habitually — very different intensity. This depends on the intensity of the kashaya.',
+      '<span class="emphasis">How long will it last?</span> — Some karma expires in moments, some lasts for aeons. This too is determined by the depth of the kashaya.',
+      '<span class="emphasis">How much?</span> — A little or a lot? The intensity of yoga combined with the strength of kashaya determines the quantity.',
+    ]),
+    s4_q: "An example",
+    s4_body: s([
+      'Two people speak in anger.',
+      'The first — a flash of irritation, calms down immediately, feels regret. Karma binds — but mild, short-lived.',
+      'The second — deep resentment, nursed for years, wants revenge. Karma binds — intense, long-lasting, heavy.',
+      '<span class="emphasis">The action looked the same — but the inner state was completely different. And the bondage is completely different.</span>',
+      'This is why Jain philosophy always looks at the inner state rather than the outer action.',
+    ]),
+    s5_q: "So should you stop doing everything?",
+    s5_body: s([
+      'No — as long as you\'re in a body, yoga (activity of mind, speech, body) will exist. Complete cessation of ashrav is the state of kevalgyan (omniscience).',
+      'The question isn\'t "do nothing" — it\'s "what\'s going on inside you when you do it."',
+      '<span class="emphasis">When kashaya decreases, karma enters but doesn\'t bind. When kashaya is gone completely, bondage itself stops.</span>',
+      'Think of it this way — you breathe, there\'s dust in the air, it enters your nose. But the hairs in your nose filter out most of the dust.',
+      'Living free of kashaya is that filter — karmic particles come, but they don\'t stick.',
+    ]),
+    s6_q: "The picture so far",
+    s6_body: s([
+      'The soul is pure — but has been covered by karma since beginningless time.',
+      'Through the activity of mind, speech, and body, karma flows in — this is ashrav.',
+      'Because of kashaya, that karma locks on — this is bandh. In bondage, the type, intensity, duration, and quantity are all determined.',
+      '<span class="emphasis">The problem is now fully understood. Only one question remains — how do you stop karma from coming? And how do you remove what has already accumulated?</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Karma",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
