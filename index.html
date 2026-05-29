@@ -312,13 +312,13 @@
   .hero-bg-line:nth-child(2) { left: 50%; opacity: 0.3; }
   .hero-bg-line:nth-child(3) { left: 75%; }
 
-  /* ---- Projects Section ---- */
-  .projects {
+  /* ---- Highlights Section ---- */
+  .highlights {
     padding: 100px 60px 120px;
     position: relative;
   }
 
-  .projects::before {
+  .highlights::before {
     content: '';
     position: absolute;
     top: 0;
@@ -350,63 +350,64 @@
     background: var(--sand-dark);
   }
 
-  .projects-grid {
+  .highlights-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: 1fr;
     gap: 32px;
     max-width: 1200px;
   }
 
-  .project-card {
+  /* Highlight card — wide, immersive */
+  .highlight-card {
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     background: var(--warm-white);
     border: 1px solid var(--sand-dark);
-    border-radius: 6px;
+    border-radius: 8px;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     color: inherit;
-    display: block;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .project-card:hover {
+  .highlight-card:hover {
     border-color: var(--stone-light);
     transform: translateY(-4px);
-    box-shadow: 0 20px 48px rgba(42, 35, 24, 0.08), 0 4px 12px rgba(42, 35, 24, 0.04);
+    box-shadow: 0 24px 56px rgba(42, 35, 24, 0.1), 0 6px 16px rgba(42, 35, 24, 0.05);
   }
 
-  .card-visual {
-    height: 220px;
+  .highlight-visual {
     position: relative;
+    min-height: 320px;
     overflow: hidden;
   }
 
-  .card-visual-bg {
+  .highlight-visual-bg {
     position: absolute;
     inset: 0;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .project-card:hover .card-visual-bg {
-    transform: scale(1.04);
+  .highlight-card:hover .highlight-visual-bg {
+    transform: scale(1.05);
   }
 
-  .card-visual-jambu {
-    background: linear-gradient(135deg, var(--indigo) 0%, #1e3050 50%, #243a5c 100%);
+  .highlight-visual-jambu {
+    background: linear-gradient(135deg, var(--indigo) 0%, #1e3050 40%, #243a5c 100%);
   }
 
-  .card-visual-jambu::after {
+  .highlight-visual-jambu::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 50% 50%, rgba(201, 168, 76, 0.15) 0%, transparent 60%),
-      radial-gradient(circle at 50% 50%, transparent 20%, rgba(224, 120, 48, 0.06) 40%, transparent 60%),
-      radial-gradient(circle at 50% 50%, transparent 30%, rgba(26, 39, 68, 0.3) 70%);
+      radial-gradient(circle at 50% 50%, rgba(201, 168, 76, 0.18) 0%, transparent 55%),
+      radial-gradient(circle at 50% 50%, transparent 15%, rgba(224, 120, 48, 0.08) 35%, transparent 55%),
+      radial-gradient(circle at 50% 50%, transparent 25%, rgba(26, 39, 68, 0.3) 65%);
   }
 
-  /* Concentric rings in card */
-  .card-rings {
+  .highlight-rings {
     position: absolute;
     inset: 0;
     display: flex;
@@ -414,99 +415,85 @@
     justify-content: center;
   }
 
-  .card-rings svg {
-    width: 180px;
-    height: 180px;
-    opacity: 0.4;
+  .highlight-rings svg {
+    width: 240px;
+    height: 240px;
+    opacity: 0.45;
+    animation: spinSlow 160s linear infinite;
   }
 
-  .card-body {
-    padding: 24px 28px 28px;
-  }
-
-  .card-tag {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--saffron);
-    margin-bottom: 10px;
-  }
-
-  .card-title {
-    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
-    font-size: 26px;
-    color: var(--indigo);
-    margin-bottom: 4px;
-    letter-spacing: -0.3px;
+  .highlight-body {
+    padding: 44px 40px;
     display: flex;
-    align-items: baseline;
-    gap: 10px;
-  }
-
-  .card-title-sub {
-    font-family: 'Tiro Devanagari Hindi', serif;
-    font-size: 18px;
-    color: var(--stone);
-  }
-
-  .card-desc {
-    font-size: 14px;
-    line-height: 1.75;
-    color: var(--text-secondary);
-    margin-top: 10px;
-  }
-
-  .card-enter {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 18px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--saffron-deep);
-    letter-spacing: 0.3px;
-    transition: gap 0.3s;
-  }
-
-  .project-card:hover .card-enter {
-    gap: 12px;
-  }
-
-  .card-enter svg {
-    width: 14px;
-    height: 14px;
-  }
-
-  /* Coming soon card */
-  .project-card.coming-soon {
-    border-style: dashed;
-    border-color: var(--sand-dark);
-    cursor: default;
-  }
-
-  .project-card.coming-soon:hover {
-    transform: none;
-    box-shadow: none;
-    border-color: var(--sand-dark);
-  }
-
-  .card-visual-soon {
-    background: var(--sand);
-    display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
   }
 
-  .card-visual-soon span {
-    font-family: 'DM Serif Display', serif;
-    font-size: 36px;
-    color: var(--sand-dark);
+  .highlight-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 14px;
   }
 
-  .coming-soon .card-tag { color: var(--stone-light); }
-  .coming-soon .card-title { color: var(--stone-light); }
-  .coming-soon .card-desc { color: var(--text-tertiary); }
+  .highlight-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 36px;
+    color: var(--indigo);
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .highlight-title-sub {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--stone);
+    font-weight: normal;
+    margin-left: 8px;
+  }
+
+  .highlight-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-top: 14px;
+    max-width: 400px;
+  }
+
+  .highlight-enter {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 12px 28px;
+    background: var(--indigo);
+    color: var(--sand);
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    align-self: flex-start;
+  }
+
+  .highlight-card:hover .highlight-enter {
+    background: var(--indigo-mid);
+    box-shadow: 0 6px 20px rgba(26, 39, 68, 0.2);
+  }
+
+  .highlight-enter svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s;
+  }
+
+  .highlight-card:hover .highlight-enter svg {
+    transform: translateX(3px);
+  }
 
   /* ---- About / Mission ---- */
   .mission {
@@ -618,9 +605,13 @@
       height: 240px;
     }
 
-    .projects { padding: 60px 28px 80px; }
-    .projects::before { left: 28px; right: 28px; }
-    .projects-grid { grid-template-columns: 1fr; }
+    .highlights { padding: 60px 28px 80px; }
+    .highlights::before { left: 28px; right: 28px; }
+    .highlight-card { grid-template-columns: 1fr; }
+    .highlight-visual { min-height: 220px; }
+    .highlight-body { padding: 28px 24px 32px; }
+    .highlight-title { font-size: 28px; }
+    .highlight-title-sub { font-size: 18px; }
 
     .mission { padding: 60px 28px; }
 
@@ -725,36 +716,39 @@
   </div>
 </section>
 
-<!-- Projects -->
-<section class="projects" id="projects">
+<!-- Highlights -->
+<section class="highlights" id="projects">
   <div class="section-header reveal">
     <span class="section-label" data-i18n="section_explore"></span>
     <span class="section-line"></span>
   </div>
 
-  <div class="projects-grid">
-    <!-- Jambudweep Card -->
-    <a href="/jambudweep/" class="project-card reveal" style="transition-delay: 0.1s">
-      <div class="card-visual">
-        <div class="card-visual-bg card-visual-jambu"></div>
-        <div class="card-rings">
-          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="60" cy="60" r="55" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
-            <circle cx="60" cy="60" r="45" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
-            <circle cx="60" cy="60" r="35" fill="none" stroke="rgba(224,120,48,0.25)" stroke-width="0.5"/>
-            <circle cx="60" cy="60" r="25" fill="none" stroke="rgba(244,165,96,0.3)" stroke-width="0.5"/>
-            <circle cx="60" cy="60" r="15" fill="none" stroke="rgba(201,168,76,0.35)" stroke-width="0.5"/>
-            <circle cx="60" cy="60" r="3" fill="rgba(201,168,76,0.5)"/>
-            <line x1="60" y1="5" x2="60" y2="115" stroke="rgba(201,168,76,0.12)" stroke-width="0.3"/>
-            <line x1="5" y1="60" x2="115" y2="60" stroke="rgba(201,168,76,0.12)" stroke-width="0.3"/>
+  <div class="highlights-grid">
+    <!-- Jambudweep Highlight -->
+    <a href="/jambudweep/" class="highlight-card reveal" style="transition-delay: 0.1s">
+      <div class="highlight-visual">
+        <div class="highlight-visual-bg highlight-visual-jambu"></div>
+        <div class="highlight-rings">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="78" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="64" fill="none" stroke="rgba(224,120,48,0.2)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="50" fill="none" stroke="rgba(244,165,96,0.25)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="36" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="22" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="5" fill="rgba(201,168,76,0.5)"/>
+            <line x1="100" y1="8" x2="100" y2="192" stroke="rgba(201,168,76,0.1)" stroke-width="0.3"/>
+            <line x1="8" y1="100" x2="192" y2="100" stroke="rgba(201,168,76,0.1)" stroke-width="0.3"/>
+            <line x1="30" y1="30" x2="170" y2="170" stroke="rgba(201,168,76,0.07)" stroke-width="0.3"/>
+            <line x1="170" y1="30" x2="30" y2="170" stroke="rgba(201,168,76,0.07)" stroke-width="0.3"/>
           </svg>
         </div>
       </div>
-      <div class="card-body">
-        <div class="card-tag" data-i18n="card_jambu_tag"></div>
-        <h3 class="card-title" data-i18n-html="card_jambu_title"></h3>
-        <p class="card-desc" data-i18n="card_jambu_desc"></p>
-        <span class="card-enter">
+      <div class="highlight-body">
+        <div class="highlight-tag" data-i18n="card_jambu_tag"></div>
+        <h3 class="highlight-title" data-i18n-html="card_jambu_title"></h3>
+        <p class="highlight-desc" data-i18n="card_jambu_desc"></p>
+        <span class="highlight-enter">
           <span data-i18n="card_jambu_enter"></span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 8h10M9 4l4 4-4 4"/>
@@ -762,18 +756,6 @@
         </span>
       </div>
     </a>
-
-    <!-- Coming soon placeholder -->
-    <div class="project-card coming-soon reveal" style="transition-delay: 0.2s">
-      <div class="card-visual card-visual-soon">
-        <span>◇</span>
-      </div>
-      <div class="card-body">
-        <div class="card-tag" data-i18n="card_soon_tag"></div>
-        <h3 class="card-title" data-i18n="card_soon_title"></h3>
-        <p class="card-desc" data-i18n="card_soon_desc"></p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -799,7 +781,7 @@ const i18n = {
   mr: {
     nav_explore: "पहा",
     nav_about: "आमच्याबद्दल",
-    hero_eyebrow: "Interactive ज्ञानकोश",
+    hero_eyebrow: "",
     hero_tagline: "जैन परंपरा, नव्या नजरेने",
     hero_cta: "पुढे जा",
     section_explore: "पहा",
@@ -807,18 +789,15 @@ const i18n = {
     card_jambu_title: "जम्बूद्वीप <span class='card-title-sub'>Jambudweep</span>",
     card_jambu_desc: "जैन भूगोलातला सगळ्यात आतला द्वीप — मेरु पर्वत, सात क्षेत्रे, सहा पर्वतरांगा आणि खारा समुद्र, हे सगळं 3D मध्ये पहा.",
     card_jambu_enter: "नकाशा पहा",
-    card_soon_tag: "लवकरच",
-    card_soon_title: "अजून बरंच काही",
-    card_soon_desc: "जैन परंपरेतले नवीन विषय — लोक, कालचक्र वगैरे — बनवत आहोत.",
     mission_title: "न दिसणारं दाखवणे",
     mission_p1: "जैन परंपरेत एका अद्भुत विश्वाचं वर्णन आहे — काळात अनंत, जागेत थरावर थर, हजारो वर्षांपूर्वी गणिताने मांडलेलं.",
-    mission_p2: "Jainverse हे वर्णन interactive, मूळ ग्रंथांवर आधारित चित्रांद्वारे जिवंत करतो — सगळ्यांसाठी खुलं.",
+    mission_p2: "",
     footer_note: "जैन परंपरा · Jain Encyclopaedia",
   },
   hi: {
     nav_explore: "देखें",
     nav_about: "हमारे बारे में",
-    hero_eyebrow: "Interactive ज्ञानकोश",
+    hero_eyebrow: "",
     hero_tagline: "जैन परंपरा, नई नज़र से",
     hero_cta: "आगे बढ़ें",
     section_explore: "देखें",
@@ -826,18 +805,15 @@ const i18n = {
     card_jambu_title: "जम्बूद्वीप <span class='card-title-sub'>Jambudweep</span>",
     card_jambu_desc: "जैन भूगोल का सबसे अंदर का द्वीप — मेरु पर्वत, सात क्षेत्र, छह पहाड़ियाँ और खारा समुद्र, सब 3D में देखें.",
     card_jambu_enter: "नक्शा देखें",
-    card_soon_tag: "जल्द ही",
-    card_soon_title: "और भी बहुत कुछ",
-    card_soon_desc: "जैन परंपरा के नए विषय — लोक, कालचक्र वगैरह — बना रहे हैं.",
     mission_title: "न दिखने वाला दिखाना",
     mission_p1: "जैन परंपरा में एक अद्भुत विश्व का वर्णन है — समय में अनंत, जगह में परत दर परत, हज़ारों साल पहले गणित से बनाया गया.",
-    mission_p2: "Jainverse इस वर्णन को interactive, मूल ग्रंथों पर आधारित चित्रों से जीवंत करता है — सबके लिए खुला.",
+    mission_p2: "",
     footer_note: "जैन परंपरा · Jain Encyclopaedia",
   },
   en: {
     nav_explore: "Explore",
     nav_about: "About",
-    hero_eyebrow: "Interactive Encyclopaedia",
+    hero_eyebrow: "",
     hero_tagline: "Jain tradition, seen anew",
     hero_cta: "Start exploring",
     section_explore: "Explorations",
@@ -845,12 +821,9 @@ const i18n = {
     card_jambu_title: "Jambudweep <span class='card-title-sub'>जम्बूद्वीप</span>",
     card_jambu_desc: "The innermost continent of Jain geography — Mount Meru at the centre, seven lands, six mountain ranges, and the salt ocean around it, all in 3D.",
     card_jambu_enter: "Enter the map",
-    card_soon_tag: "Coming Soon",
-    card_soon_title: "More to come",
-    card_soon_desc: "New topics from Jain tradition — lokas, kālachakra, and more — are being built.",
     mission_title: "Making the invisible visible",
     mission_p1: "Jain tradition describes an extraordinary universe — infinite in time, layered in space, mapped with mathematical precision thousands of years ago.",
-    mission_p2: "Jainverse brings these descriptions to life through interactive visuals built from primary texts — open to everyone.",
+    mission_p2: "",
     footer_note: "Jain Tradition · Encyclopaedia",
   }
 };
