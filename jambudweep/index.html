@@ -519,13 +519,13 @@ function buildVidehaDiagram(){
   s+='<text x="228" y="206" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">8 विजय</text>';
   // Sīmandhara Svāmī — rightmost vijaya (near river-ocean junction, per Panditji's guidance).
   // No direct scriptural reference for exact placement; position is tentative.
-  const pvx=258, pvy=216;          // bottom-right cell of SE block
+  const pvx=258, pvy=32;           // top-right cell of NE block (rightmost)
   s+='<rect x="'+pvx+'" y="'+pvy+'" width="23" height="23" rx="2" fill="#b8860b" stroke="#ffe9a8" stroke-width="1.6"/>';
   s+='<text x="'+(pvx+11.5)+'" y="'+(pvy+16)+'" fill="#fff4d6" font-size="13" text-anchor="middle">✦</text>';
-  // pointer + label — placed above the cell so text stays within viewBox
-  s+='<line x1="'+(pvx+20)+'" y1="'+pvy+'" x2="288" y2="'+(pvy-18)+'" stroke="#ffe9a8" stroke-width="0.7"/>';
-  s+='<text x="288" y="'+(pvy-22)+'" fill="#ffe9a8" font-size="8" text-anchor="end">पुष्कलावती</text>';
-  s+='<text x="288" y="'+(pvy-12)+'" fill="#ffe9a8" font-size="7.5" text-anchor="end" font-style="italic">सीमंधर स्वामी</text>';
+  // pointer + label
+  s+='<line x1="'+(pvx+23)+'" y1="'+(pvy+4)+'" x2="288" y2="14" stroke="#ffe9a8" stroke-width="0.7"/>';
+  s+='<text x="288" y="12" fill="#ffe9a8" font-size="8" text-anchor="end">पुष्कलावती</text>';
+  s+='<text x="288" y="22" fill="#ffe9a8" font-size="7.5" text-anchor="end" font-style="italic">सीमंधर स्वामी</text>';
   // Uttarakuru (north of Meru) & Devakuru (south of Meru)
   s+='<rect x="126" y="96" width="48" height="40" rx="4" fill="#9bb07e" stroke="#5e6840"/>';
   s+='<rect x="126" y="164" width="48" height="40" rx="4" fill="#9bb07e" stroke="#5e6840"/>';
