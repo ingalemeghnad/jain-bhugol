@@ -280,10 +280,10 @@
   <div id="legend" class="panel">
     <h2>संरचना</h2>
     <div class="leg-item"><span class="sw" style="background:#c9a24a"></span><span class="txt"><b>मेरु पर्वत</b> — केन्द्र में विश्व-अक्ष</span></div>
-    <div class="leg-item"><span class="sw" style="background:#8a9b6e"></span><span class="txt"><b>७ क्षेत्र</b> — भरत से ऐरावत तक</span></div>
-    <div class="leg-item"><span class="sw" style="background:linear-gradient(90deg,#c9a227,#dfe2e6,#2f5fa0)"></span><span class="txt"><b>६ वर्षधर पर्वत</b> — स्वर्ण, रजत व नील वर्ण के</span></div>
-    <div class="leg-item"><span class="sw" style="background:#2f7fae"></span><span class="txt"><b>६ सरोवर</b> — पद्म से पुण्डरीक, पर्वतों पर</span></div>
-    <div class="leg-item"><span class="sw" style="background:#3f86b0"></span><span class="txt"><b>१४ महानदियाँ</b> — प्रत्येक सरोवर से पूर्व व पश्चिम</span></div>
+    <div class="leg-item"><span class="sw" style="background:#8a9b6e"></span><span class="txt"><b>7 क्षेत्र</b> — भरत से ऐरावत तक</span></div>
+    <div class="leg-item"><span class="sw" style="background:linear-gradient(90deg,#c9a227,#dfe2e6,#2f5fa0)"></span><span class="txt"><b>6 वर्षधर पर्वत</b> — स्वर्ण, रजत व नील वर्ण के</span></div>
+    <div class="leg-item"><span class="sw" style="background:#2f7fae"></span><span class="txt"><b>6 सरोवर</b> — पद्म से पुण्डरीक, पर्वतों पर</span></div>
+    <div class="leg-item"><span class="sw" style="background:#3f86b0"></span><span class="txt"><b>14 महानदियाँ</b> — प्रत्येक सरोवर से पूर्व व पश्चिम</span></div>
     <div class="leg-item"><span class="sw" style="background:#3a6f77"></span><span class="txt"><b>लवण समुद्र</b> — वेष्टन करने वाला क्षार सागर</span></div>
   </div>
 
@@ -513,10 +513,10 @@ function buildVidehaDiagram(){
   s+=block(180,32);   // NE block (8)
   s+=block(14,190);   // SW block (8)
   s+=block(180,190);  // SE block (8)
-  s+='<text x="62" y="48" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">८ विजय</text>';
-  s+='<text x="228" y="48" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">८ विजय</text>';
-  s+='<text x="62" y="206" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">८ विजय</text>';
-  s+='<text x="228" y="206" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">८ विजय</text>';
+  s+='<text x="62" y="48" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">8 विजय</text>';
+  s+='<text x="228" y="48" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">8 विजय</text>';
+  s+='<text x="62" y="206" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">8 विजय</text>';
+  s+='<text x="228" y="206" fill="#2a2a1a" font-size="8" text-anchor="middle" font-weight="bold">8 विजय</text>';
   // Sīmandhara Svāmī's vijaya — Puṣkalāvatī (eastern / Sītā side). Only this placement
   // is canonically specific; the other 19 tīrthaṅkaras are NOT individually located here.
   const pvx=180, pvy=32;          // top-left cell of the NE block
@@ -585,16 +585,16 @@ function buildMeruDiagram(){
   s+='<circle cx="'+cx+'" cy="40" r="5" fill="#ffe9a8" stroke="#9c7a20"/>';
   s+='<text x="'+(cx+10)+'" y="40" fill="#ffe9a8" font-size="8.5">चूलिका</text>';
   // dimension annotations
-  s+='<text x="'+cx+'" y="314" fill="#d8cba0" font-size="8" text-anchor="middle">आधार १०,००० योजन</text>';
-  s+='<text x="'+cx+'" y="268" fill="#d8cba0" font-size="8" text-anchor="middle">भूतल ४,००० योजन</text>';
+  s+='<text x="'+cx+'" y="314" fill="#d8cba0" font-size="8" text-anchor="middle">आधार 10,000 योजन</text>';
+  s+='<text x="'+cx+'" y="268" fill="#d8cba0" font-size="8" text-anchor="middle">भूतल 4,000 योजन</text>';
   // height bracket on the left
   s+='<line x1="20" y1="40" x2="20" y2="250" stroke="#caa46e" stroke-width="0.8"/>';
   s+='<line x1="17" y1="40" x2="23" y2="40" stroke="#caa46e" stroke-width="0.8"/>';
   s+='<line x1="17" y1="250" x2="23" y2="250" stroke="#caa46e" stroke-width="0.8"/>';
-  s+='<text x="14" y="148" fill="#caa46e" font-size="8" text-anchor="middle" transform="rotate(-90 14 148)">९९,००० योजन (भूतल के ऊपर)</text>';
+  s+='<text x="14" y="148" fill="#caa46e" font-size="8" text-anchor="middle" transform="rotate(-90 14 148)">99,000 योजन (भूतल के ऊपर)</text>';
   // buried depth bracket
   s+='<line x1="280" y1="250" x2="280" y2="300" stroke="#9a7a40" stroke-width="0.8"/>';
-  s+='<text x="286" y="278" fill="#9a7a40" font-size="7.5" transform="rotate(-90 286 278)">१,००० योजन भूमिगत</text>';
+  s+='<text x="286" y="278" fill="#9a7a40" font-size="7.5" transform="rotate(-90 286 278)">1,000 योजन भूमिगत</text>';
   s+='</svg>';
   return s;
 }
@@ -609,9 +609,9 @@ function buildDhaiDiagram(){
   const rings=[
     {r:145, fill:'#274a50', label:'पुष्करार्ध द्वीप', sub:'(आधा — मानुषोत्तर तक)', txtCol:'#bfe0e4'},
     {r:116, fill:'#1d3a3f', label:'कालोदधि समुद्र', sub:'', txtCol:'#9fc7cc'},
-    {r:92,  fill:'#3a5a3f', label:'धातकीखण्ड द्वीप', sub:'(२ मेरु)', txtCol:'#c4dcc0'},
+    {r:92,  fill:'#3a5a3f', label:'धातकीखण्ड द्वीप', sub:'(2 मेरु)', txtCol:'#c4dcc0'},
     {r:64,  fill:'#2d5d63', label:'लवण समुद्र', sub:'', txtCol:'#bfe6ea'},
-    {r:40,  fill:'#cdb86a', label:'जम्बूद्वीप', sub:'(१ मेरु)', txtCol:'#3a2c08'},
+    {r:40,  fill:'#cdb86a', label:'जम्बूद्वीप', sub:'(1 मेरु)', txtCol:'#3a2c08'},
   ];
   rings.forEach(rg=>{ s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+rg.r+'" fill="'+rg.fill+'" stroke="#7d6240" stroke-width="0.8"/>'; });
   // Mānuṣottara boundary — the ring through mid-Puṣkara beyond which no humans live
@@ -633,10 +633,10 @@ function buildDhaiDiagram(){
   return s;
 }
 const dhaiDetail={title:'अढ़ाई द्वीप — मनुष्यलोक', diagram:buildDhaiDiagram(), body:[
-  'मनुष्य केवल ढाई (२½) द्वीपों में ही रहते हैं — यही "अढ़ाई द्वीप" अथवा मनुष्यलोक है।',
+  'मनुष्य केवल ढाई (2½) द्वीपों में ही रहते हैं — यही "अढ़ाई द्वीप" अथवा मनुष्यलोक है।',
   'केन्द्र से बाहर की ओर पाँच वलय: जम्बूद्वीप → लवण समुद्र → धातकीखण्ड → कालोदधि समुद्र → पुष्करार्ध (पुष्कर का भीतरी आधा भाग)।',
   'मानुषोत्तर पर्वत पुष्कर द्वीप को बीच से काटता है — उसके आगे कोई मनुष्य नहीं। इसी कारण "आधा" द्वीप गिना जाता है।',
-  'प्रत्येक बाहरी द्वीप जम्बूद्वीप की रचना दुगुनी करता है: जम्बू में १ मेरु, धातकीखण्ड में २, भीतरी पुष्कर में २ — कुल ५ मेरु व ५ महाविदेह।',
+  'प्रत्येक बाहरी द्वीप जम्बूद्वीप की रचना दुगुनी करता है: जम्बू में 1 मेरु, धातकीखण्ड में 2, भीतरी पुष्कर में 2 — कुल 5 मेरु व 5 महाविदेह।',
   'यही समस्त ब्रह्माण्ड का एकमात्र भाग है जहाँ से मोक्ष सम्भव है (कर्मभूमि)।',
   'यह चित्र केवल संरचना दर्शाने हेतु है — वास्तविक अनुपात में बाहरी द्वीप अत्यधिक विशाल हैं।'
 ]};
@@ -707,46 +707,46 @@ const regionDetail=[
       rangeName:'हिमवान् पर्वत',rangeCol:'#c9a227',
       halfFar:'उत्तर भरत',halfNear:'दक्षिण भरत',
       riverE:'गंगा',riverW:'सिन्धु'}), body:[
-    'जम्बूद्वीप का दक्षिणतम क्षेत्र — क्षेत्रफल १/१९०।',
+    'जम्बूद्वीप का दक्षिणतम क्षेत्र — क्षेत्रफल 1/190।',
     'वैताढ्य पर्वत इसे उत्तर व दक्षिण भरत में विभाजित करता है।',
     'यह कर्मभूमि है; वर्तमान में पाँचवाँ आरा (अवसर्पिणी) चल रहा है।',
-    'इस अवसर्पिणी में २४ तीर्थंकर हुए — ऋषभदेव से महावीर तक। अभी कोई विद्यमान तीर्थंकर नहीं।'
+    'इस अवसर्पिणी में 24 तीर्थंकर हुए — ऋषभदेव से महावीर तक। अभी कोई विद्यमान तीर्थंकर नहीं।'
   ]},
   {title:'हैमवत क्षेत्र', diagram:buildBhogaDiagram({
       rangeN:'महाहिमवान्',rangeNCol:'#dfe2e6',rangeS:'हिमवान्',rangeSCol:'#c9a227',
       riverE:'रोहिता',riverW:'रोहितांशा'}), body:[
-    'हिमवान् व महाहिमवान् पर्वतों के मध्य — क्षेत्रफल ४/१९०।',
+    'हिमवान् व महाहिमवान् पर्वतों के मध्य — क्षेत्रफल 4/190।',
     'भोगभूमि (अकर्मभूमि) — यहाँ कल्पवृक्ष भोग प्रदान करते हैं।',
     'रोहित व रोहितांशा नदियाँ इसमें बहती हैं।'
   ]},
   {title:'हरि क्षेत्र', diagram:buildBhogaDiagram({
       rangeN:'निषध',rangeNCol:'#b5532e',rangeS:'महाहिमवान्',rangeSCol:'#dfe2e6',
       riverE:'हरित्',riverW:'हरिकांता'}), body:[
-    'महाहिमवान् व निषध पर्वतों के मध्य — क्षेत्रफल १६/१९०।',
+    'महाहिमवान् व निषध पर्वतों के मध्य — क्षेत्रफल 16/190।',
     'मध्यम भोगभूमि; दीर्घ आयु व उन्नत शरीर वाले मनुष्य।',
     'हरित् व हरिकांता नदियाँ इसमें बहती हैं।'
   ]},
   {title:'महाविदेह क्षेत्र', diagram:videhaDiagram, body:[
-    'जम्बूद्वीप का सबसे विशाल क्षेत्र — क्षेत्रफल ६४/१९०, केन्द्र में सुदर्शन मेरु।',
+    'जम्बूद्वीप का सबसे विशाल क्षेत्र — क्षेत्रफल 64/190, केन्द्र में सुदर्शन मेरु।',
     'सीता (पूर्व) व सीतोदा (पश्चिम) नदियाँ तथा निषध-नील पर्वत इसे विभाजित करते हैं।',
-    'कुल ३२ विजय (प्रान्त) — मेरु के चारों ओर, प्रत्येक एक पृथक कर्मभूमि।',
+    'कुल 32 विजय (प्रान्त) — मेरु के चारों ओर, प्रत्येक एक पृथक कर्मभूमि।',
     'मेरु के समीप देवकुरु (दक्षिण) व उत्तरकुरु (उत्तर) — उत्तम भोगभूमियाँ।',
     'यहाँ काल-चक्र (अवसर्पिणी/उत्सर्पिणी) लागू नहीं — दशा सदैव दुषमा-सुषमा पर स्थिर रहती है (अवसर्पिणी के चौथे आरे तुल्य), काल का ह्रास नहीं होता।',
-    'इसी कारण यहाँ सदैव २० विहरमाण तीर्थंकर विद्यमान रहते हैं।',
-    'वर्तमान में श्री सीमंधर स्वामी सर्वाधिक पूजित विद्यमान तीर्थंकर हैं — पुष्कलावती विजय की राजधानी पुण्डरीकिणी में (चित्र में ✦ चिह्नित)।',
-    'शेष १९ तीर्थंकरों का स्थान विभिन्न परम्पराओं में भिन्न है, अतः यहाँ अंकित नहीं।'
+    'इसी कारण यहाँ सदैव 20 विहरमाण तीर्थंकर विद्यमान रहते हैं।',
+    'वर्तमान में श्री सीमंधर स्वामी सर्वाधिक पूजित विद्यमान तीर्थंकर हैं — पूर्व विदेह के उत्तरी भाग में स्थित पुष्कलावती विजय (32 विजयों में 8वीं) की राजधानी पुण्डरीकिणी में (चित्र में ✦ चिह्नित)।',
+    'शेष 19 तीर्थंकरों का स्थान विभिन्न परम्पराओं में भिन्न है, अतः यहाँ अंकित नहीं।'
   ]},
   {title:'रम्यक क्षेत्र', diagram:buildBhogaDiagram({
       rangeN:'रुक्मी',rangeNCol:'#d8dce0',rangeS:'नील',rangeSCol:'#2f5fa0',
       riverE:'नरकांता',riverW:'नारीकांता'}), body:[
-    'नील व रुक्मी पर्वतों के मध्य — क्षेत्रफल १६/१९०।',
+    'नील व रुक्मी पर्वतों के मध्य — क्षेत्रफल 16/190।',
     'हरि क्षेत्र का उत्तरी प्रतिबिम्ब; मध्यम भोगभूमि।',
     'नरकांता व नारीकांता नदियाँ इसमें बहती हैं।'
   ]},
   {title:'हैरण्यवत क्षेत्र', diagram:buildBhogaDiagram({
       rangeN:'शिखरी',rangeNCol:'#c9a227',rangeS:'रुक्मी',rangeSCol:'#d8dce0',
       riverE:'सुवर्णकूला',riverW:'रूप्यकूला'}), body:[
-    'रुक्मी व शिखरी पर्वतों के मध्य — क्षेत्रफल ४/१९०।',
+    'रुक्मी व शिखरी पर्वतों के मध्य — क्षेत्रफल 4/190।',
     'हैमवत का उत्तरी प्रतिबिम्ब; भोगभूमि।',
     'सुवर्णकूला व रूप्यकूला नदियाँ इसमें बहती हैं।'
   ]},
@@ -754,7 +754,7 @@ const regionDetail=[
       rangeName:'शिखरी पर्वत',rangeCol:'#c9a227',
       halfFar:'दक्षिण ऐरावत',halfNear:'उत्तर ऐरावत',
       riverE:'रक्ता',riverW:'रक्तोदा'}), body:[
-    'जम्बूद्वीप का उत्तरतम क्षेत्र — क्षेत्रफल १/१९०।',
+    'जम्बूद्वीप का उत्तरतम क्षेत्र — क्षेत्रफल 1/190।',
     'भरत का उत्तरी प्रतिबिम्ब; यहाँ भी वैताढ्य पर्वत है।',
     'कर्मभूमि — काल-चक्र भरत के समान चलता है।',
     'रक्ता व रक्तोदा नदियाँ इसमें बहती हैं।'
@@ -1089,8 +1089,8 @@ const halo=new THREE.Mesh(
 halo.position.y=yy+1; halo.rotation.x=Math.PI/2; meru.add(halo);
 meruMesh.userData={label:'सुदर्शन मेरु पर्वत — विवरण हेतु क्लिक करें',detail:{title:'सुदर्शन मेरु पर्वत',diagram:meruDiagram,body:[
   'जम्बूद्वीप का अक्ष — महाविदेह के केन्द्र में स्थित।',
-  'कुल ऊँचाई ९९,००० योजन (भूमि के ऊपर), तथा १,००० योजन भूमि में गड़ा हुआ।',
-  'आधार पर १०,००० योजन चौड़ा, भूतल पर घटकर ४,००० योजन — ऊपर की ओर क्रमशः पतला।',
+  'कुल ऊँचाई 99,000 योजन (भूमि के ऊपर), तथा 1,000 योजन भूमि में गड़ा हुआ।',
+  'आधार पर 10,000 योजन चौड़ा, भूतल पर घटकर 4,000 योजन — ऊपर की ओर क्रमशः पतला।',
   'चार वन: भद्रशाल (तल), नन्दन, सौमनस, व शिखर पर पाण्डुक वन।',
   'पाण्डुक वन में तीर्थंकरों का जन्माभिषेक होता है — चार शिलाएँ इस हेतु प्रसिद्ध हैं।',
   'शिखर पर चूलिका (चूड़ामणि) स्थित है।'
