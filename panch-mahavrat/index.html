@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>पाच महाव्रत — Jainverse</title>
+<meta name="description" content="अहिंसा, सत्य, अचौर्य, ब्रह्मचर्य, अपरिग्रह — जैन आचरणाची पाच मूलभूत व्रतं.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830; --saffron-deep: #c45e1a; --saffron-light: #f4a560;
+    --indigo: #1a2744; --indigo-mid: #2a3d66; --indigo-light: #3d5a8a;
+    --gold: #c9a84c; --gold-light: #e4cf8a;
+    --sand: #f5f0e8; --sand-dark: #e8dfd0; --warm-white: #faf8f4;
+    --stone: #8c7e6a; --stone-light: #b0a48e;
+    --text: #2a2318; --text-secondary: #5c5246; --text-tertiary: #8a7e6e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; }
+  .topbar.scrolled { background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); padding: 13px 40px; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.25s; }
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+  .lang-switch { display: flex; align-items: center; border: 1px solid var(--sand-dark); border-radius: 20px; overflow: hidden; background: rgba(245, 240, 232, 0.6); }
+  .lang-btn { padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--text-tertiary); background: none; border: none; cursor: pointer; transition: all 0.25s; font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space: nowrap; }
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+  .article { max-width: 640px; margin: 0 auto; padding: 140px 28px 100px; }
+  .page-header { margin-bottom: 72px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.2s forwards; }
+  .page-header h1 { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: clamp(36px, 5vw, 52px); color: var(--indigo); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .page-header .subtitle { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style: italic; font-size: clamp(16px, 2vw, 20px); color: var(--stone); line-height: 1.4; }
+  .header-rule { width: 48px; height: 2px; background: var(--saffron); margin-top: 28px; opacity: 0.7; }
+  .section { margin-bottom: 80px; position: relative; }
+  .section-num { font-family: 'DM Serif Display', serif; font-size: 80px; color: var(--sand-dark); line-height: 1; margin-bottom: -12px; user-select: none; }
+  .section-question { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: clamp(24px, 3.5vw, 32px); color: var(--indigo); line-height: 1.25; margin-bottom: 28px; letter-spacing: -0.3px; }
+  .section-body { font-size: 17px; line-height: 2; color: var(--text-secondary); }
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+  .section-divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 80px 0; color: var(--sand-dark); user-select: none; }
+  .section-divider::before, .section-divider::after { content: ''; height: 1px; width: 40px; background: linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background: linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+  .page-nav { display: flex; gap: 16px; margin-top: 80px; }
+  .prev-read { flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px; text-decoration: none; color: inherit; display: block; transition: all 0.3s; }
+  .prev-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .prev-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--stone-light); margin-bottom: 8px; }
+  .prev-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .prev-read-title svg { width: 18px; height: 18px; color: var(--stone-light); transition: transform 0.3s; }
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+  .next-read { flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px; text-decoration: none; color: inherit; display: block; transition: all 0.3s; }
+  .next-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .next-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--saffron); margin-bottom: 8px; }
+  .next-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .next-read-title svg { width: 18px; height: 18px; color: var(--saffron); transition: transform 0.3s; }
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+  .article-footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--sand-dark); display: flex; align-items: center; justify-content: space-between; }
+  .article-footer .brand { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--stone); text-decoration: none; }
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; } .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; } .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; } .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; } .section-divider { margin: 56px 0; }
+    .prev-read { padding: 22px 24px; } .prev-read-title { font-size: 19px; }
+    .next-read { padding: 22px 24px; } .next-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/ahimsa/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">6</div>
+    <h2 class="section-question" data-i18n="s6_q"></h2>
+    <div class="section-body" data-i18n-html="s6_body"></div>
+  </section>
+
+  <div class="page-nav reveal">
+    <a href="/ahimsa/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+    <a href="/panch-parmeshthi/" class="next-read">
+      <div class="next-read-label" data-i18n="next_label"></div>
+      <div class="next-read-title">
+        <span data-i18n="next_title"></span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "पाच महाव्रत",
+    page_subtitle: "अहिंसेपासून अपरिग्रहापर्यंत — जगण्याचे पाच नियम",
+    s1_q: "अहिंसा समजली — पण रोज जगताना आणखी काय लागतं?",
+    s1_body: s([
+      'अहिंसा हा पाया आहे. पण एकट्या अहिंसेवर संपूर्ण आचरण उभं राहत नाही.',
+      'जैन परंपरेत पाच मूलभूत व्रतं दिली आहेत — पाच नियम जे आत्म्याला कर्मापासून वाचवतात.',
+      'मुनींसाठी (संन्याशांसाठी) हे <span class="term">महाव्रत</span> — पूर्ण, कठोर. गृहस्थांसाठी (सामान्य माणसांसाठी) हे <span class="term">अणुव्रत</span> — तेच तत्त्व, पण क्षमतेनुसार.',
+      '<span class="emphasis">पाचही व्रतं एकाच ध्येयाकडे नेतात — कर्मबंध कमी करणं, आत्म्याला हलकं करणं.</span>',
+    ]),
+    s2_q: "पहिलं व्रत: अहिंसा",
+    s2_body: s([
+      '<span class="term">अहिंसा व्रत</span> — कुठल्याही जीवाला दुखवणार नाही.',
+      'हे तुम्ही आधीच समजलंय — शरीरानं, वाणीनं, मनानं हिंसा टाळणं.',
+      'मुनींसाठी हे पूर्ण — एकही जीवाला जाणूनबुजून इजा नाही. गृहस्थांसाठी — जेवढं शक्य तेवढं टाळणं.',
+      '<span class="emphasis">अहिंसा हे पहिलं व्रत आहे कारण बाकी चारही यातूनच निघतात.</span>',
+    ]),
+    s3_q: "दुसरं व्रत: सत्य",
+    s3_body: s([
+      '<span class="term">सत्य व्रत</span> — खोटं बोलणार नाही.',
+      'पण "सत्य" म्हणजे फक्त खोटं न बोलणं नाही. अर्धसत्य, दिशाभूल, अतिशयोक्ती — हे सगळं सत्याचं उल्लंघन आहे.',
+      'आणि एक महत्त्वाचं — <span class="emphasis">जर सत्य बोलल्यानं कुणाला इजा होत असेल, तर ते सत्य बोलू नका. अहिंसा सत्यापेक्षा मोठी आहे.</span>',
+      'सत्य व्रताचं मूळ तत्त्व: तुमच्या शब्दांनी कुणाचं नुकसान होऊ नये, आणि सत्य लपवून कुणाची फसवणूक होऊ नये.',
+    ]),
+    s4_q: "तिसरं व्रत: अचौर्य (अस्तेय)",
+    s4_body: s([
+      '<span class="term">अचौर्य व्रत</span> — चोरी करणार नाही. दुसऱ्याची वस्तू विना परवानगी घेणार नाही.',
+      'हे फक्त पैसे-वस्तूंपुरतं नाही. कुणाचा वेळ वाया घालवणं, कुणाच्या कष्टाचं श्रेय स्वतःकडे घेणं, करचुकवेगिरी — हे सगळं अचौर्यांतर्गत येतं.',
+      '<span class="emphasis">मूळ तत्त्व सोपं आहे: जे तुमचं नाही ते घेऊ नका — मग ते वस्तू असो, श्रेय असो, किंवा हक्क असो.</span>',
+    ]),
+    s5_q: "चौथं व्रत: ब्रह्मचर्य",
+    s5_body: s([
+      '<span class="term">ब्रह्मचर्य व्रत</span> — इंद्रियांवर संयम ठेवणं.',
+      'मुनींसाठी हे पूर्ण — सर्व शारीरिक सुखांचा त्याग. गृहस्थांसाठी — विवाहित जीवनात निष्ठा आणि संयम.',
+      'ब्रह्मचर्य फक्त शरीराबद्दल नाही — <span class="emphasis">पाच इंद्रियांच्या (दृष्टी, श्रवण, स्पर्श, रस, गंध) आकर्षणात न अडकणं.</span>',
+      'इंद्रियांच्या सुखांमागे धावल्यानं कषायं जागतात — आणि कषाय कर्म बांधतात. ब्रह्मचर्य हे या साखळीला तोडण्याचं साधन आहे.',
+    ]),
+    s6_q: "पाचवं व्रत: अपरिग्रह",
+    s6_body: s([
+      '<span class="term">अपरिग्रह व्रत</span> — गरजेपेक्षा जास्त गोळा करणार नाही. आसक्ती ठेवणार नाही.',
+      'मुनींसाठी हे पूर्ण — काहीही स्वतःचं नाही. गृहस्थांसाठी — गरजा मर्यादित ठेवणं, संग्रह न करणं.',
+      'पैसा, जमीन, वस्तू — गरज आहे तेवढं ठेवा. पण <span class="emphasis">"मला आणखी हवंय, आणखी हवंय" — हा लोभ कर्म बांधतो.</span>',
+      'अपरिग्रह फक्त भौतिक गोष्टींपुरतं नाही — विचारांची, मतांची, नात्यांची आसक्तीसुद्धा परिग्रह आहे.',
+      '<span class="emphasis">ही पाच व्रतं मिळून सम्यक् चारित्राचा पाया बनवतात. अहिंसा, सत्य, अचौर्य, ब्रह्मचर्य, अपरिग्रह — हे पाच मिळून मोक्षाच्या दिशेनं चालायचं चाक.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "अहिंसा",
+    next_label: "पुढे वाचा",
+    back_text: "अहिंसा",
+    next_title: "पंच परमेष्ठी",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "पाँच महाव्रत",
+    page_subtitle: "अहिंसा से अपरिग्रह तक — जीने के पाँच नियम",
+    s1_q: "अहिंसा समझ आई — लेकिन रोज़ जीते हुए और क्या चाहिए?",
+    s1_body: s([
+      'अहिंसा बुनियाद है. लेकिन अकेली अहिंसा पर पूरा आचरण खड़ा नहीं होता.',
+      'जैन परंपरा में पाँच बुनियादी व्रत दिए गए हैं — पाँच नियम जो आत्मा को कर्म से बचाते हैं.',
+      'मुनियों (संन्यासियों) के लिए ये <span class="term">महाव्रत</span> — पूर्ण, कठोर. गृहस्थों (आम लोगों) के लिए ये <span class="term">अणुव्रत</span> — वही सिद्धांत, लेकिन क्षमता अनुसार.',
+      '<span class="emphasis">पाँचों व्रत एक ही लक्ष्य की तरफ़ ले जाते हैं — कर्मबंध कम करना, आत्मा को हल्का करना.</span>',
+    ]),
+    s2_q: "पहला व्रत: अहिंसा",
+    s2_body: s([
+      '<span class="term">अहिंसा व्रत</span> — किसी भी जीव को नहीं दुखाऊँगा.',
+      'ये तुम पहले ही समझ चुके हो — शरीर से, वाणी से, मन से हिंसा से बचना.',
+      'मुनियों के लिए ये पूर्ण — एक भी जीव को जानबूझकर नुक़सान नहीं. गृहस्थों के लिए — जितना मुमकिन हो उतना बचना.',
+      '<span class="emphasis">अहिंसा पहला व्रत है क्योंकि बाक़ी चारों इसी से निकलते हैं.</span>',
+    ]),
+    s3_q: "दूसरा व्रत: सत्य",
+    s3_body: s([
+      '<span class="term">सत्य व्रत</span> — झूठ नहीं बोलूँगा.',
+      'लेकिन "सत्य" मतलब सिर्फ़ झूठ न बोलना नहीं. अधूरा सच, भ्रम पैदा करना, बढ़ा-चढ़ाकर बोलना — ये सब सत्य का उल्लंघन है.',
+      'और एक अहम बात — <span class="emphasis">अगर सच बोलने से किसी को नुक़सान हो, तो वो सच मत बोलो. अहिंसा सत्य से बड़ी है.</span>',
+      'सत्य व्रत की बुनियाद: तुम्हारे शब्दों से किसी का नुक़सान न हो, और सच छिपाकर किसी को धोखा न दो.',
+    ]),
+    s4_q: "तीसरा व्रत: अचौर्य (अस्तेय)",
+    s4_body: s([
+      '<span class="term">अचौर्य व्रत</span> — चोरी नहीं करूँगा. दूसरे की चीज़ बिना इजाज़त नहीं लूँगा.',
+      'ये सिर्फ़ पैसे-सामान तक सीमित नहीं. किसी का वक़्त बर्बाद करना, किसी की मेहनत का श्रेय लेना, टैक्स चोरी — ये सब अचौर्य के दायरे में आता है.',
+      '<span class="emphasis">बुनियादी बात सीधी है: जो तुम्हारा नहीं वो मत लो — चाहे वो चीज़ हो, श्रेय हो, या हक़ हो.</span>',
+    ]),
+    s5_q: "चौथा व्रत: ब्रह्मचर्य",
+    s5_body: s([
+      '<span class="term">ब्रह्मचर्य व्रत</span> — इंद्रियों पर संयम रखना.',
+      'मुनियों के लिए ये पूर्ण — सभी शारीरिक सुखों का त्याग. गृहस्थों के लिए — वैवाहिक जीवन में निष्ठा और संयम.',
+      'ब्रह्मचर्य सिर्फ़ शरीर के बारे में नहीं — <span class="emphasis">पाँच इंद्रियों (देखना, सुनना, छूना, स्वाद, गंध) के आकर्षण में न फँसना.</span>',
+      'इंद्रियों के सुखों के पीछे भागने से कषायें जागती हैं — और कषाय कर्म बाँधती है. ब्रह्मचर्य इस चेन को तोड़ने का साधन है.',
+    ]),
+    s6_q: "पाँचवाँ व्रत: अपरिग्रह",
+    s6_body: s([
+      '<span class="term">अपरिग्रह व्रत</span> — ज़रूरत से ज़्यादा इकट्ठा नहीं करूँगा. आसक्ति नहीं रखूँगा.',
+      'मुनियों के लिए ये पूर्ण — कुछ भी अपना नहीं. गृहस्थों के लिए — ज़रूरतें सीमित रखना, जमा न करना.',
+      'पैसा, ज़मीन, सामान — ज़रूरत है उतना रखो. लेकिन <span class="emphasis">"मुझे और चाहिए, और चाहिए" — ये लालच कर्म बाँधता है.</span>',
+      'अपरिग्रह सिर्फ़ भौतिक चीज़ों तक नहीं — विचारों की, राय की, रिश्तों की आसक्ति भी परिग्रह है.',
+      '<span class="emphasis">ये पाँच व्रत मिलकर सम्यक् चारित्र की बुनियाद बनाते हैं. अहिंसा, सत्य, अचौर्य, ब्रह्मचर्य, अपरिग्रह — ये पाँच मिलकर मोक्ष की दिशा में चलने का पहिया.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "अहिंसा",
+    next_label: "आगे पढ़ें",
+    back_text: "अहिंसा",
+    next_title: "पंच परमेष्ठी",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "The Five Vows",
+    page_subtitle: "From ahimsa to aparigraha — five rules for living",
+    s1_q: "Ahimsa makes sense — but what else does daily life require?",
+    s1_body: s([
+      'Ahimsa is the foundation. But a complete ethical life can\'t stand on ahimsa alone.',
+      'The Jain tradition gives five fundamental vows — five rules that protect the soul from karma.',
+      'For monks, these are <span class="term">mahavrat</span> — complete, strict. For householders (ordinary people), these are <span class="term">anuvrat</span> — the same principles, but according to one\'s capacity.',
+      '<span class="emphasis">All five vows lead to the same goal — reducing karmic bondage, making the soul lighter.</span>',
+    ]),
+    s2_q: "First vow: Ahimsa",
+    s2_body: s([
+      '<span class="term">Ahimsa vrat</span> — I will not harm any living being.',
+      'You already understand this — avoiding violence in body, speech, and mind.',
+      'For monks this is absolute — no intentional harm to any being. For householders — avoiding as much as possible.',
+      '<span class="emphasis">Ahimsa is the first vow because all the other four flow from it.</span>',
+    ]),
+    s3_q: "Second vow: Satya (Truth)",
+    s3_body: s([
+      '<span class="term">Satya vrat</span> — I will not speak falsehood.',
+      'But "truth" doesn\'t just mean not lying. Half-truths, misleading statements, exaggeration — all of these violate truth.',
+      'And one crucial point — <span class="emphasis">if speaking the truth would cause harm to someone, don\'t speak it. Ahimsa is greater than truth.</span>',
+      'The core of the truth vow: your words should not cause harm, and hiding truth should not deceive anyone.',
+    ]),
+    s4_q: "Third vow: Achaurya (Non-stealing)",
+    s4_body: s([
+      '<span class="term">Achaurya vrat</span> — I will not steal. I will not take what isn\'t given.',
+      'This goes beyond money and objects. Wasting someone\'s time, taking credit for another\'s work, evading taxes — all fall within this vow.',
+      '<span class="emphasis">The principle is straightforward: don\'t take what isn\'t yours — whether it\'s a thing, credit, or a right.</span>',
+    ]),
+    s5_q: "Fourth vow: Brahmacharya (Restraint)",
+    s5_body: s([
+      '<span class="term">Brahmacharya vrat</span> — exercising restraint over the senses.',
+      'For monks this is complete — renunciation of all bodily pleasures. For householders — fidelity and moderation in married life.',
+      'Brahmacharya isn\'t only about the body — <span class="emphasis">it\'s about not getting trapped by the pull of the five senses (sight, sound, touch, taste, smell).</span>',
+      'Chasing sensory pleasures awakens kashaya — and kashaya binds karma. Brahmacharya is the tool to break this chain.',
+    ]),
+    s6_q: "Fifth vow: Aparigraha (Non-possessiveness)",
+    s6_body: s([
+      '<span class="term">Aparigraha vrat</span> — I will not hoard beyond my needs. I will not cling.',
+      'For monks this is total — nothing is "mine." For householders — keeping needs limited, not accumulating.',
+      'Money, land, possessions — keep what you need. But <span class="emphasis">"I want more, I want more" — this greed binds karma.</span>',
+      'Aparigraha goes beyond material things — attachment to ideas, opinions, and relationships is also parigraha.',
+      '<span class="emphasis">These five vows together form the foundation of right conduct. Ahimsa, satya, achaurya, brahmacharya, aparigraha — together they are the wheel that moves you toward moksha.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Ahimsa",
+    next_label: "Read next",
+    back_text: "Ahimsa",
+    next_title: "Panch Parmeshthi",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

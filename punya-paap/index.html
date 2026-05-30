@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>पुण्य आणि पाप — Jainverse</title>
+<meta name="description" content="चांगलं कर्म आणि वाईट कर्म — पण दोन्ही बंधनच आहेत. पुण्य आणि पापाचं खरं स्वरूप समजून घ्या.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+
+  .article {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 140px 28px 100px;
+  }
+
+  .page-header {
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--indigo);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  .header-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin-top: 28px;
+    opacity: 0.7;
+  }
+
+  .section { margin-bottom: 80px; position: relative; }
+
+  .section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: -12px;
+    user-select: none;
+  }
+
+  .section-question {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(24px, 3.5vw, 32px);
+    color: var(--indigo);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--text-secondary);
+  }
+
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 80px 0;
+    color: var(--sand-dark);
+    user-select: none;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark));
+  }
+
+  .section-divider::after {
+    background: linear-gradient(90deg, var(--sand-dark), transparent);
+  }
+
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+
+  .page-nav { display: flex; gap: 16px; margin-top: 80px; }
+
+  .prev-read {
+    flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px;
+    text-decoration: none; color: inherit; display: block; transition: all 0.3s;
+  }
+  .prev-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .prev-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--stone-light); margin-bottom: 8px; }
+  .prev-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .prev-read-title svg { width: 18px; height: 18px; color: var(--stone-light); transition: transform 0.3s; }
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+
+  .next-read {
+    flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px;
+    text-decoration: none; color: inherit; display: block; transition: all 0.3s;
+  }
+  .next-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .next-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--saffron); margin-bottom: 8px; }
+  .next-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .next-read-title svg { width: 18px; height: 18px; color: var(--saffron); transition: transform 0.3s; }
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+
+  .article-footer {
+    margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--sand-dark);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .article-footer .brand { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--stone); text-decoration: none; }
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; }
+    .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; }
+    .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; }
+    .section-divider { margin: 56px 0; }
+    .prev-read { padding: 22px 24px; }
+    .prev-read-title { font-size: 19px; }
+    .next-read { padding: 22px 24px; }
+    .next-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/ratnatraya/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <!-- Prev / Next -->
+  <div class="page-nav reveal">
+    <a href="/ratnatraya/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+    <a href="/ahimsa/" class="next-read">
+      <div class="next-read-label" data-i18n="next_label"></div>
+      <div class="next-read-title">
+        <span data-i18n="next_title"></span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "पुण्य आणि पाप",
+    page_subtitle: "चांगलं कर्म आणि वाईट कर्म — पण दोन्ही बंधनच",
+    s1_q: "कर्मात चांगलं-वाईट असं काही असतं का?",
+    s1_body: s([
+      'रत्नत्रय समजलं — मार्ग स्पष्ट झाला. पण रोजच्या जगण्यात एक प्रश्न येतोच: कुठली कृती चांगली आणि कुठली वाईट?',
+      'जैन तत्त्वज्ञानात कर्माचे दोन मुख्य प्रकार आहेत — <span class="term">पुण्य</span> आणि <span class="term">पाप</span>.',
+      '<span class="term">पाप</span> म्हणजे हिंसा, खोटं बोलणं, चोरी, लोभ — अशा कृतींमुळे आत्म्यावर विनाशकारी कर्म जमतं. याचा परिणाम दुःख, अडचणी, संकटं.',
+      '<span class="term">पुण्य</span> म्हणजे दान, दया, सेवा, सत्य — अशा कृतींमुळे शुभ कर्म जमतं. याचा परिणाम सुख, अनुकूल परिस्थिती, चांगले जन्म.',
+    ]),
+    s2_q: "मग पुण्य चांगलंच ना? जमवत राहायचं!",
+    s2_body: s([
+      'इथे जैन तत्त्वज्ञान एक वेगळी गोष्ट सांगतं जी अनेकांना अनपेक्षित वाटते.',
+      '<span class="emphasis">पुण्यसुद्धा बंधनच आहे.</span>',
+      'पुण्यामुळे सुख मिळतं — पण ते सुख आत्म्याला या जगात गुंतवून ठेवतं. सोन्याच्या पिंजऱ्यात बसलेला पक्षी — पिंजरा सुंदर आहे, पण तो बंदिस्तच आहे.',
+      'पापाचं बंधन लोखंडाचं — त्रासदायक. पुण्याचं बंधन सोन्याचं — सुखद. <span class="emphasis">पण दोन्ही बंधनंच आहेत. दोन्हींमुळे आत्मा अडकतो.</span>',
+    ]),
+    s3_q: "मग काय करायचं? पुण्यही करायचं नाही?",
+    s3_body: s([
+      'हा स्वाभाविक प्रश्न आहे. उत्तर सूक्ष्म आहे.',
+      'जोपर्यंत तुम्ही संसारात आहात — पाप टाळा आणि पुण्य करा. पापापेक्षा पुण्य निश्चितच चांगलं आहे. दुसऱ्यांना मदत करणं, दान देणं, सत्य बोलणं — हे सगळं योग्यच आहे.',
+      'पण हे समजून ठेवा — <span class="emphasis">अंतिम ध्येय पुण्य जमवणं नाही. अंतिम ध्येय सगळं कर्म — पुण्य आणि पाप दोन्ही — झटकणं आहे.</span>',
+      'पुण्य ही शिडी आहे — वर चढायला लागते. पण शिखरावर पोहोचल्यावर शिडीसुद्धा सोडायची असते.',
+    ]),
+    s4_q: "पुण्य कशामुळे जमतं?",
+    s4_body: s([
+      'जैन परंपरेत पुण्य बांधणारी नऊ कारणं सांगितली आहेत:',
+      'अन्न देणं (आहार दान). पाणी देणं (पानी दान). निवारा देणं (वस्त्र-आश्रय दान). औषध देणं.',
+      'सद्विचार, सद्वाणी, सद्कार्य.',
+      'भक्ती आणि नम्रता.',
+      '<span class="emphasis">पण लक्षात ठेवा — हे सगळं "आत्म्यासाठी चांगलं" या भावनेनं करा, पण त्यात अडकू नका. कर्तव्य करा, फळाची अपेक्षा सोडा.</span>',
+    ]),
+    s5_q: "पाप आणि पुण्याच्या पलीकडे",
+    s5_body: s([
+      'एक गोष्ट स्पष्ट आहे — सामान्य माणसासाठी पापापेक्षा पुण्य कधीही चांगलं. हे विसरू नका.',
+      'पण जैन तत्त्वज्ञानाचं खरं शिखर हे आहे — <span class="emphasis">शुभ-अशुभ दोन्ही ओलांडून शुद्ध अवस्थेत जाणं. जिथे आत्मा कशातच गुंतत नाही.</span>',
+      'हे सोपं नाही — म्हणूनच रत्नत्रय लागतं. श्रद्धा, ज्ञान, आचरण — या तिन्हींनी हळूहळू आत्मा शुद्ध होतो.',
+      'पुढच्या भागात बघू — सम्यक् चारित्राचं सगळ्यात मूलभूत तत्त्व कोणतं आहे.',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "रत्नत्रय",
+    next_label: "पुढे वाचा",
+    back_text: "रत्नत्रय",
+    next_title: "अहिंसा — जगण्याचा पाया",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "पुण्य और पाप",
+    page_subtitle: "अच्छा कर्म और बुरा कर्म — लेकिन दोनों बंधन ही हैं",
+    s1_q: "कर्म में अच्छा-बुरा कुछ होता है क्या?",
+    s1_body: s([
+      'रत्नत्रय समझ आया — रास्ता साफ़ हो गया. लेकिन रोज़मर्रा की ज़िंदगी में एक सवाल आता ही है: कौन सा काम अच्छा और कौन सा बुरा?',
+      'जैन दर्शन में कर्म के दो मुख्य प्रकार हैं — <span class="term">पुण्य</span> और <span class="term">पाप</span>.',
+      '<span class="term">पाप</span> मतलब हिंसा, झूठ, चोरी, लालच — ऐसे कामों से आत्मा पर विनाशकारी कर्म जमता है. इसका नतीजा दुख, मुश्किलें, संकट.',
+      '<span class="term">पुण्य</span> मतलब दान, दया, सेवा, सच — ऐसे कामों से शुभ कर्म जमता है. इसका नतीजा सुख, अनुकूल हालात, अच्छे जन्म.',
+    ]),
+    s2_q: "तो पुण्य अच्छा ही है ना? जमाते रहो!",
+    s2_body: s([
+      'यहाँ जैन दर्शन एक अलग बात कहता है जो बहुतों को चौंकाती है.',
+      '<span class="emphasis">पुण्य भी बंधन ही है.</span>',
+      'पुण्य से सुख मिलता है — लेकिन वो सुख आत्मा को इस दुनिया में उलझाए रखता है. सोने के पिंजरे में बैठा पंछी — पिंजरा ख़ूबसूरत है, लेकिन वो क़ैद में ही है.',
+      'पाप का बंधन लोहे का — तकलीफ़देह. पुण्य का बंधन सोने का — सुखद. <span class="emphasis">लेकिन दोनों बंधन ही हैं. दोनों से आत्मा फँसता है.</span>',
+    ]),
+    s3_q: "तो करें क्या? पुण्य भी न करें?",
+    s3_body: s([
+      'ये स्वाभाविक सवाल है. जवाब सूक्ष्म है.',
+      'जब तक तुम संसार में हो — पाप से बचो और पुण्य करो. पाप से पुण्य निश्चित ही बेहतर है. दूसरों की मदद करना, दान देना, सच बोलना — ये सब सही है.',
+      'लेकिन ये समझ कर रखो — <span class="emphasis">आख़िरी लक्ष्य पुण्य जमाना नहीं है. आख़िरी लक्ष्य सारा कर्म — पुण्य और पाप दोनों — छुड़ाना है.</span>',
+      'पुण्य सीढ़ी है — ऊपर चढ़ने के लिए ज़रूरी. लेकिन चोटी पर पहुँचकर सीढ़ी भी छोड़नी होती है.',
+    ]),
+    s4_q: "पुण्य किससे जमता है?",
+    s4_body: s([
+      'जैन परंपरा में पुण्य बाँधने के नौ कारण बताए गए हैं:',
+      'अन्न देना (आहार दान). पानी देना (पानी दान). आश्रय देना (वस्त्र-आश्रय दान). दवाई देना.',
+      'अच्छे विचार, अच्छी वाणी, अच्छे काम.',
+      'भक्ति और विनम्रता.',
+      '<span class="emphasis">लेकिन याद रखो — ये सब "आत्मा के लिए अच्छा है" इस भावना से करो, लेकिन इसमें उलझो मत. कर्तव्य करो, फल की उम्मीद छोड़ो.</span>',
+    ]),
+    s5_q: "पाप और पुण्य से परे",
+    s5_body: s([
+      'एक बात साफ़ है — आम इंसान के लिए पाप से पुण्य हमेशा बेहतर. ये मत भूलो.',
+      'लेकिन जैन दर्शन की असली चोटी ये है — <span class="emphasis">शुभ-अशुभ दोनों पार करके शुद्ध अवस्था में जाना. जहाँ आत्मा किसी चीज़ में उलझता ही नहीं.</span>',
+      'ये आसान नहीं — इसीलिए रत्नत्रय चाहिए. श्रद्धा, ज्ञान, आचरण — इन तीनों से धीरे-धीरे आत्मा शुद्ध होता है.',
+      'अगले हिस्से में देखेंगे — सम्यक् चारित्र का सबसे बुनियादी सिद्धांत कौन सा है.',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "रत्नत्रय",
+    next_label: "आगे पढ़ें",
+    back_text: "रत्नत्रय",
+    next_title: "अहिंसा — जीने का आधार",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Punya & Paap",
+    page_subtitle: "Good karma and bad karma — but both are bondage",
+    s1_q: "Is there really a good and bad in karma?",
+    s1_body: s([
+      'Ratnatraya made the path clear. But in everyday life, a question naturally arises: which actions are good and which are bad?',
+      'In Jain philosophy, karma has two main types — <span class="term">punya</span> (merit) and <span class="term">paap</span> (sin).',
+      '<span class="term">Paap</span> means violence, lying, stealing, greed — such actions attract destructive karma to the soul. The result: suffering, hardship, calamity.',
+      '<span class="term">Punya</span> means charity, compassion, service, truthfulness — such actions attract auspicious karma. The result: happiness, favorable circumstances, better births.',
+    ]),
+    s2_q: "So punya is good, right? Keep accumulating it!",
+    s2_body: s([
+      'Here Jain philosophy says something that surprises many people.',
+      '<span class="emphasis">Punya is also bondage.</span>',
+      'Punya brings happiness — but that happiness keeps the soul entangled in this world. A bird in a golden cage — the cage is beautiful, but the bird is still captive.',
+      'The bondage of paap is like iron chains — painful. The bondage of punya is like golden chains — pleasant. <span class="emphasis">But both are chains. Both keep the soul trapped.</span>',
+    ]),
+    s3_q: "So what do we do? Not even do good?",
+    s3_body: s([
+      'This is a natural question. The answer is nuanced.',
+      'As long as you are in the world — avoid paap and do punya. Punya is certainly better than paap. Helping others, giving charity, speaking truth — all of this is right.',
+      'But understand this — <span class="emphasis">the ultimate goal is not to accumulate punya. The ultimate goal is to shed all karma — both punya and paap.</span>',
+      'Punya is a ladder — you need it to climb. But once you reach the top, the ladder itself must be let go.',
+    ]),
+    s4_q: "What causes punya?",
+    s4_body: s([
+      'Jain tradition describes nine causes of punya:',
+      'Giving food. Giving water. Giving shelter and clothing. Giving medicine.',
+      'Good thoughts, good speech, good actions.',
+      'Devotion and humility.',
+      '<span class="emphasis">But remember — do all this knowing it\'s good for the soul, but don\'t cling to it. Do your duty, let go of attachment to results.</span>',
+    ]),
+    s5_q: "Beyond paap and punya",
+    s5_body: s([
+      'One thing is clear — for an ordinary person, punya is always better than paap. Don\'t forget this.',
+      'But the true summit of Jain philosophy is this — <span class="emphasis">transcending both good and bad to reach a state of purity. Where the soul is entangled in nothing at all.</span>',
+      'This is not easy — which is why ratnatraya is needed. Faith, knowledge, conduct — through these three, the soul gradually becomes pure.',
+      'In the next page, we\'ll explore the most fundamental principle of right conduct.',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Ratnatraya",
+    next_label: "Read next",
+    back_text: "Ratnatraya",
+    next_title: "Ahimsa — The foundation of living",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

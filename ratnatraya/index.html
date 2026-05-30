@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>रत्नत्रय — Jainverse</title>
+<meta name="description" content="मोक्षाचा मार्ग कोणता? सम्यक् दर्शन, सम्यक् ज्ञान, सम्यक् चारित्र — तीन रत्नं जी मुक्तीचा मार्ग दाखवतात.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+
+  .article {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 140px 28px 100px;
+  }
+
+  .page-header {
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--indigo);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  .header-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin-top: 28px;
+    opacity: 0.7;
+  }
+
+  .section {
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: -12px;
+    user-select: none;
+  }
+
+  .section-question {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(24px, 3.5vw, 32px);
+    color: var(--indigo);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--text-secondary);
+  }
+
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 80px 0;
+    color: var(--sand-dark);
+    user-select: none;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark));
+  }
+
+  .section-divider::after {
+    background: linear-gradient(90deg, var(--sand-dark), transparent);
+  }
+
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+
+  .page-nav {
+    display: flex;
+    gap: 16px;
+    margin-top: 80px;
+  }
+
+  .prev-read {
+    flex: 1;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .prev-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .prev-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: 8px;
+  }
+
+  .prev-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prev-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--stone-light);
+    transition: transform 0.3s;
+  }
+
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+
+  .next-read {
+    flex: 1;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .next-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .next-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 8px;
+  }
+
+  .next-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .next-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--saffron);
+    transition: transform 0.3s;
+  }
+
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+
+  .article-footer {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--sand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .article-footer .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--stone);
+    text-decoration: none;
+  }
+
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; }
+    .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; }
+    .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; }
+    .section-divider { margin: 56px 0; }
+    .prev-read { padding: 22px 24px; }
+    .prev-read-title { font-size: 19px; }
+    .next-read { padding: 22px 24px; }
+    .next-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/summary/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <!-- Prev / Next -->
+  <div class="page-nav reveal">
+    <a href="/summary/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+    <a href="/punya-paap/" class="next-read">
+      <div class="next-read-label" data-i18n="next_label"></div>
+      <div class="next-read-title">
+        <span data-i18n="next_title"></span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "रत्नत्रय",
+    page_subtitle: "मोक्षाचा मार्ग कोणता?",
+    s1_q: "मोक्ष समजला — पण तिथे पोहोचायचं कसं?",
+    s1_body: s([
+      'तुम्ही आता जाणता — आत्मा कर्माने झाकलेला आहे, आणि सगळं कर्म गेलं की मोक्ष.',
+      'पण हा प्रवास प्रत्यक्षात कसा करायचा? नुसतं समजून उपयोग नाही — मार्ग काय आहे?',
+      'जैन तत्त्वज्ञानात हा मार्ग तीन गोष्टींवर उभा आहे. या तिघांना <span class="term">रत्नत्रय</span> म्हणतात — तीन रत्नं.',
+      '<span class="emphasis">सम्यक् दर्शन, सम्यक् ज्ञान, आणि सम्यक् चारित्र — हे तिन्ही एकत्र आले तरच मार्ग खुला होतो.</span>',
+    ]),
+    s2_q: "सम्यक् दर्शन — आधी खात्री पटायला हवी",
+    s2_body: s([
+      'कुठलाही प्रवास सुरू करण्याआधी एक गोष्ट लागते — विश्वास. दिशा बरोबर आहे याची खात्री.',
+      '<span class="term">सम्यक् दर्शन</span> म्हणजे सत्याबद्दल योग्य श्रद्धा. आत्मा आहे, कर्म आहे, मोक्ष शक्य आहे — याबद्दल मनात स्पष्टता आणि खात्री असणं.',
+      'हे आंधळं विश्वास ठेवणं नाही. हे "कुणीतरी सांगितलं म्हणून मानतो" असं नाही.',
+      '<span class="emphasis">सम्यक् दर्शन म्हणजे स्वतः विचार करून, स्वतः तपासून सत्य स्वीकारणं. शंका विचारायला हरकत नाही — पण शेवटी स्पष्टता लागते.</span>',
+      'ही स्पष्टता नसेल तर ज्ञान नुसतं माहिती राहतं, आणि आचरण नुसती सवय.',
+    ]),
+    s3_q: "सम्यक् ज्ञान — नुसतं वाचणं पुरेसं नाही",
+    s3_body: s([
+      'श्रद्धा आली — आता समजून घ्यायला हवं.',
+      '<span class="term">सम्यक् ज्ञान</span> म्हणजे वस्तूंचं खरं स्वरूप जसं आहे तसं जाणणं. अर्धवट नाही, चुकीचं नाही, गैरसमजुतीवर आधारित नाही.',
+      'आत्मा काय आहे, कर्म कसं काम करतं, बंध कसा होतो, मोक्ष कसा मिळतो — हे सगळं नीट समजणं.',
+      'समजा कुणाला औषध हवंय पण आजार काय ते माहीतच नाही — औषध कसं निवडणार?',
+      '<span class="emphasis">सम्यक् ज्ञान हे योग्य निदान आहे. आजार कळला तरच उपचार बरोबर होतो.</span>',
+    ]),
+    s4_q: "सम्यक् चारित्र — शेवटी करायला हवं",
+    s4_body: s([
+      'खात्री आहे. समज आहे. पण प्रत्यक्षात काही केलं नाही तर?',
+      '<span class="term">सम्यक् चारित्र</span> म्हणजे योग्य आचरण — समजलेलं प्रत्यक्ष जगणं.',
+      'कषायांवर (क्रोध, मान, माया, लोभ) ताबा मिळवणं. हिंसा टाळणं — मनानं, वाणीनं, शरीरानं. इंद्रियांवर संयम ठेवणं.',
+      'नुसतं "मला माहीत आहे कर्म वाईट आहे" म्हणणं पुरेसं नाही — प्रत्यक्षात कर्म बांधणं थांबवायला हवं.',
+      '<span class="emphasis">सम्यक् चारित्र हे प्रत्यक्ष चालणं आहे. दर्शन म्हणजे दिशा, ज्ञान म्हणजे नकाशा, चारित्र म्हणजे पावलं टाकणं.</span>',
+    ]),
+    s5_q: "तिन्ही का लागतात?",
+    s5_body: s([
+      'एक-दोन रत्नं पुरेशी नाहीत का? नाही.',
+      'फक्त श्रद्धा पण ज्ञान नाही — तर अंधभक्ती होते. फक्त ज्ञान पण आचरण नाही — तर नुसती बौद्धिक कसरत. फक्त आचरण पण श्रद्धा-ज्ञान नाही — तर चुकीच्या दिशेने मेहनत.',
+      '<span class="emphasis">तिन्ही एकत्र लागतात — जसं तीन पायांचा स्टूल. एक काढला तर पडतो.</span>',
+      'रत्नत्रय हा मोक्षाचा मार्ग आहे. पुढच्या भागांमध्ये आपण बघू — या मार्गावर चालताना रोजच्या जगण्यात काय लागतं.',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "आज काय शिकलो?",
+    next_label: "पुढे वाचा",
+    back_text: "सारांश",
+    next_title: "पुण्य आणि पाप",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "रत्नत्रय",
+    page_subtitle: "मोक्ष का रास्ता कौन सा है?",
+    s1_q: "मोक्ष समझ आया — लेकिन वहाँ पहुँचें कैसे?",
+    s1_body: s([
+      'तुम अब जानते हो — आत्मा कर्म से ढका है, और सारा कर्म गया तो मोक्ष.',
+      'लेकिन ये सफ़र असल में करें कैसे? सिर्फ़ समझने से काम नहीं चलता — रास्ता क्या है?',
+      'जैन दर्शन में ये रास्ता तीन चीज़ों पर खड़ा है. इन तीनों को <span class="term">रत्नत्रय</span> कहते हैं — तीन रत्न.',
+      '<span class="emphasis">सम्यक् दर्शन, सम्यक् ज्ञान, और सम्यक् चारित्र — ये तीनों साथ आएँ तभी रास्ता खुलता है.</span>',
+    ]),
+    s2_q: "सम्यक् दर्शन — पहले यक़ीन होना चाहिए",
+    s2_body: s([
+      'कोई भी सफ़र शुरू करने से पहले एक चीज़ चाहिए — भरोसा. दिशा सही है इसका यक़ीन.',
+      '<span class="term">सम्यक् दर्शन</span> मतलब सत्य के बारे में सही श्रद्धा. आत्मा है, कर्म है, मोक्ष मुमकिन है — इसके बारे में मन में स्पष्टता और यक़ीन होना.',
+      'ये अंधा विश्वास नहीं है. ये "किसी ने बताया इसलिए मानता हूँ" नहीं है.',
+      '<span class="emphasis">सम्यक् दर्शन मतलब ख़ुद सोचकर, ख़ुद परखकर सत्य को स्वीकारना. सवाल पूछने में कोई हर्ज नहीं — लेकिन आख़िर में स्पष्टता ज़रूरी है.</span>',
+      'ये स्पष्टता न हो तो ज्ञान बस जानकारी रह जाती है, और आचरण बस आदत.',
+    ]),
+    s3_q: "सम्यक् ज्ञान — सिर्फ़ पढ़ना काफ़ी नहीं",
+    s3_body: s([
+      'श्रद्धा आ गई — अब समझना ज़रूरी है.',
+      '<span class="term">सम्यक् ज्ञान</span> मतलब चीज़ों का असली रूप जैसा है वैसा जानना. अधूरा नहीं, ग़लत नहीं, ग़लतफ़हमी पर आधारित नहीं.',
+      'आत्मा क्या है, कर्म कैसे काम करता है, बंध कैसे होता है, मोक्ष कैसे मिलता है — ये सब ठीक से समझना.',
+      'सोचो किसी को दवाई चाहिए लेकिन बीमारी क्या है ये पता ही नहीं — दवाई कैसे चुनेगा?',
+      '<span class="emphasis">सम्यक् ज्ञान सही निदान है. बीमारी पता चली तभी इलाज सही होता है.</span>',
+    ]),
+    s4_q: "सम्यक् चारित्र — आख़िर में करना भी ज़रूरी है",
+    s4_body: s([
+      'यक़ीन है. समझ है. लेकिन असल में कुछ किया नहीं तो?',
+      '<span class="term">सम्यक् चारित्र</span> मतलब सही आचरण — समझी हुई बात को असल में जीना.',
+      'कषायों पर (क्रोध, मान, माया, लोभ) काबू पाना. हिंसा से बचना — मन से, वाणी से, शरीर से. इंद्रियों पर संयम रखना.',
+      'सिर्फ़ "मुझे पता है कर्म बुरा है" कहना काफ़ी नहीं — असल में कर्म बाँधना रोकना होगा.',
+      '<span class="emphasis">सम्यक् चारित्र असल में चलना है. दर्शन मतलब दिशा, ज्ञान मतलब नक़्शा, चारित्र मतलब क़दम उठाना.</span>',
+    ]),
+    s5_q: "तीनों क्यों ज़रूरी हैं?",
+    s5_body: s([
+      'एक-दो रत्न काफ़ी नहीं हैं क्या? नहीं.',
+      'सिर्फ़ श्रद्धा लेकिन ज्ञान नहीं — तो अंधभक्ति हो जाती है. सिर्फ़ ज्ञान लेकिन आचरण नहीं — तो बस दिमाग़ी कसरत. सिर्फ़ आचरण लेकिन श्रद्धा-ज्ञान नहीं — तो ग़लत दिशा में मेहनत.',
+      '<span class="emphasis">तीनों साथ चाहिए — जैसे तीन पैर की स्टूल. एक निकालो तो गिर जाती है.</span>',
+      'रत्नत्रय मोक्ष का रास्ता है. आगे के हिस्सों में देखेंगे — इस राह पर चलते हुए रोज़मर्रा की ज़िंदगी में क्या करना होता है.',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "आज हमने क्या सीखा?",
+    next_label: "आगे पढ़ें",
+    back_text: "सारांश",
+    next_title: "पुण्य और पाप",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Ratnatraya",
+    page_subtitle: "What is the path to liberation?",
+    s1_q: "Moksha makes sense — but how do you actually get there?",
+    s1_body: s([
+      'You now know — the soul is covered by karma, and when all karma is shed, that\'s moksha.',
+      'But how do you actually walk this path? Understanding alone isn\'t enough — what\'s the way?',
+      'In Jain philosophy, this path stands on three things. Together they\'re called <span class="term">ratnatraya</span> — the three jewels.',
+      '<span class="emphasis">Right faith (samyak darshan), right knowledge (samyak gyan), and right conduct (samyak charitra) — all three together open the path.</span>',
+    ]),
+    s2_q: "Samyak Darshan — first, you need conviction",
+    s2_body: s([
+      'Before starting any journey, you need one thing — trust. Confidence that the direction is right.',
+      '<span class="term">Samyak darshan</span> means right faith in truth. The soul exists, karma exists, moksha is possible — having clarity and conviction about this.',
+      'This is not blind belief. It\'s not "someone told me so I accept it."',
+      '<span class="emphasis">Samyak darshan means thinking for yourself, examining for yourself, and then accepting the truth. Questions are fine — but eventually, clarity is needed.</span>',
+      'Without this clarity, knowledge stays mere information, and conduct stays mere habit.',
+    ]),
+    s3_q: "Samyak Gyan — reading alone isn\'t enough",
+    s3_body: s([
+      'Faith is there — now you need to understand.',
+      '<span class="term">Samyak gyan</span> means knowing things as they truly are. Not partially, not incorrectly, not based on misconceptions.',
+      'What the soul is, how karma works, how bondage happens, how moksha is attained — understanding all of this clearly.',
+      'Imagine someone needs medicine but doesn\'t even know what the illness is — how would they choose the right treatment?',
+      '<span class="emphasis">Samyak gyan is the correct diagnosis. Only when you know the disease can the cure be right.</span>',
+    ]),
+    s4_q: "Samyak Charitra — ultimately, you have to act",
+    s4_body: s([
+      'You have conviction. You have understanding. But what if you don\'t actually do anything?',
+      '<span class="term">Samyak charitra</span> means right conduct — living what you\'ve understood.',
+      'Gaining control over kashaya (anger, pride, deceit, greed). Avoiding violence — in thought, speech, and action. Exercising restraint over the senses.',
+      'Just saying "I know karma is bad" isn\'t enough — you actually have to stop binding new karma.',
+      '<span class="emphasis">Samyak charitra is the actual walking. Darshan is the direction, gyan is the map, charitra is taking the steps.</span>',
+    ]),
+    s5_q: "Why do you need all three?",
+    s5_body: s([
+      'Aren\'t one or two jewels enough? No.',
+      'Faith without knowledge — that\'s blind devotion. Knowledge without conduct — that\'s intellectual exercise. Conduct without faith and knowledge — that\'s effort in the wrong direction.',
+      '<span class="emphasis">You need all three together — like a three-legged stool. Remove one and it falls.</span>',
+      'Ratnatraya is the path to moksha. In the next pages, we\'ll explore what walking this path looks like in everyday life.',
+    ]),
+    prev_label: "Previous",
+    prev_title: "What We Learnt",
+    next_label: "Read next",
+    back_text: "Summary",
+    next_title: "Punya & Paap",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

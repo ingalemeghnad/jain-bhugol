@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>णमोकार मंत्र — Jainverse</title>
+<meta name="description" content="जैनांचा सर्वात महत्त्वाचा मंत्र — णमो अरिहंताणं, णमो सिद्धाणं... ओळीने ओळ अर्थ समजून घ्या.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830; --saffron-deep: #c45e1a; --saffron-light: #f4a560;
+    --indigo: #1a2744; --indigo-mid: #2a3d66; --indigo-light: #3d5a8a;
+    --gold: #c9a84c; --gold-light: #e4cf8a;
+    --sand: #f5f0e8; --sand-dark: #e8dfd0; --warm-white: #faf8f4;
+    --stone: #8c7e6a; --stone-light: #b0a48e;
+    --text: #2a2318; --text-secondary: #5c5246; --text-tertiary: #8a7e6e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; }
+  .topbar.scrolled { background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); padding: 13px 40px; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.25s; }
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+  .lang-switch { display: flex; align-items: center; border: 1px solid var(--sand-dark); border-radius: 20px; overflow: hidden; background: rgba(245, 240, 232, 0.6); }
+  .lang-btn { padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--text-tertiary); background: none; border: none; cursor: pointer; transition: all 0.25s; font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space: nowrap; }
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+  .article { max-width: 640px; margin: 0 auto; padding: 140px 28px 100px; }
+  .page-header { margin-bottom: 72px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.2s forwards; }
+  .page-header h1 { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: clamp(36px, 5vw, 52px); color: var(--indigo); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .page-header .subtitle { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style: italic; font-size: clamp(16px, 2vw, 20px); color: var(--stone); line-height: 1.4; }
+  .header-rule { width: 48px; height: 2px; background: var(--saffron); margin-top: 28px; opacity: 0.7; }
+  .section { margin-bottom: 80px; position: relative; }
+  .section-num { font-family: 'DM Serif Display', serif; font-size: 80px; color: var(--sand-dark); line-height: 1; margin-bottom: -12px; user-select: none; }
+  .section-question { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: clamp(24px, 3.5vw, 32px); color: var(--indigo); line-height: 1.25; margin-bottom: 28px; letter-spacing: -0.3px; }
+  .section-body { font-size: 17px; line-height: 2; color: var(--text-secondary); }
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+  .section-divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 80px 0; color: var(--sand-dark); user-select: none; }
+  .section-divider::before, .section-divider::after { content: ''; height: 1px; width: 40px; background: linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background: linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+
+  .mantra-block {
+    background: var(--sand);
+    border-radius: 12px;
+    padding: 36px 32px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .mantra-line {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 20px;
+    color: var(--indigo);
+    line-height: 2.2;
+    letter-spacing: 0.5px;
+  }
+
+  .page-nav { display: flex; gap: 16px; margin-top: 80px; }
+  .prev-read { flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px; text-decoration: none; color: inherit; display: block; transition: all 0.3s; }
+  .prev-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .prev-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--stone-light); margin-bottom: 8px; }
+  .prev-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .prev-read-title svg { width: 18px; height: 18px; color: var(--stone-light); transition: transform 0.3s; }
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+  .next-read { flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px; text-decoration: none; color: inherit; display: block; transition: all 0.3s; }
+  .next-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .next-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--saffron); margin-bottom: 8px; }
+  .next-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .next-read-title svg { width: 18px; height: 18px; color: var(--saffron); transition: transform 0.3s; }
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+  .article-footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--sand-dark); display: flex; align-items: center; justify-content: space-between; }
+  .article-footer .brand { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--stone); text-decoration: none; }
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; } .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; } .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; } .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; } .section-divider { margin: 56px 0; }
+    .mantra-block { padding: 28px 20px; }
+    .mantra-line { font-size: 17px; }
+    .prev-read { padding: 22px 24px; } .prev-read-title { font-size: 19px; }
+    .next-read { padding: 22px 24px; } .next-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/panch-parmeshthi/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+    <div class="mantra-block">
+      <div class="mantra-line">णमो अरिहंताणं</div>
+      <div class="mantra-line">णमो सिद्धाणं</div>
+      <div class="mantra-line">णमो आयरियाणं</div>
+      <div class="mantra-line">णमो उवज्झायाणं</div>
+      <div class="mantra-line">णमो लोए सव्व साहूणं</div>
+      <div class="mantra-line" style="margin-top: 16px;">एसो पंच णमोक्कारो</div>
+      <div class="mantra-line">सव्व पावप्पणासणो</div>
+      <div class="mantra-line">मंगलाणं च सव्वेसिं</div>
+      <div class="mantra-line">पढमं हवई मंगलं</div>
+    </div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <div class="page-nav reveal">
+    <a href="/panch-parmeshthi/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+    <a href="/summary-2/" class="next-read">
+      <div class="next-read-label" data-i18n="next_label"></div>
+      <div class="next-read-title">
+        <span data-i18n="next_title"></span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "णमोकार मंत्र",
+    page_subtitle: "जैनांचा सर्वात पवित्र मंत्र",
+    s1_q: "हा मंत्र काय आहे?",
+    s1_body: s([
+      'पंच परमेष्ठी समजले — पाच सर्वोच्च आदर्श. आता त्यांना वंदन कसं करायचं?',
+      '<span class="term">णमोकार मंत्र</span> (नवकार मंत्र) हा जैन परंपरेतला सगळ्यात महत्त्वाचा मंत्र आहे. हा प्रार्थनेचा पाया आहे.',
+      'हा मंत्र प्राकृत भाषेत आहे — अर्धमागधी, जैन शास्त्रांची भाषा. पाच ओळी, पाच परमेष्ठींना वंदन:',
+    ]),
+    s2_q: "ओळीने ओळ — अर्थ काय?",
+    s2_body: s([
+      '<span class="term">णमो अरिहंताणं</span> — अरिहंतांना नमस्कार. ज्यांनी घातिया कर्म नष्ट केलं, शरीरात असूनही केवलज्ञानी.',
+      '<span class="term">णमो सिद्धाणं</span> — सिद्धांना नमस्कार. ज्यांचं सगळं कर्म संपलं, शरीरही सुटलं, कायमचे मुक्त.',
+      '<span class="term">णमो आयरियाणं</span> — आचार्यांना नमस्कार. संघाचे प्रमुख, मार्गदर्शक.',
+      '<span class="term">णमो उवज्झायाणं</span> — उपाध्यायांना नमस्कार. शास्त्रांचे अध्यापक, ज्ञानाचे वाहक.',
+      '<span class="term">णमो लोए सव्व साहूणं</span> — जगातल्या सगळ्या साधूंना नमस्कार. ज्यांनी सगळं सोडून मोक्षमार्ग धरला.',
+      'या पाच वंदनानंतर शेवटच्या चार ओळी सांगतात:',
+      '<span class="emphasis">एसो पंच णमोक्कारो, सव्व पावप्पणासणो</span> — हा पंचनमस्कार सगळ्या पापांचा नाश करणारा आहे.',
+      '<span class="emphasis">मंगलाणं च सव्वेसिं, पढमं हवई मंगलं</span> — सगळ्या मंगलांमध्ये हा सर्वात पहिलं मंगल आहे.',
+    ]),
+    s3_q: "यात कुणाचं नाव का नाही?",
+    s3_body: s([
+      'हा मंत्र महावीरांचा नाही. ऋषभदेवांचा नाही. कुठल्याही एका व्यक्तीचा नाही.',
+      '<span class="emphasis">णमोकार मंत्र गुणांना वंदन करतो — व्यक्तींना नाही.</span>',
+      'कुठल्याही काळातले अरिहंत — त्यांचे गुण तेच. कुठल्याही देशातले सिद्ध — त्यांचा मोक्ष तोच.',
+      'म्हणून हा मंत्र शाश्वत आहे — काळ बदलला तरी मंत्र बदलत नाही. कारण गुण कधी बदलत नाहीत.',
+    ]),
+    s4_q: "हा मंत्र काही मागतो का?",
+    s4_body: s([
+      'नाही. हा मंत्र कुठलीही मागणी करत नाही.',
+      'इथे "मला पैसे दे", "माझं आजारपण बरं कर", "माझ्या शत्रूचा नाश कर" — असं काहीही नाही.',
+      '<span class="emphasis">णमोकार मंत्र म्हणजे शुद्ध वंदन — "मी तुमच्या गुणांसमोर नतमस्तक आहे." बस.</span>',
+      'यातून काय मिळतं? कुणाकडून काही मिळत नाही — पण तुमच्या स्वतःच्या मनात गुणांबद्दल आदर जागतो, कषायं शांत होतात, आत्मा शुद्ध होतो.',
+      'णमोकार मंत्र बाहेरून मदत मागणं नाही — आतून स्वतःला बदलणं आहे.',
+    ]),
+    s5_q: "संपूर्ण सुरुवातीच्या प्रवासाचा शेवट",
+    s5_body: s([
+      'तुम्ही आता एक संपूर्ण वर्तुळ पूर्ण केलंय:',
+      'मी कोण (जीव) → माझ्याशिवाय काय (अजीव) → कर्म कसं काम करतं → कषाय → बंध → संवर-निर्जरा → मोक्ष.',
+      'मग: मार्ग (रत्नत्रय) → चांगलं-वाईट (पुण्य-पाप) → मूलतत्त्व (अहिंसा) → आचरण (पाच व्रतं) → आदर्श (पंच परमेष्ठी) → वंदन (णमोकार मंत्र).',
+      '<span class="emphasis">ही सुरुवात आहे — पण खूप भक्कम सुरुवात. जैन तत्त्वज्ञानाचा पाया तुम्ही आता समजता.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "पंच परमेष्ठी",
+    next_label: "पुढील पाऊल",
+    back_text: "पंच परमेष्ठी",
+    next_title: "संपूर्ण सारांश",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "णमोकार मंत्र",
+    page_subtitle: "जैनों का सबसे पवित्र मंत्र",
+    s1_q: "ये मंत्र क्या है?",
+    s1_body: s([
+      'पंच परमेष्ठी समझ आए — पाँच सर्वोच्च आदर्श. अब उन्हें वंदन कैसे करें?',
+      '<span class="term">णमोकार मंत्र</span> (नवकार मंत्र) जैन परंपरा का सबसे अहम मंत्र है. ये प्रार्थना की बुनियाद है.',
+      'ये मंत्र प्राकृत भाषा में है — अर्धमागधी, जैन शास्त्रों की भाषा. पाँच पंक्तियाँ, पाँच परमेष्ठियों को वंदन:',
+    ]),
+    s2_q: "पंक्ति दर पंक्ति — मतलब क्या?",
+    s2_body: s([
+      '<span class="term">णमो अरिहंताणं</span> — अरिहंतों को नमस्कार. जिन्होंने घातिया कर्म नष्ट किया, शरीर में रहते हुए भी केवलज्ञानी.',
+      '<span class="term">णमो सिद्धाणं</span> — सिद्धों को नमस्कार. जिनका सारा कर्म ख़त्म, शरीर भी छूटा, हमेशा के लिए मुक्त.',
+      '<span class="term">णमो आयरियाणं</span> — आचार्यों को नमस्कार. संघ के प्रमुख, मार्गदर्शक.',
+      '<span class="term">णमो उवज्झायाणं</span> — उपाध्यायों को नमस्कार. शास्त्रों के अध्यापक, ज्ञान के वाहक.',
+      '<span class="term">णमो लोए सव्व साहूणं</span> — दुनिया के सभी साधुओं को नमस्कार. जिन्होंने सब छोड़कर मोक्षमार्ग अपनाया.',
+      'इन पाँच वंदन के बाद आख़िरी चार पंक्तियाँ कहती हैं:',
+      '<span class="emphasis">एसो पंच णमोक्कारो, सव्व पावप्पणासणो</span> — ये पंचनमस्कार सारे पापों का नाश करने वाला है.',
+      '<span class="emphasis">मंगलाणं च सव्वेसिं, पढमं हवई मंगलं</span> — सारे मंगलों में ये सबसे पहला मंगल है.',
+    ]),
+    s3_q: "इसमें किसी का नाम क्यों नहीं?",
+    s3_body: s([
+      'ये मंत्र महावीर का नहीं. ऋषभदेव का नहीं. किसी एक व्यक्ति का नहीं.',
+      '<span class="emphasis">णमोकार मंत्र गुणों को वंदन करता है — व्यक्तियों को नहीं.</span>',
+      'किसी भी काल के अरिहंत — उनके गुण वही. किसी भी देश के सिद्ध — उनका मोक्ष वही.',
+      'इसलिए ये मंत्र शाश्वत है — वक़्त बदला तो भी मंत्र नहीं बदलता. क्योंकि गुण कभी नहीं बदलते.',
+    ]),
+    s4_q: "ये मंत्र कुछ माँगता है क्या?",
+    s4_body: s([
+      'नहीं. ये मंत्र कोई माँग नहीं करता.',
+      'यहाँ "मुझे पैसे दो", "मेरी बीमारी ठीक करो", "मेरे दुश्मन को ख़त्म करो" — ऐसा कुछ नहीं.',
+      '<span class="emphasis">णमोकार मंत्र मतलब शुद्ध वंदन — "मैं आपके गुणों के सामने नतमस्तक हूँ." बस.</span>',
+      'इससे क्या मिलता है? किसी से कुछ नहीं मिलता — लेकिन तुम्हारे अपने मन में गुणों के प्रति आदर जागता है, कषायें शांत होती हैं, आत्मा शुद्ध होता है.',
+      'णमोकार मंत्र बाहर से मदद माँगना नहीं — अंदर से ख़ुद को बदलना है.',
+    ]),
+    s5_q: "पूरे शुरुआती सफ़र का अंत",
+    s5_body: s([
+      'तुमने अब एक पूरा चक्र पूरा किया है:',
+      'मैं कौन (जीव) → मेरे अलावा क्या (अजीव) → कर्म कैसे काम करता है → कषाय → बंध → संवर-निर्जरा → मोक्ष.',
+      'फिर: रास्ता (रत्नत्रय) → अच्छा-बुरा (पुण्य-पाप) → बुनियादी सिद्धांत (अहिंसा) → आचरण (पाँच व्रत) → आदर्श (पंच परमेष्ठी) → वंदन (णमोकार मंत्र).',
+      '<span class="emphasis">ये शुरुआत है — लेकिन बहुत मज़बूत शुरुआत. जैन दर्शन की बुनियाद तुम अब समझते हो.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "पंच परमेष्ठी",
+    next_label: "अगला कदम",
+    back_text: "पंच परमेष्ठी",
+    next_title: "संपूर्ण सारांश",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Namokar Mantra",
+    page_subtitle: "The most sacred Jain mantra",
+    s1_q: "What is this mantra?",
+    s1_body: s([
+      'You understood the panch parmeshthi — five supreme ideals. Now how do we pay reverence to them?',
+      'The <span class="term">Namokar Mantra</span> (also called Navkar Mantra) is the most important mantra in the Jain tradition. It is the foundation of Jain prayer.',
+      'The mantra is in Prakrit — Ardhamagadhi, the language of Jain scriptures. Five lines, paying homage to the five parmeshthi:',
+    ]),
+    s2_q: "Line by line — what does it mean?",
+    s2_body: s([
+      '<span class="term">Namo Arihantanam</span> — I bow to the Arihants. Those who destroyed destructive karma, omniscient while still embodied.',
+      '<span class="term">Namo Siddhanam</span> — I bow to the Siddhas. Those whose all karma is shed, body released, eternally liberated.',
+      '<span class="term">Namo Ayariyanam</span> — I bow to the Acharyas. The heads of the monastic community, the guides.',
+      '<span class="term">Namo Uvajjhayanam</span> — I bow to the Upadhyays. The teachers of scripture, carriers of knowledge.',
+      '<span class="term">Namo Loe Savva Sahunam</span> — I bow to all the monks in the world. Those who renounced everything and chose the path to moksha.',
+      'After these five salutations, the final four lines declare:',
+      '<span class="emphasis">Eso Panch Namokkaro, Savva Pavappanasano</span> — This fivefold salutation destroys all sins.',
+      '<span class="emphasis">Mangalanam cha Savvesim, Padhamam Havai Mangalam</span> — Of all auspicious things, this is the most auspicious.',
+    ]),
+    s3_q: "Why does it name no one?",
+    s3_body: s([
+      'This mantra is not Mahavir\'s. Not Rishabhdeva\'s. Not any one person\'s.',
+      '<span class="emphasis">The Namokar Mantra bows to qualities — not to individuals.</span>',
+      'An arihant from any era — their qualities are the same. A siddha from any land — their moksha is the same.',
+      'That\'s why this mantra is eternal — time changes, but the mantra doesn\'t. Because qualities never change.',
+    ]),
+    s4_q: "Does this mantra ask for anything?",
+    s4_body: s([
+      'No. This mantra makes no requests.',
+      'There is no "give me wealth," "cure my illness," "destroy my enemy" — nothing like that.',
+      '<span class="emphasis">The Namokar Mantra is pure reverence — "I bow before your qualities." That\'s it.</span>',
+      'What do you gain from it? Nothing from anyone else — but within your own mind, respect for these qualities awakens, kashaya quiets down, the soul purifies.',
+      'The Namokar Mantra is not asking for external help — it is changing yourself from within.',
+    ]),
+    s5_q: "The end of the beginner\'s journey",
+    s5_body: s([
+      'You\'ve now completed a full circle:',
+      'Who am I (jiva) → what\'s not me (ajiva) → how karma works → kashaya → bondage → samvar-nirjara → moksha.',
+      'Then: the path (ratnatraya) → good and bad (punya-paap) → core principle (ahimsa) → practice (five vows) → ideals (panch parmeshthi) → reverence (namokar mantra).',
+      '<span class="emphasis">This is a beginning — but a very strong one. You now understand the foundation of Jain philosophy.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Panch Parmeshthi",
+    next_label: "Final Step",
+    back_text: "Panch Parmeshthi",
+    next_title: "Complete Summary",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

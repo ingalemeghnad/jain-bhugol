@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>अहिंसा — Jainverse</title>
+<meta name="description" content="जैन तत्त्वज्ञानाचं सगळ्यात मूलभूत तत्त्व — अहिंसा. फक्त शारीरिक नाही, मनानं आणि वाणीनंसुद्धा.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 40px; display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06); padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500;
+    color: var(--text-secondary); text-decoration: none; transition: color 0.25s;
+  }
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex; align-items: center; border: 1px solid var(--sand-dark);
+    border-radius: 20px; overflow: hidden; background: rgba(245, 240, 232, 0.6);
+  }
+  .lang-btn {
+    padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--text-tertiary);
+    background: none; border: none; cursor: pointer; transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space: nowrap;
+  }
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+
+  .article { max-width: 640px; margin: 0 auto; padding: 140px 28px 100px; }
+
+  .page-header {
+    margin-bottom: 72px; opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px); color: var(--indigo); line-height: 1.15;
+    letter-spacing: -0.5px; margin-bottom: 12px;
+  }
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style: italic;
+    font-size: clamp(16px, 2vw, 20px); color: var(--stone); line-height: 1.4;
+  }
+  .header-rule { width: 48px; height: 2px; background: var(--saffron); margin-top: 28px; opacity: 0.7; }
+
+  .section { margin-bottom: 80px; position: relative; }
+  .section-num {
+    font-family: 'DM Serif Display', serif; font-size: 80px; color: var(--sand-dark);
+    line-height: 1; margin-bottom: -12px; user-select: none;
+  }
+  .section-question {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(24px, 3.5vw, 32px); color: var(--indigo); line-height: 1.25;
+    margin-bottom: 28px; letter-spacing: -0.3px;
+  }
+  .section-body { font-size: 17px; line-height: 2; color: var(--text-secondary); }
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+
+  .section-divider {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    margin: 80px 0; color: var(--sand-dark); user-select: none;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; height: 1px; width: 40px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark));
+  }
+  .section-divider::after { background: linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+
+  .page-nav { display: flex; gap: 16px; margin-top: 80px; }
+  .prev-read {
+    flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px;
+    text-decoration: none; color: inherit; display: block; transition: all 0.3s;
+  }
+  .prev-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .prev-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--stone-light); margin-bottom: 8px; }
+  .prev-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .prev-read-title svg { width: 18px; height: 18px; color: var(--stone-light); transition: transform 0.3s; }
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+
+  .next-read {
+    flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px;
+    text-decoration: none; color: inherit; display: block; transition: all 0.3s;
+  }
+  .next-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .next-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--saffron); margin-bottom: 8px; }
+  .next-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .next-read-title svg { width: 18px; height: 18px; color: var(--saffron); transition: transform 0.3s; }
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+
+  .article-footer {
+    margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--sand-dark);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .article-footer .brand { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--stone); text-decoration: none; }
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; }
+    .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; }
+    .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; }
+    .section-divider { margin: 56px 0; }
+    .prev-read { padding: 22px 24px; }
+    .prev-read-title { font-size: 19px; }
+    .next-read { padding: 22px 24px; }
+    .next-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/punya-paap/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <div class="page-nav reveal">
+    <a href="/punya-paap/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+    <a href="/panch-mahavrat/" class="next-read">
+      <div class="next-read-label" data-i18n="next_label"></div>
+      <div class="next-read-title">
+        <span data-i18n="next_title"></span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "अहिंसा",
+    page_subtitle: "सगळ्यात मूलभूत तत्त्व",
+    s1_q: "सम्यक् चारित्राची सुरुवात कुठून?",
+    s1_body: s([
+      'रत्नत्रय सांगतं — योग्य आचरण हवं. पुण्य-पापावरून कळलं — कृतींना परिणाम आहेत.',
+      'पण सगळ्या नीतीच्या तत्त्वांमध्ये सगळ्यात मूलभूत, सगळ्यात पहिलं तत्त्व कोणतं?',
+      '<span class="term">अहिंसा</span> — कुठल्याही जीवाला दुखवू नका.',
+      '<span class="emphasis">जैन तत्त्वज्ञानात अहिंसा हे फक्त एक नियम नाही — हे संपूर्ण नीतीचं मूळ आहे. बाकी सगळे नियम यातूनच निघतात.</span>',
+    ]),
+    s2_q: "अहिंसा म्हणजे नक्की काय?",
+    s2_body: s([
+      'अहिंसा म्हणजे फक्त "कुणाला मारू नका" एवढं नाही. जैन दृष्टीनं अहिंसा तीन पातळ्यांवर आहे:',
+      '<span class="emphasis">शरीरानं</span> — कुठल्याही जीवाला शारीरिक इजा करणं, मारणं, त्रास देणं.',
+      '<span class="emphasis">वाणीनं</span> — कठोर बोलणं, खोटं बोलणं, कुणाचा अपमान करणं, भांडण लावणं.',
+      '<span class="emphasis">मनानं</span> — कुणाबद्दल वाईट विचार करणं, कुणाचं वाईट व्हावं असं इच्छिणं, रागानं जळणं.',
+      '<span class="emphasis">तिन्ही पातळ्यांवर — स्वतः करणं, दुसऱ्याकडून करवणं, किंवा कुणी करत असेल तर त्याला मान्यता देणं — हे सगळं हिंसा आहे.</span>',
+    ]),
+    s3_q: "प्रत्येक जीवात आत्मा — म्हणूनच अहिंसा",
+    s3_body: s([
+      'अहिंसा फक्त "चांगली गोष्ट" म्हणून पाळायची नाही. त्यामागे एक खोल कारण आहे.',
+      'जैन तत्त्वज्ञान सांगतं — <span class="emphasis">प्रत्येक जीवात आत्मा आहे. मुंगी, माशी, झाड, माणूस — सगळ्यांमध्ये तोच चैतन्याचा गुण आहे.</span>',
+      'फरक फक्त इंद्रियांचा आहे. एकेंद्रिय जीव (वनस्पती) ते पंचेंद्रिय जीव (माणूस, प्राणी) — सगळ्यांचा आत्मा मोक्षाच्या क्षमतेने भरलेला आहे.',
+      'म्हणून कुठल्याही जीवाला दुखवणं म्हणजे तुमच्यासारख्याच एका आत्म्याला दुखवणं.',
+      '<span class="emphasis">अहिंसा ही करुणा नाही फक्त — ती सत्याची ओळख आहे. प्रत्येक जीव तुमच्याइतकाच महत्त्वाचा आहे.</span>',
+    ]),
+    s4_q: "म्हणूनच जैन शाकाहारी आहेत?",
+    s4_body: s([
+      'हो — पण ते फक्त सुरुवात आहे.',
+      'प्राण्यांना मारून खाणं ही स्पष्ट हिंसा आहे — म्हणून जैन मांसाहार टाळतात.',
+      'पण जैन परंपरा आणखी पुढे जाते — कांदा, लसूण, बटाटे यांसारखी कंदमुळं टाळतात कारण ते उपटताना अनेक सूक्ष्म जीव मरतात.',
+      'जैन मुनी पायानं चालताना झाडू मारतात — जमिनीवरच्या जीवांना इजा होऊ नये म्हणून. रात्री जेवत नाहीत — अंधारात अन्नावर किडे बसू शकतात.',
+      '<span class="emphasis">हे टोकाचं वाटू शकतं — पण मूळ तत्त्व सोपं आहे: जेवढी हिंसा टाळता येईल तेवढी टाळा. तुमच्या क्षमतेनुसार.</span>',
+    ]),
+    s5_q: "मनातली हिंसा सगळ्यात खोल",
+    s5_body: s([
+      'शारीरिक हिंसा दिसते. शाब्दिक हिंसा ऐकू येते. पण मानसिक हिंसा? ती फक्त तुम्हालाच माहीत.',
+      'कुणाबद्दल जळणं, सूड घ्यायचा विचार करणं, कुणाचं नुकसान व्हावं असं इच्छिणं — हे सगळं कर्म बांधतं.',
+      '<span class="emphasis">जैन तत्त्वज्ञानात मनातला हेतू (भाव) सगळ्यात महत्त्वाचा आहे. कृती तीच असेल पण भाव वेगळा असेल तर कर्मबंध वेगळा.</span>',
+      'म्हणूनच अहिंसा बाहेरून सुरू होते — पण खरी अहिंसा आतून यायला हवी.',
+      'पुढच्या भागात बघू — अहिंसा आणि बाकी तत्त्वांना एकत्र आणून रोजच्या जगण्यासाठी कोणती व्रतं दिली आहेत.',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "पुण्य आणि पाप",
+    next_label: "पुढे वाचा",
+    back_text: "पुण्य-पाप",
+    next_title: "पाच महाव्रत",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "अहिंसा",
+    page_subtitle: "सबसे बुनियादी सिद्धांत",
+    s1_q: "सम्यक् चारित्र की शुरुआत कहाँ से?",
+    s1_body: s([
+      'रत्नत्रय कहता है — सही आचरण चाहिए. पुण्य-पाप से पता चला — कामों के नतीजे होते हैं.',
+      'लेकिन सारे नैतिक सिद्धांतों में सबसे बुनियादी, सबसे पहला सिद्धांत कौन सा है?',
+      '<span class="term">अहिंसा</span> — किसी भी जीव को मत दुखाओ.',
+      '<span class="emphasis">जैन दर्शन में अहिंसा सिर्फ़ एक नियम नहीं — ये पूरी नैतिकता की जड़ है. बाक़ी सारे नियम इसी से निकलते हैं.</span>',
+    ]),
+    s2_q: "अहिंसा का मतलब असल में क्या है?",
+    s2_body: s([
+      'अहिंसा मतलब सिर्फ़ "किसी को मत मारो" इतना नहीं. जैन नज़रिए से अहिंसा तीन स्तरों पर है:',
+      '<span class="emphasis">शरीर से</span> — किसी भी जीव को शारीरिक नुक़सान पहुँचाना, मारना, तकलीफ़ देना.',
+      '<span class="emphasis">वाणी से</span> — कड़वा बोलना, झूठ बोलना, किसी का अपमान करना, झगड़ा लगाना.',
+      '<span class="emphasis">मन से</span> — किसी के बारे में बुरा सोचना, किसी का बुरा हो ऐसी इच्छा रखना, ग़ुस्से से जलना.',
+      '<span class="emphasis">तीनों स्तरों पर — ख़ुद करना, दूसरे से करवाना, या कोई कर रहा हो तो उसे मान्यता देना — ये सब हिंसा है.</span>',
+    ]),
+    s3_q: "हर जीव में आत्मा — इसीलिए अहिंसा",
+    s3_body: s([
+      'अहिंसा सिर्फ़ "अच्छी बात" कहकर नहीं पालनी. इसके पीछे एक गहरा कारण है.',
+      'जैन दर्शन कहता है — <span class="emphasis">हर जीव में आत्मा है. चींटी, मक्खी, पेड़, इंसान — सबमें वही चेतना का गुण है.</span>',
+      'फ़र्क़ सिर्फ़ इंद्रियों का है. एकेंद्रिय जीव (वनस्पति) से पंचेंद्रिय जीव (इंसान, जानवर) तक — सबकी आत्मा मोक्ष की क्षमता लिए हुई है.',
+      'इसलिए किसी भी जीव को दुखाना मतलब तुम्हारे जैसी ही एक आत्मा को दुखाना.',
+      '<span class="emphasis">अहिंसा सिर्फ़ करुणा नहीं — ये सत्य की पहचान है. हर जीव तुम्हारे जितना ही अहम है.</span>',
+    ]),
+    s4_q: "इसीलिए जैन शाकाहारी हैं?",
+    s4_body: s([
+      'हाँ — लेकिन ये बस शुरुआत है.',
+      'जानवरों को मारकर खाना साफ़ हिंसा है — इसलिए जैन माँसाहार नहीं करते.',
+      'लेकिन जैन परंपरा और आगे जाती है — प्याज़, लहसुन, आलू जैसे कंदमूल टाले जाते हैं क्योंकि उन्हें उखाड़ते वक़्त कई सूक्ष्म जीव मरते हैं.',
+      'जैन मुनि चलते वक़्त झाड़ू लगाते हैं — ज़मीन के जीवों को नुक़सान न हो इसलिए. रात को नहीं खाते — अँधेरे में खाने पर कीड़े बैठ सकते हैं.',
+      '<span class="emphasis">ये ज़्यादा लग सकता है — लेकिन बुनियादी बात सीधी है: जितनी हिंसा बचा सकते हो बचाओ. अपनी क्षमता के अनुसार.</span>',
+    ]),
+    s5_q: "मन की हिंसा सबसे गहरी",
+    s5_body: s([
+      'शारीरिक हिंसा दिखती है. शाब्दिक हिंसा सुनाई देती है. लेकिन मानसिक हिंसा? वो सिर्फ़ तुम्हें पता.',
+      'किसी से जलना, बदला लेने का सोचना, किसी का नुक़सान हो ऐसी इच्छा रखना — ये सब कर्म बाँधता है.',
+      '<span class="emphasis">जैन दर्शन में मन का भाव सबसे अहम है. क्रिया एक हो लेकिन भाव अलग हो तो कर्मबंध अलग.</span>',
+      'इसीलिए अहिंसा बाहर से शुरू होती है — लेकिन असली अहिंसा अंदर से आनी चाहिए.',
+      'अगले हिस्से में देखेंगे — अहिंसा और बाक़ी सिद्धांतों को मिलाकर रोज़ की ज़िंदगी के लिए कौन से व्रत दिए गए हैं.',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "पुण्य और पाप",
+    next_label: "आगे पढ़ें",
+    back_text: "पुण्य-पाप",
+    next_title: "पाँच महाव्रत",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Ahimsa",
+    page_subtitle: "The most fundamental principle",
+    s1_q: "Where does right conduct begin?",
+    s1_body: s([
+      'Ratnatraya tells us — right conduct is needed. From punya and paap, we learned — actions have consequences.',
+      'But among all ethical principles, which is the most fundamental, the very first?',
+      '<span class="term">Ahimsa</span> — do not harm any living being.',
+      '<span class="emphasis">In Jain philosophy, ahimsa is not just one rule — it is the root of all ethics. Every other principle flows from it.</span>',
+    ]),
+    s2_q: "What does ahimsa actually mean?",
+    s2_body: s([
+      'Ahimsa doesn\'t just mean "don\'t kill." In the Jain view, ahimsa operates on three levels:',
+      '<span class="emphasis">Body</span> — physically harming, killing, or causing pain to any living being.',
+      '<span class="emphasis">Speech</span> — speaking harshly, lying, insulting someone, inciting conflict.',
+      '<span class="emphasis">Mind</span> — thinking ill of someone, wishing harm on them, burning with anger.',
+      '<span class="emphasis">On all three levels — doing it yourself, getting someone else to do it, or approving of someone doing it — all of this is himsa (violence).</span>',
+    ]),
+    s3_q: "Every being has a soul — that\'s why ahimsa",
+    s3_body: s([
+      'Ahimsa isn\'t practiced just because it\'s "a good thing." There\'s a deep reason behind it.',
+      'Jain philosophy says — <span class="emphasis">every living being has a soul. An ant, a fly, a tree, a human — all share the same quality of consciousness.</span>',
+      'The difference is only in the number of senses. From one-sensed beings (plants) to five-sensed beings (humans, animals) — every soul carries the capacity for moksha.',
+      'So harming any being means harming a soul just like yours.',
+      '<span class="emphasis">Ahimsa is not just compassion — it is recognition of truth. Every being matters as much as you do.</span>',
+    ]),
+    s4_q: "Is that why Jains are vegetarian?",
+    s4_body: s([
+      'Yes — but that\'s just the beginning.',
+      'Killing animals for food is obvious violence — so Jains avoid meat.',
+      'But the Jain tradition goes further — root vegetables like onions, garlic, and potatoes are avoided because uprooting them destroys many microscopic organisms.',
+      'Jain monks sweep the ground as they walk — so they don\'t step on tiny creatures. They don\'t eat after dark — because insects might land on the food in darkness.',
+      '<span class="emphasis">This might seem extreme — but the core principle is simple: avoid as much violence as you can. According to your capacity.</span>',
+    ]),
+    s5_q: "Violence of the mind is the deepest",
+    s5_body: s([
+      'Physical violence is visible. Verbal violence can be heard. But mental violence? Only you know about it.',
+      'Burning with jealousy, thinking of revenge, wishing someone harm — all of this binds karma.',
+      '<span class="emphasis">In Jain philosophy, the intention (bhav) behind an action matters most. The same action with different intention creates different karma.</span>',
+      'That\'s why ahimsa begins on the outside — but true ahimsa must come from within.',
+      'In the next page, we\'ll see how ahimsa and other principles come together as practical vows for daily living.',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Punya & Paap",
+    next_label: "Read next",
+    back_text: "Punya-Paap",
+    next_title: "The Five Vows",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
