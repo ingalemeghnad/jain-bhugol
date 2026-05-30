@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>जैन धर्म म्हणजे काय? — Jainverse</title>
+<meta name="description" content="जैन धर्माची सोप्या भाषेत ओळख — तीर्थंकर, अहिंसा, आणि आत्म्याचा मार्ग.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830;
+    --saffron-deep: #c45e1a;
+    --saffron-light: #f4a560;
+    --indigo: #1a2744;
+    --indigo-mid: #2a3d66;
+    --indigo-light: #3d5a8a;
+    --gold: #c9a84c;
+    --gold-light: #e4cf8a;
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfd0;
+    --warm-white: #faf8f4;
+    --stone: #8c7e6a;
+    --stone-light: #b0a48e;
+    --text: #2a2318;
+    --text-secondary: #5c5246;
+    --text-tertiary: #8a7e6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  /* ---- Top bar ---- */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+  }
+
+  .topbar.scrolled {
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    padding: 13px 40px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .back-link:hover { color: var(--saffron-deep); }
+
+  .back-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.25s;
+  }
+
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--sand-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(245, 240, 232, 0.6);
+  }
+
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover { color: var(--text-secondary); }
+
+  .lang-btn.active {
+    background: var(--indigo);
+    color: var(--sand);
+    font-weight: 600;
+  }
+
+  .lang-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--sand-dark);
+  }
+
+  /* ---- Article layout ---- */
+  .article {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 140px 28px 100px;
+  }
+
+  /* ---- Page header ---- */
+  .page-header {
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--indigo);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .subtitle {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  .header-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin-top: 28px;
+    opacity: 0.7;
+  }
+
+  /* ---- Sections ---- */
+  .section {
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: -12px;
+    user-select: none;
+  }
+
+  .section-question {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: clamp(24px, 3.5vw, 32px);
+    color: var(--indigo);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--text-secondary);
+  }
+
+  .section-body .sentence {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-body .emphasis {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .section-body .term {
+    color: var(--saffron-deep);
+    font-weight: 500;
+  }
+
+  /* Decorative divider between sections */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 80px 0;
+    color: var(--sand-dark);
+    user-select: none;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--sand-dark));
+  }
+
+  .section-divider::after {
+    background: linear-gradient(90deg, var(--sand-dark), transparent);
+  }
+
+  .section-divider span {
+    font-size: 14px;
+    color: var(--stone-light);
+  }
+
+  /* ---- Scroll reveal ---- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- Next read ---- */
+  .next-read {
+    margin-top: 80px;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .next-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .next-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 8px;
+  }
+
+  .next-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .next-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--saffron);
+    transition: transform 0.3s;
+  }
+
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+
+  /* ---- Footer ---- */
+  .article-footer {
+    margin-top: 100px;
+    padding-top: 32px;
+    border-top: 1px solid var(--sand-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .article-footer .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--stone);
+    text-decoration: none;
+  }
+
+  .article-footer .note {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  /* ---- Animations ---- */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; }
+    .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; }
+    .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; }
+    .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; }
+    .section-divider { margin: 56px 0; }
+    .next-read { padding: 22px 24px; }
+    .next-read-title { font-size: 19px; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar" id="topbar">
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span>Jainverse</span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<!-- Article -->
+<article class="article">
+
+  <!-- Header -->
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <!-- Section 1 -->
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <!-- Section 2 -->
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <!-- Section 3 -->
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <!-- Section 4 -->
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <!-- Next read -->
+  <a href="/jeev-ajeev/" class="next-read reveal">
+    <div class="next-read-label" data-i18n="next_label"></div>
+    <div class="next-read-title">
+      <span data-i18n="next_title"></span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+  </a>
+
+  <!-- Footer -->
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+// ---- i18n ----
+function s(sentences) {
+  return sentences.map(t => {
+    return '<span class="sentence">' + t + '</span>';
+  }).join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "जैन धर्म म्हणजे काय?",
+    page_subtitle: "एक सोपी ओळख — कुठलंही पूर्वज्ञान लागत नाही",
+    s1_q: "जैन धर्म कशाबद्दल आहे?",
+    s1_body: s([
+      'जैन धर्म म्हणजे स्वतःला ओळखण्याचा मार्ग.',
+      'इथे कुणी देव तुम्हाला सृष्टी निर्माण करून देत नाही, कुणी शिक्षा देत नाही, कुणी बक्षीस देत नाही.',
+      '<span class="emphasis">तुमचा आत्मा स्वतःच सर्वज्ञ होण्याची क्षमता ठेवतो</span> — फक्त त्यावरचं आवरण काढायला हवं.',
+      'जैन धर्मातला मूळ विचार हाच — <span class="emphasis">प्रत्येक आत्मा परमात्मा होऊ शकतो</span>.',
+    ]),
+    s2_q: "तीर्थंकर कोण?",
+    s2_body: s([
+      'तीर्थंकर म्हणजे ज्यांनी स्वतःच्या आत्म्याचं खरं स्वरूप ओळखलं आणि इतरांना तो मार्ग दाखवला.',
+      'प्रत्येक काळचक्रात २४ तीर्थंकर होतात. आपल्या काळचक्रातले पहिले तीर्थंकर <span class="term">ऋषभदेव</span> (आदिनाथ) आणि शेवटचे <span class="term">महावीर भगवान</span>.',
+      'तीर्थंकर देव नाहीत ज्या अर्थाने इतर धर्मांत "देव" म्हणतात — ते सिद्ध झालेले आत्मे आहेत, ज्यांनी आत्म्यावरचं सगळं बंधन तोडलं.',
+      '<span class="emphasis">ते रस्ता दाखवतात — पण चालायचं तुम्हालाच.</span>',
+    ]),
+    s3_q: "जैन धर्म वेगळा कसा?",
+    s3_body: s([
+      'इथे प्रत्येक सजीवाला आत्मा आहे — माणूस, प्राणी, कीटक, अगदी लहानात लहान जीवसुद्धा.',
+      'तुमचा मार्ग तुम्हालाच चालायचा आहे — कुणाची प्रार्थना, कुणाची कृपा तुम्हाला वाचवू शकत नाही. <span class="emphasis">फक्त स्वतःचा प्रयत्न.</span>',
+      'ध्येय कुठल्या स्वर्गात जाणं नाही — <span class="emphasis">सगळ्या बंधनांतून पूर्णपणे मुक्त होणं</span>.',
+      'ही मुक्ती बाहेरून मिळत नाही — ती आत्म्याचं स्वतःचं खरं स्वरूप आहे.',
+    ]),
+    s4_q: "पुढे काय शिकायचं?",
+    s4_body: s([
+      'हा फक्त पहिला दरवाजा आहे.',
+      'पुढच्या पानावर आपण <span class="emphasis">आत्मा आणि कर्म</span> समजून घेणार — आत्म्यावर बंधन कसं येतं, आणि मुक्तीकडे कसं जायचं.',
+      'प्रत्येक पान एक नवीन संकल्पना समजावतं — सोप्या भाषेत, क्रमाक्रमाने.',
+    ]),
+    next_label: "पुढे वाचा",
+    next_title: "जीव आणि कर्म — आत्मा आणि कर्माची ओळख",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "जैन धर्म क्या है?",
+    page_subtitle: "एक आसान परिचय — किसी पूर्व ज्ञान की ज़रूरत नहीं",
+    s1_q: "जैन धर्म किसके बारे में है?",
+    s1_body: s([
+      'जैन धर्म ख़ुद को पहचानने का रास्ता है.',
+      'यहाँ कोई भगवान सृष्टि बनाकर नहीं देता, कोई सज़ा नहीं देता, कोई इनाम नहीं देता.',
+      '<span class="emphasis">तुम्हारी आत्मा ख़ुद सर्वज्ञ होने की क्षमता रखती है</span> — बस उस पर जो परत चढ़ी है, वो हटानी है.',
+      'जैन धर्म का मूल विचार यही है — <span class="emphasis">हर आत्मा परमात्मा बन सकती है</span>.',
+    ]),
+    s2_q: "तीर्थंकर कौन हैं?",
+    s2_body: s([
+      'तीर्थंकर वो हैं जिन्होंने अपनी आत्मा का असली रूप पहचाना और दूसरों को वो रास्ता दिखाया.',
+      'हर कालचक्र में २४ तीर्थंकर होते हैं. हमारे कालचक्र के पहले तीर्थंकर <span class="term">ऋषभदेव</span> (आदिनाथ) और आख़िरी <span class="term">महावीर भगवान</span>.',
+      'तीर्थंकर वैसे भगवान नहीं हैं जैसे दूसरे धर्मों में "भगवान" कहते हैं — ये सिद्ध हुई आत्माएँ हैं, जिन्होंने आत्मा पर का सारा बंधन तोड़ दिया.',
+      '<span class="emphasis">वो रास्ता दिखाते हैं — लेकिन चलना तुम्हें ख़ुद है.</span>',
+    ]),
+    s3_q: "जैन धर्म अलग कैसे है?",
+    s3_body: s([
+      'यहाँ हर जीवित प्राणी में आत्मा है — इंसान, जानवर, कीड़े, छोटे से छोटा जीव भी.',
+      'तुम्हारा रास्ता तुम्हें ख़ुद चलना है — किसी की प्रार्थना, किसी की कृपा तुम्हें बचा नहीं सकती. <span class="emphasis">सिर्फ़ अपना प्रयास.</span>',
+      'लक्ष्य किसी स्वर्ग में जाना नहीं — <span class="emphasis">हर बंधन से पूरी तरह मुक्त होना</span>.',
+      'ये मुक्ति बाहर से नहीं मिलती — ये आत्मा का अपना असली रूप है.',
+    ]),
+    s4_q: "आगे क्या सीखना है?",
+    s4_body: s([
+      'ये सिर्फ़ पहला दरवाज़ा है.',
+      'अगले पन्ने पर हम <span class="emphasis">आत्मा और कर्म</span> समझेंगे — आत्मा पर बंधन कैसे आता है, और मुक्ति की तरफ़ कैसे जाना है.',
+      'हर पन्ना एक नई अवधारणा समझाता है — आसान भाषा में, क़दम-दर-क़दम.',
+    ]),
+    next_label: "आगे पढ़ें",
+    next_title: "जीव और कर्म — आत्मा और कर्म की शुरुआत",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "What is Jainism?",
+    page_subtitle: "A simple introduction — no prior knowledge needed",
+    s1_q: "What is Jainism about?",
+    s1_body: s([
+      'Jainism is a path to knowing your true self.',
+      'There is no creator god handing out rewards or punishments. No one runs the universe on your behalf.',
+      '<span class="emphasis">Your soul already has the capacity for infinite knowledge</span> — it just needs to shed the layers covering it.',
+      'The core idea of Jainism is this — <span class="emphasis">every soul can become a perfected being</span>.',
+    ]),
+    s2_q: "Who are the Tirthankaras?",
+    s2_body: s([
+      'Tirthankaras are those who realised the true nature of their soul and showed others the path.',
+      'In every cosmic cycle, there are 24 Tirthankaras. In our cycle, the first was <span class="term">Rishabhdev</span> (Adinath) and the last was <span class="term">Mahavir Bhagwan</span>.',
+      'Tirthankaras are not "gods" in the way other religions use the word — they are perfected souls who broke free from all bondage.',
+      '<span class="emphasis">They show the path — but you have to walk it yourself.</span>',
+    ]),
+    s3_q: "What makes Jainism different?",
+    s3_body: s([
+      'Every living being has a soul — humans, animals, insects, even the tiniest organisms.',
+      'You have to walk your own path — no one\'s prayers, no one\'s grace can save you. <span class="emphasis">Only your own effort.</span>',
+      'The goal isn\'t reaching some heaven — <span class="emphasis">it\'s becoming completely free from all bondage</span>.',
+      'This freedom doesn\'t come from outside — it\'s the soul\'s own true nature.',
+    ]),
+    s4_q: "What comes next?",
+    s4_body: s([
+      'This is just the first door.',
+      'On the next page, we\'ll explore <span class="emphasis">the soul and karma</span> — how bondage forms on the soul, and how to move towards freedom.',
+      'Each page explains a new concept — in simple language, step by step.',
+    ]),
+    next_label: "Read next",
+    next_title: "Soul & Karma — An introduction",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+// ---- Language switching ----
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+const savedLang = localStorage.getItem('jainverse-lang') || 'mr';
+setLang(savedLang);
+
+// ---- Sticky topbar ----
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+// ---- Scroll reveal ----
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
