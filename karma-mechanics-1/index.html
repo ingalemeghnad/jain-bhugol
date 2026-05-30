@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>कर्म उलगडा १ — बंध कसा घडतो — Jainverse</title>
+<meta name="description" content="कर्मबंधन सविस्तर: प्रकृती, स्थिती, अनुभाग, प्रदेश — बंधाचे चार मुख्य मापदंड सोप्या भाषेत.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --saffron:#e07830; --saffron-deep:#c45e1a; --indigo:#1a2744; --sand:#f5f0e8; --sand-dark:#e8dfd0; --warm-white:#faf8f4; --stone:#8c7e6a; --stone-light:#b0a48e; --text:#2a2318; --text-secondary:#5c5246; --text-tertiary:#8a7e6e; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:200px 200px; }
+  .topbar { position:fixed; top:0; left:0; right:0; z-index:100; padding:18px 40px; display:flex; align-items:center; justify-content:space-between; transition:background .4s, box-shadow .4s, padding .4s; }
+  .topbar.scrolled { background:rgba(250,248,244,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(0,0,0,.06); padding:13px 40px; }
+  .back-link { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:color .25s; }
+  .back-link:hover { color:var(--saffron-deep); }
+  .back-link svg { width:16px; height:16px; transition:transform .25s; }
+  .back-link:hover svg { transform:translateX(-3px); }
+  .lang-switch { display:flex; align-items:center; border:1px solid var(--sand-dark); border-radius:20px; overflow:hidden; background:rgba(245,240,232,.6); }
+  .lang-btn { padding:5px 12px; font-size:12px; font-weight:500; color:var(--text-tertiary); background:none; border:none; cursor:pointer; transition:all .25s; font-family:'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space:nowrap; }
+  .lang-btn:hover { color:var(--text-secondary); }
+  .lang-btn.active { background:var(--indigo); color:var(--sand); font-weight:600; }
+  .lang-divider { width:1px; height:16px; background:var(--sand-dark); }
+  .article { max-width:640px; margin:0 auto; padding:140px 28px 100px; }
+  .page-header { margin-bottom:72px; opacity:0; transform:translateY(20px); animation:fadeUp .8s .2s forwards; }
+  .page-header h1 { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(36px, 5vw, 52px); color:var(--indigo); line-height:1.15; letter-spacing:-.5px; margin-bottom:12px; }
+  .page-header .subtitle { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:clamp(16px, 2vw, 20px); color:var(--stone); line-height:1.4; }
+  .header-rule { width:48px; height:2px; background:var(--saffron); margin-top:28px; opacity:.7; }
+  .section { margin-bottom:80px; position:relative; }
+  .section-num { font-family:'DM Serif Display', serif; font-size:80px; color:var(--sand-dark); line-height:1; margin-bottom:-12px; user-select:none; }
+  .section-question { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(24px, 3.5vw, 32px); color:var(--indigo); line-height:1.25; margin-bottom:28px; letter-spacing:-.3px; }
+  .section-body { font-size:17px; line-height:2; color:var(--text-secondary); }
+  .section-body .sentence { display:block; margin-bottom:12px; }
+  .section-body .emphasis { color:var(--text); font-weight:500; }
+  .section-body .term { color:var(--saffron-deep); font-weight:500; }
+  .section-divider { display:flex; align-items:center; justify-content:center; gap:16px; margin:80px 0; color:var(--sand-dark); user-select:none; }
+  .section-divider::before, .section-divider::after { content:''; height:1px; width:40px; background:linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background:linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size:14px; color:var(--stone-light); }
+  .page-nav { display:flex; gap:16px; margin-top:80px; }
+  .prev-read,.next-read { flex:1; padding:28px 32px; background:var(--sand); border-radius:8px; text-decoration:none; color:inherit; display:block; transition:all .3s; }
+  .prev-read:hover,.next-read:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(42,35,24,.08); }
+  .prev-read-label,.next-read-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .prev-read-label { color:var(--stone-light); }
+  .next-read-label { color:var(--saffron); }
+  .prev-read-title,.next-read-title { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .prev-read-title svg { width:18px; height:18px; color:var(--stone-light); transition:transform .3s; }
+  .next-read-title svg { width:18px; height:18px; color:var(--saffron); transition:transform .3s; }
+  .prev-read:hover .prev-read-title svg { transform:translateX(-4px); }
+  .next-read:hover .next-read-title svg { transform:translateX(4px); }
+  .article-footer { margin-top:60px; padding-top:32px; border-top:1px solid var(--sand-dark); display:flex; align-items:center; justify-content:space-between; }
+  .article-footer .brand { font-family:'DM Serif Display', serif; font-size:16px; color:var(--stone); text-decoration:none; }
+  .article-footer .note { font-size:12px; color:var(--text-tertiary); }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  @media (max-width:600px) {
+    .topbar { padding:14px 18px; } .topbar.scrolled { padding:11px 18px; }
+    .article { padding:110px 20px 60px; } .page-header { margin-bottom:52px; }
+    .section { margin-bottom:56px; } .section-num { font-size:56px; margin-bottom:-8px; }
+    .section-question { font-size:22px; margin-bottom:20px; }
+    .section-body { font-size:16px; line-height:1.9; } .section-divider { margin:56px 0; }
+    .prev-read,.next-read { padding:22px 24px; }
+    .prev-read-title,.next-read-title { font-size:19px; }
+    .page-nav { flex-direction:column; }
+    .article-footer { flex-direction:column; gap:8px; text-align:center; }
+    .lang-btn { padding:4px 9px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/karma-in-detail/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal"><div class="section-num">1</div><h2 class="section-question" data-i18n="s1_q"></h2><div class="section-body" data-i18n-html="s1_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">2</div><h2 class="section-question" data-i18n="s2_q"></h2><div class="section-body" data-i18n-html="s2_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">3</div><h2 class="section-question" data-i18n="s3_q"></h2><div class="section-body" data-i18n-html="s3_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">4</div><h2 class="section-question" data-i18n="s4_q"></h2><div class="section-body" data-i18n-html="s4_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">5</div><h2 class="section-question" data-i18n="s5_q"></h2><div class="section-body" data-i18n-html="s5_body"></div></section>
+
+  <div class="page-nav reveal">
+    <a href="/karma-in-detail/" class="prev-read"><div class="prev-read-label" data-i18n="prev_label"></div><div class="prev-read-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg><span data-i18n="prev_title"></span></div></a>
+    <a href="/karma-mechanics-2/" class="next-read"><div class="next-read-label" data-i18n="next_label"></div><div class="next-read-title"><span data-i18n="next_title"></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div></a>
+  </div>
+
+  <footer class="article-footer reveal"><a href="/" class="brand">Jainverse</a><span class="note" data-i18n="footer_note"></span></footer>
+</article>
+
+<script>
+function s(sentences) { return sentences.map(t => '<span class="sentence">' + t + '</span>').join(''); }
+
+const i18n = {
+  mr: {
+    page_title: "कर्म उलगडा १",
+    page_subtitle: "बंध कसा ठरतो?",
+    s1_q: "कर्मबंधन \"होतं\" म्हणजे नेमकं काय होतं?",
+    s1_body: s([
+      'आपण आधी पाहिलं: कृती + कषाय = कर्मबंधन.',
+      'पण "बंधन" हा एकच शब्द पुरेसा नाही; बंधनात अनेक गोष्टी ठरतात.',
+      'जैन परंपरेत हे चार मुख्य प्रश्न विचारले जातात.',
+      '<span class="emphasis">कुठलं कर्म? किती काळ? किती तीव्र? किती प्रमाणात?</span>',
+    ]),
+    s2_q: "१) प्रकृती — कोणत्या प्रकारचं कर्म बांधलं?",
+    s2_body: s([
+      '<span class="term">प्रकृती (Prakriti)</span> म्हणजे कर्माचा प्रकार.',
+      'उदा. ज्ञान झाकणारं, मोह वाढवणारं, सुख-दुःख अनुभव देणारं इत्यादी.',
+      'साधं उदाहरण: दोन जण चूक करतात. एक अहंकारातून, एक भीतीतून. दोघांचा भाव वेगळा, म्हणून बांधलं जाणारं कर्मही वेगळं असू शकतं.',
+      '<span class="emphasis">म्हणून बाह्य कृतीपेक्षा अंतर्गत भाव प्रकृती ठरवण्यात मोठा असतो.</span>',
+    ]),
+    s3_q: "२) स्थिती आणि ३) अनुभाग",
+    s3_body: s([
+      '<span class="term">स्थिती (Sthiti)</span> — हे कर्म किती काळ टिकेल?',
+      '<span class="term">अनुभाग (Anubhaga)</span> — फल देताना त्याची ताकद किती असेल?',
+      'रागाचा क्षण कमी असेल तर एक परिणाम; दीर्घ, जळजळीत द्वेष असेल तर स्थितीही वाढू शकते आणि अनुभागही तीव्र होऊ शकतो.',
+      '<span class="emphasis">कषाय जितका खोल, तितकी कर्माची पकड जास्त काळ आणि जास्त जोरात दिसू शकते.</span>',
+    ]),
+    s4_q: "४) प्रदेश — किती कर्मकण बांधले गेले?",
+    s4_body: s([
+      '<span class="term">प्रदेश (Pradesha)</span> म्हणजे कर्मबंधनाचं परिमाण — किती प्रमाणात बंध झाला.',
+      'हे कृतीची तीव्रता, वारंवारता, आणि त्या वेळी मन-वाणी-शरीराची गुंतवणूक यावर अवलंबून असतं.',
+      'एकच चुकीचा विचार मनात आला आणि गेला — एक गोष्ट. तोच विचार पुन्हा पुन्हा वाढवत नेला — दुसरी गोष्ट.',
+      '<span class="emphasis">म्हणून "किती केलं" इतकंच नाही, "कसं आणि किती वेळ केलं" हेही महत्त्वाचं.</span>',
+    ]),
+    s5_q: "सारांश: बंध समजायचे चार मुद्दे",
+    s5_body: s([
+      'कर्मबंधन समजण्यासाठी चार प्रश्न लक्षात ठेवा: <span class="term">प्रकृती, स्थिती, अनुभाग, प्रदेश</span>.',
+      'हे चार मिळून कर्मबंधनाचा प्रोफाइल तयार होतो.',
+      'पुढच्या भागात आपण कर्माचा पुढचा प्रवास पाहू: साठा, उदय, आणि निर्जरा यांची गतिशीलता.',
+      '<span class="emphasis">इथून पुढे कर्म समजणं अधिक नेमकं आणि तांत्रिक होत जाईल.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "कर्म सविस्तर",
+    next_label: "पुढचा टप्पा",
+    back_text: "कर्म सविस्तर",
+    next_title: "कर्म उलगडा २",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "कर्म उलगडा १",
+    page_subtitle: "बंध कैसे तय होता है?",
+    s1_q: "कर्मबंध \"होता है\" यानी असल में क्या तय होता है?",
+    s1_body: s([
+      'हमने देखा: क्रिया + कषाय = कर्मबंध.',
+      'लेकिन "बंध" एक ही चीज़ नहीं है; उसमें कई आयाम तय होते हैं.',
+      'जैन परंपरा इसमें चार मुख्य प्रश्न पूछती है.',
+      '<span class="emphasis">कौन सा कर्म? कितनी अवधि? कितनी तीव्रता? कितनी मात्रा?</span>',
+    ]),
+    s2_q: "१) प्रकृति — कौन सा कर्म बंधा?",
+    s2_body: s([
+      '<span class="term">प्रकृति (Prakriti)</span> यानी कर्म का प्रकार.',
+      'जैसे ज्ञान ढकने वाला, मोह बढ़ाने वाला, सुख-दुःख अनुभव देने वाला आदि.',
+      'सरल उदाहरण: दो लोग गलती करते हैं. एक अहंकार से, एक डर से. बाहरी क्रिया मिलती-जुलती हो सकती है, पर बंधने वाली कर्म-प्रकृति अलग हो सकती है.',
+      '<span class="emphasis">यानी केवल बाहरी काम नहीं, भीतर की भावना भी प्रकृति तय करती है.</span>',
+    ]),
+    s3_q: "२) स्थिति और ३) अनुभाग",
+    s3_body: s([
+      '<span class="term">स्थिति (Sthiti)</span> — यह कर्म कितने समय तक रहेगा?',
+      '<span class="term">अनुभाग (Anubhaga)</span> — फल देते समय इसकी तीव्रता कितनी होगी?',
+      'क्षणिक चिड़चिड़ाहट एक बात है; गहरी, लंबी द्वेष-वृत्ति दूसरी बात. दूसरी स्थिति में अवधि भी बढ़ सकती है और तीव्रता भी.',
+      '<span class="emphasis">जितनी गहरी कषाय, उतना दीर्घ और तीव्र कर्मफल संभावित.</span>',
+    ]),
+    s4_q: "४) प्रदेश — कितनी मात्रा में कर्म बंधा?",
+    s4_body: s([
+      '<span class="term">प्रदेश (Pradesha)</span> का मतलब है कर्मबंध की मात्रा.',
+      'यह क्रिया की ताकत, पुनरावृत्ति, और उस समय मन-वचन-काय की भागीदारी पर निर्भर करता है.',
+      'एक नकारात्मक विचार आया और चला गया — अलग बात. वही विचार बार-बार पोषित किया — अलग बात.',
+      '<span class="emphasis">इसलिए "क्या किया" के साथ "कैसे, कितनी बार, कितनी देर" भी महत्वपूर्ण है.</span>',
+    ]),
+    s5_q: "सार: बंध का चार-आयामी मापन",
+    s5_body: s([
+      'कर्मबंध समझने के लिए चार शब्द याद रखें: <span class="term">प्रकृति, स्थिति, अनुभाग, प्रदेश</span>.',
+      'ये चार मिलकर बंध का पूरा प्रोफ़ाइल बनाते हैं.',
+      'अगले भाग में हम कर्म की आगे की यात्रा देखेंगे: संचय, उदय, और निर्जरा की गतिशीलता.',
+      '<span class="emphasis">यहीं से कर्म की समझ और अधिक सटीक व तकनीकी होती है.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "कर्म विस्तार से",
+    next_label: "अगला चरण",
+    back_text: "कर्म विस्तार से",
+    next_title: "कर्म उलगडा २",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Karma Mechanics I",
+    page_subtitle: "How is bondage specified?",
+    s1_q: "When karma 'binds', what exactly gets determined?",
+    s1_body: s([
+      'We already saw: action + kashaya leads to karmic bondage.',
+      'But bondage is not one flat event; multiple dimensions are set at that moment.',
+      'Jain analysis asks four key questions here.',
+      '<span class="emphasis">Which karma type? For how long? With what intensity? In what quantity?</span>',
+    ]),
+    s2_q: "1) Prakriti — what type of karma is bound?",
+    s2_body: s([
+      '<span class="term">Prakriti</span> means the type/category of karma.',
+      'For example: knowledge-obscuring, deluding, pleasure-pain producing, and so on.',
+      'Simple case: two people commit a similar outward act. One does it with ego, another with fear. The bonded karma-type can differ because the inner state differs.',
+      '<span class="emphasis">So inner intention strongly shapes karmic type, not just outer action.</span>',
+    ]),
+    s3_q: "2) Sthiti and 3) Anubhaga",
+    s3_body: s([
+      '<span class="term">Sthiti</span> — how long will this karma remain bound?',
+      '<span class="term">Anubhaga</span> — when it gives fruit, how strong will that fruit be?',
+      'A brief irritation and a long-burning hatred are not equivalent; deeper passion can increase both duration and intensity.',
+      '<span class="emphasis">Deeper kashaya can mean longer-lasting and stronger karmic effects.</span>',
+    ]),
+    s4_q: "4) Pradesha — how much karmic matter is bound?",
+    s4_body: s([
+      '<span class="term">Pradesha</span> refers to quantity/extent of bondage.',
+      'It depends on force, repetition, and how much mind-speech-body participation is involved.',
+      'One passing harmful thought is one thing; repeatedly feeding it is another.',
+      '<span class="emphasis">So not only "what you did," but "how much, how often, and how intensely" matters.</span>',
+    ]),
+    s5_q: "Summary: the four-dimensional profile of bondage",
+    s5_body: s([
+      'To read karmic bondage precisely, remember four terms: <span class="term">Prakriti, Sthiti, Anubhaga, Pradesha</span>.',
+      'Together, they define the profile of a karmic bind.',
+      'Next, we can examine karma’s onward movement: storage, rise (uday), and shedding (nirjara).',
+      '<span class="emphasis">From here onward, karma-study becomes more exact and technical.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Karma in Detail",
+    next_label: "Continue",
+    back_text: "Karma in Detail",
+    next_title: "Karma Mechanics II",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang]; if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (strings[key] !== undefined) el.textContent = strings[key]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const key = el.getAttribute('data-i18n-html'); if (strings[key] !== undefined) el.innerHTML = strings[key]; });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+window.addEventListener('scroll', () => { document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

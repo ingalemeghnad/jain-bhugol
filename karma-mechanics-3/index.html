@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>कर्म उलगडा ३ — 8 कर्मांचे सखोल रूप — Jainverse</title>
+<meta name="description" content="आठ कर्मे सविस्तर: घाती-अघाती भेद, आणि दैनंदिन जीवनात त्यांचे परिणाम.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --saffron:#e07830; --saffron-deep:#c45e1a; --indigo:#1a2744; --sand:#f5f0e8; --sand-dark:#e8dfd0; --warm-white:#faf8f4; --stone:#8c7e6a; --stone-light:#b0a48e; --text:#2a2318; --text-secondary:#5c5246; --text-tertiary:#8a7e6e; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:200px 200px; }
+  .topbar { position:fixed; top:0; left:0; right:0; z-index:100; padding:18px 40px; display:flex; align-items:center; justify-content:space-between; transition:background .4s, box-shadow .4s, padding .4s; }
+  .topbar.scrolled { background:rgba(250,248,244,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(0,0,0,.06); padding:13px 40px; }
+  .back-link { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:color .25s; }
+  .back-link:hover { color:var(--saffron-deep); }
+  .back-link svg { width:16px; height:16px; transition:transform .25s; }
+  .back-link:hover svg { transform:translateX(-3px); }
+  .lang-switch { display:flex; align-items:center; border:1px solid var(--sand-dark); border-radius:20px; overflow:hidden; background:rgba(245,240,232,.6); }
+  .lang-btn { padding:5px 12px; font-size:12px; font-weight:500; color:var(--text-tertiary); background:none; border:none; cursor:pointer; transition:all .25s; font-family:'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space:nowrap; }
+  .lang-btn:hover { color:var(--text-secondary); }
+  .lang-btn.active { background:var(--indigo); color:var(--sand); font-weight:600; }
+  .lang-divider { width:1px; height:16px; background:var(--sand-dark); }
+  .article { max-width:640px; margin:0 auto; padding:140px 28px 100px; }
+  .page-header { margin-bottom:72px; opacity:0; transform:translateY(20px); animation:fadeUp .8s .2s forwards; }
+  .page-header h1 { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(36px, 5vw, 52px); color:var(--indigo); line-height:1.15; letter-spacing:-.5px; margin-bottom:12px; }
+  .page-header .subtitle { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:clamp(16px, 2vw, 20px); color:var(--stone); line-height:1.4; }
+  .header-rule { width:48px; height:2px; background:var(--saffron); margin-top:28px; opacity:.7; }
+  .section { margin-bottom:80px; position:relative; }
+  .section-num { font-family:'DM Serif Display', serif; font-size:80px; color:var(--sand-dark); line-height:1; margin-bottom:-12px; user-select:none; }
+  .section-question { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(24px, 3.5vw, 32px); color:var(--indigo); line-height:1.25; margin-bottom:28px; letter-spacing:-.3px; }
+  .section-body { font-size:17px; line-height:2; color:var(--text-secondary); }
+  .section-body .sentence { display:block; margin-bottom:12px; }
+  .section-body .emphasis { color:var(--text); font-weight:500; }
+  .section-body .term { color:var(--saffron-deep); font-weight:500; }
+  .section-divider { display:flex; align-items:center; justify-content:center; gap:16px; margin:80px 0; color:var(--sand-dark); user-select:none; }
+  .section-divider::before, .section-divider::after { content:''; height:1px; width:40px; background:linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background:linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size:14px; color:var(--stone-light); }
+  .page-nav { display:flex; gap:16px; margin-top:80px; }
+  .prev-read,.next-read { flex:1; padding:28px 32px; background:var(--sand); border-radius:8px; text-decoration:none; color:inherit; display:block; transition:all .3s; }
+  .prev-read:hover,.next-read:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(42,35,24,.08); }
+  .prev-read-label,.next-read-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .prev-read-label { color:var(--stone-light); }
+  .next-read-label { color:var(--saffron); }
+  .prev-read-title,.next-read-title { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .prev-read-title svg { width:18px; height:18px; color:var(--stone-light); transition:transform .3s; }
+  .next-read-title svg { width:18px; height:18px; color:var(--saffron); transition:transform .3s; }
+  .prev-read:hover .prev-read-title svg { transform:translateX(-4px); }
+  .next-read:hover .next-read-title svg { transform:translateX(4px); }
+  .article-footer { margin-top:60px; padding-top:32px; border-top:1px solid var(--sand-dark); display:flex; align-items:center; justify-content:space-between; }
+  .article-footer .brand { font-family:'DM Serif Display', serif; font-size:16px; color:var(--stone); text-decoration:none; }
+  .article-footer .note { font-size:12px; color:var(--text-tertiary); }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  @media (max-width:600px) {
+    .topbar { padding:14px 18px; } .topbar.scrolled { padding:11px 18px; }
+    .article { padding:110px 20px 60px; } .page-header { margin-bottom:52px; }
+    .section { margin-bottom:56px; } .section-num { font-size:56px; margin-bottom:-8px; }
+    .section-question { font-size:22px; margin-bottom:20px; }
+    .section-body { font-size:16px; line-height:1.9; } .section-divider { margin:56px 0; }
+    .prev-read,.next-read { padding:22px 24px; }
+    .prev-read-title,.next-read-title { font-size:19px; }
+    .page-nav { flex-direction:column; }
+    .article-footer { flex-direction:column; gap:8px; text-align:center; }
+    .lang-btn { padding:4px 9px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/karma-mechanics-2/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal"><div class="section-num">1</div><h2 class="section-question" data-i18n="s1_q"></h2><div class="section-body" data-i18n-html="s1_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">2</div><h2 class="section-question" data-i18n="s2_q"></h2><div class="section-body" data-i18n-html="s2_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">3</div><h2 class="section-question" data-i18n="s3_q"></h2><div class="section-body" data-i18n-html="s3_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">4</div><h2 class="section-question" data-i18n="s4_q"></h2><div class="section-body" data-i18n-html="s4_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">5</div><h2 class="section-question" data-i18n="s5_q"></h2><div class="section-body" data-i18n-html="s5_body"></div></section>
+
+  <div class="page-nav reveal">
+    <a href="/karma-mechanics-2/" class="prev-read"><div class="prev-read-label" data-i18n="prev_label"></div><div class="prev-read-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg><span data-i18n="prev_title"></span></div></a>
+    <a href="/" class="next-read"><div class="next-read-label" data-i18n="next_label"></div><div class="next-read-title"><span data-i18n="next_title"></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div></a>
+  </div>
+
+  <footer class="article-footer reveal"><a href="/" class="brand">Jainverse</a><span class="note" data-i18n="footer_note"></span></footer>
+</article>
+
+<script>
+function s(sentences) { return sentences.map(t => '<span class="sentence">' + t + '</span>').join(''); }
+
+const i18n = {
+  mr: {
+    page_title: "कर्म उलगडा ३",
+    page_subtitle: "8 कर्मांचे सखोल रूप",
+    s1_q: "आठ कर्मांचं विभाजन का महत्त्वाचं?",
+    s1_body: s([
+      'कर्म म्हणजे एकच गोष्ट नाही; त्याचे आठ वेगवेगळे प्रकार आहेत.',
+      'हे प्रकार समजले की "माझ्यात नेमकं काय झाकलं जातंय?" हा प्रश्न स्पष्ट होतो.',
+      'हे दोन गटांत बघितलं जातं: <span class="term">घाती</span> आणि <span class="term">अघाती</span>.',
+      '<span class="emphasis">घाती आत्म्याच्या मूळ गुणांना झाकतात; अघाती अनुभवाची परिस्थिती बनवतात.</span>',
+    ]),
+    s2_q: "घाती कर्मे — आत्म्यावर थेट पडदा",
+    s2_body: s([
+      '<span class="term">ज्ञानावरणीय</span> — खरं जाणणं झाकतं.',
+      '<span class="term">दर्शनावरणीय</span> — स्पष्ट ग्रहणशक्ती झाकतं.',
+      '<span class="term">मोहनीय</span> — विवेक ढळवून राग-लोभ वाढवतं.',
+      '<span class="term">अंतराय</span> — चांगलं करायची क्षमता असूनही अडथळा आणतं.',
+      '<span class="emphasis">या चारांमुळे आत्म्याचं प्रकाशन थेट कमी होतं.</span>',
+    ]),
+    s3_q: "अघाती कर्मे — अनुभवाची चौकट",
+    s3_body: s([
+      '<span class="term">वेदनिय</span> — सुख-दुःख अनुभवाचा टोन ठरवते.',
+      '<span class="term">आयु</span> — त्या जन्माचा जीवनकाल ठरवते.',
+      '<span class="term">नाम</span> — देह, संरचना, आणि काही ओळख-गुणधर्म ठरवते.',
+      '<span class="term">गोत्र</span> — सामाजिक/मानसिक स्थानाची अनुभूती ठरवणारी भूमिका घेते.',
+      '<span class="emphasis">या चारांमुळे आत्मा कमी-जास्त होत नाही; पण त्याचा अनुभवाचा फ्रेम ठरतो.</span>',
+    ]),
+    s4_q: "दैनंदिन भाषेत हे कसं ओळखायचं?",
+    s4_body: s([
+      '"मला समजतंय पण पकड लागत नाही" — ज्ञानावरणीयची छाया असू शकते.',
+      '"चूक समजतेय पण सोडवत नाही" — मोहनीयची पकड दिसते.',
+      '"इच्छा आहे पण अडथळे येतात" — अंतरायाचा अनुभव वाटू शकतो.',
+      '"सगळं आहे तरी अस्वस्थ" किंवा "काही नाही तरी शांत" — वेदनियचा पैलू समजू शकतो.',
+      '<span class="emphasis">हे लेबल लावून स्वतःला दोष देण्यासाठी नाही; सजग होण्यासाठी आहे.</span>',
+    ]),
+    s5_q: "इथून पुढे काय?",
+    s5_body: s([
+      'आता आपल्याकडे तीन थर झाले: बंधाचे मापदंड, कर्माचा प्रवास, आणि आठ प्रकार.',
+      'यामुळे कर्मसिद्धांत भावनिक नाही तर संरचनात्मकपणे समजतो.',
+      'पुढच्या विषयांत (लेश्या, गुणस्थान) ही समज अधिक सूक्ष्म होईल.',
+      '<span class="emphasis">समज जितकी नेमकी, तितकी साधना नेमकी.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "कर्म उलगडा २",
+    next_label: "पुढचा टप्पा",
+    back_text: "कर्म उलगडा २",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "कर्म उलगडा ३",
+    page_subtitle: "8 कर्मों का गहरा स्वरूप",
+    s1_q: "आठ कर्मों का वर्गीकरण क्यों ज़रूरी है?",
+    s1_body: s([
+      'कर्म एक ही चीज़ नहीं; उसके आठ प्रकार हैं.',
+      'इनको समझने से पता चलता है कि हमारे भीतर क्या और कैसे आच्छादित हो रहा है.',
+      'इनके दो बड़े समूह हैं: <span class="term">घाती</span> और <span class="term">अघाती</span>.',
+      '<span class="emphasis">घाती आत्मगुणों को ढकते हैं; अघाती अनुभव की परिस्थितियाँ बनाते हैं.</span>',
+    ]),
+    s2_q: "घाती कर्म — आत्मा पर सीधा प्रभाव",
+    s2_body: s([
+      '<span class="term">ज्ञानावरणीय</span> — सही जानने की क्षमता ढकता है.',
+      '<span class="term">दर्शनावरणीय</span> — ग्रहण/स्पष्ट देखना ढकता है.',
+      '<span class="term">मोहनीय</span> — विवेक को हिलाकर कषाय बढ़ाता है.',
+      '<span class="term">अंतराय</span> — करने की शक्ति होते हुए भी बाधा डालता है.',
+      '<span class="emphasis">इन चारों से आत्मा का सीधा प्रकाश कम होता है.</span>',
+    ]),
+    s3_q: "अघाती कर्म — अनुभव का फ्रेम",
+    s3_body: s([
+      '<span class="term">वेदनिय</span> — सुख-दुःख का अनुभव-स्वर तय करता है.',
+      '<span class="term">आयु</span> — जीवनावधि तय करता है.',
+      '<span class="term">नाम</span> — देह और पहचान के कुछ गुण तय करता है.',
+      '<span class="term">गोत्र</span> — सामाजिक/स्थितिगत अनुभव की दिशा देता है.',
+      '<span class="emphasis">इनसे आत्मा की शुद्धता कम-ज्यादा नहीं होती; अनुभव की पृष्ठभूमि बनती है.</span>',
+    ]),
+    s4_q: "इसे रोज़मर्रा में कैसे पहचानें?",
+    s4_body: s([
+      '"समझ आता है पर पकड़ नहीं बनती" — ज्ञानावरणीय की छाया हो सकती है.',
+      '"गलत समझकर भी छूटता नहीं" — मोहनीय की पकड़ दिखती है.',
+      '"इच्छा है पर बार-बार रुकावट" — अंतराय का अनुभव लग सकता है.',
+      '"सब है फिर भी बेचैनी" या "कम है फिर भी शांति" — वेदनिय पक्ष समझा जा सकता है.',
+      '<span class="emphasis">यह आत्म-दोष के लिए नहीं, सजगता के लिए है.</span>',
+    ]),
+    s5_q: "आगे का लाभ",
+    s5_body: s([
+      'अब हमारे पास तीन स्तर हैं: बंध के पैरामीटर, कर्म-चक्र, और आठ कर्म-प्रकार.',
+      'इससे कर्म सिद्धांत भावनात्मक नहीं, संरचनात्मक रूप से स्पष्ट होता है.',
+      'अगले विषय (लेश्या, गुणस्थान) इसी आधार पर और स्पष्ट होंगे.',
+      '<span class="emphasis">जितनी स्पष्ट समझ, उतनी सटीक साधना.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "कर्म उलगडा २",
+    next_label: "अगला चरण",
+    back_text: "कर्म उलगडा २",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Karma Mechanics III",
+    page_subtitle: "The eight karmas in depth",
+    s1_q: "Why split karma into eight categories?",
+    s1_body: s([
+      'Karma is not one undifferentiated block; Jain thought classifies eight distinct categories.',
+      'This helps answer: what exactly is being obscured or conditioned in experience?',
+      'The eight are read in two clusters: <span class="term">Ghati</span> and <span class="term">Aghati</span>.',
+      '<span class="emphasis">Ghati karmas veil core soul-capacities; Aghati karmas shape experiential framework.</span>',
+    ]),
+    s2_q: "Ghati karmas — direct veiling",
+    s2_body: s([
+      '<span class="term">Jnanavaraniya</span> — obscures knowing.',
+      '<span class="term">Darshanavaraniya</span> — obscures clear perception.',
+      '<span class="term">Mohaniya</span> — distorts discernment and fuels passions.',
+      '<span class="term">Antaraya</span> — obstructs expression of capacity.',
+      '<span class="emphasis">These four directly reduce manifest clarity of the soul.</span>',
+    ]),
+    s3_q: "Aghati karmas — experiential framing",
+    s3_body: s([
+      '<span class="term">Vedaniya</span> — tonal quality of pleasant/unpleasant experience.',
+      '<span class="term">Ayu</span> — lifespan frame of a given embodiment.',
+      '<span class="term">Nama</span> — embodied/structural identity features.',
+      '<span class="term">Gotra</span> — status-context orientation in lived experience.',
+      '<span class="emphasis">These do not destroy soul-nature, but condition worldly experience.</span>',
+    ]),
+    s4_q: "How to read this in daily life",
+    s4_body: s([
+      '"I study but cannot penetrate" may reflect knowledge-veiling patterns.',
+      '"I know it is wrong but still cling" points toward deluding-force patterns.',
+      '"I want to act but feel blocked" resembles obstruction patterns.',
+      '"Outer comfort, inner unrest" versus "outer lack, inner steadiness" can be read through vedaniya framing.',
+      '<span class="emphasis">Use this as a map for awareness, not as fatalistic labeling.</span>',
+    ]),
+    s5_q: "What this completes",
+    s5_body: s([
+      'Now you have three layers: bondage parameters, lifecycle dynamics, and eight karma categories.',
+      'This turns karma from vague belief into structured understanding.',
+      'Upcoming topics like Leshya and Gunasthana become far clearer on this base.',
+      '<span class="emphasis">Sharper map, cleaner practice.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Karma Mechanics II",
+    next_label: "Continue",
+    back_text: "Karma Mechanics II",
+    next_title: "Home",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang]; if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (strings[key] !== undefined) el.textContent = strings[key]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const key = el.getAttribute('data-i18n-html'); if (strings[key] !== undefined) el.innerHTML = strings[key]; });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+window.addEventListener('scroll', () => { document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -90,6 +90,28 @@ The goal is not merely translation but conceptually equivalent explanations acro
 20. Gunasthana
 21. Tap & Dhyana
 
+### Recommended Expansion: Karma Detailing Track
+
+To keep beginner flow readable while still adding rigor, split karma-detailing into layers:
+
+1. Karma Mechanics I (Bandha Mechanics)
+2. Karma Mechanics II (Karma Lifecycle: Asrava -> Bandha -> Satta -> Uday -> Nirjara, plus Udirana)
+3. Karma Mechanics III (8 Karmas in Depth: Ghati/Aghati and practical effects)
+4. Leshya
+5. Gunasthana
+6. Tap & Dhyana
+
+Optional advanced branch ("Karma Deep Dive") after the readable track:
+
+- 5 causes of Bandha: Mithyatva, Avirati, Pramada, Kashaya, Yoga
+- Kashaya gradations: Anantanubandhi, Apratyakhyanavarana, Pratyakhyanavarana, Sanjvalana
+- Mohaniya karma deep split: Darshan-mohaniya and Charitra-mohaniya
+- Sthiti/Anubhaga variability in bondage
+- Uday, Udirana, Satta in detail
+- Nikachit karma
+- Punya/Paap subtypes (without diluting core teaching that both are bondage)
+- Mapping karma weakening to Gunasthana progression
+
 ## COSMOLOGY
 
 22. Four Gatis

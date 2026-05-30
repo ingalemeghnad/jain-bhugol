@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>कर्म उलगडा २ — कर्माचा प्रवास — Jainverse</title>
+<meta name="description" content="कर्माचा जीवनप्रवास: आस्रव, बंध, सत्ता, उदय, उदीरणा, निर्जरा — टप्प्याटप्प्याने समजून घ्या.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --saffron:#e07830; --saffron-deep:#c45e1a; --indigo:#1a2744; --sand:#f5f0e8; --sand-dark:#e8dfd0; --warm-white:#faf8f4; --stone:#8c7e6a; --stone-light:#b0a48e; --text:#2a2318; --text-secondary:#5c5246; --text-tertiary:#8a7e6e; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:200px 200px; }
+  .topbar { position:fixed; top:0; left:0; right:0; z-index:100; padding:18px 40px; display:flex; align-items:center; justify-content:space-between; transition:background .4s, box-shadow .4s, padding .4s; }
+  .topbar.scrolled { background:rgba(250,248,244,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(0,0,0,.06); padding:13px 40px; }
+  .back-link { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:color .25s; }
+  .back-link:hover { color:var(--saffron-deep); }
+  .back-link svg { width:16px; height:16px; transition:transform .25s; }
+  .back-link:hover svg { transform:translateX(-3px); }
+  .lang-switch { display:flex; align-items:center; border:1px solid var(--sand-dark); border-radius:20px; overflow:hidden; background:rgba(245,240,232,.6); }
+  .lang-btn { padding:5px 12px; font-size:12px; font-weight:500; color:var(--text-tertiary); background:none; border:none; cursor:pointer; transition:all .25s; font-family:'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space:nowrap; }
+  .lang-btn:hover { color:var(--text-secondary); }
+  .lang-btn.active { background:var(--indigo); color:var(--sand); font-weight:600; }
+  .lang-divider { width:1px; height:16px; background:var(--sand-dark); }
+  .article { max-width:640px; margin:0 auto; padding:140px 28px 100px; }
+  .page-header { margin-bottom:72px; opacity:0; transform:translateY(20px); animation:fadeUp .8s .2s forwards; }
+  .page-header h1 { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(36px, 5vw, 52px); color:var(--indigo); line-height:1.15; letter-spacing:-.5px; margin-bottom:12px; }
+  .page-header .subtitle { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:clamp(16px, 2vw, 20px); color:var(--stone); line-height:1.4; }
+  .header-rule { width:48px; height:2px; background:var(--saffron); margin-top:28px; opacity:.7; }
+  .section { margin-bottom:80px; position:relative; }
+  .section-num { font-family:'DM Serif Display', serif; font-size:80px; color:var(--sand-dark); line-height:1; margin-bottom:-12px; user-select:none; }
+  .section-question { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(24px, 3.5vw, 32px); color:var(--indigo); line-height:1.25; margin-bottom:28px; letter-spacing:-.3px; }
+  .section-body { font-size:17px; line-height:2; color:var(--text-secondary); }
+  .section-body .sentence { display:block; margin-bottom:12px; }
+  .section-body .emphasis { color:var(--text); font-weight:500; }
+  .section-body .term { color:var(--saffron-deep); font-weight:500; }
+  .section-divider { display:flex; align-items:center; justify-content:center; gap:16px; margin:80px 0; color:var(--sand-dark); user-select:none; }
+  .section-divider::before, .section-divider::after { content:''; height:1px; width:40px; background:linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background:linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size:14px; color:var(--stone-light); }
+  .page-nav { display:flex; gap:16px; margin-top:80px; }
+  .prev-read,.next-read { flex:1; padding:28px 32px; background:var(--sand); border-radius:8px; text-decoration:none; color:inherit; display:block; transition:all .3s; }
+  .prev-read:hover,.next-read:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(42,35,24,.08); }
+  .prev-read-label,.next-read-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .prev-read-label { color:var(--stone-light); }
+  .next-read-label { color:var(--saffron); }
+  .prev-read-title,.next-read-title { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .prev-read-title svg { width:18px; height:18px; color:var(--stone-light); transition:transform .3s; }
+  .next-read-title svg { width:18px; height:18px; color:var(--saffron); transition:transform .3s; }
+  .prev-read:hover .prev-read-title svg { transform:translateX(-4px); }
+  .next-read:hover .next-read-title svg { transform:translateX(4px); }
+  .article-footer { margin-top:60px; padding-top:32px; border-top:1px solid var(--sand-dark); display:flex; align-items:center; justify-content:space-between; }
+  .article-footer .brand { font-family:'DM Serif Display', serif; font-size:16px; color:var(--stone); text-decoration:none; }
+  .article-footer .note { font-size:12px; color:var(--text-tertiary); }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  @media (max-width:600px) {
+    .topbar { padding:14px 18px; } .topbar.scrolled { padding:11px 18px; }
+    .article { padding:110px 20px 60px; } .page-header { margin-bottom:52px; }
+    .section { margin-bottom:56px; } .section-num { font-size:56px; margin-bottom:-8px; }
+    .section-question { font-size:22px; margin-bottom:20px; }
+    .section-body { font-size:16px; line-height:1.9; } .section-divider { margin:56px 0; }
+    .prev-read,.next-read { padding:22px 24px; }
+    .prev-read-title,.next-read-title { font-size:19px; }
+    .page-nav { flex-direction:column; }
+    .article-footer { flex-direction:column; gap:8px; text-align:center; }
+    .lang-btn { padding:4px 9px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/karma-mechanics-1/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal"><div class="section-num">1</div><h2 class="section-question" data-i18n="s1_q"></h2><div class="section-body" data-i18n-html="s1_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">2</div><h2 class="section-question" data-i18n="s2_q"></h2><div class="section-body" data-i18n-html="s2_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">3</div><h2 class="section-question" data-i18n="s3_q"></h2><div class="section-body" data-i18n-html="s3_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">4</div><h2 class="section-question" data-i18n="s4_q"></h2><div class="section-body" data-i18n-html="s4_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">5</div><h2 class="section-question" data-i18n="s5_q"></h2><div class="section-body" data-i18n-html="s5_body"></div></section>
+
+  <div class="page-nav reveal">
+    <a href="/karma-mechanics-1/" class="prev-read"><div class="prev-read-label" data-i18n="prev_label"></div><div class="prev-read-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg><span data-i18n="prev_title"></span></div></a>
+    <a href="/karma-mechanics-3/" class="next-read"><div class="next-read-label" data-i18n="next_label"></div><div class="next-read-title"><span data-i18n="next_title"></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div></a>
+  </div>
+
+  <footer class="article-footer reveal"><a href="/" class="brand">Jainverse</a><span class="note" data-i18n="footer_note"></span></footer>
+</article>
+
+<script>
+function s(sentences) { return sentences.map(t => '<span class="sentence">' + t + '</span>').join(''); }
+
+const i18n = {
+  mr: {
+    page_title: "कर्म उलगडा २",
+    page_subtitle: "कर्माचा प्रवास: साठा ते फल",
+    s1_q: "बंध झालं — आता पुढे काय होतं?",
+    s1_body: s([
+      'कर्म बांधलं म्हणजे गोष्ट संपली नाही; तो एक प्रवास सुरू झाला.',
+      'कर्माचा प्रवास समजल्याशिवाय "हे मला आत्ताच का भोगावं लागतंय?" हा प्रश्न सुटत नाही.',
+      'या भागात आपण टप्पे बघू: <span class="term">आस्रव → बंध → सत्ता → उदय → निर्जरा</span>.',
+      '<span class="emphasis">म्हणजे कर्म येतं, टिकतं, पिकतं, फल देतं, आणि शेवटी निघून जातं.</span>',
+    ]),
+    s2_q: "सत्ता आणि उदय यात फरक काय?",
+    s2_body: s([
+      '<span class="term">सत्ता (Satta)</span> म्हणजे कर्म साठ्यात आहे, पण आत्ता फल देत नाही.',
+      '<span class="term">उदय (Uday)</span> म्हणजे तेच कर्म आत्ता फल देतंय — सुख, दुःख, अडथळा, संधी अशा रूपात.',
+      'म्हणून प्रत्येक अनुभव "नवं कर्म" नसतो; अनेक अनुभव जुना साठा उदयात आला म्हणून असतात.',
+      '<span class="emphasis">हे समजलं की प्रतिक्रिया कमी होते, निरीक्षण वाढतं.</span>',
+    ]),
+    s3_q: "उदीरणा म्हणजे काय?",
+    s3_body: s([
+      '<span class="term">उदीरणा (Udirana)</span> म्हणजे एखादं कर्म नैसर्गिक वेळेपूर्वी उदयात आणणं.',
+      'साधना, तप, आणि आंतरिक परिवर्तनामुळे काही कर्मं लवकर फल देऊन निघून जाऊ शकतात.',
+      'हे "शॉर्टकट" नाही; उलट अधिक सजगतेनं भोगून कर्म हलकं करण्याची प्रक्रिया आहे.',
+      '<span class="emphasis">उदीरणा म्हणजे कर्माला जबरदस्तीने हटवणं नाही, तर त्याचा उदय गतीमान होणं.</span>',
+    ]),
+    s4_q: "निर्जरा कुठे बसते?",
+    s4_body: s([
+      '<span class="term">निर्जरा (Nirjara)</span> म्हणजे उदयात आलेलं किंवा परिपक्व झालेलं कर्म झडणं.',
+      'पण दोन मार्ग: अचेतन प्रतिक्रिया देऊन नवीन बंध वाढवणे, किंवा समत्वाने राहून जुनं कर्म संपवणे.',
+      'म्हणूनच समत्व आणि संयमाला इतकं महत्त्व दिलं जातं.',
+      '<span class="emphasis">उदय टाळता येत नाही; पण उदयाला प्रतिसाद कसा द्यायचा हे आपल्या हाती असतं.</span>',
+    ]),
+    s5_q: "जीवनात याचा उपयोग कसा करायचा?",
+    s5_body: s([
+      'अनपेक्षित त्रास आला तर लगेच निष्कर्ष नको: "मीच वाईट" किंवा "जग अन्यायकारक".',
+      'पहिलं पाऊल: निरीक्षण — हे उदय असू शकतं. दुसरं: समत्व — इथून नवं बंध नको.',
+      'तिसरं: सजग कृती — आत्ताच नवीन कर्मबंधन हलकं ठेवायचं.',
+      'पुढच्या भागात बघू: आठ कर्मप्रकार सविस्तर — नेमकं काय-काय झाकलं जातं.',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "कर्म उलगडा १",
+    next_label: "पुढे वाचा",
+    back_text: "कर्म उलगडा १",
+    next_title: "कर्म उलगडा ३",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "कर्म उलगडा २",
+    page_subtitle: "कर्म की यात्रा: संचय से फल तक",
+    s1_q: "बंध हो गया — अब आगे क्या होता है?",
+    s1_body: s([
+      'कर्मबंध होने के बाद प्रक्रिया खत्म नहीं होती; असली यात्रा शुरू होती है.',
+      'इस यात्रा को समझे बिना "मुझे अभी यह क्यों भोगना पड़ रहा है?" सवाल साफ़ नहीं होता.',
+      'यहाँ चरण देखें: <span class="term">आस्रव → बंध → सत्ता → उदय → निर्जरा</span>.',
+      '<span class="emphasis">यानी कर्म आता है, ठहरता है, पकता है, फल देता है, फिर झड़ता है.</span>',
+    ]),
+    s2_q: "सत्ता और उदय में क्या अंतर है?",
+    s2_body: s([
+      '<span class="term">सत्ता (Satta)</span> — कर्म स्टॉक में है, पर अभी फल नहीं दे रहा.',
+      '<span class="term">उदय (Uday)</span> — वही कर्म अभी अनुभव बनकर सामने है.',
+      'इसलिए हर अनुभव नया कर्म नहीं; कई अनुभव पुराने संचय के उदय होते हैं.',
+      '<span class="emphasis">यह समझ आए तो प्रतिक्रिया घटती है, जागरूकता बढ़ती है.</span>',
+    ]),
+    s3_q: "उदीरणा क्या है?",
+    s3_body: s([
+      '<span class="term">उदीरणा (Udirana)</span> — कर्म का प्राकृतिक समय से पहले उदय आना.',
+      'साधना, तप, और भीतर की परिपक्वता से कुछ कर्म जल्दी फल देकर निकल सकते हैं.',
+      'यह आसान रास्ता नहीं; बल्कि सजगता से अनुभव लेकर कर्मक्षय तेज़ करना है.',
+      '<span class="emphasis">उदीरणा कर्म को मिटाना नहीं, उसके उदय की गति बदलना है.</span>',
+    ]),
+    s4_q: "निर्जरा कहाँ आती है?",
+    s4_body: s([
+      '<span class="term">निर्जरा (Nirjara)</span> — उदय में आया कर्म झड़ता है.',
+      'लेकिन दो रास्ते: प्रतिक्रिया देकर नया बंध जोड़ना, या समत्व से रहकर पुराना खत्म करना.',
+      'यही कारण है कि समत्व और संयम को केंद्रीय स्थान दिया गया है.',
+      '<span class="emphasis">उदय रोकना कठिन है; उदय पर प्रतिक्रिया चुनना हमारे हाथ में है.</span>',
+    ]),
+    s5_q: "दैनिक जीवन में इसका उपयोग",
+    s5_body: s([
+      'कठिन अनुभव आते ही तुरंत निष्कर्ष न निकालें: "मैं खराब हूँ" या "दुनिया अन्याय है".',
+      'पहला कदम: देखो — यह उदय हो सकता है. दूसरा: समत्व — यहाँ नया बंध न जोड़ो.',
+      'तीसरा: सजग कर्म — अभी से नया कर्म हल्का रखो.',
+      'अगले भाग में: आठ कर्मों का विस्तृत अध्ययन — क्या-क्या ढकता है.',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "कर्म उलगडा १",
+    next_label: "आगे पढ़ें",
+    back_text: "कर्म उलगडा १",
+    next_title: "कर्म उलगडा ३",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Karma Mechanics II",
+    page_subtitle: "Karma lifecycle: from stock to fruition",
+    s1_q: "After bondage happens, what comes next?",
+    s1_body: s([
+      'Karmic bondage is not the end of the event; it is the start of a process.',
+      'Without this process, questions like "Why am I facing this now?" stay unclear.',
+      'Key stages: <span class="term">Ashrava → Bandha → Satta → Uday → Nirjara</span>.',
+      '<span class="emphasis">Karma enters, remains, matures, gives fruit, and finally sheds.</span>',
+    ]),
+    s2_q: "What is the difference between Satta and Uday?",
+    s2_body: s([
+      '<span class="term">Satta</span> means karma is present in stock but not currently active as experience.',
+      '<span class="term">Uday</span> means that karma is now giving active fruit as experience.',
+      'So not every current experience is newly created karma; much of it is old stock maturing.',
+      '<span class="emphasis">This reduces panic and increases observation.</span>',
+    ]),
+    s3_q: "What is Udirana?",
+    s3_body: s([
+      '<span class="term">Udirana</span> means early fruition — karma rising before its natural schedule.',
+      'Through austerity, discipline, and inner transformation, some karma may ripen sooner.',
+      'This is not magical deletion; it is accelerated fruition handled with awareness.',
+      '<span class="emphasis">Udirana changes timing, not moral accountability.</span>',
+    ]),
+    s4_q: "Where does Nirjara fit in this cycle?",
+    s4_body: s([
+      '<span class="term">Nirjara</span> is the shedding of karma after maturation/fruition.',
+      'Two paths: react blindly and bind fresh karma, or respond with equanimity and let old karma drop.',
+      'That is why restraint and balance are central in Jain practice.',
+      '<span class="emphasis">You may not control what rises, but you can shape how you respond.</span>',
+    ]),
+    s5_q: "How to apply this in daily life",
+    s5_body: s([
+      'When pain or setback comes, avoid instant stories like "I am doomed" or "life is unfair".',
+      'Step 1: observe — this may be uday. Step 2: remain balanced — do not add fresh bondage.',
+      'Step 3: act consciously — keep present karma-lightness high.',
+      'Next page: deep dive into the eight karma categories and what each covers.',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Karma Mechanics I",
+    next_label: "Continue",
+    back_text: "Karma Mechanics I",
+    next_title: "Karma Mechanics III",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang]; if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (strings[key] !== undefined) el.textContent = strings[key]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const key = el.getAttribute('data-i18n-html'); if (strings[key] !== undefined) el.innerHTML = strings[key]; });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+window.addEventListener('scroll', () => { document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

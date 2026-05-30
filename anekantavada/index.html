@@ -25,7 +25,7 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 200px 200px;
   }
-  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 40px; display: flex; align-items: center; justify-content: flex-end; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; }
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; }
   .topbar.scrolled { background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); padding: 13px 40px; }
   .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.25s; }
   .back-link:hover { color: var(--saffron-deep); }
@@ -88,6 +88,12 @@
 <body>
 
 <div class="topbar" id="topbar">
+  <a href="/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span data-i18n="back_text"></span>
+  </a>
   <div class="lang-switch">
     <button class="lang-btn" data-lang="mr">मराठी</button>
     <span class="lang-divider"></span>
@@ -215,6 +221,7 @@ const i18n = {
     ]),
     prev_label: "मागे",
     prev_title: "मुख्य पृष्ठ",
+    back_text: "मुख्य पृष्ठ",
     next_label: "पुढे वाचा",
     next_title: "स्याद्वाद",
     footer_note: "जैन परंपरा · Jainverse",
@@ -261,6 +268,7 @@ const i18n = {
     ]),
     prev_label: "पीछे",
     prev_title: "मुख्य पृष्ठ",
+    back_text: "मुख्य पृष्ठ",
     next_label: "आगे पढ़ें",
     next_title: "स्याद्वाद",
     footer_note: "जैन परंपरा · Jainverse",
@@ -307,6 +315,7 @@ const i18n = {
     ]),
     prev_label: "Previous",
     prev_title: "Home",
+    back_text: "Home",
     next_label: "Continue",
     next_title: "Syadvada",
     footer_note: "Jain Tradition · Jainverse",
