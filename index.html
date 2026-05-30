@@ -407,6 +407,108 @@
     opacity: 0.4;
   }
 
+  /* Coming soon cards */
+  .highlight-card.coming-soon {
+    cursor: default;
+    opacity: 0.7;
+  }
+
+  .highlight-card.coming-soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--sand-dark);
+  }
+
+  .highlight-card.coming-soon:hover .highlight-visual-bg {
+    transform: none;
+  }
+
+  .highlight-soon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 28px;
+    padding: 8px 20px;
+    background: var(--sand);
+    color: var(--stone);
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    border-radius: 4px;
+    align-self: flex-start;
+  }
+
+  /* The Path visual */
+  .highlight-visual-path {
+    background: linear-gradient(135deg, #1a3a2a 0%, #2a5240 40%, #3a6a52 100%);
+  }
+
+  .highlight-visual-path::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(201, 168, 76, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, transparent 20%, rgba(58, 106, 82, 0.3) 60%);
+  }
+
+  /* Jain Wisdom visual */
+  .highlight-visual-wisdom {
+    background: linear-gradient(135deg, #2a1a3a 0%, #3d2a5c 40%, #4f3a70 100%);
+  }
+
+  .highlight-visual-wisdom::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(201, 168, 76, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, transparent 20%, rgba(79, 58, 112, 0.3) 60%);
+  }
+
+  /* The Cosmos visual */
+  .highlight-visual-cosmos {
+    background: linear-gradient(135deg, #0e1a2e 0%, #162844 40%, #1e3660 100%);
+  }
+
+  .highlight-visual-cosmos::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(224, 120, 48, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, transparent 20%, rgba(14, 26, 46, 0.3) 60%);
+  }
+
+  /* Conclusion visual */
+  .highlight-visual-conclusion {
+    background: linear-gradient(135deg, #2a2318 0%, #3d3428 40%, #504838 100%);
+  }
+
+  .highlight-visual-conclusion::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(201, 168, 76, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, transparent 20%, rgba(42, 35, 24, 0.3) 60%);
+  }
+
+  .highlight-geo-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .highlight-geo-center svg {
+    width: 220px;
+    height: 220px;
+    opacity: 0.35;
+  }
+
   /* ---- Footer ---- */
   footer {
     padding: 40px 60px;
@@ -462,6 +564,7 @@
     .highlight-body { padding: 28px 24px 32px; }
     .highlight-title { font-size: 28px; }
     .highlight-title-sub { font-size: 18px; }
+    .highlight-geo-center svg { width: 180px; height: 180px; }
 
     footer { padding: 28px; flex-direction: column; gap: 8px; text-align: center; }
 
@@ -550,8 +653,107 @@
       </div>
     </a>
 
+    <!-- The Path -->
+    <div class="highlight-card coming-soon reveal" style="transition-delay: 0.15s">
+      <div class="highlight-visual">
+        <div class="highlight-visual-bg highlight-visual-path"></div>
+        <div class="highlight-geo-center">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Three jewels — ratnatraya -->
+            <circle cx="100" cy="60" r="22" fill="none" stroke="rgba(201,168,76,0.35)" stroke-width="0.7"/>
+            <circle cx="68" cy="120" r="22" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="0.7"/>
+            <circle cx="132" cy="120" r="22" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="0.7"/>
+            <!-- Connecting lines -->
+            <line x1="100" y1="82" x2="68" y2="98" stroke="rgba(201,168,76,0.15)" stroke-width="0.5"/>
+            <line x1="100" y1="82" x2="132" y2="98" stroke="rgba(201,168,76,0.15)" stroke-width="0.5"/>
+            <line x1="90" y1="120" x2="110" y2="120" stroke="rgba(201,168,76,0.15)" stroke-width="0.5"/>
+            <!-- Center dot -->
+            <circle cx="100" cy="100" r="3" fill="rgba(201,168,76,0.4)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="highlight-body">
+        <div class="highlight-tag" data-i18n="card_path_tag"></div>
+        <h3 class="highlight-title" data-i18n-html="card_path_title"></h3>
+        <p class="highlight-desc" data-i18n="card_path_desc"></p>
+        <span class="highlight-soon-badge" data-i18n="coming_soon"></span>
+      </div>
+    </div>
+
+    <!-- Jain Wisdom -->
+    <div class="highlight-card coming-soon reveal" style="transition-delay: 0.2s">
+      <div class="highlight-visual">
+        <div class="highlight-visual-bg highlight-visual-wisdom"></div>
+        <div class="highlight-geo-center">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Multi-faceted prism — anekantavada -->
+            <polygon points="100,30 160,70 160,130 100,170 40,130 40,70" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="0.7"/>
+            <line x1="100" y1="30" x2="100" y2="170" stroke="rgba(201,168,76,0.12)" stroke-width="0.4"/>
+            <line x1="40" y1="70" x2="160" y2="130" stroke="rgba(201,168,76,0.12)" stroke-width="0.4"/>
+            <line x1="160" y1="70" x2="40" y2="130" stroke="rgba(201,168,76,0.12)" stroke-width="0.4"/>
+            <circle cx="100" cy="100" r="3" fill="rgba(201,168,76,0.4)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="highlight-body">
+        <div class="highlight-tag" data-i18n="card_wisdom_tag"></div>
+        <h3 class="highlight-title" data-i18n-html="card_wisdom_title"></h3>
+        <p class="highlight-desc" data-i18n="card_wisdom_desc"></p>
+        <span class="highlight-soon-badge" data-i18n="coming_soon"></span>
+      </div>
+    </div>
+
+    <!-- The Cosmos -->
+    <div class="highlight-card coming-soon reveal" style="transition-delay: 0.25s">
+      <div class="highlight-visual">
+        <div class="highlight-visual-bg highlight-visual-cosmos"></div>
+        <div class="highlight-geo-center">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Four gatis — four realms -->
+            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(224,120,48,0.2)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="50" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+            <line x1="100" y1="30" x2="100" y2="170" stroke="rgba(201,168,76,0.1)" stroke-width="0.4"/>
+            <line x1="30" y1="100" x2="170" y2="100" stroke="rgba(201,168,76,0.1)" stroke-width="0.4"/>
+            <!-- Four dots for four gatis -->
+            <circle cx="100" cy="50" r="4" fill="rgba(201,168,76,0.35)"/>
+            <circle cx="150" cy="100" r="4" fill="rgba(224,120,48,0.35)"/>
+            <circle cx="100" cy="150" r="4" fill="rgba(201,168,76,0.35)"/>
+            <circle cx="50" cy="100" r="4" fill="rgba(224,120,48,0.35)"/>
+            <circle cx="100" cy="100" r="3" fill="rgba(201,168,76,0.4)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="highlight-body">
+        <div class="highlight-tag" data-i18n="card_cosmos_tag"></div>
+        <h3 class="highlight-title" data-i18n-html="card_cosmos_title"></h3>
+        <p class="highlight-desc" data-i18n="card_cosmos_desc"></p>
+        <span class="highlight-soon-badge" data-i18n="coming_soon"></span>
+      </div>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="highlight-card coming-soon reveal" style="transition-delay: 0.3s">
+      <div class="highlight-visual">
+        <div class="highlight-visual-bg highlight-visual-conclusion"></div>
+        <div class="highlight-geo-center">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Simple point — convergence -->
+            <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="30" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="6" fill="rgba(201,168,76,0.4)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="highlight-body">
+        <div class="highlight-tag" data-i18n="card_conclusion_tag"></div>
+        <h3 class="highlight-title" data-i18n-html="card_conclusion_title"></h3>
+        <p class="highlight-desc" data-i18n="card_conclusion_desc"></p>
+        <span class="highlight-soon-badge" data-i18n="coming_soon"></span>
+      </div>
+    </div>
+
     <!-- Jambudweep Highlight -->
-    <a href="/jambudweep/" class="highlight-card reveal" style="transition-delay: 0.2s">
+    <a href="/jambudweep/" class="highlight-card reveal" style="transition-delay: 0.35s">
       <div class="highlight-visual">
         <div class="highlight-visual-bg highlight-visual-jambu"></div>
         <div class="highlight-rings">
@@ -606,6 +808,19 @@ const i18n = {
     card_tattva_title: "तत्त्वज्ञान <span class='highlight-title-sub'>Philosophy Journey</span>",
     card_tattva_desc: "जैन धर्म म्हणजे काय? — जीव, कर्म, आणि मोक्षापर्यंतचा प्रवास.",
     card_tattva_enter: "प्रवास सुरू करा",
+    card_path_tag: "तत्त्वज्ञान — मार्ग",
+    card_path_title: "मार्ग <span class='highlight-title-sub'>The Path</span>",
+    card_path_desc: "रत्नत्रय, पुण्य-पाप, अहिंसा, पंच परमेष्ठी, आणि णमोकार मंत्र.",
+    card_wisdom_tag: "तत्त्वज्ञान — जैन विचार",
+    card_wisdom_title: "जैन विचार <span class='highlight-title-sub'>Jain Wisdom</span>",
+    card_wisdom_desc: "अनेकांतवाद, स्याद्वाद, आणि लेश्या — जैन दृष्टिकोनातून जगाकडे बघणं.",
+    card_cosmos_tag: "तत्त्वज्ञान — विश्वरचना",
+    card_cosmos_title: "विश्वरचना <span class='highlight-title-sub'>The Cosmos</span>",
+    card_cosmos_desc: "चार गती, देव, नरक, आणि गुणस्थान — आत्म्याचा प्रवास कुठे कुठे होतो.",
+    card_conclusion_tag: "तत्त्वज्ञान — समारोप",
+    card_conclusion_title: "समारोप <span class='highlight-title-sub'>Conclusion</span>",
+    card_conclusion_desc: "संपूर्ण प्रवासाचा सारांश — एका नजरेत.",
+    coming_soon: "लवकरच",
     footer_note: "जैन परंपरा · Jain Encyclopaedia",
   },
   hi: {
@@ -620,6 +835,19 @@ const i18n = {
     card_tattva_title: "तत्त्वज्ञान <span class='highlight-title-sub'>Philosophy Journey</span>",
     card_tattva_desc: "जैन धर्म क्या है? — जीव, कर्म, और मोक्ष तक का सफ़र।",
     card_tattva_enter: "सफ़र शुरू करें",
+    card_path_tag: "तत्त्वज्ञान — मार्ग",
+    card_path_title: "मार्ग <span class='highlight-title-sub'>The Path</span>",
+    card_path_desc: "रत्नत्रय, पुण्य-पाप, अहिंसा, पंच परमेष्ठी, और णमोकार मंत्र।",
+    card_wisdom_tag: "तत्त्वज्ञान — जैन विचार",
+    card_wisdom_title: "जैन विचार <span class='highlight-title-sub'>Jain Wisdom</span>",
+    card_wisdom_desc: "अनेकांतवाद, स्याद्वाद, और लेश्या — जैन नज़र से दुनिया को देखना।",
+    card_cosmos_tag: "तत्त्वज्ञान — विश्व रचना",
+    card_cosmos_title: "विश्व रचना <span class='highlight-title-sub'>The Cosmos</span>",
+    card_cosmos_desc: "चार गतियाँ, देव, नरक, और गुणस्थान — आत्मा का सफ़र कहाँ कहाँ होता है।",
+    card_conclusion_tag: "तत्त्वज्ञान — समापन",
+    card_conclusion_title: "समापन <span class='highlight-title-sub'>Conclusion</span>",
+    card_conclusion_desc: "पूरे सफ़र का सारांश — एक नज़र में।",
+    coming_soon: "जल्द ही",
     footer_note: "जैन परंपरा · Jain Encyclopaedia",
   },
   en: {
@@ -634,6 +862,19 @@ const i18n = {
     card_tattva_title: "Philosophy <span class='highlight-title-sub'>Journey</span>",
     card_tattva_desc: "What is Jainism? — From the soul and karma to the path of liberation.",
     card_tattva_enter: "Begin Journey",
+    card_path_tag: "Philosophy — The Path",
+    card_path_title: "The Path <span class='highlight-title-sub'>मार्ग</span>",
+    card_path_desc: "Ratnatraya, punya & paap, ahimsa, Panch Parmeshthi, and the Namokar Mantra.",
+    card_wisdom_tag: "Philosophy — Jain Wisdom",
+    card_wisdom_title: "Jain Wisdom <span class='highlight-title-sub'>जैन विचार</span>",
+    card_wisdom_desc: "Anekantavada, Syadvada, and Leshya — seeing the world through the Jain lens.",
+    card_cosmos_tag: "Philosophy — The Cosmos",
+    card_cosmos_title: "The Cosmos <span class='highlight-title-sub'>विश्वरचना</span>",
+    card_cosmos_desc: "Four gatis, deva, naraka, and gunasthana — where the soul's journey takes it.",
+    card_conclusion_tag: "Philosophy — Conclusion",
+    card_conclusion_title: "Conclusion <span class='highlight-title-sub'>समारोप</span>",
+    card_conclusion_desc: "The entire journey summarised — at a glance.",
+    coming_soon: "Coming soon",
     footer_note: "Jain Tradition · Encyclopaedia",
   }
 };
