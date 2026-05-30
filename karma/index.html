@@ -335,6 +335,71 @@
 
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
+  /* Karma layers diagram */
+  .karma-layers {
+    margin: 0 -8px;
+  }
+
+  .karma-layers-label {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 13px;
+    color: var(--stone-light);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .karma-layer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--indigo);
+    border-bottom: 1px solid rgba(250, 248, 244, 0.1);
+    color: var(--sand);
+  }
+
+  .karma-layer:first-of-type {
+    border-radius: 8px 8px 0 0;
+  }
+
+  .karma-layer:last-of-type {
+    border-radius: 0 0 8px 8px;
+    border-bottom: none;
+  }
+
+  .karma-layer-name {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .karma-layer-sep {
+    color: var(--stone-light);
+    font-size: 12px;
+  }
+
+  .karma-layer-effect {
+    font-size: 13px;
+    color: var(--sand-dark);
+  }
+
+  .karma-soul {
+    text-align: center;
+    padding: 14px 20px;
+    background: var(--warm-white);
+    border: 2px dashed var(--sand-dark);
+    border-radius: 0 0 8px 8px;
+    margin-top: -1px;
+  }
+
+  .karma-soul-text {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 15px;
+    color: var(--saffron-deep);
+  }
+
   @media (max-width: 600px) {
     .topbar { padding: 14px 18px; }
     .topbar.scrolled { padding: 11px 18px; }
@@ -352,6 +417,10 @@
     .page-nav { flex-direction: column; }
     .article-footer { flex-direction: column; gap: 8px; text-align: center; }
     .lang-btn { padding: 4px 9px; font-size: 11px; }
+    .karma-layers { margin: 0 -4px; }
+    .karma-layer { padding: 10px 14px; }
+    .karma-layer-name { font-size: 14px; }
+    .karma-layer-effect { font-size: 12px; }
   }
 </style>
 </head>
@@ -421,6 +490,21 @@
 
   <div class="section-divider reveal"><span>◆</span></div>
 
+  <div class="karma-layers reveal">
+    <div class="karma-layers-label" data-i18n="layers_label"></div>
+    <div class="karma-layer"><span class="karma-layer-name" data-i18n="kl_jnan"></span><span class="karma-layer-sep">—</span><span class="karma-layer-effect" data-i18n="kl_jnan_e"></span></div>
+    <div class="karma-layer"><span class="karma-layer-name" data-i18n="kl_darsh"></span><span class="karma-layer-sep">—</span><span class="karma-layer-effect" data-i18n="kl_darsh_e"></span></div>
+    <div class="karma-layer"><span class="karma-layer-name" data-i18n="kl_ved"></span><span class="karma-layer-sep">—</span><span class="karma-layer-effect" data-i18n="kl_ved_e"></span></div>
+    <div class="karma-layer"><span class="karma-layer-name" data-i18n="kl_moh"></span><span class="karma-layer-sep">—</span><span class="karma-layer-effect" data-i18n="kl_moh_e"></span></div>
+    <div class="karma-layer"><span class="karma-layer-name" data-i18n="kl_ayu"></span><span class="karma-layer-sep">—</span><span class="karma-layer-effect" data-i18n="kl_ayu_e"></span></div>
+    <div class="karma-layer"><span class="karma-layer-name" data-i18n="kl_nam"></span><span class="karma-layer-sep">—</span><span class="karma-layer-effect" data-i18n="kl_nam_e"></span></div>
+    <div class="karma-layer"><span class="karma-layer-name" data-i18n="kl_got"></span><span class="karma-layer-sep">—</span><span class="karma-layer-effect" data-i18n="kl_got_e"></span></div>
+    <div class="karma-layer"><span class="karma-layer-name" data-i18n="kl_ant"></span><span class="karma-layer-sep">—</span><span class="karma-layer-effect" data-i18n="kl_ant_e"></span></div>
+    <div class="karma-soul"><span class="karma-soul-text" data-i18n="kl_soul"></span></div>
+  </div>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
   <section class="section reveal">
     <div class="section-num">6</div>
     <h2 class="section-question" data-i18n="s6_q"></h2>
@@ -486,7 +570,7 @@ const i18n = {
       'म्हणूनच एकाच परिस्थितीत दोन माणसं वेगवेगळं अनुभवतात — <span class="emphasis">बाहेर तेच, पण आतला अनुभव पूर्ण वेगळा</span>.',
       'सुखाचं वेदनीय असो वा दुःखाचं — दोन्ही कर्मच आहेत. खरं सुख कर्मातून नाही — कर्म संपल्यावर आहे.',
     ]),
-    s4_q: "सगळ्यात खोलचा थर",
+    s4_q: "मुळाशी काय आहे?",
     s4_body: s([
       'क्रोध, मान, माया, लोभ — कषाय तुम्ही पाहिल्या. पण कषाय येतात कुठून?',
       'एक कर्म आहे जे आत्म्याला भ्रमात ठेवतं — बरोबर काय, चूक काय हे गोंधळवतं, आणि कषायांना जन्म देतं.',
@@ -504,6 +588,16 @@ const i18n = {
       '<span class="term">गोत्र कर्म</span> — उच्च कुळात की नीच कुळात, सन्मान मिळेल की नाही.',
       '<span class="term">अंतराय कर्म</span> — तुझ्या शक्ती अडवणारं. दान करायचं पण पैसे नाहीत. मदत करायची पण संधी नाही. क्षमता असूनही ती वापरता येत नाही.',
     ]),
+    layers_label: "आठ थर — आत्म्यावर",
+    kl_jnan: "ज्ञानावरणीय", kl_jnan_e: "जाणणं झाकतं",
+    kl_darsh: "दर्शनावरणीय", kl_darsh_e: "जाणीव झाकते",
+    kl_ved: "वेदनीय", kl_ved_e: "सुख-दुःख ठरवतं",
+    kl_moh: "मोहनीय", kl_moh_e: "भ्रम निर्माण करतं",
+    kl_ayu: "आयु", kl_ayu_e: "काळ ठरवतं",
+    kl_nam: "नाम", kl_nam_e: "शरीर ठरवतं",
+    kl_got: "गोत्र", kl_got_e: "परिस्थिती ठरवते",
+    kl_ant: "अंतराय", kl_ant_e: "शक्ती अडवतं",
+    kl_soul: "आत्मा — शुद्ध, पण झाकलेला",
     s6_q: "आठ थर — एक नजर",
     s6_body: s([
       'आता पूर्ण चित्र दिसतं:',
@@ -564,6 +658,16 @@ const i18n = {
       '<span class="term">गोत्र कर्म</span> — ऊँचे कुल में या नीचे, इज़्ज़त मिलेगी या नहीं.',
       '<span class="term">अंतराय कर्म</span> — तुम्हारी शक्तियाँ रोकने वाला. दान करना है लेकिन पैसे नहीं. मदद करनी है लेकिन मौक़ा नहीं. काबिलियत है फिर भी इस्तेमाल नहीं कर पाते.',
     ]),
+    layers_label: "आठ परतें — आत्मा पर",
+    kl_jnan: "ज्ञानावरणीय", kl_jnan_e: "जानना ढकता है",
+    kl_darsh: "दर्शनावरणीय", kl_darsh_e: "जागरूकता ढकती है",
+    kl_ved: "वेदनीय", kl_ved_e: "सुख-दुख तय करता है",
+    kl_moh: "मोहनीय", kl_moh_e: "भ्रम पैदा करता है",
+    kl_ayu: "आयु", kl_ayu_e: "वक़्त तय करता है",
+    kl_nam: "नाम", kl_nam_e: "शरीर तय करता है",
+    kl_got: "गोत्र", kl_got_e: "हालात तय करते हैं",
+    kl_ant: "अंतराय", kl_ant_e: "शक्तियाँ रोकता है",
+    kl_soul: "आत्मा — शुद्ध, लेकिन ढका हुआ",
     s6_q: "आठ परतें — एक नज़र",
     s6_body: s([
       'अब पूरी तस्वीर दिखती है:',
@@ -624,6 +728,16 @@ const i18n = {
       '<span class="term">Gotra karma</span> — high status or low, whether you receive respect or not.',
       '<span class="term">Antaraya karma</span> — the one that blocks your abilities. You want to give but don\'t have the means. You want to help but lack the opportunity. You have the capacity but can\'t use it.',
     ]),
+    layers_label: "Eight layers — on the soul",
+    kl_jnan: "Jnanavaraniya", kl_jnan_e: "covers knowing",
+    kl_darsh: "Darshanavaraniya", kl_darsh_e: "covers awareness",
+    kl_ved: "Vedaniya", kl_ved_e: "determines pleasure & pain",
+    kl_moh: "Mohaniya", kl_moh_e: "creates delusion",
+    kl_ayu: "Ayu", kl_ayu_e: "determines lifespan",
+    kl_nam: "Nama", kl_nam_e: "determines the body",
+    kl_got: "Gotra", kl_got_e: "determines circumstances",
+    kl_ant: "Antaraya", kl_ant_e: "blocks abilities",
+    kl_soul: "Atma — pure, but covered",
     s6_q: "Eight layers — the full picture",
     s6_body: s([
       'Now you can see the complete picture:',
