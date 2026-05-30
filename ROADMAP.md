@@ -85,51 +85,37 @@ The goal is not merely translation but conceptually equivalent explanations acro
 
 16. Anekantavada
 17. Syadvada
-18. Karma in Detail
+18. Karma in Detail — split into three readable layers to keep the flow accessible:
+    - Karma Mechanics I (Bandha Mechanics)
+    - Karma Mechanics II (Karma Lifecycle: Asrava → Bandha → Satta → Uday → Nirjara, plus Udirana)
+    - Karma Mechanics III (8 Karmas in Depth: Ghati/Aghati and practical effects)
 19. Leshya
 20. Gunasthana
 21. Tap & Dhyana
 
-### Recommended Expansion: Karma Detailing Track
+## ADVANCED KARMA TRACK
 
-To keep beginner flow readable while still adding rigor, split karma-detailing into layers:
+A rigorous deep-dive into karma mechanics, taken right after Intermediate while karma is still fresh in the reader's mind, before stepping out into Cosmology.
 
-1. Karma Mechanics I (Bandha Mechanics)
-2. Karma Mechanics II (Karma Lifecycle: Asrava -> Bandha -> Satta -> Uday -> Nirjara, plus Udirana)
-3. Karma Mechanics III (8 Karmas in Depth: Ghati/Aghati and practical effects)
-4. Leshya
-5. Gunasthana
-6. Tap & Dhyana
-
-Optional advanced branch ("Karma Deep Dive") after the readable track:
-
-- 5 causes of Bandha: Mithyatva, Avirati, Pramada, Kashaya, Yoga
-- Kashaya gradations: Anantanubandhi, Apratyakhyanavarana, Pratyakhyanavarana, Sanjvalana
-- Mohaniya karma deep split: Darshan-mohaniya and Charitra-mohaniya
-- Sthiti/Anubhaga variability in bondage
-- Uday, Udirana, Satta in detail
-- Nikachit karma
-- Punya/Paap subtypes (without diluting core teaching that both are bondage)
-- Mapping karma weakening to Gunasthana progression
+22. Detailed Asrava — the 5 causes of Bandha: Mithyatva, Avirati, Pramada, Kashaya, Yoga
+23. Detailed Bandha — Prakriti / Sthiti / Anubhaga / Pradesh; Mohaniya split (Darshan-mohaniya vs Charitra-mohaniya); kashaya gradations (Anantanubandhi, Apratyakhyanavarana, Pratyakhyanavarana, Sanjvalana); Nikachit karma; Punya/Paap subtypes — without diluting the core teaching that both are bondage
+24. Detailed Samvara & Nirjara — Uday, Udirana, Satta in detail; how each gate is shut and how accumulated karma is shed
+25. Karma → Gunasthana Mapping — synthesis page tying the karma machinery back to the 14-stage progression
 
 ## COSMOLOGY
 
-22. Four Gatis
-23. Deva Gati
-24. Naraka Gati
-25. Lokakash & Alokakash
-26. Jambudvipa
-27. Time Cycles (Utsarpini & Avasarpini)
+26. Four Gatis
+27. Deva Gati
+28. Naraka Gati
+29. Lokakash & Alokakash
+30. Jambudvipa
+31. Time Cycles (Utsarpini & Avasarpini)
 
 ## ADVANCED
 
-28. Dravya-Guna-Paryaya
-29. Five Types of Knowledge
-30. Pramana & Naya
-31. Detailed Asrava
-32. Detailed Bandha
-33. Detailed Samvara
-34. Detailed Nirjara
+32. Dravya-Guna-Paryaya
+33. Five Types of Knowledge
+34. Pramana & Naya
 35. Advanced Ethics & Himsa
 
 ## FINAL PAGE

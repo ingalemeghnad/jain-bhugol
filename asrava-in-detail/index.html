@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>आस्रव — सखोल — Jainverse</title>
+<meta name="description" content="बंधनाची ५ कारणे — मिथ्यात्व, अविरति, प्रमाद, कषाय, योग — सोप्या भाषेत.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --saffron:#e07830; --saffron-deep:#c45e1a; --indigo:#1a2744; --sand:#f5f0e8; --sand-dark:#e8dfd0; --warm-white:#faf8f4; --stone:#8c7e6a; --stone-light:#b0a48e; --text:#2a2318; --text-secondary:#5c5246; --text-tertiary:#8a7e6e; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:200px 200px; }
+  .topbar { position:fixed; top:0; left:0; right:0; z-index:100; padding:18px 40px; display:flex; align-items:center; justify-content:space-between; transition:background .4s, box-shadow .4s, padding .4s; }
+  .topbar.scrolled { background:rgba(250,248,244,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(0,0,0,.06); padding:13px 40px; }
+  .back-link { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:color .25s; }
+  .back-link:hover { color:var(--saffron-deep); }
+  .back-link svg { width:16px; height:16px; transition:transform .25s; }
+  .back-link:hover svg { transform:translateX(-3px); }
+  .lang-switch { display:flex; align-items:center; border:1px solid var(--sand-dark); border-radius:20px; overflow:hidden; background:rgba(245,240,232,.6); }
+  .lang-btn { padding:5px 12px; font-size:12px; font-weight:500; color:var(--text-tertiary); background:none; border:none; cursor:pointer; transition:all .25s; font-family:'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space:nowrap; }
+  .lang-btn:hover { color:var(--text-secondary); }
+  .lang-btn.active { background:var(--indigo); color:var(--sand); font-weight:600; }
+  .lang-divider { width:1px; height:16px; background:var(--sand-dark); }
+  .article { max-width:640px; margin:0 auto; padding:140px 28px 100px; }
+  .page-header { margin-bottom:72px; opacity:0; transform:translateY(20px); animation:fadeUp .8s .2s forwards; }
+  .page-header h1 { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(36px, 5vw, 52px); color:var(--indigo); line-height:1.15; letter-spacing:-.5px; margin-bottom:12px; }
+  .page-header .subtitle { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:clamp(16px, 2vw, 20px); color:var(--stone); line-height:1.4; }
+  .header-rule { width:48px; height:2px; background:var(--saffron); margin-top:28px; opacity:.7; }
+  .section { margin-bottom:80px; position:relative; }
+  .section-num { font-family:'DM Serif Display', serif; font-size:80px; color:var(--sand-dark); line-height:1; margin-bottom:-12px; user-select:none; }
+  .section-question { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(24px, 3.5vw, 32px); color:var(--indigo); line-height:1.25; margin-bottom:28px; letter-spacing:-.3px; }
+  .section-body { font-size:17px; line-height:2; color:var(--text-secondary); }
+  .section-body .sentence { display:block; margin-bottom:12px; }
+  .section-body .emphasis { color:var(--text); font-weight:500; }
+  .section-body .term { color:var(--saffron-deep); font-weight:500; }
+  .foldout { margin-top:28px; border:1px solid var(--sand-dark); border-radius:8px; background:var(--sand); padding:14px 22px; }
+  .foldout summary { font-size:13px; font-weight:600; letter-spacing:.5px; color:var(--saffron-deep); list-style:none; display:flex; align-items:center; gap:10px; cursor:pointer; user-select:none; padding:4px 0; }
+  .foldout summary::-webkit-details-marker { display:none; }
+  .foldout summary::before { content:''; width:0; height:0; border-left:5px solid var(--saffron); border-top:4px solid transparent; border-bottom:4px solid transparent; transition:transform .2s; display:inline-block; }
+  .foldout[open] summary::before { transform:rotate(90deg); }
+  .foldout-body { margin-top:14px; padding-top:14px; border-top:1px solid var(--sand-dark); font-size:15px; line-height:1.75; color:var(--text-secondary); }
+  .foldout-body strong { color:var(--text); font-weight:600; }
+  .foldout-body ol { margin:0 0 0 20px; padding:0; }
+  .foldout-body ol li { margin-bottom:14px; }
+  .foldout-body ol li:last-child { margin-bottom:0; }
+  .section-divider { display:flex; align-items:center; justify-content:center; gap:16px; margin:80px 0; color:var(--sand-dark); user-select:none; }
+  .section-divider::before, .section-divider::after { content:''; height:1px; width:40px; background:linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background:linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size:14px; color:var(--stone-light); }
+  .page-nav { display:flex; gap:16px; margin-top:80px; }
+  .prev-read,.next-read { flex:1; padding:28px 32px; background:var(--sand); border-radius:8px; text-decoration:none; color:inherit; display:block; transition:all .3s; }
+  .prev-read:hover,.next-read:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(42,35,24,.08); }
+  .prev-read-label,.next-read-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .prev-read-label { color:var(--stone-light); }
+  .next-read-label { color:var(--saffron); }
+  .prev-read-title,.next-read-title { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .prev-read-title svg { width:18px; height:18px; color:var(--stone-light); transition:transform .3s; }
+  .next-read-title svg { width:18px; height:18px; color:var(--saffron); transition:transform .3s; }
+  .prev-read:hover .prev-read-title svg { transform:translateX(-4px); }
+  .next-read:hover .next-read-title svg { transform:translateX(4px); }
+  .article-footer { margin-top:60px; padding-top:32px; border-top:1px solid var(--sand-dark); display:flex; align-items:center; justify-content:space-between; }
+  .article-footer .brand { font-family:'DM Serif Display', serif; font-size:16px; color:var(--stone); text-decoration:none; }
+  .article-footer .note { font-size:12px; color:var(--text-tertiary); }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  @media (max-width:600px) {
+    .topbar { padding:14px 18px; } .topbar.scrolled { padding:11px 18px; }
+    .article { padding:110px 20px 60px; } .page-header { margin-bottom:52px; }
+    .section { margin-bottom:56px; } .section-num { font-size:56px; margin-bottom:-8px; }
+    .section-question { font-size:22px; margin-bottom:20px; }
+    .section-body { font-size:16px; line-height:1.9; } .section-divider { margin:56px 0; }
+    .foldout { padding:12px 18px; } .foldout-body { font-size:14px; }
+    .prev-read,.next-read { padding:22px 24px; }
+    .prev-read-title,.next-read-title { font-size:19px; }
+    .page-nav { flex-direction:column; }
+    .article-footer { flex-direction:column; gap:8px; text-align:center; }
+    .lang-btn { padding:4px 9px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/tap-dhyan/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal"><div class="section-num">1</div><h2 class="section-question" data-i18n="s1_q"></h2><div class="section-body" data-i18n-html="s1_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+    <details class="foldout">
+      <summary data-i18n="causes_foldout_label"></summary>
+      <div class="foldout-body" data-i18n-html="causes_foldout_body"></div>
+    </details>
+  </section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal"><div class="section-num">3</div><h2 class="section-question" data-i18n="s3_q"></h2><div class="section-body" data-i18n-html="s3_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">4</div><h2 class="section-question" data-i18n="s4_q"></h2><div class="section-body" data-i18n-html="s4_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">5</div><h2 class="section-question" data-i18n="s5_q"></h2><div class="section-body" data-i18n-html="s5_body"></div></section>
+
+  <div class="page-nav reveal">
+    <a href="/tap-dhyan/" class="prev-read"><div class="prev-read-label" data-i18n="prev_label"></div><div class="prev-read-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg><span data-i18n="prev_title"></span></div></a>
+    <a href="/bandha-in-detail/" class="next-read"><div class="next-read-label" data-i18n="next_label"></div><div class="next-read-title"><span data-i18n="next_title"></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div></a>
+  </div>
+
+  <footer class="article-footer reveal"><a href="/" class="brand">Jainverse</a><span class="note" data-i18n="footer_note"></span></footer>
+</article>
+
+<script>
+function s(sentences) { return sentences.map(t => '<span class="sentence">' + t + '</span>').join(''); }
+
+const i18n = {
+  mr: {
+    page_title: "आस्रव — सखोल",
+    page_subtitle: "ज्या ५ दारांतून कर्म आत येतं",
+    s1_q: "आधी काय शिकलो — आणि काय राहिलं?",
+    s1_body: s([
+      'आस्रव म्हणजे कर्माचा आत येण्याचा प्रवाह — हे आधी पाहिलं, आणि कषाय व योग ही त्याची दोन प्रमुख कारणं म्हणून समजली.',
+      'त्या वेळी हे पुरेसं होतं. पण ती संपूर्ण यादी नव्हती.',
+      'जैन विश्लेषणात बंधनाची एकूण <span class="term">पाच</span> वेगवेगळी कारणं सांगितली आहेत — दोन नव्हे.',
+      '<span class="emphasis">हे पान पाचही कारणं देतं — आणि ती ज्या क्रमाने सोडवायची त्याच क्रमाने.</span>',
+    ]),
+    s2_q: "पाच कारणं कोणती?",
+    s2_body: s([
+      'बंधनाची पाच कारणं अशी आहेत: <span class="term">मिथ्यात्व</span>, <span class="term">अविरति</span>, <span class="term">प्रमाद</span>, <span class="term">कषाय</span>, आणि <span class="term">योग</span>.',
+      'ही थराथरांत असतात — पहिलं सर्वांत खोल विकृति, शेवटचं केवळ बाह्य हालचाल.',
+      'प्रत्येक थर पुढच्या थरावर अवलंबून आहे. मूळ काढलं की वरचे आपोआप कमजोर होतात.',
+      '<span class="emphasis">म्हणून क्रम महत्त्वाचा आहे. हाच क्रम १४ गुणस्थानांत ही कारणं ज्या क्रमाने शमतात त्याशी अचूक जुळतो.</span>',
+    ]),
+    causes_foldout_label: "पाच कारणांची सविस्तर ओळख",
+    causes_foldout_body: '<ol><li><strong>मिथ्यात्व</strong> — चुकीची दृष्टी. शरीराला आत्मा समजणं, क्षणभंगुराला नित्य मानणं, सुखाला आनंद समजणं. हे सर्वांत खोल विकृति आहे; जोपर्यंत ही टिकून आहे, तोपर्यंत इतर सर्व प्रयत्न चुकीच्या पायावर असतात.</li><li><strong>अविरति</strong> — व्रताचा अभाव. कळतंय पण बंधन घेतलेलं नाही. कोणतीही ठाम शिस्त नसली की प्रत्येक क्षणी दार उघडंच राहतं.</li><li><strong>प्रमाद</strong> — बेसावधपणा, अध्यात्मिक झोप. व्रतं असली तरी मन भरकटतं, जागरूकता सुस्त होते. छोट्या चुकाही कर्म बांधतात.</li><li><strong>कषाय</strong> — राग, मान, माया, लोभ. आत येणारं कर्म त्यांच्यामुळेच आत्म्याला चिकटतं. (कषाय आधीच्या पानावर सविस्तर पाहिला; इथे तो पाच कारणांपैकी एक.)</li><li><strong>योग</strong> — मन, वाणी, शरीर यांची हालचाल. ज्ञानी पुरुष देखील देहधारी असेपर्यंत सयोग असतो — आणि योग सुरू असेपर्यंत थोडंफार कर्म वाहत राहतं, पण मग ते अघाती (निरुपद्रवी) प्रकारचंच असतं.</li></ol>',
+    s3_q: "हा क्रम का? — दृष्टीपासून कृतीपर्यंत",
+    s3_body: s([
+      'मिथ्यात्व म्हणजे चुकीची दृष्टी — शरीराला आत्मा मानणं, अनित्याला नित्य समजणं. हे मूळ विकृति आहे.',
+      'अविरति त्यातून निघते: दृष्टी चुकीची असेल तर खरा संयम मनापासून येत नाही. कधीतरी त्याग होईल, पण ठाम व्रत नसतं.',
+      'प्रमाद म्हणजे अध्यात्मिक बेसावधपणा — व्रतं असली तरी जागरूकता ढिली पडते. छोट्या चुका मोजल्या जातात.',
+      'कषाय प्रत्येक क्रियेला रंग देतो: राग, मान, माया, लोभ. आत येणारं कर्म त्यांच्यामुळेच आत्म्याला चिकटतं.',
+      'योग म्हणजे केवळ हालचाल — मन, वाणी, शरीर यांची प्रवृत्ती. ज्ञानी पुरुष देखील देह आहे तोपर्यंत योगात असतोच.',
+      '<span class="emphasis">क्रम आतून बाहेरचा: दृष्टी → संयम → सजगता → स्वभाव → कृती.</span>',
+    ]),
+    s4_q: "ही दारं बंद कशी होतात? — गुणस्थानांशी जुळणी",
+    s4_body: s([
+      'मुक्ती ही एका झटक्यात येणारी गोष्ट नाही — ही पाच दारं एक-एक करून बंद होतात, आणि तो क्रम गुणस्थानांशी अचूक जुळतो.',
+      '<span class="term">मिथ्यात्व</span> सर्वांत आधी पडतं — गुणस्थान ४ ला, जिथे सम्यक दर्शन उगवतं.',
+      '<span class="term">अविरति</span> गुणस्थान ५ पासून हळूहळू कमी होते, जसं खरी व्रतं घेतली जातात.',
+      '<span class="term">प्रमाद</span> गुणस्थान ७ ला निवळतं — स्थिर जागरूकता.',
+      '<span class="term">कषाय</span> गुणस्थान ८ ते १२ या टप्प्यांत हळूहळू पातळ होऊन शेवटी संपतो.',
+      'फक्त <span class="term">योग</span> उरतो गुणस्थान १३ ला; तो शेवटी १४ ला शमतो — मुक्तीच्या क्षणाआधी.',
+      '<span class="emphasis">म्हणून ही ५ कारणं म्हणजेच ५ पायऱ्यांचा प्रगतीचा नकाशा. आस्रव आणि गुणस्थान एकाच आकृतीच्या दोन बाजू आहेत.</span>',
+    ]),
+    s5_q: "इथून पुढे काय?",
+    s5_body: s([
+      'आता हे माहीत झालंय की कर्माचं दार कशामुळे उघडतं.',
+      'पुढचा अचूक प्रश्न: कर्म आत आल्यावर ते आत्म्याला नेमकं कसं चिकटतं?',
+      'प्रकार, तीव्रता, कालावधी, प्रमाण — हे सर्व बंधनाच्या क्षणी ठरतं, आणि वेगवेगळ्या घटकांवरून ठरतं.',
+      '<span class="emphasis">तेच पुढचं पान — सखोल बंध — चिकटण्याची नेमकी यंत्रणा.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "तप आणि ध्यान",
+    next_label: "पुढचा टप्पा",
+    back_text: "तप आणि ध्यान",
+    next_title: "बंध — सखोल",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "आस्रव — विस्तार से",
+    page_subtitle: "जिन 5 द्वारों से कर्म प्रवेश करता है",
+    s1_q: "पहले क्या समझा — और क्या छूट गया?",
+    s1_body: s([
+      'आस्रव — कर्म के अंदर आने का प्रवाह — आप पहले देख चुके हैं, और कषाय व योग को इसके दो मुख्य कारणों के रूप में समझा.',
+      'उस समय वह पर्याप्त था. पर पूरी सूची नहीं थी.',
+      'जैन विश्लेषण बंधन के <span class="term">पाँच</span> भिन्न कारण बताता है — दो नहीं.',
+      '<span class="emphasis">यह पन्ना सभी पाँच देता है — और उसी क्रम में जिस क्रम में मुक्ति के लिए उन्हें छोड़ना है.</span>',
+    ]),
+    s2_q: "पाँच कारण कौन-से?",
+    s2_body: s([
+      'बंधन के पाँच कारण: <span class="term">मिथ्यात्व</span>, <span class="term">अविरति</span>, <span class="term">प्रमाद</span>, <span class="term">कषाय</span>, और <span class="term">योग</span>.',
+      'ये परतों में हैं — पहला सबसे गहरी विकृति, अंतिम केवल बाहरी प्रवृत्ति.',
+      'हर परत पिछली परत पर टिकी है. जड़ हटी तो ऊपर वाली परतें अपने-आप कमज़ोर होती हैं.',
+      '<span class="emphasis">इसीलिए क्रम महत्वपूर्ण है. यही क्रम 14 गुणस्थानों में इन कारणों के शमन के क्रम से सटीक मिलता है.</span>',
+    ]),
+    causes_foldout_label: "पाँच कारणों का संक्षिप्त परिचय",
+    causes_foldout_body: '<ol><li><strong>मिथ्यात्व</strong> — मिथ्या दृष्टि. शरीर को आत्मा मानना, अनित्य को नित्य मानना, सुख को आनंद समझना. यह सबसे गहरी विकृति है; जब तक यह बनी है, तब तक हर सुधार-प्रयास गलत नींव पर खड़ा है.</li><li><strong>अविरति</strong> — व्रत का अभाव. समझ होने पर भी संयम का बंधन नहीं लिया. कोई पक्की अनुशासन न हो तो हर क्षण द्वार खुला रहता है.</li><li><strong>प्रमाद</strong> — असावधानी, आध्यात्मिक नींद. व्रत होते हुए भी मन भटकता है, सजगता मंद पड़ती है. छोटी-सी चूक भी बंधन करती है.</li><li><strong>कषाय</strong> — क्रोध, मान, माया, लोभ. आते हुए कर्म को आत्मा से चिपका देते हैं. (कषाय पर पहले विस्तार से लिखा है; यहाँ वह पाँच कारणों में से एक है.)</li><li><strong>योग</strong> — मन, वचन, काय की प्रवृत्ति. ज्ञानी पुरुष भी देहधारी होते हुए सयोग रहता है — और जब तक योग है तब तक कुछ कर्म प्रवाह बना रहता है, यद्यपि वह अघाति (निरुपद्रव) ही होता है.</li></ol>',
+    s3_q: "यही क्रम क्यों? — दृष्टि से क्रिया तक",
+    s3_body: s([
+      'मिथ्यात्व यानी मिथ्या दृष्टि — शरीर को आत्मा मानना, अनित्य को नित्य मानना. यह मूल विकृति है.',
+      'अविरति इसी से निकलती है: यदि दृष्टि ही गलत हो तो सच्चा संयम भीतर से नहीं आता. कभी त्याग संभव है, पर पक्का व्रत नहीं.',
+      'प्रमाद यानी आध्यात्मिक असावधानी — व्रत होते हुए भी सजगता ढीली पड़ती है. छोटी-सी चूक भी गिनती में आती है.',
+      'कषाय हर क्रिया में रंग भरता है: क्रोध, मान, माया, लोभ. आते कर्म को आत्मा से इसी कारण चिपकाव मिलता है.',
+      'योग यानी केवल प्रवृत्ति — मन, वचन, काय की गति. ज्ञानी पुरुष भी जब तक देह में हैं, सयोग ही रहते हैं.',
+      '<span class="emphasis">क्रम भीतर से बाहर: दृष्टि → संयम → सजगता → स्वभाव → क्रिया.</span>',
+    ]),
+    s4_q: "ये द्वार बंद कैसे होते हैं? — गुणस्थानों से मिलान",
+    s4_body: s([
+      'मुक्ति एक क्षण का स्विच नहीं है — ये पाँच द्वार एक-एक करके बंद होते हैं, और यह क्रम गुणस्थानों से सटीक मिलता है.',
+      '<span class="term">मिथ्यात्व</span> सबसे पहले गिरता है — गुणस्थान 4 पर, जहाँ सम्यक दर्शन का उदय होता है.',
+      '<span class="term">अविरति</span> गुणस्थान 5 से धीरे-धीरे घटती है, जैसे-जैसे वास्तविक व्रत लिए जाते हैं.',
+      '<span class="term">प्रमाद</span> गुणस्थान 7 पर शांत होता है — स्थिर सजगता.',
+      '<span class="term">कषाय</span> गुणस्थान 8 से 12 के बीच धीरे-धीरे पतला होकर अंततः समाप्त होता है.',
+      'केवल <span class="term">योग</span> गुणस्थान 13 तक बना रहता है; और अंत में गुणस्थान 14 पर शमित होता है — मुक्ति से ठीक पहले.',
+      '<span class="emphasis">तो ये 5 कारण ही प्रगति का 5-चरणीय मानचित्र हैं. आस्रव और गुणस्थान एक ही आकृति के दो पहलू हैं.</span>',
+    ]),
+    s5_q: "इसके आगे क्या?",
+    s5_body: s([
+      'अब आपको पता है कि कर्म का द्वार किस से खुलता है.',
+      'अगला सटीक सवाल: एक बार कर्म प्रवेश कर ले, तो वह आत्मा से कैसे चिपकता है?',
+      'प्रकार, तीव्रता, अवधि, मात्रा — ये सब बंधन के क्षण निर्धारित होते हैं, और इनके पीछे विशिष्ट कारक होते हैं.',
+      '<span class="emphasis">यही अगला पन्ना — विस्तृत बंध — चिपकाव की सटीक यंत्र-रचना.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "तप और ध्यान",
+    next_label: "अगला चरण",
+    back_text: "तप और ध्यान",
+    next_title: "बंध — विस्तार से",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Detailed Asrava",
+    page_subtitle: "The five gates through which karma flows in",
+    s1_q: "What we already learned — and what was left out",
+    s1_body: s([
+      'You have met asrava as the inflow of karma, and seen kashaya and yoga as its two main triggers.',
+      'That was enough for the earlier picture. But it was not the full count.',
+      'Jain analysis names <span class="term">five</span> distinct causes that open the gate — not two.',
+      '<span class="emphasis">This page lays out all five — in the exact order they have to be addressed for liberation to actually happen.</span>',
+    ]),
+    s2_q: "What are the five causes?",
+    s2_body: s([
+      'The five causes of bondage are: <span class="term">Mithyatva</span>, <span class="term">Avirati</span>, <span class="term">Pramada</span>, <span class="term">Kashaya</span>, and <span class="term">Yoga</span>.',
+      'They are layered — the first is the deepest distortion, the last is the most surface-level activity.',
+      'Each rests on the one before it. Remove the root, the upper layers weaken on their own.',
+      '<span class="emphasis">This is why the order matters. It is also the exact order in which they are stilled across the 14 gunasthanas.</span>',
+    ]),
+    causes_foldout_label: "See each of the 5 causes",
+    causes_foldout_body: '<ol><li><strong>Mithyatva</strong> — Wrong view. Mistaking the body for the self, the impermanent for the permanent, pleasure for happiness. The deepest distortion; as long as it remains, every corrective effort rests on a wrong foundation.</li><li><strong>Avirati</strong> — Absence of vows. Knowing better but not committing to restraint. With no firm discipline, the gate stays open at every moment.</li><li><strong>Pramada</strong> — Carelessness, spiritual drowsiness. Even with vows in place, the mind drifts and awareness sleeps. Small lapses still bind.</li><li><strong>Kashaya</strong> — Passions: anger, pride, deceit, greed. They lock incoming karma onto the soul. (Covered in depth in the earlier Kashaya page; here it is one cause among five.)</li><li><strong>Yoga</strong> — Activity of mind, speech, and body. Even an enlightened being, while embodied, still has yoga — and while yoga continues, some karma still flows, though by then only the harmless aghati type.</li></ol>',
+    s3_q: "Why this order? — from view to action",
+    s3_body: s([
+      'Mithyatva is wrong view — taking the body for the self, the impermanent for the permanent. This is the root distortion.',
+      'Avirati flows from it: with wrong view, real restraint does not take root. There may be occasional renunciation, but no firm vow.',
+      'Pramada is spiritual carelessness — even with vows, awareness slips. Small lapses still count.',
+      'Kashaya colors every action: anger, pride, deceit, greed — these are what lock incoming karma onto the soul.',
+      'Yoga is mere activity — mind, speech, body in motion. Even an enlightened being, while embodied, still has yoga.',
+      '<span class="emphasis">Movement from inside out: view → restraint → vigilance → temperament → action.</span>',
+    ]),
+    s4_q: "How does each gate close? — mapping to gunasthana",
+    s4_body: s([
+      'Liberation is not a single switch — these five gates close one by one, and that order maps neatly onto the gunasthanas.',
+      '<span class="term">Mithyatva</span> falls first, at gunasthana 4 — right view (samyak darshan) replaces it.',
+      '<span class="term">Avirati</span> begins to fall from gunasthana 5 onward, as real vows are taken.',
+      '<span class="term">Pramada</span> is overcome at gunasthana 7 — sustained vigilance.',
+      '<span class="term">Kashaya</span> thins gradually across gunasthanas 8 to 12 until its complete cessation.',
+      'Only <span class="term">Yoga</span> remains at gunasthana 13, and is finally stilled at 14 — just before liberation.',
+      '<span class="emphasis">So the 5 causes are also the 5-step map of progress. Asrava and gunasthana are two sides of one diagram.</span>',
+    ]),
+    s5_q: "Where does this lead?",
+    s5_body: s([
+      'You now know what opens the gate.',
+      'The next precise question: once karma flows in, what exactly determines how it sticks to the soul?',
+      'Type, intensity, duration, quantity — each is set at the moment of bondage, by specific factors.',
+      '<span class="emphasis">That is the next page — Detailed Bandha — the mechanics of the lock-on itself.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Tap & Dhyana",
+    next_label: "Continue",
+    back_text: "Tap & Dhyana",
+    next_title: "Detailed Bandha",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang]; if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (strings[key] !== undefined) el.textContent = strings[key]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const key = el.getAttribute('data-i18n-html'); if (strings[key] !== undefined) el.innerHTML = strings[key]; });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+window.addEventListener('scroll', () => { document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>तप आणि ध्यान — Jainverse</title>
+<meta name="description" content="तप आणि ध्यान — साधनेची प्रत्यक्ष पद्धत, सोप्या भाषेत.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --saffron:#e07830; --saffron-deep:#c45e1a; --indigo:#1a2744; --sand:#f5f0e8; --sand-dark:#e8dfd0; --warm-white:#faf8f4; --stone:#8c7e6a; --stone-light:#b0a48e; --text:#2a2318; --text-secondary:#5c5246; --text-tertiary:#8a7e6e; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:200px 200px; }
+  .topbar { position:fixed; top:0; left:0; right:0; z-index:100; padding:18px 40px; display:flex; align-items:center; justify-content:space-between; transition:background .4s, box-shadow .4s, padding .4s; }
+  .topbar.scrolled { background:rgba(250,248,244,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(0,0,0,.06); padding:13px 40px; }
+  .back-link { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:color .25s; }
+  .back-link:hover { color:var(--saffron-deep); }
+  .back-link svg { width:16px; height:16px; transition:transform .25s; }
+  .back-link:hover svg { transform:translateX(-3px); }
+  .lang-switch { display:flex; align-items:center; border:1px solid var(--sand-dark); border-radius:20px; overflow:hidden; background:rgba(245,240,232,.6); }
+  .lang-btn { padding:5px 12px; font-size:12px; font-weight:500; color:var(--text-tertiary); background:none; border:none; cursor:pointer; transition:all .25s; font-family:'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space:nowrap; }
+  .lang-btn:hover { color:var(--text-secondary); }
+  .lang-btn.active { background:var(--indigo); color:var(--sand); font-weight:600; }
+  .lang-divider { width:1px; height:16px; background:var(--sand-dark); }
+  .article { max-width:640px; margin:0 auto; padding:140px 28px 100px; }
+  .page-header { margin-bottom:72px; opacity:0; transform:translateY(20px); animation:fadeUp .8s .2s forwards; }
+  .page-header h1 { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(36px, 5vw, 52px); color:var(--indigo); line-height:1.15; letter-spacing:-.5px; margin-bottom:12px; }
+  .page-header .subtitle { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:clamp(16px, 2vw, 20px); color:var(--stone); line-height:1.4; }
+  .header-rule { width:48px; height:2px; background:var(--saffron); margin-top:28px; opacity:.7; }
+  .section { margin-bottom:80px; position:relative; }
+  .section-num { font-family:'DM Serif Display', serif; font-size:80px; color:var(--sand-dark); line-height:1; margin-bottom:-12px; user-select:none; }
+  .section-question { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(24px, 3.5vw, 32px); color:var(--indigo); line-height:1.25; margin-bottom:28px; letter-spacing:-.3px; }
+  .section-body { font-size:17px; line-height:2; color:var(--text-secondary); }
+  .section-body .sentence { display:block; margin-bottom:12px; }
+  .section-body .emphasis { color:var(--text); font-weight:500; }
+  .section-body .term { color:var(--saffron-deep); font-weight:500; }
+  .foldout { margin-top:28px; border:1px solid var(--sand-dark); border-radius:8px; background:var(--sand); padding:14px 22px; }
+  .foldout summary { font-size:13px; font-weight:600; letter-spacing:.5px; color:var(--saffron-deep); list-style:none; display:flex; align-items:center; gap:10px; cursor:pointer; user-select:none; padding:4px 0; }
+  .foldout summary::-webkit-details-marker { display:none; }
+  .foldout summary::before { content:''; width:0; height:0; border-left:5px solid var(--saffron); border-top:4px solid transparent; border-bottom:4px solid transparent; transition:transform .2s; display:inline-block; }
+  .foldout[open] summary::before { transform:rotate(90deg); }
+  .foldout-body { margin-top:14px; padding-top:14px; border-top:1px solid var(--sand-dark); font-size:15px; line-height:1.75; color:var(--text-secondary); }
+  .foldout-body strong { color:var(--text); font-weight:600; }
+  .foldout-body .group-label { display:block; margin-top:14px; margin-bottom:8px; font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:14px; color:var(--stone); }
+  .foldout-body .group-label:first-child { margin-top:0; }
+  .foldout-body ol { margin:0 0 0 20px; padding:0; }
+  .foldout-body ol li { margin-bottom:5px; }
+  .section-divider { display:flex; align-items:center; justify-content:center; gap:16px; margin:80px 0; color:var(--sand-dark); user-select:none; }
+  .section-divider::before, .section-divider::after { content:''; height:1px; width:40px; background:linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background:linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size:14px; color:var(--stone-light); }
+  .page-nav { display:flex; gap:16px; margin-top:80px; }
+  .prev-read,.next-read { flex:1; padding:28px 32px; background:var(--sand); border-radius:8px; text-decoration:none; color:inherit; display:block; transition:all .3s; }
+  .prev-read:hover,.next-read:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(42,35,24,.08); }
+  .prev-read-label,.next-read-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .prev-read-label { color:var(--stone-light); }
+  .next-read-label { color:var(--saffron); }
+  .prev-read-title,.next-read-title { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .prev-read-title svg { width:18px; height:18px; color:var(--stone-light); transition:transform .3s; }
+  .next-read-title svg { width:18px; height:18px; color:var(--saffron); transition:transform .3s; }
+  .prev-read:hover .prev-read-title svg { transform:translateX(-4px); }
+  .next-read:hover .next-read-title svg { transform:translateX(4px); }
+  .article-footer { margin-top:60px; padding-top:32px; border-top:1px solid var(--sand-dark); display:flex; align-items:center; justify-content:space-between; }
+  .article-footer .brand { font-family:'DM Serif Display', serif; font-size:16px; color:var(--stone); text-decoration:none; }
+  .article-footer .note { font-size:12px; color:var(--text-tertiary); }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  @media (max-width:600px) {
+    .topbar { padding:14px 18px; } .topbar.scrolled { padding:11px 18px; }
+    .article { padding:110px 20px 60px; } .page-header { margin-bottom:52px; }
+    .section { margin-bottom:56px; } .section-num { font-size:56px; margin-bottom:-8px; }
+    .section-question { font-size:22px; margin-bottom:20px; }
+    .section-body { font-size:16px; line-height:1.9; } .section-divider { margin:56px 0; }
+    .foldout { padding:12px 18px; } .foldout-body { font-size:14px; }
+    .prev-read,.next-read { padding:22px 24px; }
+    .prev-read-title,.next-read-title { font-size:19px; }
+    .page-nav { flex-direction:column; }
+    .article-footer { flex-direction:column; gap:8px; text-align:center; }
+    .lang-btn { padding:4px 9px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/gunasthana/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal"><div class="section-num">1</div><h2 class="section-question" data-i18n="s1_q"></h2><div class="section-body" data-i18n-html="s1_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+    <details class="foldout">
+      <summary data-i18n="tap_foldout_label"></summary>
+      <div class="foldout-body" data-i18n-html="tap_foldout_body"></div>
+    </details>
+  </section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+    <details class="foldout">
+      <summary data-i18n="dhyan_foldout_label"></summary>
+      <div class="foldout-body" data-i18n-html="dhyan_foldout_body"></div>
+    </details>
+  </section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal"><div class="section-num">4</div><h2 class="section-question" data-i18n="s4_q"></h2><div class="section-body" data-i18n-html="s4_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">5</div><h2 class="section-question" data-i18n="s5_q"></h2><div class="section-body" data-i18n-html="s5_body"></div></section>
+
+  <div class="page-nav reveal">
+    <a href="/gunasthana/" class="prev-read"><div class="prev-read-label" data-i18n="prev_label"></div><div class="prev-read-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg><span data-i18n="prev_title"></span></div></a>
+    <a href="/asrava-in-detail/" class="next-read"><div class="next-read-label" data-i18n="next_label"></div><div class="next-read-title"><span data-i18n="next_title"></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div></a>
+  </div>
+
+  <footer class="article-footer reveal"><a href="/" class="brand">Jainverse</a><span class="note" data-i18n="footer_note"></span></footer>
+</article>
+
+<script>
+function s(sentences) { return sentences.map(t => '<span class="sentence">' + t + '</span>').join(''); }
+
+const i18n = {
+  mr: {
+    page_title: "तप आणि ध्यान",
+    page_subtitle: "साधनेची प्रत्यक्ष पद्धत",
+    s1_q: "नकाशा आहे — पण चालायचं कसं?",
+    s1_body: s([
+      'गुणस्थानामुळे आपण कोणत्या टप्प्यावर आहोत हे समजतं.',
+      'पण नकाशावर उभं राहून पुढे जात नाही — हालचाल लागते.',
+      'त्या हालचालीसाठी जैन साधना दोन एकमेकांत गुंतलेली साधने देते: <span class="term">तप</span> (आत्मशुद्धीची क्रिया) आणि <span class="term">ध्यान</span> (एकाग्र जागरूकता).',
+      '<span class="emphasis">तप जुनं कर्म कमी करतं. ध्यान त्या तपाला खोली देतं.</span>',
+    ]),
+    s2_q: "तप म्हणजे नेमकं काय?",
+    s2_body: s([
+      'बहुतेकांना तप म्हणजे फक्त उपवास, शरीराला कष्ट देणं — एवढंच वाटतं.',
+      'पण जैन परंपरेत तप म्हणजे स्वेच्छेने स्वीकारलेली अशी शिस्त जी आसक्ती सैल करते, अहंकार वाढवत नाही.',
+      'याचे दोन भाग आहेत: <span class="term">बाह्य तप</span> शरीर आणि इंद्रियांवर काम करते, <span class="term">अंतरंग तप</span> मन आणि अहंकारावर.',
+      '<span class="emphasis">कौतुकासाठी केलेला लांब उपवास कर्म बांधतो. आसक्ती कमी करण्यासाठी केलेला छोटा संयम कर्म तोडतो. हेतू निर्णायक.</span>',
+    ]),
+    tap_foldout_label: "१२ तपांची संपूर्ण यादी",
+    tap_foldout_body: '<span class="group-label">बाह्य तप — शरीर आणि इंद्रिये</span><ol><li><strong>अनशन</strong> — नियमित उपवास</li><li><strong>ऊनोदर</strong> — भुकेपेक्षा कमी खाणे</li><li><strong>वृत्तिपरिसंख्यान</strong> — काय आणि कुठून खायचं याची मर्यादा</li><li><strong>रसपरित्याग</strong> — चविष्ट, समृद्ध पदार्थांचा त्याग</li><li><strong>विविक्त-शय्यासन</strong> — एकांत निवास</li><li><strong>कायक्लेश</strong> — शरीराला होणारा त्रास शांतपणे सहन करणे</li></ol><span class="group-label">अंतरंग तप — मन आणि अहंकार</span><ol><li><strong>प्रायश्चित्त</strong> — चुकांची प्रामाणिक कबुली</li><li><strong>विनय</strong> — नम्रता, गुरुजनांचा आदर</li><li><strong>वैयावृत्त्य</strong> — साधकांची सेवा</li><li><strong>स्वाध्याय</strong> — स्वतःचा अभ्यास, शास्त्रवाचन</li><li><strong>व्युत्सर्ग</strong> — शरीर आणि बाह्य गोष्टींची आसक्ती सोडणे</li><li><strong>ध्यान</strong> — एकाग्र चिंतन (सर्वोच्च तप)</li></ol>',
+    s3_q: "ध्यान म्हणजे काय? — आणि चारच प्रकार का?",
+    s3_body: s([
+      'ध्यान म्हणजे मन एका विषयावर स्थिर ठेवणं — विखुरलेलं नाही, केंद्रित.',
+      'मन सतत कोणत्या ना कोणत्या ध्यानात असतंच. प्रश्न एवढाच — कोणत्या प्रकारच्या?',
+      'जैन दर्शन चार प्रकार सांगतो. दोन कर्म वाढवतात: <span class="term">आर्त</span> (हरवलेल्या किंवा हव्या असलेल्या गोष्टींची सतत आठवण) आणि <span class="term">रौद्र</span> (राग, हिंसा, स्वामित्व-भावना). दोन कर्म पातळ करतात: <span class="term">धर्म</span> (सत्य, आत्मा, शास्त्रांवरील स्थिर चिंतन) आणि <span class="term">शुक्ल</span> (अत्युच्च टप्प्यांवर येणारी सर्वशुद्ध स्थिती).',
+      '<span class="emphasis">दिवसभर बहुतेकजण आर्त आणि रौद्रातच असतात — आणि लक्षातही येत नाही. पहिली खरी साधना म्हणजे हे फक्त पाहणं.</span>',
+    ]),
+    dhyan_foldout_label: "४ ध्यानांची संपूर्ण यादी",
+    dhyan_foldout_body: '<span class="group-label">कर्म बांधणारे</span><ol><li><strong>आर्त</strong> — हरवलेल्या, आजाराच्या, अपूर्ण इच्छेच्या विचारांत अडकणे</li><li><strong>रौद्र</strong> — राग, हिंसा, स्वामित्व-भावनेने भरलेले विचार</li></ol><span class="group-label">कर्म पातळ करणारे</span><ol><li><strong>धर्म</strong> — सत्य, आत्मा, शास्त्र यांचं स्थिर चिंतन</li><li><strong>शुक्ल</strong> — सर्वशुद्ध समाधी; केवळ अत्युच्च गुणस्थानांत येते</li></ol>',
+    s4_q: "रोजच्या जीवनात हे कसं उतरवायचं?",
+    s4_body: s([
+      'मोठ्या, क्वचित केलेल्या तपापेक्षा छोटी पण सातत्यपूर्ण साधना जास्त उपयोगी.',
+      'राग येताना तो शांतपणे पाहणं — हे जेवण सोडण्यापेक्षाही जवळचं तप आहे.',
+      'रोज दहा मिनिटांचं सामायिक — स्थिर बसून स्वतःचं निरीक्षण — हेच खरं ध्यान.',
+      '<span class="emphasis">कसोटी एकच: साधना किती कठीण दिसली नाही, तर आसक्ती खरंच कमी झाली का?</span>',
+    ]),
+    s5_q: "इथून पुढे काय?",
+    s5_body: s([
+      'आता दोन्ही गोष्टी हाताशी आहेत — प्रगतीचा नकाशा (गुणस्थान) आणि त्यावर चालण्याची पद्धत (तप-ध्यान).',
+      'पण आता एक खोल प्रश्न पुन्हा समोर येतो: ज्या कर्माला आपण कमजोर करायचं आहे, ते आत येतंच नेमकं कशामुळे — आणि एकदा आत आल्यावर ते कसं चिकटतं?',
+      'या प्रश्नांची उत्तरं आधीच्या पानांत बाह्य रूपात मिळाली होती. आता पुढची पानं हे अचूक यंत्रणेच्या भाषेत मांडतात.',
+      '<span class="emphasis">पुढचा भाग आत वळतो: कर्माची दारं नेमकी कशामुळे उघडतात, बंध कशामुळे ठरतो, आणि ते सोडवण्याची नेमकी प्रक्रिया काय.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "गुणस्थान",
+    next_label: "पुढचा टप्पा",
+    back_text: "गुणस्थान",
+    next_title: "आस्रव — सखोल",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "तप और ध्यान",
+    page_subtitle: "साधना की वास्तविक पद्धति",
+    s1_q: "नक्शा है — पर चलें कैसे?",
+    s1_body: s([
+      'गुणस्थान बताता है कि आप पथ पर कहाँ खड़े हैं.',
+      'पर नक्शे पर खड़े रहने से प्रगति नहीं होती — चलना पड़ता है.',
+      'इस गति के लिए जैन साधना दो परस्पर जुड़े उपकरण देती है: <span class="term">तप</span> (आत्मशुद्धि की क्रिया) और <span class="term">ध्यान</span> (एकाग्र जागरूकता).',
+      '<span class="emphasis">तप पुराने कर्म को कमज़ोर करता है. ध्यान उस तप को गहराई देता है.</span>',
+    ]),
+    s2_q: "तप का असली अर्थ क्या?",
+    s2_body: s([
+      'अधिकतर लोग तप को केवल उपवास या शरीर-कष्ट तक सीमित समझते हैं.',
+      'जैन परंपरा में तप का अर्थ है — स्वेच्छा से ली गई ऐसी अनुशासन जो आसक्ति को ढीला करे और अहंकार न बढ़ाए.',
+      'इसके दो भाग हैं: <span class="term">बाह्य तप</span> शरीर और इंद्रियों पर काम करता है, <span class="term">अंतरंग तप</span> मन और अहंकार पर.',
+      '<span class="emphasis">दिखावे के लिए किया गया लंबा उपवास कर्म बाँधता है. आसक्ति घटाने के लिए लिया गया छोटा संयम कर्म तोड़ता है. नीयत निर्णायक है.</span>',
+    ]),
+    tap_foldout_label: "12 तपों की पूरी सूची",
+    tap_foldout_body: '<span class="group-label">बाह्य तप — शरीर और इंद्रियाँ</span><ol><li><strong>अनशन</strong> — समय-समय पर उपवास</li><li><strong>ऊनोदरी</strong> — भूख से कम भोजन</li><li><strong>वृत्तिपरिसंख्यान</strong> — क्या और कहाँ से खाएँगे, इसकी सीमा</li><li><strong>रसपरित्याग</strong> — स्वादिष्ट, गरिष्ठ भोजन का त्याग</li><li><strong>विविक्त-शय्यासन</strong> — एकांत में निवास</li><li><strong>कायक्लेश</strong> — स्वेच्छा से शारीरिक कष्ट सहना</li></ol><span class="group-label">अंतरंग तप — मन और अहंकार</span><ol><li><strong>प्रायश्चित्त</strong> — गलतियों का सच्चा प्रायश्चित</li><li><strong>विनय</strong> — नम्रता, गुरुजनों का आदर</li><li><strong>वैयावृत्त्य</strong> — साधकों की सेवा</li><li><strong>स्वाध्याय</strong> — स्वाध्याय, शास्त्रों का पठन</li><li><strong>व्युत्सर्ग</strong> — शरीर और बाहरी चीज़ों की आसक्ति का त्याग</li><li><strong>ध्यान</strong> — एकाग्र चिंतन (सर्वोच्च तप)</li></ol>',
+    s3_q: "ध्यान क्या है — और केवल चार प्रकार क्यों?",
+    s3_body: s([
+      'ध्यान का अर्थ है — मन को एक विषय पर स्थिर रखना, बिखरने न देना.',
+      'मन हमेशा किसी न किसी ध्यान में रहता ही है. सवाल बस यही — किस तरह के ध्यान में?',
+      'जैन दर्शन चार प्रकार बताता है. दो कर्म और बाँधते हैं: <span class="term">आर्त</span> (खोई या चाही गई चीज़ों का बार-बार स्मरण) और <span class="term">रौद्र</span> (क्रोध, हिंसा, स्वामित्व-भाव). दो कर्म घटाते हैं: <span class="term">धर्म</span> (सत्य, आत्मा, शास्त्र पर स्थिर चिंतन) और <span class="term">शुक्ल</span> (केवल उच्चतम चरणों में आने वाली सर्वशुद्ध स्थिति).',
+      '<span class="emphasis">हम में से अधिकांश का दिन आर्त और रौद्र में ही बीतता है — बिना ध्यान दिए. पहली असली साधना है — बस इस सच्चाई को देखना.</span>',
+    ]),
+    dhyan_foldout_label: "4 ध्यानों की पूरी सूची",
+    dhyan_foldout_body: '<span class="group-label">कर्म बाँधने वाले</span><ol><li><strong>आर्त</strong> — खोई हुई, बीमारी या अधूरी इच्छा के विचारों में अटकना</li><li><strong>रौद्र</strong> — क्रोध, हिंसा, स्वामित्व-भाव से भरा चिंतन</li></ol><span class="group-label">कर्म घटाने वाले</span><ol><li><strong>धर्म</strong> — सत्य, आत्मा, शास्त्र पर स्थिर चिंतन</li><li><strong>शुक्ल</strong> — परम-शुद्ध समाधि; केवल उच्चतम गुणस्थानों में संभव</li></ol>',
+    s4_q: "रोज़मर्रा में इसे कैसे उतारें?",
+    s4_body: s([
+      'बड़े लेकिन कभी-कभी किए गए तप से अधिक उपयोगी है छोटी पर निरंतर साधना.',
+      'गुस्से के उठते समय उसे शांत होकर देखना — खाना छोड़ने से अधिक नज़दीकी तप है.',
+      'रोज़ दस मिनट का सामायिक — शांत बैठकर स्वयं का निरीक्षण — असली ध्यान यही है.',
+      '<span class="emphasis">कसौटी एक ही: साधना कितनी कठिन दिखी नहीं — बल्कि आसक्ति वास्तव में पतली हुई या नहीं.</span>',
+    ]),
+    s5_q: "इसके आगे क्या?",
+    s5_body: s([
+      'अब दोनों चीज़ें हाथ में हैं — प्रगति का नक्शा (गुणस्थान) और उस पर चलने की पद्धति (तप-ध्यान).',
+      'पर अब एक गहरा सवाल फिर सामने आता है: जिस कर्म को हम कमज़ोर करना चाहते हैं, वह आख़िर किस से भीतर आता है — और एक बार आ जाने पर कैसे चिपकता है?',
+      'इन सवालों के उत्तर पहले पन्नों में बाहरी रूप में मिले थे. अब आगे के पन्ने यही सटीक यंत्र-रचना के रूप में रखते हैं.',
+      '<span class="emphasis">अगला भाग भीतर मुड़ता है: कर्म के द्वार किस-किस कारण खुलते हैं, बंधन कैसे तय होता है, और उसे काटने की सटीक प्रक्रिया क्या है.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "गुणस्थान",
+    next_label: "अगला चरण",
+    back_text: "गुणस्थान",
+    next_title: "आस्रव — विस्तार से",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Tap & Dhyana",
+    page_subtitle: "The actual method of practice",
+    s1_q: "You have a map — but how do you actually move?",
+    s1_body: s([
+      'Gunasthana shows where you stand on the path.',
+      'But standing still on a map does not move you forward — movement takes effort.',
+      'For that movement, Jain practice offers two intertwined tools: <span class="term">Tap</span> (disciplined action that cleanses) and <span class="term">Dhyana</span> (sustained, focused awareness).',
+      '<span class="emphasis">Tap weakens old karma. Dhyana gives that tap its depth.</span>',
+    ]),
+    s2_q: "What is tap, really?",
+    s2_body: s([
+      'Tap is often mistaken for nothing more than fasting or making the body suffer.',
+      'In Jain tradition, tap is wider — any willingly accepted discipline that loosens attachment without inflating the ego.',
+      'It has two halves: <span class="term">outer tap</span> works on the body and senses; <span class="term">inner tap</span> works on the mind and ego.',
+      '<span class="emphasis">A long fast performed for praise binds karma. A small restraint taken to thin attachment frees it. Intent decides everything.</span>',
+    ]),
+    tap_foldout_label: "See all 12 tapas",
+    tap_foldout_body: '<span class="group-label">Outer tap — body and senses</span><ol><li><strong>Anashan</strong> — periodic fasting</li><li><strong>Unodari</strong> — eating less than appetite</li><li><strong>Vritti-parisankhyan</strong> — limiting what or where one accepts food</li><li><strong>Rasa-parityaga</strong> — giving up rich, tasty foods</li><li><strong>Vivikta-shayyasana</strong> — solitary residence</li><li><strong>Kaya-klesha</strong> — willingly accepting bodily discomfort</li></ol><span class="group-label">Inner tap — mind and ego</span><ol><li><strong>Prayaschitta</strong> — sincere atonement for lapses</li><li><strong>Vinaya</strong> — humility and respect for teachers</li><li><strong>Vaiyavritti</strong> — service to fellow practitioners</li><li><strong>Svadhyaya</strong> — self-study and scriptural reading</li><li><strong>Vyutsarga</strong> — letting go of body and possession identification</li><li><strong>Dhyana</strong> — meditation (the highest tap)</li></ol>',
+    s3_q: "What is dhyana — and why only four kinds?",
+    s3_body: s([
+      'Dhyana is sustained, focused awareness — the mind held on one thing instead of scattering.',
+      'The mind is always doing some kind of dhyana. The only question is which kind.',
+      'Jain thought names four. Two bind karma further: <span class="term">arta</span> (anxious dwelling on loss, illness, or desire) and <span class="term">raudra</span> (angry, cruel, possessive thought). Two thin karma: <span class="term">dharma</span> (steady reflection on truth, soul, scripture) and <span class="term">shukla</span> (the purest absorption, reached only at the highest stages).',
+      '<span class="emphasis">Most of us spend the day in arta and raudra without ever noticing. The first real practice is simply to see this.</span>',
+    ]),
+    dhyan_foldout_label: "See all 4 dhyanas",
+    dhyan_foldout_body: '<span class="group-label">Karma-binding</span><ol><li><strong>Arta</strong> — anxious dwelling on loss, illness, or unfulfilled desire</li><li><strong>Raudra</strong> — angry, cruel, or possessive thinking</li></ol><span class="group-label">Karma-thinning</span><ol><li><strong>Dharma</strong> — steady reflection on truth, soul, and scripture</li><li><strong>Shukla</strong> — purest absorption; reached only at the highest gunasthanas</li></ol>',
+    s4_q: "How does this land in daily life?",
+    s4_body: s([
+      'Small, consistent practice does more than rare, dramatic austerity.',
+      'Watching anger as it rises is closer to real tap than skipping a meal.',
+      'A short daily samayika — even ten minutes of stillness and self-observation — is real dhyana.',
+      '<span class="emphasis">The test is not how hard the practice looked, but whether attachment actually thinned.</span>',
+    ]),
+    s5_q: "Where does this lead?",
+    s5_body: s([
+      'You now have both halves — the map of progress (gunasthana) and the method to move along it (tap-dhyan).',
+      'But a deeper question now resurfaces: what exactly is the karma you are trying to weaken — what opens it in, and what makes it stick?',
+      'These questions were answered earlier only in outline. From here, the journey turns rigorous — into the precise mechanics.',
+      '<span class="emphasis">The next module turns inward: what really opens the gates of karma, what determines how it binds, and how it is finally shed.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Gunasthana",
+    next_label: "Continue",
+    back_text: "Gunasthana",
+    next_title: "Detailed Asrava",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang]; if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (strings[key] !== undefined) el.textContent = strings[key]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const key = el.getAttribute('data-i18n-html'); if (strings[key] !== undefined) el.innerHTML = strings[key]; });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+window.addEventListener('scroll', () => { document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

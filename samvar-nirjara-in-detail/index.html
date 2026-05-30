@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>संवर आणि निर्जरा — सखोल — Jainverse</title>
+<meta name="description" content="नवीन कर्म थांबवणं आणि जुनं कर्म गाळून टाकणं — संवर, निर्जरा, आणि कर्माच्या जीवनचक्राची सखोल मांडणी.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --saffron:#e07830; --saffron-deep:#c45e1a; --indigo:#1a2744; --sand:#f5f0e8; --sand-dark:#e8dfd0; --warm-white:#faf8f4; --stone:#8c7e6a; --stone-light:#b0a48e; --text:#2a2318; --text-secondary:#5c5246; --text-tertiary:#8a7e6e; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:200px 200px; }
+  .topbar { position:fixed; top:0; left:0; right:0; z-index:100; padding:18px 40px; display:flex; align-items:center; justify-content:space-between; transition:background .4s, box-shadow .4s, padding .4s; }
+  .topbar.scrolled { background:rgba(250,248,244,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(0,0,0,.06); padding:13px 40px; }
+  .back-link { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:color .25s; }
+  .back-link:hover { color:var(--saffron-deep); }
+  .back-link svg { width:16px; height:16px; transition:transform .25s; }
+  .back-link:hover svg { transform:translateX(-3px); }
+  .lang-switch { display:flex; align-items:center; border:1px solid var(--sand-dark); border-radius:20px; overflow:hidden; background:rgba(245,240,232,.6); }
+  .lang-btn { padding:5px 12px; font-size:12px; font-weight:500; color:var(--text-tertiary); background:none; border:none; cursor:pointer; transition:all .25s; font-family:'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space:nowrap; }
+  .lang-btn:hover { color:var(--text-secondary); }
+  .lang-btn.active { background:var(--indigo); color:var(--sand); font-weight:600; }
+  .lang-divider { width:1px; height:16px; background:var(--sand-dark); }
+  .article { max-width:640px; margin:0 auto; padding:140px 28px 100px; }
+  .page-header { margin-bottom:72px; opacity:0; transform:translateY(20px); animation:fadeUp .8s .2s forwards; }
+  .page-header h1 { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(36px, 5vw, 52px); color:var(--indigo); line-height:1.15; letter-spacing:-.5px; margin-bottom:12px; }
+  .page-header .subtitle { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:clamp(16px, 2vw, 20px); color:var(--stone); line-height:1.4; }
+  .header-rule { width:48px; height:2px; background:var(--saffron); margin-top:28px; opacity:.7; }
+  .section { margin-bottom:80px; position:relative; }
+  .section-num { font-family:'DM Serif Display', serif; font-size:80px; color:var(--sand-dark); line-height:1; margin-bottom:-12px; user-select:none; }
+  .section-question { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(24px, 3.5vw, 32px); color:var(--indigo); line-height:1.25; margin-bottom:28px; letter-spacing:-.3px; }
+  .section-body { font-size:17px; line-height:2; color:var(--text-secondary); }
+  .section-body .sentence { display:block; margin-bottom:12px; }
+  .section-body .emphasis { color:var(--text); font-weight:500; }
+  .section-body .term { color:var(--saffron-deep); font-weight:500; }
+  .foldout { margin-top:28px; border:1px solid var(--sand-dark); border-radius:8px; background:var(--sand); padding:14px 22px; }
+  .foldout summary { font-size:13px; font-weight:600; letter-spacing:.5px; color:var(--saffron-deep); list-style:none; display:flex; align-items:center; gap:10px; cursor:pointer; user-select:none; padding:4px 0; }
+  .foldout summary::-webkit-details-marker { display:none; }
+  .foldout summary::before { content:''; width:0; height:0; border-left:5px solid var(--saffron); border-top:4px solid transparent; border-bottom:4px solid transparent; transition:transform .2s; display:inline-block; }
+  .foldout[open] summary::before { transform:rotate(90deg); }
+  .foldout-body { margin-top:14px; padding-top:14px; border-top:1px solid var(--sand-dark); font-size:15px; line-height:1.75; color:var(--text-secondary); }
+  .foldout-body strong { color:var(--text); font-weight:600; }
+  .foldout-body ol { margin:0 0 0 20px; padding:0; }
+  .foldout-body ol li { margin-bottom:14px; }
+  .foldout-body ol li:last-child { margin-bottom:0; }
+  .section-divider { display:flex; align-items:center; justify-content:center; gap:16px; margin:80px 0; color:var(--sand-dark); user-select:none; }
+  .section-divider::before, .section-divider::after { content:''; height:1px; width:40px; background:linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background:linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size:14px; color:var(--stone-light); }
+  .page-nav { display:flex; gap:16px; margin-top:80px; }
+  .prev-read,.next-read { flex:1; padding:28px 32px; background:var(--sand); border-radius:8px; text-decoration:none; color:inherit; display:block; transition:all .3s; }
+  .prev-read:hover,.next-read:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(42,35,24,.08); }
+  .prev-read-label,.next-read-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .prev-read-label { color:var(--stone-light); }
+  .next-read-label { color:var(--saffron); }
+  .prev-read-title,.next-read-title { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .prev-read-title svg { width:18px; height:18px; color:var(--stone-light); transition:transform .3s; }
+  .next-read-title svg { width:18px; height:18px; color:var(--saffron); transition:transform .3s; }
+  .prev-read:hover .prev-read-title svg { transform:translateX(-4px); }
+  .next-read:hover .next-read-title svg { transform:translateX(4px); }
+  .article-footer { margin-top:60px; padding-top:32px; border-top:1px solid var(--sand-dark); display:flex; align-items:center; justify-content:space-between; }
+  .article-footer .brand { font-family:'DM Serif Display', serif; font-size:16px; color:var(--stone); text-decoration:none; }
+  .article-footer .note { font-size:12px; color:var(--text-tertiary); }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  @media (max-width:600px) {
+    .topbar { padding:14px 18px; } .topbar.scrolled { padding:11px 18px; }
+    .article { padding:110px 20px 60px; } .page-header { margin-bottom:52px; }
+    .section { margin-bottom:56px; } .section-num { font-size:56px; margin-bottom:-8px; }
+    .section-question { font-size:22px; margin-bottom:20px; }
+    .section-body { font-size:16px; line-height:1.9; } .section-divider { margin:56px 0; }
+    .foldout { padding:12px 18px; } .foldout-body { font-size:14px; }
+    .prev-read,.next-read { padding:22px 24px; }
+    .prev-read-title,.next-read-title { font-size:19px; }
+    .page-nav { flex-direction:column; }
+    .article-footer { flex-direction:column; gap:8px; text-align:center; }
+    .lang-btn { padding:4px 9px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/bandha-in-detail/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal"><div class="section-num">1</div><h2 class="section-question" data-i18n="s1_q"></h2><div class="section-body" data-i18n-html="s1_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">2</div><h2 class="section-question" data-i18n="s2_q"></h2><div class="section-body" data-i18n-html="s2_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+    <details class="foldout">
+      <summary data-i18n="cycle_foldout_label"></summary>
+      <div class="foldout-body" data-i18n-html="cycle_foldout_body"></div>
+    </details>
+  </section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal"><div class="section-num">4</div><h2 class="section-question" data-i18n="s4_q"></h2><div class="section-body" data-i18n-html="s4_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">5</div><h2 class="section-question" data-i18n="s5_q"></h2><div class="section-body" data-i18n-html="s5_body"></div></section>
+
+  <div class="page-nav reveal">
+    <a href="/bandha-in-detail/" class="prev-read"><div class="prev-read-label" data-i18n="prev_label"></div><div class="prev-read-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg><span data-i18n="prev_title"></span></div></a>
+    <a href="/" class="next-read"><div class="next-read-label" data-i18n="next_label"></div><div class="next-read-title"><span data-i18n="next_title"></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div></a>
+  </div>
+
+  <footer class="article-footer reveal"><a href="/" class="brand">Jainverse</a><span class="note" data-i18n="footer_note"></span></footer>
+</article>
+
+<script>
+function s(sentences) { return sentences.map(t => '<span class="sentence">' + t + '</span>').join(''); }
+
+const i18n = {
+  mr: {
+    page_title: "संवर आणि निर्जरा — सखोल",
+    page_subtitle: "नवीन कर्म थांबवणं आणि जुनं कर्म गाळून टाकणं",
+    s1_q: "बंधानंतर सुटका कशी?",
+    s1_body: s([
+      'आत्तापर्यंत आपण पाहिलं — कर्म कसं आत वाहतं (आस्रव) आणि कसं चिकटतं (बंध).',
+      'पण कर्म कायमचं काही टिकत नाही — त्यालाही जीवनचक्र आहे.',
+      'काही कर्म वेळ आल्यावर स्वतःहून गळतं; काहीला साधनेनं सक्रियपणे काढून टाकता येतं.',
+      '<span class="emphasis">हे पान दोन्ही बाजू मांडतं: संवर — नवीन कर्म येऊ न देणारी प्रक्रिया, आणि निर्जरा — जुनं कर्म गळवण्याची प्रक्रिया.</span>',
+    ]),
+    s2_q: "संवर — पाचही दारं एक-एक करून बंद",
+    s2_body: s([
+      'संवर म्हणजे आस्रवाचं अचूक उलट — आणि त्याच पाच दारांची रचना त्यालाही लागू.',
+      'प्रत्येक बंधन-कारणाला एक संवर-उपाय आहे: <span class="term">सम्यक दर्शन</span> मिथ्यात्व बंद करतो, <span class="term">व्रतं</span> अविरति बंद करतात, <span class="term">अप्रमाद</span> प्रमाद थांबवतो, <span class="term">समत्व</span> कषाय पातळ करतो, आणि <span class="term">स्थिरता</span> शेवटी योगही शांत करते.',
+      'ही सममिति लक्षात घ्या: ज्या पाच दारांतून कर्म आत आलं, तीच एक-एक करून बंद होतात — जेणेकरून ते बाहेर राहील.',
+      '<span class="emphasis">संवर ही एका झटक्यातली क्रिया नाही. साधक जे जे दार पाहायला शिकतो, ते ते बंद करत जाणं — हीच ती प्रक्रिया.</span>',
+    ]),
+    s3_q: "कर्माचं जीवनचक्र — बंध, सत्ता, उदय, निर्जरा",
+    s3_body: s([
+      'कर्म एकदा बांधलं की लगेच परिणाम देत नाही. ते आधी सुप्त साठ्यात जातं आणि वेळेची वाट पाहतं.',
+      '<span class="term">बंध</span> — बांधण्याचा क्षण.',
+      '<span class="term">सत्ता</span> — सुप्त अवस्था. कर्म साठ्यात बसून राहतं, जाणवतही नाही आणि उमटतही नाही — स्थिति संपेपर्यंत.',
+      '<span class="term">उदय</span> — फळ देण्याची वेळ. कर्म वर येतं, आपला परिणाम (सुख, दुःख, मोह — प्रकारानुसार) देतं, आणि मग —',
+      '<span class="term">निर्जरा</span> — फळ देऊन झालं की ते गळून पडतं. हे नैसर्गिक चक्र.',
+      '<span class="emphasis">यासोबत <span class="term">उदीरणा</span> — सुप्त कर्माला वेळेआधीच पुढे ओढून फळाला आणणं. कधी प्रयत्नानं, कधी तीव्र परिस्थितीनं. कधी उपयोगी, कधी जोखमीचं.</span>',
+    ]),
+    cycle_foldout_label: "कर्माच्या जीवनचक्राच्या पाच पायऱ्या",
+    cycle_foldout_body: '<ol><li><strong>बंध</strong> — बांधण्याचा क्षण. कर्म चिकटतं आणि त्याचे चार आयाम (प्रकृति, स्थिति, अनुभाग, प्रदेश) ठरतात.</li><li><strong>सत्ता</strong> — सुप्त साठा. कर्म इथे स्थिति संपेपर्यंत वाट पाहतं — जाणवत नाही, उमटत नाही.</li><li><strong>उदय</strong> — वेळेवर फळ देणं. कर्म वर येतं, आपला परिणाम देतं, मग —</li><li><strong>निर्जरा</strong> — गळणं. भोगून संपलेलं कर्म आत्म्यापासून सुटतं.</li><li><strong>उदीरणा</strong> — वेळेआधीच फळ देण्यास भाग पाडणं. सुप्त कर्माला पुढे ओढून पिकवलं जातं. कधी तीव्र परिस्थितीनं घडतं, कधी तपानं.</li></ol>',
+    s4_q: "निर्जरेचे दोन प्रकार — नैसर्गिक आणि सक्रिय",
+    s4_body: s([
+      'निर्जरा दोन प्रकारची असते.',
+      '<span class="term">सविपाक निर्जरा</span> — कर्म वेळेवर पिकलं, अनुभवलं गेलं आणि गळून पडलं. हे जन्म-मरणाच्या चक्रात सतत आपोआप घडत असतं.',
+      '<span class="term">अविपाक निर्जरा</span> — तपानं घडवलेली निर्जरा. कर्माला त्याच्या नैसर्गिक फळाच्या आधीच काढून टाकलं जातं.',
+      'तप नेमकं हेच करतं. ती शिक्षा नाही; ती कर्म-काढण्याची आगाऊ प्रक्रिया आहे.',
+      '<span class="emphasis">दोघांपैकी फक्त अविपाक — सक्रिय निर्जरा — साधकाला पुढे नेते. नुसती सविपाक चक्रच फिरवत राहते.</span>',
+    ]),
+    s5_q: "ही सर्व यंत्रणा एका आकृतीत कशी बसते?",
+    s5_body: s([
+      'आता कर्माची संपूर्ण यंत्रणा हाताशी आहे — आस्रव, बंध, संवर, निर्जरा — प्रत्येक स्वतःच्या तपशिलात उलगडलेलं.',
+      'पण ही चार कधीच वेगवेगळ्या क्रिया नव्हत्या. हे एकाच सततच्या चक्राचे चार पैलू आहेत — प्रत्येक क्षणी घडत असलेले.',
+      'आणि प्रगतीचा दुसरा एक नकाशा आपण आधीच भेटला आहे — १४ गुणस्थान — जो हेच चक्र वेगळ्या दृष्टीनं मांडतो.',
+      '<span class="emphasis">या मालिकेचं शेवटचं पान हे दोन नकाशे एकत्र आणतं: कर्म-यंत्रणेचा प्रत्येक भाग कोणत्या गुणस्थानावर कमजोर होतो — मुक्तीच्या शेवटच्या क्षणापर्यंत.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "बंध — सखोल",
+    next_label: "पुढचा टप्पा",
+    back_text: "बंध — सखोल",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "संवर और निर्जरा — विस्तार से",
+    page_subtitle: "नया कर्म रोकना और पुराना कर्म झाड़ना",
+    s1_q: "बंध के बाद मुक्ति कैसे?",
+    s1_body: s([
+      'अब तक आप देख चुके हैं — कर्म कैसे भीतर आता है (आस्रव) और कैसे चिपकता है (बंध).',
+      'पर कर्म हमेशा के लिए नहीं रहता — उसका भी जीवन-चक्र है.',
+      'कुछ कर्म समय आने पर अपने आप झड़ जाता है; कुछ को साधना से सक्रिय रूप में हटाया जा सकता है.',
+      '<span class="emphasis">यह पन्ना दोनों पहलू देता है: संवर — नए कर्म को आने न देने की प्रक्रिया, और निर्जरा — पहले से बंधे कर्म को झाड़ देने की प्रक्रिया.</span>',
+    ]),
+    s2_q: "संवर — पाँचों द्वार एक-एक करके बंद",
+    s2_body: s([
+      'संवर आस्रव का सटीक विपरीत है — और उसी पाँच-द्वारों की रचना उस पर भी लागू है.',
+      'हर बंधन-कारण के लिए एक संवर-उपाय है: <span class="term">सम्यक दर्शन</span> मिथ्यात्व बंद करता है, <span class="term">व्रत</span> अविरति बंद करते हैं, <span class="term">अप्रमाद</span> प्रमाद रोकता है, <span class="term">समत्व</span> कषाय पतला करता है, और <span class="term">स्थिरता</span> अंत में योग भी शांत करती है.',
+      'इस समरूपता को देखें: जिन पाँच द्वारों से कर्म भीतर आया, वही एक-एक करके बंद होते हैं — ताकि वह बाहर ही रहे.',
+      '<span class="emphasis">संवर एक क्षण का कार्य नहीं. साधक जो-जो द्वार देखना सीखता है, उसे बंद करते जाना — यही प्रक्रिया है.</span>',
+    ]),
+    s3_q: "कर्म का जीवन-चक्र — बंध, सत्ता, उदय, निर्जरा",
+    s3_body: s([
+      'कर्म एक बार बंधने के बाद तुरंत प्रभाव नहीं देता. वह पहले सुप्त भंडार में जाता है और अपने समय की प्रतीक्षा करता है.',
+      '<span class="term">बंध</span> — बंधने का क्षण.',
+      '<span class="term">सत्ता</span> — सुप्त अवस्था. कर्म भंडार में बैठा रहता है, न महसूस होता है, न प्रकट — जब तक स्थिति न बीत जाए.',
+      '<span class="term">उदय</span> — फल देने का समय. कर्म ऊपर आता है, अपना प्रभाव (सुख, दुख, मोह — प्रकार के अनुसार) देता है, और फिर —',
+      '<span class="term">निर्जरा</span> — फल देकर वह झड़ जाता है. यह स्वाभाविक चक्र है.',
+      '<span class="emphasis">इसके साथ <span class="term">उदीरणा</span> भी है — सुप्त कर्म को समय से पहले खींचकर फल तक लाना. कभी प्रयत्न से, कभी तीव्र परिस्थिति से. कभी उपयोगी, कभी जोखिम भरा.</span>',
+    ]),
+    cycle_foldout_label: "कर्म के जीवन-चक्र के पाँच चरण",
+    cycle_foldout_body: '<ol><li><strong>बंध</strong> — बंधने का क्षण. कर्म चिपकता है और उसके चार आयाम (प्रकृति, स्थिति, अनुभाग, प्रदेश) तय होते हैं.</li><li><strong>सत्ता</strong> — सुप्त भंडार. कर्म यहाँ अपनी स्थिति पूरी होने तक प्रतीक्षा करता है — न महसूस होता है, न प्रकट.</li><li><strong>उदय</strong> — समय पर फल देना. कर्म ऊपर आता है, अपना प्रभाव देता है, फिर —</li><li><strong>निर्जरा</strong> — झड़ना. भोगा हुआ कर्म आत्मा से छूट जाता है.</li><li><strong>उदीरणा</strong> — समय से पूर्व फल देने पर मजबूर करना. सुप्त कर्म को आगे खींचकर पकाया जाता है. कभी तीव्र परिस्थिति से, कभी तप से.</li></ol>',
+    s4_q: "निर्जरा के दो प्रकार — स्वाभाविक और सक्रिय",
+    s4_body: s([
+      'निर्जरा दो प्रकार की होती है.',
+      '<span class="term">सविपाक निर्जरा</span> — कर्म अपने समय पर पका, पूरी तरह भोगा गया, और झड़ गया. यह जन्म-मरण के चक्र में स्वतः ही चलता रहता है.',
+      '<span class="term">अविपाक निर्जरा</span> — तप से प्रेरित निर्जरा. कर्म को उसके पूरे प्राकृतिक फल से पहले ही हटा दिया जाता है.',
+      'तप वास्तव में यही करता है. वह दंड नहीं; वह अग्रिम कर्म-निष्कासन है.',
+      '<span class="emphasis">दोनों में से केवल अविपाक — सक्रिय निर्जरा — साधक को आगे ले जाती है. केवल सविपाक तो चक्र को घुमाती रहती है.</span>',
+    ]),
+    s5_q: "यह सारी यंत्र-रचना एक चित्र में कैसे आती है?",
+    s5_body: s([
+      'अब कर्म की पूरी यंत्र-रचना हाथ में है — आस्रव, बंध, संवर, निर्जरा — हर एक अपनी विशिष्टता में खुली.',
+      'पर ये चार कभी अलग प्रक्रियाएँ नहीं थीं. ये एक ही सतत चक्र के चार पहलू हैं — हर क्षण घटित होते.',
+      'और प्रगति का एक दूसरा मानचित्र हम पहले मिल चुके हैं — 14 गुणस्थान — जो उसी चक्र को अलग कोण से दिखाता है.',
+      '<span class="emphasis">इस श्रृंखला का अंतिम पन्ना दोनों मानचित्रों को एक साथ लाता है: कर्म-यंत्र का हर भाग किस गुणस्थान पर कमज़ोर होता है — मुक्ति के अंतिम क्षण तक.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "बंध — विस्तार से",
+    next_label: "अगला चरण",
+    back_text: "बंध — विस्तार से",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Detailed Samvara & Nirjara",
+    page_subtitle: "Stopping new karma and shedding the old",
+    s1_q: "After bondage, how does karma leave?",
+    s1_body: s([
+      'You have seen how karma flows in (asrava) and how it locks on (bandha).',
+      'But karma is not a permanent fixture — it has a lifecycle.',
+      'Some of it sheds on its own when its time comes; some of it can be actively dislodged through practice.',
+      '<span class="emphasis">This page maps both halves: samvara, which closes the gates against new inflow, and nirjara, which sheds what was already bound.</span>',
+    ]),
+    s2_q: "Samvara — closing the five gates one by one",
+    s2_body: s([
+      'Samvara is the exact reverse of asrava — and follows the same five-gate structure.',
+      'For each cause of bondage, there is a corresponding closure: <span class="term">right view</span> closes mithyatva, <span class="term">vows</span> close avirati, <span class="term">vigilance</span> closes pramada, <span class="term">equanimity</span> thins kashaya, and <span class="term">stillness</span> finally quiets yoga.',
+      'Notice the symmetry: the same five doors that opened to let karma in are now closed, one by one, to keep it out.',
+      '<span class="emphasis">Samvara is not a single act. It is the steady closing of every gate the practitioner has learned to see.</span>',
+    ]),
+    s3_q: "Karma\'s lifecycle — bandha, satta, uday, nirjara",
+    s3_body: s([
+      'Once karma is bound, it does not act immediately. It enters a dormant store and waits for its appointed time.',
+      '<span class="term">Bandha</span> — the moment of binding.',
+      '<span class="term">Satta</span> — the dormant phase. The karma sits in storage, neither felt nor expressed, until its sthiti elapses.',
+      '<span class="term">Uday</span> — fruition. The karma rises, gives its effect (pleasant, painful, deluding — depending on type), and then —',
+      '<span class="term">Nirjara</span> — it sheds, having delivered its result. This is the natural cycle.',
+      '<span class="emphasis">Alongside this is <span class="term">Udirana</span> — pulling a dormant karma forward into early fruition, by effort or by accident. Sometimes useful, sometimes risky.</span>',
+    ]),
+    cycle_foldout_label: "See the 5 stages of karma\'s lifecycle",
+    cycle_foldout_body: '<ol><li><strong>Bandha</strong> — the moment of binding, when karma sticks and its four dimensions (prakriti, sthiti, anubhaga, pradesh) are set.</li><li><strong>Satta</strong> — the dormant store. Karma waits here through its sthiti before fruition — neither felt nor expressed.</li><li><strong>Uday</strong> — natural fruition at the appointed time. The karma rises, gives its result, then —</li><li><strong>Nirjara</strong> — shedding. The spent karma drops away from the soul.</li><li><strong>Udirana</strong> — forced early fruition. A dormant karma is pulled forward and ripened before its natural time. May happen through intense circumstance, or through tap.</li></ol>',
+    s4_q: "Two modes of nirjara — natural and active",
+    s4_body: s([
+      'Karma sheds in two ways.',
+      '<span class="term">Savipaka nirjara</span> — natural shedding when karma ripens and is fully experienced. This happens automatically across the cycle of birth and death.',
+      '<span class="term">Avipaka nirjara</span> — induced shedding through tap. The karma is dislodged before its natural fruition would otherwise force the full experience.',
+      'This is what tap actually does. It is not punishment; it is karma-removal in advance.',
+      '<span class="emphasis">Of the two, only avipaka — the active mode — moves the practitioner forward. Savipaka alone just keeps the wheel turning.</span>',
+    ]),
+    s5_q: "How does this whole machinery fit one diagram?",
+    s5_body: s([
+      'You now have the full machinery of karma — asrava, bandha, samvara, nirjara — each opened up in its own detail.',
+      'But these four were never separate processes. They are four aspects of one continuous cycle, happening every moment.',
+      'And we have already met another map of progress — the 14 gunasthanas — which traces this same cycle from a different angle.',
+      '<span class="emphasis">The final page in this track brings the two maps together: how each piece of karma machinery weakens at which gunasthana, until the very last moment of liberation.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Detailed Bandha",
+    next_label: "Continue",
+    back_text: "Detailed Bandha",
+    next_title: "Home",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang]; if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (strings[key] !== undefined) el.textContent = strings[key]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const key = el.getAttribute('data-i18n-html'); if (strings[key] !== undefined) el.innerHTML = strings[key]; });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+window.addEventListener('scroll', () => { document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

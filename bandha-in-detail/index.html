@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>बंध — सखोल — Jainverse</title>
+<meta name="description" content="कर्म आत्म्याला किती-कसं चिकटतं — प्रकृति, स्थिति, अनुभाग, प्रदेश यांची यंत्रणा.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --saffron:#e07830; --saffron-deep:#c45e1a; --indigo:#1a2744; --sand:#f5f0e8; --sand-dark:#e8dfd0; --warm-white:#faf8f4; --stone:#8c7e6a; --stone-light:#b0a48e; --text:#2a2318; --text-secondary:#5c5246; --text-tertiary:#8a7e6e; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:200px 200px; }
+  .topbar { position:fixed; top:0; left:0; right:0; z-index:100; padding:18px 40px; display:flex; align-items:center; justify-content:space-between; transition:background .4s, box-shadow .4s, padding .4s; }
+  .topbar.scrolled { background:rgba(250,248,244,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(0,0,0,.06); padding:13px 40px; }
+  .back-link { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:color .25s; }
+  .back-link:hover { color:var(--saffron-deep); }
+  .back-link svg { width:16px; height:16px; transition:transform .25s; }
+  .back-link:hover svg { transform:translateX(-3px); }
+  .lang-switch { display:flex; align-items:center; border:1px solid var(--sand-dark); border-radius:20px; overflow:hidden; background:rgba(245,240,232,.6); }
+  .lang-btn { padding:5px 12px; font-size:12px; font-weight:500; color:var(--text-tertiary); background:none; border:none; cursor:pointer; transition:all .25s; font-family:'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space:nowrap; }
+  .lang-btn:hover { color:var(--text-secondary); }
+  .lang-btn.active { background:var(--indigo); color:var(--sand); font-weight:600; }
+  .lang-divider { width:1px; height:16px; background:var(--sand-dark); }
+  .article { max-width:640px; margin:0 auto; padding:140px 28px 100px; }
+  .page-header { margin-bottom:72px; opacity:0; transform:translateY(20px); animation:fadeUp .8s .2s forwards; }
+  .page-header h1 { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(36px, 5vw, 52px); color:var(--indigo); line-height:1.15; letter-spacing:-.5px; margin-bottom:12px; }
+  .page-header .subtitle { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:clamp(16px, 2vw, 20px); color:var(--stone); line-height:1.4; }
+  .header-rule { width:48px; height:2px; background:var(--saffron); margin-top:28px; opacity:.7; }
+  .section { margin-bottom:80px; position:relative; }
+  .section-num { font-family:'DM Serif Display', serif; font-size:80px; color:var(--sand-dark); line-height:1; margin-bottom:-12px; user-select:none; }
+  .section-question { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(24px, 3.5vw, 32px); color:var(--indigo); line-height:1.25; margin-bottom:28px; letter-spacing:-.3px; }
+  .section-body { font-size:17px; line-height:2; color:var(--text-secondary); }
+  .section-body .sentence { display:block; margin-bottom:12px; }
+  .section-body .emphasis { color:var(--text); font-weight:500; }
+  .section-body .term { color:var(--saffron-deep); font-weight:500; }
+  .foldout { margin-top:28px; border:1px solid var(--sand-dark); border-radius:8px; background:var(--sand); padding:14px 22px; }
+  .foldout summary { font-size:13px; font-weight:600; letter-spacing:.5px; color:var(--saffron-deep); list-style:none; display:flex; align-items:center; gap:10px; cursor:pointer; user-select:none; padding:4px 0; }
+  .foldout summary::-webkit-details-marker { display:none; }
+  .foldout summary::before { content:''; width:0; height:0; border-left:5px solid var(--saffron); border-top:4px solid transparent; border-bottom:4px solid transparent; transition:transform .2s; display:inline-block; }
+  .foldout[open] summary::before { transform:rotate(90deg); }
+  .foldout-body { margin-top:14px; padding-top:14px; border-top:1px solid var(--sand-dark); font-size:15px; line-height:1.75; color:var(--text-secondary); }
+  .foldout-body strong { color:var(--text); font-weight:600; }
+  .foldout-body .group-label { display:block; margin-top:14px; margin-bottom:8px; font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:14px; color:var(--stone); }
+  .foldout-body .group-label:first-child { margin-top:0; }
+  .foldout-body ol { margin:0 0 0 20px; padding:0; }
+  .foldout-body ol li { margin-bottom:14px; }
+  .foldout-body ol li:last-child { margin-bottom:0; }
+  .section-divider { display:flex; align-items:center; justify-content:center; gap:16px; margin:80px 0; color:var(--sand-dark); user-select:none; }
+  .section-divider::before, .section-divider::after { content:''; height:1px; width:40px; background:linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background:linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size:14px; color:var(--stone-light); }
+  .page-nav { display:flex; gap:16px; margin-top:80px; }
+  .prev-read,.next-read { flex:1; padding:28px 32px; background:var(--sand); border-radius:8px; text-decoration:none; color:inherit; display:block; transition:all .3s; }
+  .prev-read:hover,.next-read:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(42,35,24,.08); }
+  .prev-read-label,.next-read-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .prev-read-label { color:var(--stone-light); }
+  .next-read-label { color:var(--saffron); }
+  .prev-read-title,.next-read-title { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .prev-read-title svg { width:18px; height:18px; color:var(--stone-light); transition:transform .3s; }
+  .next-read-title svg { width:18px; height:18px; color:var(--saffron); transition:transform .3s; }
+  .prev-read:hover .prev-read-title svg { transform:translateX(-4px); }
+  .next-read:hover .next-read-title svg { transform:translateX(4px); }
+  .article-footer { margin-top:60px; padding-top:32px; border-top:1px solid var(--sand-dark); display:flex; align-items:center; justify-content:space-between; }
+  .article-footer .brand { font-family:'DM Serif Display', serif; font-size:16px; color:var(--stone); text-decoration:none; }
+  .article-footer .note { font-size:12px; color:var(--text-tertiary); }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  @media (max-width:600px) {
+    .topbar { padding:14px 18px; } .topbar.scrolled { padding:11px 18px; }
+    .article { padding:110px 20px 60px; } .page-header { margin-bottom:52px; }
+    .section { margin-bottom:56px; } .section-num { font-size:56px; margin-bottom:-8px; }
+    .section-question { font-size:22px; margin-bottom:20px; }
+    .section-body { font-size:16px; line-height:1.9; } .section-divider { margin:56px 0; }
+    .foldout { padding:12px 18px; } .foldout-body { font-size:14px; }
+    .prev-read,.next-read { padding:22px 24px; }
+    .prev-read-title,.next-read-title { font-size:19px; }
+    .page-nav { flex-direction:column; }
+    .article-footer { flex-direction:column; gap:8px; text-align:center; }
+    .lang-btn { padding:4px 9px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/asrava-in-detail/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal"><div class="section-num">1</div><h2 class="section-question" data-i18n="s1_q"></h2><div class="section-body" data-i18n-html="s1_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+    <details class="foldout">
+      <summary data-i18n="dim_foldout_label"></summary>
+      <div class="foldout-body" data-i18n-html="dim_foldout_body"></div>
+    </details>
+  </section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal"><div class="section-num">3</div><h2 class="section-question" data-i18n="s3_q"></h2><div class="section-body" data-i18n-html="s3_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+    <details class="foldout">
+      <summary data-i18n="kashaya_foldout_label"></summary>
+      <div class="foldout-body" data-i18n-html="kashaya_foldout_body"></div>
+    </details>
+  </section>
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal"><div class="section-num">5</div><h2 class="section-question" data-i18n="s5_q"></h2><div class="section-body" data-i18n-html="s5_body"></div></section>
+
+  <div class="page-nav reveal">
+    <a href="/asrava-in-detail/" class="prev-read"><div class="prev-read-label" data-i18n="prev_label"></div><div class="prev-read-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg><span data-i18n="prev_title"></span></div></a>
+    <a href="/samvar-nirjara-in-detail/" class="next-read"><div class="next-read-label" data-i18n="next_label"></div><div class="next-read-title"><span data-i18n="next_title"></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div></a>
+  </div>
+
+  <footer class="article-footer reveal"><a href="/" class="brand">Jainverse</a><span class="note" data-i18n="footer_note"></span></footer>
+</article>
+
+<script>
+function s(sentences) { return sentences.map(t => '<span class="sentence">' + t + '</span>').join(''); }
+
+const i18n = {
+  mr: {
+    page_title: "बंध — सखोल",
+    page_subtitle: "कर्म आत्म्याला किती-कसं चिकटतं याची यंत्रणा",
+    s1_q: "आत आल्यावर पुढे काय होतं?",
+    s1_body: s([
+      'आस्रवानं सांगितलं की दार कशामुळे उघडतं — पाच वेगळी कारणं, दृष्टीपासून कृतीपर्यंत.',
+      'पण कर्म एकदा आत आल्यावर पुढे काय?',
+      'ते फक्त आत येऊन तरंगत राहत नाही. बंधनाच्या त्याच क्षणी चार अगदी ठाम गोष्टी ठरतात.',
+      '<span class="emphasis">हे पान त्या चारही उलगडतं — आणि दाखवतं की त्यांपैकी दोन योगानं ठरतात, दोन कषायानं.</span>',
+    ]),
+    s2_q: "बंधाचे चार आयाम कोणते?",
+    s2_body: s([
+      'प्रत्येक कर्मबंधनाला चार आयाम असतात, जे बंधाच्या त्याच क्षणी ठरतात:',
+      '<span class="term">प्रकृति</span> — कोणत्या प्रकारचं कर्म आहे (ज्ञानावरण, मोहनीय, आयु, वगैरे).',
+      '<span class="term">स्थिति</span> — किती काळ टिकेल — फळ देण्याआधी.',
+      '<span class="term">अनुभाग</span> (किंवा रस) — फळ देताना त्याची तीव्रता किती.',
+      '<span class="term">प्रदेश</span> — एकूण किती कर्म-द्रव्य बांधलं गेलं — सरळ प्रमाण.',
+      '<span class="emphasis">ही चार स्वतंत्र असतात. एखादं कर्म प्रकारानं वाईट पण तीव्रतेत सौम्य असू शकतं — किंवा कालावधी कमी पण प्रमाण जास्त.</span>',
+    ]),
+    dim_foldout_label: "चार आयामांची सविस्तर ओळख",
+    dim_foldout_body: '<ol><li><strong>प्रकृति</strong> — प्रकार. आठ मुख्य कुटुंबं (ज्ञानावरण, दर्शनावरण, वेदनीय, मोहनीय, आयु, नाम, गोत्र, अंतराय), आणि त्यांच्यात अनेक उपप्रकार.</li><li><strong>स्थिति</strong> — कालावधी. कर्म फळ देण्याआधी किती काळ सुप्त राहील. बंधाच्या क्षणी कषायाच्या तीव्रतेनुसार ठरतं.</li><li><strong>अनुभाग / रस</strong> — तीव्रता. कर्म फळताना त्याचा परिणाम किती तीक्ष्ण किंवा सौम्य. हाही कषायानं ठरतो.</li><li><strong>प्रदेश</strong> — प्रमाण. एकूण किती कर्म-कण बांधले जातात. योगानं ठरतो.</li></ol>',
+    s3_q: "कोण काय ठरवतं? — योग आणि कषायाची स्पष्ट विभागणी",
+    s3_body: s([
+      'जैन कर्मसिद्धांताची सर्वांत अचूक अंतर्दृष्टी अशी आहे: प्रत्येक कारण प्रत्येक आयाम ठरवत नाही.',
+      '<span class="term">योग</span> (हालचाल) ठरवतो <span class="term">प्रकृति</span> (प्रकार) आणि <span class="term">प्रदेश</span> (प्रमाण). क्रियेमुळे कोणतं कर्म आत येतं आणि किती येतं हे ठरतं.',
+      '<span class="term">कषाय</span> (राग-मान-माया-लोभ) ठरवतो <span class="term">स्थिति</span> (कालावधी) आणि <span class="term">अनुभाग</span> (तीव्रता). कर्माची धरून ठेवण्याची ताकद आणि चावा — हे कषायामुळेच.',
+      'म्हणूनच ज्ञानी पुरुष — ज्याला योग आहे पण कषाय नाही — त्याला कर्म वाहत आलं तरी ते एक क्षणच टिकतं, आणि त्याला कोणतीही तीव्रता नसते.',
+      '<span class="emphasis">योग कर्म तयार करतो. कषाय त्याला वजन देतो. कषायाशिवाय बंध चावत नाही.</span>',
+    ]),
+    s4_q: "काही विशेष — मोहनीय, कषाय-तीव्रता, निकाचित",
+    s4_body: s([
+      'या चार आयामांत काही विशिष्ट तपशील नावानं ओळखणं उपयोगी आहे.',
+      '<span class="term">मोहनीय</span> कर्म सर्वांत मध्यवर्ती आहे — त्याचे दोन भाग: <span class="term">दर्शन-मोहनीय</span> (योग्य दृष्टीला विचलित करणारं) आणि <span class="term">चारित्र-मोहनीय</span> (योग्य आचरणाला विचलित करणारं).',
+      'चारित्र-मोहनीयात कषाय चार तीव्रतांत येतात — सर्वांत प्रबल अनंतानुबंधी (जो मिथ्यात्व टिकवतो) पासून सर्वांत सूक्ष्म संज्वलन (जो फक्त सूक्ष्म स्थिरता विचलित करतो) पर्यंत.',
+      '<span class="term">निकाचित</span> कर्म असं घट्ट बांधलेलं असतं की तप-सुद्धा त्याला सोडवू शकत नाही; ते भोगूनच संपवावं लागतं.',
+      'आणि पुण्य-पापाचे उपप्रकार प्रकृतीत बसतात — अनेक प्रकार, पण मूळ तत्त्व विसरू नये: <span class="emphasis">दोन्हीही बंध आहेत. पुण्य देखील. सोन्याची साखळी, लोखंडाची साखळी.</span>',
+    ]),
+    kashaya_foldout_label: "कषायाच्या चार पातळ्या",
+    kashaya_foldout_body: '<span class="group-label">सर्वांत प्रबल ते सर्वांत सूक्ष्म</span><ol><li><strong>अनंतानुबंधी</strong> — अंतहीन-बांधणारा. मिथ्यात्व टिकवतो. गुणस्थान ४ पर्यंत पोहोचूच देत नाही.</li><li><strong>अप्रत्याख्यान</strong> — त्यागविरोधी. गुणस्थान ५ ची आंशिक व्रतं अडवतो.</li><li><strong>प्रत्याख्यान</strong> — अंशतः-त्यागविरोधी. गुणस्थान ६ ची पूर्ण व्रतं अडवतो.</li><li><strong>संज्वलन</strong> — सूक्ष्म-जळणारा. शेवटचा उरलेला; मुनी-जीवनाला परवानगी देतो पण पूर्ण स्थिरता विचलित करतो. फक्त उच्च गुणस्थानांत संपतो.</li></ol>',
+    s5_q: "बंधानंतर पुढे काय?",
+    s5_body: s([
+      'आता हे माहीत झालंय की काय आत वाहतं, आणि एकदा चिकटल्यावर त्याचं काय होतं.',
+      'पण कर्म कायमचं राहत नाही — त्यालाही स्वतःचं जीवनचक्र आहे.',
+      'काही काळ ते सुप्त राहतं, मग फळतं, मग गळून पडतं.',
+      '<span class="emphasis">पुढचं पान हे जीवनचक्र मांडतं — आणि दाखवतं की संवर नवीन आस्रव कसा थांबवतो आणि निर्जरा आधीच बांधलेलं कर्म कसं गाळते.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "आस्रव — सखोल",
+    next_label: "पुढचा टप्पा",
+    back_text: "आस्रव — सखोल",
+    next_title: "संवर-निर्जरा — सखोल",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "बंध — विस्तार से",
+    page_subtitle: "कर्म आत्मा से कितना-कैसे चिपकता है — इसकी यंत्र-रचना",
+    s1_q: "भीतर आने के बाद आगे क्या?",
+    s1_body: s([
+      'आस्रव ने बताया कि द्वार किस से खुलता है — पाँच भिन्न कारण, दृष्टि से क्रिया तक.',
+      'पर कर्म एक बार भीतर आ जाए, फिर आगे क्या?',
+      'वह बस तैरता नहीं रहता. बंधन के उसी क्षण चार बहुत ठोस चीज़ें तय हो जाती हैं.',
+      '<span class="emphasis">यह पन्ना उन चारों को खोलता है — और दिखाता है कि इनमें से दो योग से तय होती हैं, दो कषाय से.</span>',
+    ]),
+    s2_q: "बंध के चार आयाम कौन-से?",
+    s2_body: s([
+      'हर कर्मबंध के चार आयाम होते हैं, जो बंध के उसी क्षण तय होते हैं:',
+      '<span class="term">प्रकृति</span> — कैसा कर्म है (ज्ञानावरण, मोहनीय, आयु आदि).',
+      '<span class="term">स्थिति</span> — कितने समय तक टिकेगा — फल देने से पहले.',
+      '<span class="term">अनुभाग</span> (या रस) — फल देते समय उसका प्रभाव कितना तीव्र.',
+      '<span class="term">प्रदेश</span> — कुल कितना कर्म-द्रव्य बंधा — मात्रा.',
+      '<span class="emphasis">ये चारों स्वतंत्र हैं. कोई कर्म प्रकार में बुरा हो पर तीव्रता में मंद, या अवधि में कम पर मात्रा में भारी हो सकता है.</span>',
+    ]),
+    dim_foldout_label: "चार आयामों का संक्षिप्त परिचय",
+    dim_foldout_body: '<ol><li><strong>प्रकृति</strong> — प्रकार. आठ मुख्य कुल (ज्ञानावरण, दर्शनावरण, वेदनीय, मोहनीय, आयु, नाम, गोत्र, अंतराय), और उनके भीतर कई उप-प्रकार.</li><li><strong>स्थिति</strong> — अवधि. कर्म फल देने से पहले कितने समय तक सुप्त रहेगा. बंध के क्षण कषाय की तीव्रता से तय होता है.</li><li><strong>अनुभाग / रस</strong> — तीव्रता. फल देते समय उसका प्रभाव कितना तीक्ष्ण या मंद. यह भी कषाय से तय.</li><li><strong>प्रदेश</strong> — मात्रा. कुल कितने कर्म-कण बंधते हैं. योग से तय.</li></ol>',
+    s3_q: "कौन क्या तय करता है? — योग और कषाय का स्पष्ट बँटवारा",
+    s3_body: s([
+      'जैन कर्मसिद्धांत की सबसे सटीक अंतर्दृष्टि यह है: हर कारण हर आयाम तय नहीं करता.',
+      '<span class="term">योग</span> (प्रवृत्ति) तय करता है <span class="term">प्रकृति</span> (प्रकार) और <span class="term">प्रदेश</span> (मात्रा). प्रवृत्ति से तय होता है कौन-सा कर्म और कितना कर्म.',
+      '<span class="term">कषाय</span> (क्रोध-मान-माया-लोभ) तय करता है <span class="term">स्थिति</span> (अवधि) और <span class="term">अनुभाग</span> (तीव्रता). कर्म की पकड़ और दंश — कषाय से.',
+      'इसीलिए ज्ञानी पुरुष — जिसमें योग है पर कषाय नहीं — पर भी कर्म प्रवाहित होता है, पर वह केवल एक क्षण टिकता है और उसमें कोई तीव्रता नहीं होती.',
+      '<span class="emphasis">योग कर्म बनाता है. कषाय उसे वज़न देता है. कषाय बिना बंध काटता नहीं.</span>',
+    ]),
+    s4_q: "कुछ विशेष — मोहनीय, कषाय-तीव्रता, निकाचित",
+    s4_body: s([
+      'इन चार आयामों के भीतर कुछ विशिष्ट विवरण नाम से जानने योग्य हैं.',
+      '<span class="term">मोहनीय</span> कर्म सबसे केंद्रीय है — इसके दो भाग: <span class="term">दर्शन-मोहनीय</span> (सम्यक दर्शन में बाधक) और <span class="term">चारित्र-मोहनीय</span> (सम्यक चारित्र में बाधक).',
+      'चारित्र-मोहनीय में कषाय चार तीव्रताओं में आते हैं — सबसे प्रबल अनंतानुबंधी (जो मिथ्यात्व को टिकाए रखता है) से सबसे सूक्ष्म संज्वलन (जो केवल सूक्ष्म स्थिरता में बाधा देता है) तक.',
+      '<span class="term">निकाचित</span> कर्म इतना दृढ़ बंधा होता है कि तप भी उसे नहीं छुड़ा सकता; उसे भोगकर ही चुकाना पड़ता है.',
+      'और पुण्य-पाप के उप-प्रकार प्रकृति में आते हैं — कई प्रकार, पर मूल बात कभी न भूलें: <span class="emphasis">दोनों ही बंध हैं. पुण्य भी. सोने की ज़ंजीर, लोहे की ज़ंजीर.</span>',
+    ]),
+    kashaya_foldout_label: "कषाय की चार तीव्रताएँ",
+    kashaya_foldout_body: '<span class="group-label">सबसे प्रबल से सबसे सूक्ष्म</span><ol><li><strong>अनंतानुबंधी</strong> — अनंत-बंधन वाला. मिथ्यात्व को बनाए रखता है. गुणस्थान 4 तक पहुँचने नहीं देता.</li><li><strong>अप्रत्याख्यान</strong> — त्याग-विरोधी. गुणस्थान 5 के आंशिक व्रत रोकता है.</li><li><strong>प्रत्याख्यान</strong> — आंशिक त्याग-विरोधी. गुणस्थान 6 के पूर्ण व्रत रोकता है.</li><li><strong>संज्वलन</strong> — सूक्ष्म-जलनशील. अंतिम शेष; मुनि-जीवन की अनुमति देता है पर पूर्ण स्थिरता में बाधा देता है. केवल उच्च गुणस्थानों में समाप्त होता है.</li></ol>',
+    s5_q: "बंध के बाद आगे क्या?",
+    s5_body: s([
+      'अब आपको पता है कि कर्म कैसे भीतर आता है, और चिपकते ही उसका क्या होता है.',
+      'पर कर्म हमेशा के लिए नहीं रहता — उसका भी अपना जीवन-चक्र है.',
+      'कुछ समय वह सुप्त रहता है, फिर फलता है, फिर झड़ जाता है.',
+      '<span class="emphasis">अगला पन्ना यही जीवन-चक्र दिखाता है — और बताता है कि संवर नए आस्रव को कैसे रोकता है, और निर्जरा पहले से बंधे कर्म को कैसे झाड़ती है.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "आस्रव — विस्तार से",
+    next_label: "अगला चरण",
+    back_text: "आस्रव — विस्तार से",
+    next_title: "संवर-निर्जरा — विस्तार से",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Detailed Bandha",
+    page_subtitle: "The mechanics of how karma locks onto the soul",
+    s1_q: "Once karma is in, what happens next?",
+    s1_body: s([
+      'Asrava told us what opens the gate — five distinct causes, layered from view down to action.',
+      'But once karma flows in, what happens next?',
+      'It does not simply enter and float around. At the moment of bondage, four very specific things are decided.',
+      '<span class="emphasis">This page unpacks those four — and shows that two are set by yoga, two by kashaya.</span>',
+    ]),
+    s2_q: "What are the four dimensions of bondage?",
+    s2_body: s([
+      'Every karmic bondage has four dimensions, set at the instant of bandha:',
+      '<span class="term">Prakriti</span> — what type of karma it is (knowledge-obscuring, deluding, lifespan-determining, and so on).',
+      '<span class="term">Sthiti</span> — how long it will stay before fruition.',
+      '<span class="term">Anubhaga</span> (or Rasa) — how intense its effect will be when it fruits.',
+      '<span class="term">Pradesh</span> — how much karma-matter is bound; sheer quantity.',
+      '<span class="emphasis">These four are independent. A karma can be bad in type but mild in intensity, or short in duration but heavy in quantity.</span>',
+    ]),
+    dim_foldout_label: "See each of the 4 dimensions",
+    dim_foldout_body: '<ol><li><strong>Prakriti</strong> — type. Eight main families (knowledge-obscuring, vision-obscuring, feeling-producing, deluding, lifespan-determining, body-determining, status-determining, obstacle-creating), with many sub-types.</li><li><strong>Sthiti</strong> — duration. How long the karma remains dormant before it must fruit. Set by kashaya intensity at the moment of bondage.</li><li><strong>Anubhaga / Rasa</strong> — intensity. How sharp or mild the karma\'s effect will be when it fruits. Also set by kashaya.</li><li><strong>Pradesh</strong> — quantity. The sheer amount of karma-particles that bind. Set by yoga.</li></ol>',
+    s3_q: "Who decides what? — yoga and kashaya divide the work",
+    s3_body: s([
+      'The most precise insight in Jain karma theory is this: not every cause sets every dimension.',
+      '<span class="term">Yoga</span> (activity) determines <span class="term">Prakriti</span> (type) and <span class="term">Pradesh</span> (quantity). Movement decides what kind of karma flows in and how much.',
+      '<span class="term">Kashaya</span> (passions) determines <span class="term">Sthiti</span> (duration) and <span class="term">Anubhaga</span> (intensity). It is passion — not action — that gives bound karma its hold time and its bite.',
+      'This is why even an enlightened being — who still has yoga but no kashaya — has karma flow in, but it lasts only an instant and carries no intensity.',
+      '<span class="emphasis">Yoga makes the karma. Kashaya gives it weight. Without kashaya, bondage cannot bite.</span>',
+    ]),
+    s4_q: "Some special cases — Mohaniya, kashaya intensities, Nikachit",
+    s4_body: s([
+      'Within these four dimensions, certain details are worth knowing by name.',
+      '<span class="term">Mohaniya</span> (deluding) karma is the most central — it splits into two halves: <span class="term">Darshan-mohaniya</span> (deluding right view) and <span class="term">Charitra-mohaniya</span> (deluding right conduct).',
+      'Inside Charitra-mohaniya, kashayas come in four intensities — from the strongest, Anantanubandhi (which keeps mithyatva itself in place), down to the faintest, Sanjvalana (which only disturbs subtle steadiness).',
+      '<span class="term">Nikachit</span> karma is bondage so tightly fixed that even tap cannot dislodge it; it must be lived through to ripeness.',
+      'And the punya/paap subtypes (auspicious and inauspicious karma) sit within Prakriti — many varieties, but never lose sight of the core: <span class="emphasis">both are bondage, even punya. Gold chain, iron chain.</span>',
+    ]),
+    kashaya_foldout_label: "See the 4 kashaya intensities",
+    kashaya_foldout_body: '<span class="group-label">From strongest to faintest</span><ol><li><strong>Anantanubandhi</strong> — endless-bonding. Holds mithyatva in place. Blocks gunasthana 4 itself.</li><li><strong>Apratyakhyana</strong> — non-renouncing. Blocks the partial vows of gunasthana 5.</li><li><strong>Pratyakhyana</strong> — partial-renouncing. Blocks the full vows of gunasthana 6.</li><li><strong>Sanjvalana</strong> — faintly burning. The last remnant; permits ascetic life but disturbs perfect steadiness. Falls only in the upper gunasthanas.</li></ol>',
+    s5_q: "What happens after bondage?",
+    s5_body: s([
+      'You now know what flows in, and what happens to it the moment it sticks.',
+      'But karma does not stay forever — it has a lifecycle of its own.',
+      'It sits dormant for a while, then fruits, then drops away.',
+      '<span class="emphasis">The next page maps that lifecycle — and shows how Samvara stops new inflow while Nirjara sheds what is already bound.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Detailed Asrava",
+    next_label: "Continue",
+    back_text: "Detailed Asrava",
+    next_title: "Detailed Samvara & Nirjara",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang]; if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (strings[key] !== undefined) el.textContent = strings[key]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const key = el.getAttribute('data-i18n-html'); if (strings[key] !== undefined) el.innerHTML = strings[key]; });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+window.addEventListener('scroll', () => { document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
