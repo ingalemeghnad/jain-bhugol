@@ -258,6 +258,49 @@
 
   .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
 
+  .next-read {
+    flex: 1;
+    padding: 28px 32px;
+    background: var(--sand);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .next-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08);
+  }
+
+  .next-read-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 8px;
+  }
+
+  .next-read-title {
+    font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    color: var(--indigo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .next-read-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--saffron);
+    transition: transform 0.3s;
+  }
+
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+
   .article-footer {
     margin-top: 60px;
     padding-top: 32px;
@@ -299,6 +342,8 @@
     .section-divider { margin: 56px 0; }
     .prev-read { padding: 22px 24px; }
     .prev-read-title { font-size: 19px; }
+    .next-read { padding: 22px 24px; }
+    .next-read-title { font-size: 19px; }
     .page-nav { flex-direction: column; }
     .article-footer { flex-direction: column; gap: 8px; text-align: center; }
     .lang-btn { padding: 4px 9px; font-size: 11px; }
