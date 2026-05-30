@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>गुणस्थान — Jainverse</title>
+<meta name="description" content="आत्मिक प्रगतीचे १४ टप्पे — गुणस्थान सोप्या भाषेत समजून घ्या.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --saffron:#e07830; --saffron-deep:#c45e1a; --indigo:#1a2744; --sand:#f5f0e8; --sand-dark:#e8dfd0; --warm-white:#faf8f4; --stone:#8c7e6a; --stone-light:#b0a48e; --text:#2a2318; --text-secondary:#5c5246; --text-tertiary:#8a7e6e; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:200px 200px; }
+  .topbar { position:fixed; top:0; left:0; right:0; z-index:100; padding:18px 40px; display:flex; align-items:center; justify-content:space-between; transition:background .4s, box-shadow .4s, padding .4s; }
+  .topbar.scrolled { background:rgba(250,248,244,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(0,0,0,.06); padding:13px 40px; }
+  .back-link { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:color .25s; }
+  .back-link:hover { color:var(--saffron-deep); }
+  .back-link svg { width:16px; height:16px; transition:transform .25s; }
+  .back-link:hover svg { transform:translateX(-3px); }
+  .lang-switch { display:flex; align-items:center; border:1px solid var(--sand-dark); border-radius:20px; overflow:hidden; background:rgba(245,240,232,.6); }
+  .lang-btn { padding:5px 12px; font-size:12px; font-weight:500; color:var(--text-tertiary); background:none; border:none; cursor:pointer; transition:all .25s; font-family:'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space:nowrap; }
+  .lang-btn:hover { color:var(--text-secondary); }
+  .lang-btn.active { background:var(--indigo); color:var(--sand); font-weight:600; }
+  .lang-divider { width:1px; height:16px; background:var(--sand-dark); }
+  .article { max-width:640px; margin:0 auto; padding:140px 28px 100px; }
+  .page-header { margin-bottom:72px; opacity:0; transform:translateY(20px); animation:fadeUp .8s .2s forwards; }
+  .page-header h1 { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(36px, 5vw, 52px); color:var(--indigo); line-height:1.15; letter-spacing:-.5px; margin-bottom:12px; }
+  .page-header .subtitle { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style:italic; font-size:clamp(16px, 2vw, 20px); color:var(--stone); line-height:1.4; }
+  .header-rule { width:48px; height:2px; background:var(--saffron); margin-top:28px; opacity:.7; }
+  .section { margin-bottom:80px; position:relative; }
+  .section-num { font-family:'DM Serif Display', serif; font-size:80px; color:var(--sand-dark); line-height:1; margin-bottom:-12px; user-select:none; }
+  .section-question { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:clamp(24px, 3.5vw, 32px); color:var(--indigo); line-height:1.25; margin-bottom:28px; letter-spacing:-.3px; }
+  .section-body { font-size:17px; line-height:2; color:var(--text-secondary); }
+  .section-body .sentence { display:block; margin-bottom:12px; }
+  .section-body .emphasis { color:var(--text); font-weight:500; }
+  .section-body .term { color:var(--saffron-deep); font-weight:500; }
+  .section-divider { display:flex; align-items:center; justify-content:center; gap:16px; margin:80px 0; color:var(--sand-dark); user-select:none; }
+  .section-divider::before, .section-divider::after { content:''; height:1px; width:40px; background:linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background:linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size:14px; color:var(--stone-light); }
+  .page-nav { display:flex; gap:16px; margin-top:80px; }
+  .prev-read,.next-read { flex:1; padding:28px 32px; background:var(--sand); border-radius:8px; text-decoration:none; color:inherit; display:block; transition:all .3s; }
+  .prev-read:hover,.next-read:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(42,35,24,.08); }
+  .prev-read-label,.next-read-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .prev-read-label { color:var(--stone-light); }
+  .next-read-label { color:var(--saffron); }
+  .prev-read-title,.next-read-title { font-family:'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .prev-read-title svg { width:18px; height:18px; color:var(--stone-light); transition:transform .3s; }
+  .next-read-title svg { width:18px; height:18px; color:var(--saffron); transition:transform .3s; }
+  .prev-read:hover .prev-read-title svg { transform:translateX(-4px); }
+  .next-read:hover .next-read-title svg { transform:translateX(4px); }
+  .article-footer { margin-top:60px; padding-top:32px; border-top:1px solid var(--sand-dark); display:flex; align-items:center; justify-content:space-between; }
+  .article-footer .brand { font-family:'DM Serif Display', serif; font-size:16px; color:var(--stone); text-decoration:none; }
+  .article-footer .note { font-size:12px; color:var(--text-tertiary); }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  @media (max-width:600px) {
+    .topbar { padding:14px 18px; } .topbar.scrolled { padding:11px 18px; }
+    .article { padding:110px 20px 60px; } .page-header { margin-bottom:52px; }
+    .section { margin-bottom:56px; } .section-num { font-size:56px; margin-bottom:-8px; }
+    .section-question { font-size:22px; margin-bottom:20px; }
+    .section-body { font-size:16px; line-height:1.9; } .section-divider { margin:56px 0; }
+    .prev-read,.next-read { padding:22px 24px; }
+    .prev-read-title,.next-read-title { font-size:19px; }
+    .page-nav { flex-direction:column; }
+    .article-footer { flex-direction:column; gap:8px; text-align:center; }
+    .lang-btn { padding:4px 9px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/leshya/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button><span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal"><div class="section-num">1</div><h2 class="section-question" data-i18n="s1_q"></h2><div class="section-body" data-i18n-html="s1_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">2</div><h2 class="section-question" data-i18n="s2_q"></h2><div class="section-body" data-i18n-html="s2_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">3</div><h2 class="section-question" data-i18n="s3_q"></h2><div class="section-body" data-i18n-html="s3_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">4</div><h2 class="section-question" data-i18n="s4_q"></h2><div class="section-body" data-i18n-html="s4_body"></div></section>
+  <div class="section-divider reveal"><span>◆</span></div>
+  <section class="section reveal"><div class="section-num">5</div><h2 class="section-question" data-i18n="s5_q"></h2><div class="section-body" data-i18n-html="s5_body"></div></section>
+
+  <div class="page-nav reveal">
+    <a href="/leshya/" class="prev-read"><div class="prev-read-label" data-i18n="prev_label"></div><div class="prev-read-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg><span data-i18n="prev_title"></span></div></a>
+    <a href="/" class="next-read"><div class="next-read-label" data-i18n="next_label"></div><div class="next-read-title"><span data-i18n="next_title"></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div></a>
+  </div>
+
+  <footer class="article-footer reveal"><a href="/" class="brand">Jainverse</a><span class="note" data-i18n="footer_note"></span></footer>
+</article>
+
+<script>
+function s(sentences) { return sentences.map(t => '<span class="sentence">' + t + '</span>').join(''); }
+
+const i18n = {
+  mr: {
+    page_title: "गुणस्थान",
+    page_subtitle: "आत्मिक प्रगतीचे टप्पे",
+    s1_q: "मार्गावर आहोत, पण प्रगती कशी मोजायची?",
+    s1_body: s([
+      'लेश्या समजली, कषाय समजले, कर्मबंधन समजलं.',
+      'पण पुढचा प्रश्न नैसर्गिक आहे: मी नेमका कुठे उभा आहे?',
+      'जैन तत्त्वज्ञान प्रगतीला १४ टप्प्यांत समजावतो — यांना <span class="term">गुणस्थान</span> म्हणतात.',
+      '<span class="emphasis">हे गुणस्थान म्हणजे आत्म्याच्या शुद्धतेकडे जाणाऱ्या मार्गाचा नकाशा आहे.</span>',
+    ]),
+    s2_q: "१४ टप्पे म्हणजे नेमकं काय?",
+    s2_body: s([
+      'पहिले टप्पे गोंधळ, मिथ्यादृष्टी, आणि अस्थिरतेचे आहेत.',
+      'मधले टप्पे संयम, जागरूकता, आणि कषाय-कपातीचे आहेत.',
+      'उच्च टप्पे अतिशय सूक्ष्म कषाय उरणे, मग त्यांचाही क्षय, आणि शेवटी केवलज्ञानाकडे जाणे.',
+      '<span class="emphasis">म्हणून गुणस्थान हे केवळ "धार्मिक रँक" नाही, तर मन हळूहळू बदलत जाण्याचा क्रम आहे.</span>',
+    ]),
+    s3_q: "सोप्या भाषेत तीन स्तरांत समज",
+    s3_body: s([
+      '<span class="term">स्तर १ (१ ते ४)</span> — दृष्टी स्थिर होत जाते: चुकीतून योग्य दिशेकडे वळण.',
+      '<span class="term">स्तर २ (५ ते १०)</span> — आचरण शुद्ध होतं: संयम, कषाय कमी करणे, सूक्ष्म स्वच्छता.',
+      '<span class="term">स्तर ३ (११ ते १४)</span> — अत्युच्च शुद्धता: कषायांचा शेवट, केवलज्ञान, अंतिम मुक्तीकडे प्रवास.',
+      '<span class="emphasis">क्रम असा: समज बदलते, मग सवय बदलते, मग स्वरूप उघडतं.</span>',
+    ]),
+    s4_q: "याचा व्यवहारात उपयोग कसा?",
+    s4_body: s([
+      'गुणस्थान सांगतं की पडझड होणं म्हणजे शेवट नाही; ते टप्प्यातील वास्तव आहे.',
+      'आज चूक झाली तरी दिशा योग्य ठेवली तर प्रगती शक्य आहे.',
+      'तुलना इतरांशी नाही, कालच्या स्वतःशी करायची.',
+      '<span class="emphasis">प्रश्न: "मी परिपूर्ण आहे का?" नाही. प्रश्न: "मी अधिक सजग झालोय का?"</span>',
+    ]),
+    s5_q: "पुढचा अभ्यास कसा घ्यायचा?",
+    s5_body: s([
+      'गुणस्थान समजल्यावर साधना अधिक वास्तववादी होते.',
+      'आता ध्येय अस्पष्ट राहत नाही: कषाय कमी करायचे, समत्व वाढवायचं, जागरूकता स्थिर करायची.',
+      'पुढच्या विषयात आपण हे प्रत्यक्ष साधनांमध्ये नेऊ — तप आणि ध्यान.',
+      '<span class="emphasis">नकाशा (गुणस्थान) + सराव (तप-ध्यान) = ठोस आध्यात्मिक प्रगती.</span>',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "लेश्या",
+    next_label: "पुढचा टप्पा",
+    back_text: "लेश्या",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "गुणस्थान",
+    page_subtitle: "आंतरिक प्रगति के चरण",
+    s1_q: "मार्ग पर हैं, पर प्रगति मापें कैसे?",
+    s1_body: s([
+      'लेश्या समझी, कषाय समझी, कर्मबंध समझा.',
+      'अब स्वाभाविक सवाल: मैं अभी किस स्तर पर हूँ?',
+      'जैन दर्शन प्रगति को 14 चरणों में बताता है — इन्हें <span class="term">गुणस्थान</span> कहते हैं.',
+      '<span class="emphasis">यह आत्मा की शुद्धि-यात्रा का चरणबद्ध मानचित्र है.</span>',
+    ]),
+    s2_q: "ये 14 चरण क्या बताते हैं?",
+    s2_body: s([
+      'शुरुआती चरण भ्रम, मिथ्यादृष्टि, और अस्थिरता के होते हैं.',
+      'मध्य चरण संयम, सावधानी, और कषाय-क्षीणता के होते हैं.',
+      'उच्च चरणों में अत्यंत सूक्ष्म कषाय बचती हैं, फिर उनका भी क्षय होता है, और केवलज्ञान की दिशा खुलती है.',
+      '<span class="emphasis">इसलिए गुणस्थान कोई पदवी नहीं; भीतर के परिवर्तन की प्रक्रिया है.</span>',
+    ]),
+    s3_q: "सरल 3-स्तरीय समझ",
+    s3_body: s([
+      '<span class="term">स्तर 1 (1-4)</span> — दृष्टि का सुधार: गलत से सही दिशा.',
+      '<span class="term">स्तर 2 (5-10)</span> — आचरण की शुद्धि: संयम, कषाय में कमी, सूक्ष्म अनुशासन.',
+      '<span class="term">स्तर 3 (11-14)</span> — उन्नत शुद्धि: कषाय का अंत, केवलज्ञान, मुक्ति की अंतिम दिशा.',
+      '<span class="emphasis">क्रम यही है: समझ बदलती है, फिर आदत बदलती है, फिर स्वरूप प्रकट होता है.</span>',
+    ]),
+    s4_q: "दैनिक जीवन में इसका लाभ",
+    s4_body: s([
+      'गुणस्थान बताता है कि गिरावट का क्षण भी यात्रा का हिस्सा हो सकता है.',
+      'आज गलती हुई तो भी दिशा सही रखी तो प्रगति रुकती नहीं.',
+      'तुलना दूसरों से नहीं, अपने पिछले स्वरूप से करें.',
+      '<span class="emphasis">सही प्रश्न: "मैं परफेक्ट हूँ?" नहीं. "मैं अधिक सजग हुआ हूँ?"</span>',
+    ]),
+    s5_q: "आगे क्या पढ़ना चाहिए?",
+    s5_body: s([
+      'गुणस्थान समझने के बाद साधना व्यावहारिक बनती है.',
+      'अब लक्ष्य साफ़ है: कषाय घटाना, समत्व बढ़ाना, जागरूकता स्थिर करना.',
+      'अगला विषय इनको अभ्यास में बदलता है — तप और ध्यान.',
+      '<span class="emphasis">मानचित्र (गुणस्थान) + अभ्यास (तप-ध्यान) = ठोस प्रगति.</span>',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "लेश्या",
+    next_label: "अगला चरण",
+    back_text: "लेश्या",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Gunasthana",
+    page_subtitle: "Stages of inner progress",
+    s1_q: "You are on the path, but how do you track progress?",
+    s1_body: s([
+      'You have understood Leshya, passions, and karmic bondage.',
+      'Now a natural question appears: where exactly am I on the path?',
+      'Jain thought maps progress into 14 stages called <span class="term">Gunasthana</span>.',
+      '<span class="emphasis">Gunasthana is a structured map of purification, not a social label.</span>',
+    ]),
+    s2_q: "What do the 14 stages indicate?",
+    s2_body: s([
+      'Early stages involve confusion, wrong view, and instability.',
+      'Middle stages involve restraint, vigilance, and reduction of passions.',
+      'Higher stages involve very subtle passion-remnants, then their cessation, and movement toward omniscience.',
+      '<span class="emphasis">So Gunasthana tracks transformation of consciousness over time.</span>',
+    ]),
+    s3_q: "A simple 3-layer reading",
+    s3_body: s([
+      '<span class="term">Layer 1 (1-4)</span> — correction of vision: from distortion toward right view.',
+      '<span class="term">Layer 2 (5-10)</span> — purification of conduct: restraint and passion-thinning.',
+      '<span class="term">Layer 3 (11-14)</span> — advanced purity: near-end of passions, kevalgyan-direction, final liberation trajectory.',
+      '<span class="emphasis">Pattern: understanding refines, then behavior refines, then being reveals.</span>',
+    ]),
+    s4_q: "How does this help in daily life?",
+    s4_body: s([
+      'Gunasthana teaches that setbacks do not automatically mean failure; they can be part of process.',
+      'A mistake today does not cancel progress if direction is corrected quickly.',
+      'Compare yourself less with others, more with your own previous state.',
+      '<span class="emphasis">Better question: not "Am I perfect?" but "Am I becoming more aware?"</span>',
+    ]),
+    s5_q: "What comes next?",
+    s5_body: s([
+      'Once Gunasthana is clear, practice becomes realistic and measurable.',
+      'The aim becomes specific: reduce passions, stabilize equanimity, deepen awareness.',
+      'Next topic translates this into method — Tap and Dhyana.',
+      '<span class="emphasis">Map (Gunasthana) + Method (Tap-Dhyana) = concrete spiritual movement.</span>',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Leshya",
+    next_label: "Continue",
+    back_text: "Leshya",
+    next_title: "Home",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang]; if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (strings[key] !== undefined) el.textContent = strings[key]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const key = el.getAttribute('data-i18n-html'); if (strings[key] !== undefined) el.innerHTML = strings[key]; });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+window.addEventListener('scroll', () => { document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
