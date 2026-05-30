@@ -25,7 +25,7 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 200px 200px;
   }
-  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; }
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 40px; display: flex; align-items: center; justify-content: flex-end; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; }
   .topbar.scrolled { background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); padding: 13px 40px; }
   .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.25s; }
   .back-link:hover { color: var(--saffron-deep); }
@@ -88,12 +88,6 @@
 <body>
 
 <div class="topbar" id="topbar">
-  <a href="/summary-2/" class="back-link">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M13 8H3M7 4l-4 4 4 4"/>
-    </svg>
-    <span data-i18n="back_text"></span>
-  </a>
   <div class="lang-switch">
     <button class="lang-btn" data-lang="mr">मराठी</button>
     <span class="lang-divider"></span>
@@ -150,13 +144,6 @@
   </section>
 
   <div class="page-nav reveal">
-    <a href="/summary-2/" class="prev-read">
-      <div class="prev-read-label" data-i18n="prev_label"></div>
-      <div class="prev-read-title">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
-        <span data-i18n="prev_title"></span>
-      </div>
-    </a>
     <a href="/" class="next-read">
       <div class="next-read-label" data-i18n="next_label"></div>
       <div class="next-read-title">
@@ -194,13 +181,13 @@ const i18n = {
       '<span class="term">एकांत</span> म्हणजे एकाच बाजूने पाहणं. <span class="term">अनेकांत</span> म्हणजे वस्तूचे अनेक पैलू मान्य करणं.',
       'कोणतीही वस्तू, व्यक्ती, किंवा घटना एका वाक्यात पूर्ण समजत नाही. प्रसंग बदलला की तिचं वेगळं रूप दिसतं.',
       'म्हणून "हे असंच आहे" असं ठोकून सांगण्यापूर्वी "कुठल्या दृष्टीने?" हा प्रश्न विचारला जातो.',
-      '<span class="emphasis">अनेकांतवाद सापेक्षता नाही; तो संदर्भ-जागरूक सत्यदृष्टी आहे.</span>',
+      '<span class="emphasis">अनेकांतवाद म्हणजे “काहीही चालतं” नाही; फक्त संदर्भ समजून बोलायचं.</span>',
     ]),
     s3_q: "सोपं उदाहरण",
     s3_body: s([
-      'एकच व्यक्ती घरी मुलगी आहे, ऑफिसमध्ये मॅनेजर आहे, आणि मुलांसाठी आई आहे.',
-      'तीच व्यक्ती आहे, पण भूमिका बदलल्यावर विधान बदलतं. "ती मुलगी आहे" हेही खरं, "ती मॅनेजर आहे" हेही खरं.',
-      '<span class="term">योग्य वापर:</span> "ती कठोर आहे" हे ऑफिसच्या निर्णयांबद्दल खरं असू शकतं; आणि "ती खूप प्रेमळ आहे" हे घरात खरं असू शकतं.',
+      'एकच व्यक्ती घरी मुलगा आहे, ऑफिसमध्ये मॅनेजर आहे, आणि स्वतःच्या मुलांसाठी बाबा आहे.',
+      'तीच व्यक्ती आहे, पण भूमिका बदलल्यावर विधान बदलतं. "तो मुलगा आहे" हेही खरं, "तो मॅनेजर आहे" हेही खरं.',
+      '<span class="term">योग्य वापर:</span> "तो कठोर आहे" हे ऑफिसच्या निर्णयांबद्दल खरं असू शकतं; आणि "तो खूप प्रेमळ आहे" हे घरात खरं असू शकतं.',
       '<span class="term">स्पष्ट चुकीचा वापर:</span> "मी रागात होतो, म्हणून मारलं; तो माझा दृष्टिकोन आहे" — हे चुकीचं आहे. हिंसा कधीही योग्य होत नाही.',
       'जैन दृष्टी म्हणते: कोणतं विधान चुकतं? जेव्हा आपण <span class="emphasis">एका भूमिकेला पूर्ण सत्य</span> म्हणून घोषित करतो.',
       'म्हणून सत्य नाकारायचं नाही, तर त्याचा संदर्भ अचूक पकडायचा.',
@@ -219,10 +206,7 @@ const i18n = {
       'म्हणून अनेकांतवाद हा फक्त वादाचा सिद्धांत नाही; तो अंतर्मन शुद्ध करणारी साधना आहे.',
       'पुढच्या भागात बघू: अनेकांतवाद भाषेत कसा व्यक्त होतो? <span class="term">स्याद्वाद</span>.',
     ]),
-    prev_label: "मागे वाचा",
-    prev_title: "संपूर्ण सारांश",
     next_label: "पुढचा टप्पा",
-    back_text: "संपूर्ण सारांश",
     next_title: "मुख्य पृष्ठ",
     footer_note: "जैन परंपरा · Jainverse",
   },
@@ -245,8 +229,8 @@ const i18n = {
     ]),
     s3_q: "एक आसान उदाहरण",
     s3_body: s([
-      'एक ही व्यक्ति घर में बेटी है, ऑफिस में मैनेजर है, और बच्चों के लिए माँ है.',
-      'व्यक्ति वही है, पर संदर्भ बदलते ही कथन बदलता है. "वह बेटी है" भी सही, "वह मैनेजर है" भी सही.',
+      'एक ही व्यक्ति घर में बेटा है, ऑफिस में मैनेजर है, और अपने बच्चों के लिए पिता है.',
+      'व्यक्ति वही है, पर संदर्भ बदलते ही कथन बदलता है. "वह बेटा है" भी सही, "वह मैनेजर है" भी सही.',
       '<span class="term">सही उपयोग:</span> "वह सख्त है" ऑफिस के फैसलों में सही हो सकता है, और "वह बहुत स्नेही है" घर में सही हो सकता है.',
       '<span class="term">सीधा गलत उपयोग:</span> "मैंने गुस्से में मार दिया, यह भी एक दृष्टिकोण है" — यह गलत है. हिंसा कभी सही नहीं होती.',
       'गलती कब होती है? जब हम <span class="emphasis">एक पक्ष को पूरा सत्य</span> घोषित कर देते हैं.',
@@ -266,10 +250,7 @@ const i18n = {
       'इसलिए अनेकांतवाद सिर्फ बहस का सिद्धांत नहीं; यह भीतर को शुद्ध करने की साधना है.',
       'अगले भाग में देखेंगे: अनेकांतवाद भाषा में कैसे आता है? <span class="term">स्याद्वाद</span>.',
     ]),
-    prev_label: "पीछे पढ़ें",
-    prev_title: "संपूर्ण सारांश",
     next_label: "अगला चरण",
-    back_text: "संपूर्ण सारांश",
     next_title: "मुख्य पृष्ठ",
     footer_note: "जैन परंपरा · Jainverse",
   },
@@ -292,9 +273,9 @@ const i18n = {
     ]),
     s3_q: "A simple example",
     s3_body: s([
-      'One person can be a daughter at home, a manager at work, and a mother to her children.',
-      'The person is one, but true statements change with standpoint. "She is a daughter" is true; "she is a manager" is also true.',
-      '<span class="term">Right use:</span> "She is strict" can be true in office decisions, while "she is warm" can be true at home.',
+      'One person can be a son at home, a manager at work, and a father to his children.',
+      'The person is one, but true statements change with standpoint. "He is a son" is true; "he is a manager" is also true.',
+      '<span class="term">Right use:</span> "He is strict" can be true in office decisions, while "he is warm" can be true at home.',
       '<span class="term">Plain wrong use:</span> "I hit someone in anger, but that is also just one viewpoint" — wrong. Violence is not justified by viewpoint.',
       'The error begins when we declare <span class="emphasis">one standpoint as the whole truth</span>.',
       'So Jain thought does not reject truth; it refines it with context.',
@@ -313,10 +294,7 @@ const i18n = {
       'So Anekantavada is not just a debate theory; it is a discipline that purifies inner life.',
       'Next section: how this becomes language and logic through <span class="term">Syadvada</span>.',
     ]),
-    prev_label: "Previous",
-    prev_title: "Complete Summary",
     next_label: "Continue",
-    back_text: "Complete Summary",
     next_title: "Home",
     footer_note: "Jain Tradition · Jainverse",
   }
