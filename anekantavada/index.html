@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>अनेकांतवाद — Jainverse</title>
+<meta name="description" content="सत्य एकच असतं, पण त्याचे अनेक पैलू असतात. अनेकांतवाद सोप्या भाषेत समजून घ्या.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830; --saffron-deep: #c45e1a; --saffron-light: #f4a560;
+    --indigo: #1a2744; --indigo-mid: #2a3d66; --indigo-light: #3d5a8a;
+    --gold: #c9a84c; --gold-light: #e4cf8a;
+    --sand: #f5f0e8; --sand-dark: #e8dfd0; --warm-white: #faf8f4;
+    --stone: #8c7e6a; --stone-light: #b0a48e;
+    --text: #2a2318; --text-secondary: #5c5246; --text-tertiary: #8a7e6e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; }
+  .topbar.scrolled { background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); padding: 13px 40px; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.25s; }
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+  .lang-switch { display: flex; align-items: center; border: 1px solid var(--sand-dark); border-radius: 20px; overflow: hidden; background: rgba(245, 240, 232, 0.6); }
+  .lang-btn { padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--text-tertiary); background: none; border: none; cursor: pointer; transition: all 0.25s; font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space: nowrap; }
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+  .article { max-width: 640px; margin: 0 auto; padding: 140px 28px 100px; }
+  .page-header { margin-bottom: 72px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.2s forwards; }
+  .page-header h1 { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: clamp(36px, 5vw, 52px); color: var(--indigo); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .page-header .subtitle { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style: italic; font-size: clamp(16px, 2vw, 20px); color: var(--stone); line-height: 1.4; }
+  .header-rule { width: 48px; height: 2px; background: var(--saffron); margin-top: 28px; opacity: 0.7; }
+  .section { margin-bottom: 80px; position: relative; }
+  .section-num { font-family: 'DM Serif Display', serif; font-size: 80px; color: var(--sand-dark); line-height: 1; margin-bottom: -12px; user-select: none; }
+  .section-question { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: clamp(24px, 3.5vw, 32px); color: var(--indigo); line-height: 1.25; margin-bottom: 28px; letter-spacing: -0.3px; }
+  .section-body { font-size: 17px; line-height: 2; color: var(--text-secondary); }
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+  .section-divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 80px 0; color: var(--sand-dark); user-select: none; }
+  .section-divider::before, .section-divider::after { content: ''; height: 1px; width: 40px; background: linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background: linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+  .page-nav { display: flex; gap: 16px; margin-top: 80px; }
+  .prev-read { flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px; text-decoration: none; color: inherit; display: block; transition: all 0.3s; }
+  .prev-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .prev-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--stone-light); margin-bottom: 8px; }
+  .prev-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .prev-read-title svg { width: 18px; height: 18px; color: var(--stone-light); transition: transform 0.3s; }
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+  .next-read { flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px; text-decoration: none; color: inherit; display: block; transition: all 0.3s; }
+  .next-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .next-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--saffron); margin-bottom: 8px; }
+  .next-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .next-read-title svg { width: 18px; height: 18px; color: var(--saffron); transition: transform 0.3s; }
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+  .article-footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--sand-dark); display: flex; align-items: center; justify-content: space-between; }
+  .article-footer .brand { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--stone); text-decoration: none; }
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; } .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; } .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; } .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; } .section-divider { margin: 56px 0; }
+    .prev-read { padding: 22px 24px; } .prev-read-title { font-size: 19px; }
+    .next-read { padding: 22px 24px; } .next-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/summary-2/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <div class="page-nav reveal">
+    <a href="/summary-2/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+    <a href="/" class="next-read">
+      <div class="next-read-label" data-i18n="next_label"></div>
+      <div class="next-read-title">
+        <span data-i18n="next_title"></span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "अनेकांतवाद",
+    page_subtitle: "सत्य एकच, पण पैलू अनेक",
+    s1_q: "सगळे लोक वेगवेगळं का बोलतात?",
+    s1_body: s([
+      'एका विषयावर दोन चांगले, प्रामाणिक लोक कधी कधी वेगळं बोलतात. मग प्रश्न पडतो: खरं कोण?',
+      'जैन तत्त्वज्ञान म्हणतं: बर्‍याच वेळा दोघेही काही अंशी बरोबर असू शकतात, कारण दोघेही वेगवेगळ्या बाजू पाहत असतात.',
+      'भांडण बहुतेक वेळा सत्यासाठी नसतं, तर <span class="emphasis">"माझंच पूर्ण सत्य"</span> या हट्टासाठी असतं.',
+      '<span class="term">अनेकांतवाद</span> हा हाच हट्ट मोडतो.',
+    ]),
+    s2_q: "अनेकांतवाद म्हणजे नेमकं काय?",
+    s2_body: s([
+      '<span class="term">एकांत</span> म्हणजे एकाच बाजूने पाहणं. <span class="term">अनेकांत</span> म्हणजे वस्तूचे अनेक पैलू मान्य करणं.',
+      'कोणतीही वस्तू, व्यक्ती, किंवा घटना एका वाक्यात पूर्ण समजत नाही. प्रसंग बदलला की तिचं वेगळं रूप दिसतं.',
+      'म्हणून "हे असंच आहे" असं ठोकून सांगण्यापूर्वी "कुठल्या दृष्टीने?" हा प्रश्न विचारला जातो.',
+      '<span class="emphasis">अनेकांतवाद सापेक्षता नाही; तो संदर्भ-जागरूक सत्यदृष्टी आहे.</span>',
+    ]),
+    s3_q: "सोपं उदाहरण",
+    s3_body: s([
+      'एकच व्यक्ती घरी मुलगी आहे, ऑफिसमध्ये मॅनेजर आहे, आणि मुलांसाठी आई आहे.',
+      'तीच व्यक्ती आहे, पण भूमिका बदलल्यावर विधान बदलतं. "ती मुलगी आहे" हेही खरं, "ती मॅनेजर आहे" हेही खरं.',
+      '<span class="term">योग्य वापर:</span> "ती कठोर आहे" हे ऑफिसच्या निर्णयांबद्दल खरं असू शकतं; आणि "ती खूप प्रेमळ आहे" हे घरात खरं असू शकतं.',
+      '<span class="term">स्पष्ट चुकीचा वापर:</span> "मी रागात होतो, म्हणून मारलं; तो माझा दृष्टिकोन आहे" — हे चुकीचं आहे. हिंसा कधीही योग्य होत नाही.',
+      'जैन दृष्टी म्हणते: कोणतं विधान चुकतं? जेव्हा आपण <span class="emphasis">एका भूमिकेला पूर्ण सत्य</span> म्हणून घोषित करतो.',
+      'म्हणून सत्य नाकारायचं नाही, तर त्याचा संदर्भ अचूक पकडायचा.',
+    ]),
+    s4_q: "मग काहीही चालतं का?",
+    s4_body: s([
+      'नाही. अनेकांतवादाचा अर्थ "सगळं बरोबर" असा नाही.',
+      'जैन तत्त्वज्ञानात स्पष्ट निकष आहेत: जिवाला हिंसा झाली तर ते चुकीचंच. मोह-कषाय वाढले तर ते चुकीचंच.',
+      'अनेकांतवाद फक्त एवढं सांगतो की निर्णय घाईत करू नका; पूर्ण चित्र बघा.',
+      '<span class="emphasis">यामुळे विचारात नम्रता येते, पण नैतिकतेत ढिलाई येत नाही.</span>',
+    ]),
+    s5_q: "मोक्षमार्गात याचं महत्त्व काय?",
+    s5_body: s([
+      'एकांगी विचारामुळे अहंकार, राग, वाद वाढतात. हे सगळं कषाय वाढवतं आणि कर्मबंधन घट्ट करतं.',
+      'अनेकांत दृष्टिने आपण थांबून विचारतो, दुसर्‍याचा दृष्टिकोन समजून घेतो. त्यामुळे राग कमी होतो, सम्यक दर्शन मजबूत होतं.',
+      'म्हणून अनेकांतवाद हा फक्त वादाचा सिद्धांत नाही; तो अंतर्मन शुद्ध करणारी साधना आहे.',
+      'पुढच्या भागात बघू: अनेकांतवाद भाषेत कसा व्यक्त होतो? <span class="term">स्याद्वाद</span>.',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "संपूर्ण सारांश",
+    next_label: "पुढचा टप्पा",
+    back_text: "संपूर्ण सारांश",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "अनेकांतवाद",
+    page_subtitle: "सत्य एक, पर पहलू अनेक",
+    s1_q: "लोग अलग-अलग क्यों बोलते हैं?",
+    s1_body: s([
+      'एक ही विषय पर दो ईमानदार लोग अलग बात कह सकते हैं. तब सवाल आता है: सही कौन है?',
+      'जैन दर्शन कहता है: कई बार दोनों आंशिक रूप से सही हो सकते हैं, क्योंकि दोनों अलग-अलग पक्ष देख रहे होते हैं.',
+      'झगड़ा अक्सर सत्य के लिए नहीं, बल्कि <span class="emphasis">"सिर्फ मैं ही सही"</span> इस अहंकार के लिए होता है.',
+      '<span class="term">अनेकांतवाद</span> इसी अहंकार को तोड़ता है.',
+    ]),
+    s2_q: "अनेकांतवाद का मतलब क्या है?",
+    s2_body: s([
+      '<span class="term">एकांत</span> यानी एक ही पक्ष से देखना. <span class="term">अनेकांत</span> यानी वस्तु के कई पक्ष मानना.',
+      'कोई भी वस्तु, व्यक्ति, या घटना एक वाक्य में पूरी नहीं समझी जा सकती. प्रसंग बदलते ही उसका अलग रूप दिखता है.',
+      'इसलिए "यही अंतिम सत्य है" कहने से पहले पूछा जाता है: "किस दृष्टि से?"',
+      '<span class="emphasis">अनेकांतवाद भ्रम नहीं है; यह संदर्भ सहित सत्य देखने की पद्धति है.</span>',
+    ]),
+    s3_q: "एक आसान उदाहरण",
+    s3_body: s([
+      'एक ही व्यक्ति घर में बेटी है, ऑफिस में मैनेजर है, और बच्चों के लिए माँ है.',
+      'व्यक्ति वही है, पर संदर्भ बदलते ही कथन बदलता है. "वह बेटी है" भी सही, "वह मैनेजर है" भी सही.',
+      '<span class="term">सही उपयोग:</span> "वह सख्त है" ऑफिस के फैसलों में सही हो सकता है, और "वह बहुत स्नेही है" घर में सही हो सकता है.',
+      '<span class="term">सीधा गलत उपयोग:</span> "मैंने गुस्से में मार दिया, यह भी एक दृष्टिकोण है" — यह गलत है. हिंसा कभी सही नहीं होती.',
+      'गलती कब होती है? जब हम <span class="emphasis">एक पक्ष को पूरा सत्य</span> घोषित कर देते हैं.',
+      'इसलिए सत्य छोड़ना नहीं है, बल्कि संदर्भ ठीक पकड़ना है.',
+    ]),
+    s4_q: "तो क्या सब कुछ सही है?",
+    s4_body: s([
+      'नहीं. अनेकांतवाद का मतलब "सब चल जाएगा" बिल्कुल नहीं है.',
+      'जैन दर्शन में स्पष्ट मानदंड हैं: जीव को हिंसा हो तो वह गलत है. मोह-कषाय बढ़ें तो वह गलत है.',
+      'अनेकांतवाद सिर्फ इतना कहता है कि निर्णय जल्दबाज़ी में मत करो; पूरा चित्र देखो.',
+      '<span class="emphasis">इससे विचार में विनम्रता आती है, नैतिकता में ढील नहीं.</span>',
+    ]),
+    s5_q: "मोक्ष के रास्ते में इसका उपयोग क्या है?",
+    s5_body: s([
+      'एकांगी सोच से अहंकार, क्रोध, और टकराव बढ़ते हैं. इससे कषाय बढ़ती हैं और कर्मबंध मज़बूत होता है.',
+      'अनेकांत दृष्टि से हम रुककर सोचते हैं, दूसरे का दृष्टिकोण समझते हैं. इससे क्रोध घटता है और सम्यक दर्शन स्थिर होता है.',
+      'इसलिए अनेकांतवाद सिर्फ बहस का सिद्धांत नहीं; यह भीतर को शुद्ध करने की साधना है.',
+      'अगले भाग में देखेंगे: अनेकांतवाद भाषा में कैसे आता है? <span class="term">स्याद्वाद</span>.',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "संपूर्ण सारांश",
+    next_label: "अगला चरण",
+    back_text: "संपूर्ण सारांश",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Anekantavada",
+    page_subtitle: "Truth is one, viewpoints are many",
+    s1_q: "Why do sincere people disagree?",
+    s1_body: s([
+      'On the same topic, two honest people can still disagree. So who is correct?',
+      'Jain thought says: often both can be partially right, because they are seeing from different standpoints.',
+      'Most conflicts are not about truth itself, but about the ego of <span class="emphasis">"only my view is complete"</span>.',
+      '<span class="term">Anekantavada</span> breaks that rigidity.',
+    ]),
+    s2_q: "What does Anekantavada mean?",
+    s2_body: s([
+      '<span class="term">Ekant</span> means seeing only one side. <span class="term">Anekant</span> means acknowledging many aspects of reality.',
+      'No object, person, or event can be fully understood in one sentence. As context changes, a different side becomes visible.',
+      'So before saying "this is absolutely so," Jain logic asks: "from which standpoint?"',
+      '<span class="emphasis">Anekantavada is not relativism; it is context-aware realism.</span>',
+    ]),
+    s3_q: "A simple example",
+    s3_body: s([
+      'One person can be a daughter at home, a manager at work, and a mother to her children.',
+      'The person is one, but true statements change with standpoint. "She is a daughter" is true; "she is a manager" is also true.',
+      '<span class="term">Right use:</span> "She is strict" can be true in office decisions, while "she is warm" can be true at home.',
+      '<span class="term">Plain wrong use:</span> "I hit someone in anger, but that is also just one viewpoint" — wrong. Violence is not justified by viewpoint.',
+      'The error begins when we declare <span class="emphasis">one standpoint as the whole truth</span>.',
+      'So Jain thought does not reject truth; it refines it with context.',
+    ]),
+    s4_q: "Does this mean anything goes?",
+    s4_body: s([
+      'No. Anekantavada does not mean "everything is correct."',
+      'Jain ethics still has clear boundaries: harming a living being is wrong; states that intensify kashaya are wrong.',
+      'Anekantavada only asks us not to judge too quickly and to examine the full picture.',
+      '<span class="emphasis">It brings humility in thinking, not moral looseness.</span>',
+    ]),
+    s5_q: "Why does this matter for liberation?",
+    s5_body: s([
+      'One-sided certainty fuels ego, anger, and conflict. These strengthen kashaya and karma-bondage.',
+      'Anekant-drishti helps us pause, understand the other side, and reduce anger. That supports samyak darshan.',
+      'So Anekantavada is not just a debate theory; it is a discipline that purifies inner life.',
+      'Next section: how this becomes language and logic through <span class="term">Syadvada</span>.',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Complete Summary",
+    next_label: "Continue",
+    back_text: "Complete Summary",
+    next_title: "Home",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
