@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>स्याद्वाद — Jainverse</title>
+<meta name="description" content="अनेकांतवाद बोलताना कसा वापरायचा? स्याद्वाद सोप्या भाषेत समजून घ्या.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #e07830; --saffron-deep: #c45e1a; --saffron-light: #f4a560;
+    --indigo: #1a2744; --indigo-mid: #2a3d66; --indigo-light: #3d5a8a;
+    --gold: #c9a84c; --gold-light: #e4cf8a;
+    --sand: #f5f0e8; --sand-dark: #e8dfd0; --warm-white: #faf8f4;
+    --stone: #8c7e6a; --stone-light: #b0a48e;
+    --text: #2a2318; --text-secondary: #5c5246; --text-tertiary: #8a7e6e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; color: var(--text); background: var(--warm-white); overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; }
+  .topbar.scrolled { background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); padding: 13px 40px; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.25s; }
+  .back-link:hover { color: var(--saffron-deep); }
+  .back-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+  .lang-switch { display: flex; align-items: center; border: 1px solid var(--sand-dark); border-radius: 20px; overflow: hidden; background: rgba(245, 240, 232, 0.6); }
+  .lang-btn { padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--text-tertiary); background: none; border: none; cursor: pointer; transition: all 0.25s; font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif; white-space: nowrap; }
+  .lang-btn:hover { color: var(--text-secondary); }
+  .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
+  .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
+  .article { max-width: 640px; margin: 0 auto; padding: 140px 28px 100px; }
+  .page-header { margin-bottom: 72px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.2s forwards; }
+  .page-header h1 { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: clamp(36px, 5vw, 52px); color: var(--indigo); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .page-header .subtitle { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style: italic; font-size: clamp(16px, 2vw, 20px); color: var(--stone); line-height: 1.4; }
+  .header-rule { width: 48px; height: 2px; background: var(--saffron); margin-top: 28px; opacity: 0.7; }
+  .section { margin-bottom: 80px; position: relative; }
+  .section-num { font-family: 'DM Serif Display', serif; font-size: 80px; color: var(--sand-dark); line-height: 1; margin-bottom: -12px; user-select: none; }
+  .section-question { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: clamp(24px, 3.5vw, 32px); color: var(--indigo); line-height: 1.25; margin-bottom: 28px; letter-spacing: -0.3px; }
+  .section-body { font-size: 17px; line-height: 2; color: var(--text-secondary); }
+  .section-body .sentence { display: block; margin-bottom: 12px; }
+  .section-body .emphasis { color: var(--text); font-weight: 500; }
+  .section-body .term { color: var(--saffron-deep); font-weight: 500; }
+  .section-divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 80px 0; color: var(--sand-dark); user-select: none; }
+  .section-divider::before, .section-divider::after { content: ''; height: 1px; width: 40px; background: linear-gradient(90deg, transparent, var(--sand-dark)); }
+  .section-divider::after { background: linear-gradient(90deg, var(--sand-dark), transparent); }
+  .section-divider span { font-size: 14px; color: var(--stone-light); }
+  .page-nav { display: flex; gap: 16px; margin-top: 80px; }
+  .prev-read { flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px; text-decoration: none; color: inherit; display: block; transition: all 0.3s; }
+  .prev-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .prev-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--stone-light); margin-bottom: 8px; }
+  .prev-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .prev-read-title svg { width: 18px; height: 18px; color: var(--stone-light); transition: transform 0.3s; }
+  .prev-read:hover .prev-read-title svg { transform: translateX(-4px); }
+  .next-read { flex: 1; padding: 28px 32px; background: var(--sand); border-radius: 8px; text-decoration: none; color: inherit; display: block; transition: all 0.3s; }
+  .next-read:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 35, 24, 0.08); }
+  .next-read-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--saffron); margin-bottom: 8px; }
+  .next-read-title { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: 22px; color: var(--indigo); display: flex; align-items: center; gap: 10px; }
+  .next-read-title svg { width: 18px; height: 18px; color: var(--saffron); transition: transform 0.3s; }
+  .next-read:hover .next-read-title svg { transform: translateX(4px); }
+  .article-footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--sand-dark); display: flex; align-items: center; justify-content: space-between; }
+  .article-footer .brand { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--stone); text-decoration: none; }
+  .article-footer .note { font-size: 12px; color: var(--text-tertiary); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) {
+    .topbar { padding: 14px 18px; } .topbar.scrolled { padding: 11px 18px; }
+    .article { padding: 110px 20px 60px; } .page-header { margin-bottom: 52px; }
+    .section { margin-bottom: 56px; } .section-num { font-size: 56px; margin-bottom: -8px; }
+    .section-question { font-size: 22px; margin-bottom: 20px; }
+    .section-body { font-size: 16px; line-height: 1.9; } .section-divider { margin: 56px 0; }
+    .prev-read { padding: 22px 24px; } .prev-read-title { font-size: 19px; }
+    .next-read { padding: 22px 24px; } .next-read-title { font-size: 19px; }
+    .page-nav { flex-direction: column; }
+    .article-footer { flex-direction: column; gap: 8px; text-align: center; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <a href="/anekantavada/" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 8H3M7 4l-4 4 4 4"/>
+    </svg>
+    <span data-i18n="back_text"></span>
+  </a>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="hi">हिन्दी</button>
+    <span class="lang-divider"></span>
+    <button class="lang-btn" data-lang="en">Eng</button>
+  </div>
+</div>
+
+<article class="article">
+
+  <header class="page-header">
+    <h1 data-i18n="page_title"></h1>
+    <p class="subtitle" data-i18n="page_subtitle"></p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-num">1</div>
+    <h2 class="section-question" data-i18n="s1_q"></h2>
+    <div class="section-body" data-i18n-html="s1_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">2</div>
+    <h2 class="section-question" data-i18n="s2_q"></h2>
+    <div class="section-body" data-i18n-html="s2_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">3</div>
+    <h2 class="section-question" data-i18n="s3_q"></h2>
+    <div class="section-body" data-i18n-html="s3_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">4</div>
+    <h2 class="section-question" data-i18n="s4_q"></h2>
+    <div class="section-body" data-i18n-html="s4_body"></div>
+  </section>
+
+  <div class="section-divider reveal"><span>◆</span></div>
+
+  <section class="section reveal">
+    <div class="section-num">5</div>
+    <h2 class="section-question" data-i18n="s5_q"></h2>
+    <div class="section-body" data-i18n-html="s5_body"></div>
+  </section>
+
+  <div class="page-nav reveal">
+    <a href="/anekantavada/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+    <a href="/" class="next-read">
+      <div class="next-read-label" data-i18n="next_label"></div>
+      <div class="next-read-title">
+        <span data-i18n="next_title"></span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+  </div>
+
+  <footer class="article-footer reveal">
+    <a href="/" class="brand">Jainverse</a>
+    <span class="note" data-i18n="footer_note"></span>
+  </footer>
+
+</article>
+
+<script>
+function s(sentences) {
+  return sentences.map(t => '<span class="sentence">' + t + '</span>').join('');
+}
+
+const i18n = {
+  mr: {
+    page_title: "स्याद्वाद",
+    page_subtitle: "अनेकांतवाद बोलायची पद्धत",
+    s1_q: "अनेकांतवाद समजला, पण बोलायचं कसं?",
+    s1_body: s([
+      'अनेकांतवाद म्हणतो की सत्याला अनेक बाजू असतात.',
+      'पण दैनंदिन बोलताना आपण लगेच ठोकून बोलतो: "हेच अंतिम आहे."',
+      'इथेच <span class="term">स्याद्वाद</span> उपयोगी पडतो.',
+      '<span class="emphasis">सरळ अर्थ: विधान करताना संदर्भ स्पष्ट करा.</span>',
+    ]),
+    s2_q: "\"स्यात\" म्हणजे काय?",
+    s2_body: s([
+      '"स्यात" चा अर्थ इथे "कदाचित" नाही.',
+      'इथे अर्थ आहे: <span class="emphasis">"या दृष्टीने", "या अटीवर", "या संदर्भात"</span>.',
+      'म्हणजे विधान कमकुवत होत नाही; उलट जास्त अचूक होतं.',
+      'असं बोलणं म्हणजे गोंधळ नाही, तर जबाबदारीनं बोलणं.',
+    ]),
+    s3_q: "योग्य आणि चुकीचा वापर",
+    s3_body: s([
+      '<span class="term">योग्य वापर:</span> "हा चहा गरम आहे" — आत्ताच बनवला असेल तर बरोबर. एक तासानंतर "हा चहा थंड आहे" — तेही बरोबर.',
+      'दोन्ही वाक्यं वेगवेगळ्या वेळेत खरी आहेत. हेच स्याद्वादाचं भान.',
+      '<span class="term">स्पष्ट चुकीचा वापर:</span> "मी खोटं बोललो, पण माझ्या दृष्टीने ते बरोबरच" — हे स्याद्वाद नाही.',
+      '<span class="emphasis">स्याद्वाद संदर्भ स्पष्ट करतो; चूक बरोबर ठरवत नाही.</span>',
+    ]),
+    s4_q: "यात सात प्रकारचं काही आहे का?",
+    s4_body: s([
+      'हो, पुढे जैन तर्कात स्याद्वादाची सविस्तर रचना येते (सप्तभंगी).',
+      'पण सुरुवातीला एवढं पुरेसं आहे: कोणतंही विधान संदर्भाशिवाय पूर्ण नसतं.',
+      'आधी ही सवय लावा — "मी कोणत्या अर्थानं बोलतोय?"',
+      '<span class="emphasis">हीच सवय वादाला विचारात बदलते.</span>',
+    ]),
+    s5_q: "मोक्षमार्गात याचा उपयोग काय?",
+    s5_body: s([
+      'ठोकून बोलण्यानं अहंकार वाढतो. "मीच बरोबर" म्हणालात की राग आणि वाद वाढतात.',
+      'स्याद्वादामुळे बोलण्यात नम्रता येते. आपण दुसरी बाजू ऐकतो, समजून घेतो.',
+      'यामुळे कषाय कमी होतात आणि सम्यक दर्शन स्थिर होतं.',
+      'म्हणून स्याद्वाद हा फक्त भाषेचा नियम नाही; तो अंतर्मन शुद्ध करणारी साधना आहे.',
+    ]),
+    prev_label: "मागे वाचा",
+    prev_title: "अनेकांतवाद",
+    next_label: "पुढचा टप्पा",
+    back_text: "अनेकांतवाद",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  hi: {
+    page_title: "स्याद्वाद",
+    page_subtitle: "अनेकांतवाद को बोलने की पद्धति",
+    s1_q: "अनेकांतवाद समझ आया, अब बोलें कैसे?",
+    s1_body: s([
+      'अनेकांतवाद कहता है कि सत्य के कई पक्ष होते हैं.',
+      'लेकिन रोज़मर्रा में हम तुरंत बोल देते हैं: "यही अंतिम है."',
+      'यहीं <span class="term">स्याद्वाद</span> काम आता है.',
+      '<span class="emphasis">सीधा अर्थ: कथन करते समय संदर्भ स्पष्ट करो.</span>',
+    ]),
+    s2_q: "\"स्यात\" का मतलब क्या है?",
+    s2_body: s([
+      'यहाँ "स्यात" का मतलब "शायद" नहीं है.',
+      'यहाँ अर्थ है: <span class="emphasis">"इस दृष्टि से", "इस शर्त पर", "इस संदर्भ में"</span>.',
+      'इससे कथन कमज़ोर नहीं होता, बल्कि ज़्यादा सटीक होता है.',
+      'ऐसा बोलना भ्रम नहीं, जिम्मेदारी से बोलना है.',
+    ]),
+    s3_q: "सही और गलत उपयोग",
+    s3_body: s([
+      '<span class="term">सही उपयोग:</span> "यह चाय गरम है" — अभी बनी हो तो सही. एक घंटे बाद "यह चाय ठंडी है" — वह भी सही.',
+      'दोनों वाक्य अलग समय में सही हैं. यही स्याद्वाद की समझ है.',
+      '<span class="term">सीधा गलत उपयोग:</span> "मैंने झूठ बोला, लेकिन मेरी दृष्टि से वह सही है" — यह स्याद्वाद नहीं है.',
+      '<span class="emphasis">स्याद्वाद संदर्भ स्पष्ट करता है; गलत को सही नहीं बनाता.</span>',
+    ]),
+    s4_q: "क्या इसमें सात प्रकार भी होते हैं?",
+    s4_body: s([
+      'हाँ, आगे जैन तर्क में स्याद्वाद का विस्तृत ढाँचा आता है (सप्तभंगी).',
+      'लेकिन शुरुआत के लिए इतना काफ़ी है: संदर्भ के बिना कोई कथन पूरा नहीं होता.',
+      'पहले यह आदत बनाओ — "मैं किस अर्थ में बोल रहा हूँ?"',
+      '<span class="emphasis">यही आदत बहस को विचार में बदल देती है.</span>',
+    ]),
+    s5_q: "मोक्ष मार्ग में इसका उपयोग क्या है?",
+    s5_body: s([
+      'कट्टर तरीके से बोलने पर अहंकार बढ़ता है. "सिर्फ मैं सही" से क्रोध और टकराव बढ़ते हैं.',
+      'स्याद्वाद बोलने में विनम्रता लाता है. हम दूसरे पक्ष को सुनते और समझते हैं.',
+      'इससे कषाय घटती हैं और सम्यक दर्शन स्थिर होता है.',
+      'इसलिए स्याद्वाद सिर्फ भाषा का नियम नहीं; यह भीतर को शुद्ध करने की साधना है.',
+    ]),
+    prev_label: "पीछे पढ़ें",
+    prev_title: "अनेकांतवाद",
+    next_label: "अगला चरण",
+    back_text: "अनेकांतवाद",
+    next_title: "मुख्य पृष्ठ",
+    footer_note: "जैन परंपरा · Jainverse",
+  },
+  en: {
+    page_title: "Syadvada",
+    page_subtitle: "How to speak with Anekantavada",
+    s1_q: "You understood Anekantavada. How do you express it?",
+    s1_body: s([
+      'Anekantavada says truth has many sides.',
+      'But in daily speech, we quickly declare: "This alone is final."',
+      'This is where <span class="term">Syadvada</span> helps.',
+      '<span class="emphasis">Simple meaning: while making a statement, make the context clear.</span>',
+    ]),
+    s2_q: "What does \"syat\" mean?",
+    s2_body: s([
+      'Here, "syat" does not mean "maybe."',
+      'Here it means: <span class="emphasis">"from this standpoint," "under this condition," "in this context"</span>.',
+      'That does not weaken a statement; it makes it more precise.',
+      'So this is not confusion. It is responsible speech.',
+    ]),
+    s3_q: "Right use and wrong use",
+    s3_body: s([
+      '<span class="term">Right use:</span> "This tea is hot" — true if freshly made. After an hour, "This tea is cold" — also true.',
+      'Both are true in different time contexts. That is Syadvada-awareness.',
+      '<span class="term">Plain wrong use:</span> "I lied, but from my viewpoint it was right" — this is not Syadvada.',
+      '<span class="emphasis">Syadvada clarifies context; it does not justify wrongdoing.</span>',
+    ]),
+    s4_q: "Is there also a sevenfold structure here?",
+    s4_body: s([
+      'Yes. Later, Jain logic presents a detailed structure of Syadvada (Saptabhangi).',
+      'But for beginners, this is enough: no statement is complete without context.',
+      'First build this habit: "In what sense am I saying this?"',
+      '<span class="emphasis">That one habit turns argument into thoughtful dialogue.</span>',
+    ]),
+    s5_q: "Why does this matter on the path to liberation?",
+    s5_body: s([
+      'Absolute, rigid speech feeds ego. "Only I am right" increases anger and conflict.',
+      'Syadvada brings humility to speech. We listen to and understand other standpoints.',
+      'That reduces kashaya and supports stable samyak darshan.',
+      'So Syadvada is not just a language rule; it is a discipline for inner purification.',
+    ]),
+    prev_label: "Previous",
+    prev_title: "Anekantavada",
+    next_label: "Continue",
+    back_text: "Anekantavada",
+    next_title: "Home",
+    footer_note: "Jain Tradition · Jainverse",
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang === 'mr' ? 'mr' : lang === 'hi' ? 'hi' : 'en';
+  localStorage.setItem('jainverse-lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+setLang(localStorage.getItem('jainverse-lang') || 'mr');
+
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

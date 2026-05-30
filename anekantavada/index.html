@@ -144,7 +144,14 @@
   </section>
 
   <div class="page-nav reveal">
-    <a href="/" class="next-read">
+    <a href="/" class="prev-read">
+      <div class="prev-read-label" data-i18n="prev_label"></div>
+      <div class="prev-read-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        <span data-i18n="prev_title"></span>
+      </div>
+    </a>
+    <a href="/syadvada/" class="next-read">
       <div class="next-read-label" data-i18n="next_label"></div>
       <div class="next-read-title">
         <span data-i18n="next_title"></span>
@@ -206,8 +213,10 @@ const i18n = {
       'म्हणून अनेकांतवाद हा फक्त वादाचा सिद्धांत नाही; तो अंतर्मन शुद्ध करणारी साधना आहे.',
       'पुढच्या भागात बघू: अनेकांतवाद भाषेत कसा व्यक्त होतो? <span class="term">स्याद्वाद</span>.',
     ]),
-    next_label: "पुढचा टप्पा",
-    next_title: "मुख्य पृष्ठ",
+    prev_label: "मागे",
+    prev_title: "मुख्य पृष्ठ",
+    next_label: "पुढे वाचा",
+    next_title: "स्याद्वाद",
     footer_note: "जैन परंपरा · Jainverse",
   },
   hi: {
@@ -250,8 +259,10 @@ const i18n = {
       'इसलिए अनेकांतवाद सिर्फ बहस का सिद्धांत नहीं; यह भीतर को शुद्ध करने की साधना है.',
       'अगले भाग में देखेंगे: अनेकांतवाद भाषा में कैसे आता है? <span class="term">स्याद्वाद</span>.',
     ]),
-    next_label: "अगला चरण",
-    next_title: "मुख्य पृष्ठ",
+    prev_label: "पीछे",
+    prev_title: "मुख्य पृष्ठ",
+    next_label: "आगे पढ़ें",
+    next_title: "स्याद्वाद",
     footer_note: "जैन परंपरा · Jainverse",
   },
   en: {
@@ -294,8 +305,10 @@ const i18n = {
       'So Anekantavada is not just a debate theory; it is a discipline that purifies inner life.',
       'Next section: how this becomes language and logic through <span class="term">Syadvada</span>.',
     ]),
+    prev_label: "Previous",
+    prev_title: "Home",
     next_label: "Continue",
-    next_title: "Home",
+    next_title: "Syadvada",
     footer_note: "Jain Tradition · Jainverse",
   }
 };
