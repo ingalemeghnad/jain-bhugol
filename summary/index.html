@@ -451,7 +451,7 @@
 
     <!-- Tattva -->
     <div class="column">
-      <div class="col-header" data-i18n="h_tattva">७ तत्त्वे</div>
+      <div class="col-header" data-i18n="h_tattva">7 तत्त्वे</div>
       <div class="col-nodes">
         <div class="node" data-id="t_jiva"><div class="node-main" data-i18n="t_jiva">जीव</div></div>
         <div class="node" data-id="t_ajiva"><div class="node-main" data-i18n="t_ajiva">अजीव</div></div>
@@ -465,7 +465,7 @@
 
     <!-- Dravya -->
     <div class="column">
-      <div class="col-header" data-i18n="h_dravya">६ द्रव्ये</div>
+      <div class="col-header" data-i18n="h_dravya">6 द्रव्ये</div>
       <div class="col-nodes">
         <div class="node" data-id="d_jiva"><div class="node-main" data-i18n="d_jiva">जीव</div></div>
         <div class="node" data-id="pudgala"><div class="node-main" data-i18n="d_pudgala">पुद्गल</div><div class="node-sub" data-i18n="ds_pudgala">Matter</div></div>
@@ -478,7 +478,7 @@
 
     <!-- Kashaya -->
     <div class="column">
-      <div class="col-header" data-i18n="h_kashaya">४ कषाय</div>
+      <div class="col-header" data-i18n="h_kashaya">4 कषाय</div>
       <div class="col-nodes">
         <div class="node" data-id="krodha" data-link="/kashaya/"><div class="node-main" data-i18n="k_krodha">क्रोध</div><div class="node-sub" data-i18n="ks_krodha">Anger</div></div>
         <div class="node" data-id="mana" data-link="/kashaya/"><div class="node-main" data-i18n="k_mana">मान</div><div class="node-sub" data-i18n="ks_mana">Pride</div></div>
@@ -489,7 +489,7 @@
 
     <!-- Karma -->
     <div class="column">
-      <div class="col-header" data-i18n="h_karma">८ कर्मे</div>
+      <div class="col-header" data-i18n="h_karma">8 कर्मे</div>
       <div class="col-nodes">
         <div class="node" data-id="jnan_k" data-link="/karma/"><div class="node-main" data-i18n="km_jnan">ज्ञानावरणीय</div></div>
         <div class="node" data-id="darsh_k" data-link="/karma/"><div class="node-main" data-i18n="km_darsh">दर्शनावरणीय</div></div>
@@ -559,19 +559,19 @@ const relatedMap = {
   akasha: ['ajiva'],
   kala: ['ajiva'],
   // Kashaya column
-  krodha: ['bandh', 'ashrav', 'moh_k'],
-  mana: ['bandh', 'ashrav', 'moh_k'],
-  maya: ['bandh', 'ashrav', 'moh_k'],
-  lobha: ['bandh', 'ashrav', 'moh_k'],
+  krodha: ['bandh', 'ashrav'],
+  mana: ['bandh', 'ashrav'],
+  maya: ['bandh', 'ashrav'],
+  lobha: ['bandh', 'ashrav'],
   // Karma column
   jnan_k: ['pudgala', 'jiva'],
   darsh_k: ['pudgala', 'jiva'],
-  ved_k: ['pudgala'],
-  moh_k: ['pudgala', 'krodha', 'mana', 'maya', 'lobha', 'bandh'],
-  ayua_k: ['pudgala'],
-  nama_k: ['pudgala'],
-  gotr_k: ['pudgala'],
-  ant_k: ['pudgala']
+  ved_k: ['pudgala', 'jiva'],
+  moh_k: ['pudgala', 'jiva'],
+  ayua_k: ['pudgala', 'jiva'],
+  nama_k: ['pudgala', 'jiva'],
+  gotr_k: ['pudgala', 'jiva'],
+  ant_k: ['pudgala', 'jiva']
 };
 
 const i18n = {
@@ -580,7 +580,7 @@ const i18n = {
     page_subtitle: "सर्व संकल्पना एका नजरेत. कुठेही क्लिक करा.",
     n_jiva: "जीव (आत्मा)", ns_jiva: "Soul",
     n_ajiva: "अजीव (जड)", ns_ajiva: "Non-Soul",
-    h_tattva: "७ तत्त्वे", h_dravya: "६ द्रव्ये", h_kashaya: "४ कषाय", h_karma: "८ कर्मे",
+    h_tattva: "7 तत्त्वे", h_dravya: "6 द्रव्ये", h_kashaya: "4 कषाय", h_karma: "8 कर्मे",
     t_jiva: "जीव", t_ajiva: "अजीव",
     t_ashrav: "आस्रव", ts_ashrav: "ओघ",
     t_bandh: "बंध", ts_bandh: "बंधन",
@@ -606,8 +606,8 @@ const i18n = {
     details: {
       jiva: { tag: "पाया", t: "जीव (आत्मा)", d: "चेतना असलेला आत्मा. जो जाणतो आणि अनुभवतो. मुळात शुद्ध, अनंत ज्ञानी — पण कर्मामुळे झाकलेला." },
       ajiva: { tag: "पाया", t: "अजीव (जड)", d: "ज्याला जाणीव नाही असे सर्वकाही. पुद्गल, धर्म, अधर्म, आकाश आणि काल हे सर्व अजीव." },
-      t_jiva: { tag: "तत्त्व", t: "जीव", d: "७ तत्त्वांपैकी पहिले. चैतन्य हा जीवाचा स्वभाव." },
-      t_ajiva: { tag: "तत्त्व", t: "अजीव", d: "७ तत्त्वांपैकी दुसरे. जडत्व हा अजीवाचा स्वभाव." },
+      t_jiva: { tag: "तत्त्व", t: "जीव", d: "7 तत्त्वांपैकी पहिले. चैतन्य हा जीवाचा स्वभाव." },
+      t_ajiva: { tag: "तत्त्व", t: "अजीव", d: "7 तत्त्वांपैकी दुसरे. जडत्व हा अजीवाचा स्वभाव." },
       ashrav: { tag: "तत्त्व", t: "आस्रव", d: "कर्माचा ओघ — मन-वचन-काया यांच्या क्रियांमुळे कर्म आत्म्यात शिरतं." },
       bandh: { tag: "तत्त्व", t: "बंध", d: "कर्माचा आत्म्याशी पक्का बंध. कषायांमुळे कर्म चिकटतं." },
       samvar: { tag: "तत्त्व", t: "संवर", d: "नवीन कर्माचा ओघ थांबवणे — संयम, तप, ध्यान यांनी." },
@@ -638,7 +638,7 @@ const i18n = {
     page_subtitle: "सारी संकल्पनाएँ एक नज़र में। कहीं भी क्लिक करें।",
     n_jiva: "जीव (आत्मा)", ns_jiva: "Soul",
     n_ajiva: "अजीव (जड़)", ns_ajiva: "Non-Soul",
-    h_tattva: "७ तत्त्व", h_dravya: "६ द्रव्य", h_kashaya: "४ कषाय", h_karma: "८ कर्म",
+    h_tattva: "7 तत्त्व", h_dravya: "6 द्रव्य", h_kashaya: "4 कषाय", h_karma: "8 कर्म",
     t_jiva: "जीव", t_ajiva: "अजीव",
     t_ashrav: "आस्रव", ts_ashrav: "प्रवाह",
     t_bandh: "बंध", ts_bandh: "बंधन",
@@ -664,8 +664,8 @@ const i18n = {
     details: {
       jiva: { tag: "आधार", t: "जीव (आत्मा)", d: "चेतना वाला आत्मा। जानता और महसूस करता है। स्वभाव से शुद्ध, अनंत ज्ञानी — लेकिन कर्म से ढका हुआ।" },
       ajiva: { tag: "आधार", t: "अजीव (जड़)", d: "बिना चेतना सब कुछ। पुद्गल, धर्म, अधर्म, आकाश और काल सब अजीव।" },
-      t_jiva: { tag: "तत्त्व", t: "जीव", d: "७ तत्त्वों में पहला। चैतन्य जीव का स्वभाव।" },
-      t_ajiva: { tag: "तत्त्व", t: "अजीव", d: "७ तत्त्वों में दूसरा। जड़ता अजीव का स्वभाव।" },
+      t_jiva: { tag: "तत्त्व", t: "जीव", d: "7 तत्त्वों में पहला। चैतन्य जीव का स्वभाव।" },
+      t_ajiva: { tag: "तत्त्व", t: "अजीव", d: "7 तत्त्वों में दूसरा। जड़ता अजीव का स्वभाव।" },
       ashrav: { tag: "तत्त्व", t: "आस्रव", d: "कर्म का प्रवाह — मन-वचन-काया की क्रियाओं से कर्म आत्मा में आता है।" },
       bandh: { tag: "तत्त्व", t: "बंध", d: "कर्म का आत्मा से पक्का बंधन। कषायों के कारण चिपकता है।" },
       samvar: { tag: "तत्त्व", t: "संवर", d: "नए कर्म का प्रवाह रोकना — संयम, तप, ध्यान से।" },
