@@ -36,7 +36,122 @@
   .lang-btn:hover { color: var(--text-secondary); }
   .lang-btn.active { background: var(--indigo); color: var(--sand); font-weight: 600; }
   .lang-divider { width: 1px; height: 16px; background: var(--sand-dark); }
-  .article { max-width: 640px; margin: 0 auto; padding: 140px 28px 100px; }
+  
+  /* ---- Timeline ---- */
+  .timeline-bar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background: rgba(250, 248, 244, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    overflow-x: auto;
+    overflow-y: hidden;
+    transition: top 0.4s;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+  .topbar.scrolled ~ .timeline-bar { top: 46px; }
+
+  .timeline-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    padding: 10px 24px 8px;
+    min-width: max-content;
+  }
+
+  .timeline-track {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    gap: 3px;
+  }
+
+  .timeline-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: 'Instrument Sans', sans-serif;
+    transition: all 0.25s;
+    flex-shrink: 0;
+  }
+
+  .timeline-step.past .timeline-dot {
+    background: var(--indigo);
+    color: var(--sand);
+    border: 2px solid var(--indigo);
+  }
+
+  .timeline-step.current .timeline-dot {
+    background: var(--saffron);
+    color: white;
+    border: 2px solid var(--saffron);
+    transform: scale(1.15);
+    box-shadow: 0 0 0 3px rgba(224, 120, 48, 0.2);
+  }
+
+  .timeline-step.future .timeline-dot {
+    background: transparent;
+    color: var(--stone-light);
+    border: 2px solid var(--sand-dark);
+  }
+
+  .timeline-step:hover .timeline-dot {
+    border-color: var(--saffron-light);
+    color: var(--saffron);
+  }
+
+  .timeline-step-label {
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    font-family: 'Instrument Sans', 'Tiro Devanagari Hindi', sans-serif;
+  }
+
+  .timeline-step.current .timeline-step-label {
+    color: var(--saffron-deep);
+    font-weight: 600;
+  }
+
+  .timeline-connector {
+    width: 14px;
+    height: 2px;
+    background: var(--sand-dark);
+    flex-shrink: 0;
+    margin-top: 10px;
+  }
+
+  .timeline-connector.filled {
+    background: var(--indigo);
+  }
+
+  .timeline-arc-sep {
+    width: 1px;
+    height: 30px;
+    background: var(--sand-dark);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .article { max-width: 640px; margin: 0 auto; padding: 200px 28px 100px; }
   .page-header { margin-bottom: 72px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.2s forwards; }
   .page-header h1 { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-size: clamp(36px, 5vw, 52px); color: var(--indigo); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px; }
   .page-header .subtitle { font-family: 'DM Serif Display', 'Tiro Devanagari Hindi', serif; font-style: italic; font-size: clamp(16px, 2vw, 20px); color: var(--stone); line-height: 1.4; }
@@ -73,7 +188,13 @@
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
   @media (max-width: 600px) {
     .topbar { padding: 14px 18px; } .topbar.scrolled { padding: 11px 18px; }
-    .article { padding: 110px 20px 60px; } .page-header { margin-bottom: 52px; }
+        .timeline-bar { top: 48px; }
+    .topbar.scrolled ~ .timeline-bar { top: 42px; }
+    .timeline-inner { padding: 8px 16px 6px; gap: 12px; }
+    .timeline-dot { width: 20px; height: 20px; font-size: 9px; }
+    .timeline-connector { width: 10px; margin-top: 9px; }
+    .timeline-step-label { font-size: 8px; }
+    .article { padding: 160px 20px 60px; } .page-header { margin-bottom: 52px; }
     .section { margin-bottom: 56px; } .section-num { font-size: 56px; margin-bottom: -8px; }
     .section-question { font-size: 22px; margin-bottom: 20px; }
     .section-body { font-size: 16px; line-height: 1.9; } .section-divider { margin: 56px 0; }
@@ -383,6 +504,102 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ---- Timeline ----
+(function() {
+  const arcs = [
+    [
+      { url: '/jeev-ajeev/', mr: '\u091c\u0940\u0935', hi: '\u091c\u0940\u0935', en: 'Jeev' },
+      { url: '/kashaya/', mr: '\u0915\u0937\u093e\u092f', hi: '\u0915\u0937\u093e\u092f', en: 'Kashaya' },
+      { url: '/ajiva/', mr: '\u0905\u091c\u0940\u0935', hi: '\u0905\u091c\u0940\u0935', en: 'Ajiva' },
+      { url: '/karma/', mr: '\u0915\u0930\u094d\u092e', hi: '\u0915\u0930\u094d\u092e', en: 'Karma' },
+      { url: '/ashrav-bandh/', mr: '\u0906\u0936\u094d\u0930\u0935-\u092c\u0902\u0927', hi: '\u0906\u0938\u094d\u0930\u0935-\u092c\u0902\u0927', en: 'Ashrav' },
+      { url: '/samvar-nirjara/', mr: '\u0938\u0902\u0935\u0930', hi: '\u0938\u0902\u0935\u0930', en: 'Samvar' },
+      { url: '/moksha/', mr: '\u092e\u094b\u0915\u094d\u0937', hi: '\u092e\u094b\u0915\u094d\u0937', en: 'Moksha' },
+      { url: '/summary/', mr: '\u0938\u093e\u0930\u093e\u0902\u0936', hi: '\u0938\u093e\u0930\u093e\u0902\u0936', en: 'Summary' },
+    ],
+    [
+      { url: '/ratnatraya/', mr: '\u0930\u0924\u094d\u0928\u0924\u094d\u0930\u092f', hi: '\u0930\u0924\u094d\u0928\u0924\u094d\u0930\u092f', en: 'Ratnatraya' },
+      { url: '/punya-paap/', mr: '\u092a\u0941\u0923\u094d\u092f-\u092a\u093e\u092a', hi: '\u092a\u0941\u0923\u094d\u092f-\u092a\u093e\u092a', en: 'Punya' },
+      { url: '/ahimsa/', mr: '\u0905\u0939\u093f\u0902\u0938\u093e', hi: '\u0905\u0939\u093f\u0902\u0938\u093e', en: 'Ahimsa' },
+      { url: '/panch-mahavrat/', mr: '\u092e\u0939\u093e\u0935\u094d\u0930\u0924', hi: '\u092e\u0939\u093e\u0935\u094d\u0930\u0924', en: 'Vows' },
+      { url: '/panch-parmeshthi/', mr: '\u092a\u0930\u092e\u0947\u0937\u094d\u0920\u0940', hi: '\u092a\u0930\u092e\u0947\u0937\u094d\u0920\u0940', en: 'Parmeshthi' },
+      { url: '/namokar-mantra/', mr: '\u0923\u092e\u094b\u0915\u093e\u0930', hi: '\u0923\u092e\u094b\u0915\u093e\u0930', en: 'Namokar' },
+      { url: '/summary-2/', mr: '\u0938\u093e\u0930\u093e\u0902\u0936', hi: '\u0938\u093e\u0930\u093e\u0902\u0936', en: 'Summary' },
+    ]
+  ];
+
+  const path = window.location.pathname;
+  let curArc = -1, curIdx = -1;
+  arcs.forEach((arc, ai) => {
+    arc.forEach((p, pi) => {
+      if (p.url === path) { curArc = ai; curIdx = pi; }
+    });
+  });
+
+  const nav = document.createElement('nav');
+  nav.className = 'timeline-bar';
+  nav.id = 'timeline-bar';
+
+  let num = 0;
+  let html = '<div class="timeline-inner">';
+  arcs.forEach((arc, ai) => {
+    html += '<div class="timeline-track">';
+    arc.forEach((p, pi) => {
+      num++;
+      const isCurrent = ai === curArc && pi === curIdx;
+      const isPast = ai < curArc || (ai === curArc && pi < curIdx);
+      const cls = isCurrent ? 'current' : isPast ? 'past' : 'future';
+      if (pi > 0) {
+        html += '<div class="timeline-connector' + (isPast || isCurrent ? ' filled' : '') + '"></div>';
+      }
+      html += '<a href="' + p.url + '" class="timeline-step ' + cls + '">';
+      html += '<div class="timeline-dot">' + num + '</div>';
+      html += '<span class="timeline-step-label" data-tl-idx="' + ai + '-' + pi + '"></span>';
+      html += '</a>';
+    });
+    html += '</div>';
+    if (ai < arcs.length - 1) html += '<div class="timeline-arc-sep"></div>';
+  });
+  html += '</div>';
+  nav.innerHTML = html;
+
+  document.getElementById('topbar').after(nav);
+
+  function updateTimelineLabels(lang) {
+    arcs.forEach((arc, ai) => {
+      arc.forEach((p, pi) => {
+        const el = document.querySelector('[data-tl-idx="' + ai + '-' + pi + '"]');
+        if (el) el.textContent = p[lang] || p.en;
+      });
+    });
+  }
+
+  const origSetLang = window.setLang || setLang;
+  const wrappedSetLang = function(lang) {
+    origSetLang(lang);
+    updateTimelineLabels(lang);
+  };
+  window.setLang = wrappedSetLang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.onclick = () => wrappedSetLang(btn.getAttribute('data-lang'));
+  });
+
+  updateTimelineLabels(localStorage.getItem('jainverse-lang') || 'mr');
+
+  if (curArc >= 0) {
+    const currentDot = nav.querySelector('.timeline-step.current');
+    if (currentDot) {
+      setTimeout(() => {
+        currentDot.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'instant' });
+      }, 50);
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+})();
 </script>
 
 </body>
